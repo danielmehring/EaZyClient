@@ -1,0 +1,41 @@
+INFO  2017-06-30 18:06:03,191 (Saros.java:220) Starting Saros 14.10.31 running:
+  Java Version: 1.8.0_101
+  Java Vendor: Oracle Corporation
+  Eclipse Runtime Version: 3.12.0.v20160606-1342
+  Operating System: Windows 10 (10.0)
+  Hardware Architecture: amd64
+INFO  2017-06-30 18:06:03,254 (SarosContext.java:153) creating Saros runtime context...
+DEBUG 2017-06-30 18:06:03,326 (XMPPAccountStore.java:117) loading accounts from file: C:\Users\xyzer\.saros\config.dat
+DEBUG 2017-06-30 18:06:03,731 (XMPPAccountStore.java:176) loaded 1 account(s)
+INFO  2017-06-30 18:06:03,946 (SarosContext.java:199) successfully created Saros runtime context
+DEBUG 2017-06-30 18:06:03,976 (DataTransferManager.java:467) used transport order for the current XMPP connection: [XMPP-Socks5-Transport, XMPP-IBB-Transport]
+INFO  2017-06-30 18:06:04,012 (PreferenceInitializer.java:50) initializing preference default values
+DEBUG 2017-06-30 18:06:04,052 (SarosAnnotation.java:117) resetting annotation colors
+DEBUG 2017-06-30 18:06:04,061 (Saros.java:430) skipping conversion of old XMPP accounts, because there are already new ones
+DEBUG 2017-06-30 18:06:11,570 (SharedDocumentProvider.java:77) SharedDocumentProvider created by Eclipse
+DEBUG 2017-06-30 18:06:33,526 (WhiteboardManager.java:194) WhiteboardManager instantiated
+DEBUG 2017-06-30 18:06:33,559 (DocumentRecord.java:93) Added Node: attr(149883879355191914) name=svg
+DEBUG 2017-06-30 18:06:33,667 (XMPPConnectionService.java:439) started Socks5 proxy on port: 7777 [listening on all interfaces]
+DEBUG 2017-06-30 18:06:35,327 (XMPPConnectionService.java:459) using autodetected addresses: [192.168.2.105, fe80:0:0:0:50fa:8586:2f83:e7%eth3]
+DEBUG 2017-06-30 18:06:35,465 (XMPPConnectionService.java:398)  new connection state == CONNECTING
+DEBUG 2017-06-30 18:06:36,867 (XMPPConnectionService.java:398) xzer@saros-con.imp.fu-berlin.de/Saros new connection state == CONNECTED
+DEBUG 2017-06-30 18:06:36,868 (DataTransferManager.java:467) used transport order for the current XMPP connection: [XMPP-Socks5-Transport, XMPP-IBB-Transport]
+DEBUG 2017-06-30 18:06:36,870 (SkypeManager.java:289) Refreshing Skype username cache...
+WARN  2017-06-30 18:06:46,641 (StunServiceImpl.java:420) received no response from STUN server stunserver.org/184.168.221.96:3478 at local address /192.168.2.105:0
+DEBUG 2017-06-30 22:57:52,745 (XMPPConnectionService.java:398) xzer@saros-con.imp.fu-berlin.de/Saros new connection state == DISCONNECTING
+WARN  2017-06-30 22:57:52,749 (SWTUtils.java:144) could not execute runnable de.fu_berlin.inf.dpp.serviceProviders.SarosSourceProvider$3@2e36d35c, UI thread is not available
+StackTrace:
+	at de.fu_berlin.inf.dpp.ui.util.SWTUtils.runSafeSWTAsync(SWTUtils.java:145)
+	at de.fu_berlin.inf.dpp.serviceProviders.SarosSourceProvider.connectionChanged(SarosSourceProvider.java:124)
+	at de.fu_berlin.inf.dpp.serviceProviders.SarosSourceProvider.access$0(SarosSourceProvider.java:123)
+	at de.fu_berlin.inf.dpp.serviceProviders.SarosSourceProvider$1.connectionStateChanged(SarosSourceProvider.java:70)
+	at de.fu_berlin.inf.dpp.communication.connection.ConnectionHandler.setConnectionState(ConnectionHandler.java:397)
+	at de.fu_berlin.inf.dpp.communication.connection.ConnectionHandler.access$1(ConnectionHandler.java:389)
+	at de.fu_berlin.inf.dpp.communication.connection.ConnectionHandler$1.connectionStateChanged(ConnectionHandler.java:79)
+	at de.fu_berlin.inf.dpp.net.xmpp.XMPPConnectionService.setConnectionState(XMPPConnectionService.java:405)
+	at de.fu_berlin.inf.dpp.net.xmpp.XMPPConnectionService.disconnect(XMPPConnectionService.java:304)
+	at de.fu_berlin.inf.dpp.communication.connection.ConnectionHandler.disconnectXMPPInternal(ConnectionHandler.java:225)
+	at de.fu_berlin.inf.dpp.communication.connection.ConnectionHandler.disconnect(ConnectionHandler.java:211)
+	at de.fu_berlin.inf.dpp.Saros$1.run(Saros.java:304)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Unknown Source)

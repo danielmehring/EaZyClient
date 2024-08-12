@@ -1,0 +1,51 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+
+public class Glide extends Module {
+
+	public Glide() {
+		super("Glide", Keyboard.KEY_NUMPAD1, Category.Movement);
+
+	}
+
+	public void onPreUpdate() {
+		if (!this.getState())
+			return;
+		
+		mc.thePlayer.motionY = -10f;
+		
+		if (!mc.thePlayer.onGround) {
+			mc.thePlayer.motionX *= 1.0;
+			mc.thePlayer.motionZ *= 1.0;
+
+		}
+//		mc.thePlayer.onGround = true;
+
+		if (mc.thePlayer.movementInput.jump) {
+			mc.thePlayer.motionY = 0.001F;
+		}
+
+		mc.thePlayer.cameraYaw = 0.1f;
+//		mc.thePlayer.motionY = (double) -0.00001;
+		// mc.thePlayer.onGround = true;
+
+		if (mc.thePlayer.movementInput.sneak) {
+			mc.thePlayer.motionY = -0.45F;
+
+			// if(mc.thePlayer.isOnLadder()){
+			// mc.thePlayer.motionY *= 1.5F;
+			// }
+
+		}
+
+	}
+
+	public void onDisable() {
+		mc.timer.timerSpeed = 1.0F;
+	}
+
+}

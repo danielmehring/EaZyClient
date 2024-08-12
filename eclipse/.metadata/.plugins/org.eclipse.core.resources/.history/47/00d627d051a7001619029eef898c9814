@@ -1,0 +1,89 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import net.minecraft.network.play.client.C03PacketPlayer;
+
+public class AACGlide extends Module{
+
+	public AACGlide() {
+		super("AACGlide", Keyboard.KEY_G, Category.Movement);
+	}
+	
+//	double startPosY;
+//	
+	public void onUpdate(){
+		if(!this.getState())
+			return;
+		
+		int isDamaged = 0;
+		
+
+
+		
+		
+		
+		if(mc.thePlayer.fallDistance > 3.2 && !mc.thePlayer.movementInput.sneak){
+			mc.thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer(true));
+			mc.thePlayer.fallDistance = 0.0f;
+			
+		}
+		
+		if(mc.thePlayer.hurtTime > 0.1F && !mc.thePlayer.onGround){
+			mc.thePlayer.motionY = 0.314f;
+			
+			mc.thePlayer.motionX = 0.0f;
+			mc.thePlayer.motionZ = 0.0f;
+			mc.thePlayer.jumpMovementFactor = 0.795f; // xD
+			isDamaged += 2;
+			
+		}
+		
+		if(mc.thePlayer.hurtTime > 0.1F && mc.thePlayer.movementInput.sneak && !mc.thePlayer.onGround){
+			mc.thePlayer.motionY = 0.0f;
+			
+			//mc.thePlayer.motionX = 0.0f;
+			//mc.thePlayer.motionZ = 0.0f;
+			//mc.thePlayer.jumpMovementFactor = 0.495f;
+			isDamaged += 3;
+		}
+		if(mc.thePlayer.hurtTime > 0.0f && mc.thePlayer.hurtTime < 0.1f){
+			mc.thePlayer.onGround = true;
+		}
+		
+	
+			
+		if(isDamaged > 1){
+			mc.thePlayer.motionX = 0.0f;
+			mc.thePlayer.motionZ = 0.0f;
+			mc.thePlayer.jumpMovementFactor = 2.639f;
+		}
+		if(mc.thePlayer.movementInput.jump && mc.thePlayer.motionY > 0.0f && isDamaged > 1){
+			mc.thePlayer.motionY *= 1.1f;
+		}
+		
+			
+		
+	
+	
+		if(mc.thePlayer.onGround || mc.thePlayer.isInWater() || mc.thePlayer.isInWeb || mc.thePlayer.isOnLadder()){
+			mc.thePlayer.fallDistance = 0;
+			isDamaged = 0;
+		}
+	}
+//	public void onEnable(){
+//		startPosY = mc.thePlayer.posY;
+//	}
+//	public void onPreUpdate(){
+//		if(startPosY < mc.thePlayer.posY){
+//			mc.thePlayer.motionY = -0.5f;
+//		}
+//	}
+//	
+	
+	
+}
+
+

@@ -1,0 +1,43 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import de.Exe.Utils.Wrapper;
+import net.minecraft.block.BlockAir;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.util.BlockPos;
+
+public class NCPGlide extends Module {
+
+	public NCPGlide() {
+		super("NCPGlide", Keyboard.KEY_G, Category.Movement);
+	}
+
+	int damaged;
+	int delay;
+
+	public void onEnable() {
+		if (mc.thePlayer.onGround)
+			mc.thePlayer.jump();
+	}
+
+	public void onPreUpdate() {
+		if (!this.getState())
+			return;
+
+		delay++;
+
+		if (delay > 16 && mc.thePlayer.motionX == 0 && mc.thePlayer.motionZ == 0) {
+			mc.thePlayer.jump();
+			delay = 0;
+		}
+
+	}
+
+	public void onDisble() {
+
+	}
+
+}

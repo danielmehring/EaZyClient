@@ -1,0 +1,20 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+
+public class GommeBhop extends Module{
+
+	public GommeBhop() {
+		super("Gomme", Keyboard.KEY_X, Category.Movement);
+	}
+	public void onPreUpdate(){
+		if(!this.getState())
+			return;
+		
+		
+		
+	}
+}

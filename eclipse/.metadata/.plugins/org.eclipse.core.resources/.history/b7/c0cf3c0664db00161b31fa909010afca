@@ -1,0 +1,413 @@
+package me.EaZy.client.modules;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.events.EventPostUpdate;
+import me.EaZy.client.events.EventPreUpdate;
+import me.EaZy.client.main.Client;
+import me.EaZy.client.utils.EntityUtils;
+import me.EaZy.client.utils.Friends;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.network.NetHandlerPlayClient;
+import net.minecraft.client.network.NetworkPlayerInfo;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.scoreboard.ScorePlayerTeam;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.WorldSettings;
+
+import com.darkmagician6.eventapi.EventManager;
+import com.darkmagician6.eventapi.EventTarget;
+import com.google.common.collect.ComparisonChain;
+import com.google.common.collect.Ordering;
+
+public class KillAura extends Module {
+	public int delay = 0;
+
+	public Entity target = null;
+
+	public KillAura() {
+		super(new String(
+				new byte[] { 0b1001011, 0b1101001, 0b1101100, 0b1101100, 0b1000001, 0b1110101, 0b1110010, 0b1100001 })
+						.toString(),
+				19, new String(new byte[] { 0b1100001, 0b1110101, 0b1110010, 0b1100001 }).toString(), Category.COMBAT,
+				new String(new byte[] { 0b1000001, 0b1110100, 0b1110100, 0b1100001, 0b1100011, 0b1101011, 0b1110011,
+						0b100000, 0b1100101, 0b1101110, 0b1110100, 0b1101001, 0b1110100, 0b1101001, 0b1100101,
+						0b1110011, 0b100000, 0b1100001, 0b1110010, 0b1101111, 0b1110101, 0b1101110, 0b1100100, 0b100000,
+						0b1111001, 0b1101111, 0b1110101, 0b101110 }).toString());
+	}
+
+	@Override
+	public String getRenderName() {
+		return new String(new byte[] { 0b1001011, 0b1101001, 0b1101100, 0b1101100, 0b1000001, 0b1110101, 0b1110010,
+				0b1100001, 0b100000, 0b1011011 }).toString() + Client.getValues().KillAura_range.getValue()
+				+ new String(new byte[] { 0b1011101 }).toString();
+	}
+
+	@Override
+	public void onDisable() {
+		EntityUtils.setLookChanged(false);
+		EventManager.unregister(this);
+		super.onDisable();
+	}
+
+	@Override
+	public void onEnable() {
+		EventManager.register(this);
+		super.onEnable();
+	}
+
+	// if (KillAura.tpAura.getBooleanValue()) {
+	// KillAura.mc.getNetHandler().addToSendQueue(new
+	// C03PacketPlayer.C04PacketPlayerPosition(entity.posX, entity.posY + 2.0,
+	// entity.posZ, true));
+	// Client.getClientHelper().attackTarget((EntityLivingBase)entity);
+	// KillAura.mc.getNetHandler().addToSendQueue(new
+	// C03PacketPlayer.C04PacketPlayerPosition(KillAura.mc.thePlayer.posX,
+	// KillAura.mc.thePlayer.posY, KillAura.mc.thePlayer.posZ, true));
+	// }
+
+	@EventTarget
+	public void onPreUpdate(final EventPreUpdate event) {
+		
+		mc.thePlayer.rotationYawHead = Client.getValues().KillAura_yaw.getValue();
+		if (Client.getValues().KillAura_players.getState()) {
+			final EntityPlayer ep = getClosestEntity();
+			if (ep == null) {
+				this.target = null;
+				EntityUtils.setLookChanged(false);
+			} else {
+				this.target = ep;
+				if (YesCheat.enabled) {
+					face((EntityLivingBase) target);
+				}
+			}
+		}
+		
+
+	}
+
+	@EventTarget
+	public void onPostUpdate(final EventPostUpdate event) {
+		if (Client.getValues().KillAura_players.getState()) {
+			if (!(this.delay <= Client.getValues().KillAura_speed.getValue()) && target != null) {
+				if (Client.getValues().KillAura_TPAura.getState()) {
+					Minecraft.getNetHandler().addToSendQueue(new C03PacketPlayer.C04PacketPlayerPosition(target.posX,
+							target.posY + 2.0, target.posZ, true));
+				}
+				this.attack((EntityPlayer) this.target);
+				if (Client.getValues().KillAura_TPAura.getState()) {
+					Minecraft.getNetHandler().addToSendQueue(new C03PacketPlayer.C04PacketPlayerPosition(
+							Minecraft.thePlayer.posX, Minecraft.thePlayer.posY, Minecraft.thePlayer.posZ, true));
+				}
+			} else if ((this.delay <= Client.getValues().KillAura_speed.getValue()) && target != null) {
+				final float[] rots = EntityUtils.getRotationsNeeded(target);
+				EntityUtils.facePacket(
+						(float) (rots[0] + (Math.random() > 0.5 ? Math.random() * 25 : -(Math.random() * 25))),
+						(float) (rots[1] + (Math.random() > 0.5 ? Math.random() * 25 : -(Math.random() * 25))));
+			}
+		}
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!this.isToggled()) {
+			if (this.togglecmd) {
+				this.setToggled(true);
+				this.onEnable();
+			}
+			return;
+		}
+		if (this.isToggled() && !this.togglecmd) {
+			this.setToggled(false);
+			this.onDisable();
+			return;
+		}
+
+		++this.delay;
+
+		if (Client.getValues().KillAura_mobs.getState()) {
+			for (final Object o : Minecraft.theWorld.loadedEntityList) {
+				if (!(o instanceof EntityLivingBase) || o instanceof EntityPlayer) {
+					continue;
+				}
+				if (!(this.delay <= Client.getValues().KillAura_speed.getValue())) {
+					final EntityLivingBase ep = (EntityLivingBase) o;
+					this.attackEntity(ep);
+				}
+			}
+		}
+		
+
+		
+		super.onUpdate();
+
+	}
+	
+	
+
+	public void face(final EntityLivingBase ep) {
+		if (Client.getValues().KillAura_face.getValue().equalsIgnoreCase(
+				new String(new byte[] { 0b1000011, 0b1101100, 0b1101001, 0b1100101, 0b1101110, 0b1110100 })
+						.toString())) {
+			EntityUtils.faceEntityClient(ep, Client.getValues().KillAura_yaw.getValue(),
+					Client.getValues().KillAura_pitch.getValue());
+
+			
+		}
+		if (Client.getValues().KillAura_face.getValue().equalsIgnoreCase(
+				new String(new byte[] { 0b1010000, 0b1100001, 0b1100011, 0b1101011, 0b1100101, 0b1110100 })
+						.toString())) {
+			EntityUtils.faceEntityPacket(ep, Client.getValues().KillAura_yaw.getValue(),
+					Client.getValues().KillAura_pitch.getValue());
+		}
+	}
+
+	public void attackEntity(final EntityLivingBase ep) {
+		if (KillAura.isValidEntity(ep)) {
+			if (YesCheat.enabled) {
+				face(ep);
+			}
+			// mc.thePlayer.setSprinting(false);
+			Minecraft.thePlayer.swingItem();
+			mc.playerController.attackEntity(Minecraft.thePlayer, ep);
+			this.delay = 0;
+		}
+	}
+
+	public void attack(final EntityPlayer ep) {
+		// mc.thePlayer.setSprinting(false);
+		Minecraft.thePlayer.swingItem();
+		mc.playerController.attackEntity(Minecraft.thePlayer, ep);
+		this.delay = 0;
+	}
+
+	public static boolean isValidEntity(final EntityLivingBase ep) {
+		if (Client.getValues().KillAura_OnlyIngame.getState() && mc.currentScreen != null) {
+			return false;
+		}
+		if (Minecraft.thePlayer.isDead) {
+			return false;
+		}
+		if (ep == null) {
+			return false;
+		}
+		if (ep instanceof EntityPlayerSP) {
+			return false;
+		}
+		if (ep.isDead || ep.getHealth() <= 0) {
+			return false;
+		}
+		if (!ep.isEntityAlive()) {
+			return false;
+		}
+		if (!ep.canEntityBeSeen(Minecraft.thePlayer)) {
+			return false;
+		}
+		if (Client.getValues().KillAura_TPAura.getState() ? false
+				: (double) Minecraft.thePlayer.getDistanceToEntity(ep) > Client.getValues().KillAura_range.getValue()) {
+			return false;
+		}
+		if (ep.hurtTime > 0 && Client.getValues().KillAura_hurtCheck.getState()) {
+			return false;
+		}
+		if (Client.getValues().KillAura_IDCheck.getState()) {
+			if (ep.getEntityId() - 1073641823 > 0) {
+				return false;
+			}
+		}
+		if (!Client.getValues().KillAura_invisibles.getState()) {
+			if (ep.isInvisible()) {
+				return false;
+			}
+		}
+		if (EntityUtils.isinAngle(Minecraft.thePlayer.rotationYaw, EntityUtils.getRotationsNeeded(ep)[0],
+				Client.getValues().KillAura_yaw.getValue())
+				&& EntityUtils.isinAngle(Minecraft.thePlayer.rotationPitch, EntityUtils.getRotationsNeeded(ep)[1],
+						Client.getValues().KillAura_pitch.getValue())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public static class PlayerComparator implements Comparator {
+		private PlayerComparator() {}
+
+		public int func_178952_a(final NetworkPlayerInfo p_178952_1_, final NetworkPlayerInfo p_178952_2_) {
+			final ScorePlayerTeam var3 = p_178952_1_.func_178850_i();
+			final ScorePlayerTeam var4 = p_178952_2_.func_178850_i();
+			return ComparisonChain.start()
+					.compareTrueFirst(p_178952_1_.getGameType() != WorldSettings.GameType.SPECTATOR,
+							p_178952_2_.getGameType() != WorldSettings.GameType.SPECTATOR)
+					.compare(var3 != null ? var3.getRegisteredName() : "", var4 != null ? var4.getRegisteredName() : "")
+					.compare(p_178952_1_.func_178845_a().getName(), p_178952_2_.func_178845_a().getName()).result();
+		}
+
+		@Override
+		public int compare(final Object p_compare_1_, final Object p_compare_2_) {
+			return this.func_178952_a((NetworkPlayerInfo) p_compare_1_, (NetworkPlayerInfo) p_compare_2_);
+		}
+
+		PlayerComparator(final Object p_i45528_1_) {
+			this();
+		}
+	}
+
+	public static boolean isValid(final EntityPlayer ep) {
+		if (Client.getValues().KillAura_OnlyIngame.getState() && mc.currentScreen != null) {
+			return false;
+		}
+		if (Minecraft.thePlayer.isDead) {
+			return false;
+		}
+		if (ep == null) {
+			return false;
+		}
+		if (ep instanceof EntityPlayerSP) {
+			return false;
+		}
+		if (ep.isDead || ep.getHealth() <= 0) {
+			return false;
+		}
+		if (!ep.isEntityAlive()) {
+			return false;
+		}
+		if (!ep.canEntityBeSeen(Minecraft.thePlayer)) {
+			return false;
+		}
+		if (ep.getName().contains("§")) {
+			return false;
+		}
+		if (Client.getValues().KillAura_TPAura.getState() ? false
+				: (double) Minecraft.thePlayer.getDistanceToEntity(ep) > Client.getValues().KillAura_range.getValue()) {
+			return false;
+		}
+		if (!Client.getValues().KillAura_invisibles.getState()) {
+			if (ep.isInvisible()) {
+				return false;
+			}
+		}
+		if (Client.getValues().KillAura_PremiCheck.getState()) {
+			if (ep.getGameProfile().getProperties().size() == 0) {
+				return false;
+			}
+		}
+
+		if (Client.getValues().KillAura_TabCheck.getState()) {
+			final NetHandlerPlayClient var4 = Minecraft.thePlayer.sendQueue;
+			final Ordering field_175252_a = Ordering.from(new PlayerComparator(null));
+			final List var5 = field_175252_a.sortedCopy(var4.getPlayerInfo());
+			final Iterator var8 = var5.iterator();
+
+			final ArrayList<String> names = new ArrayList<>();
+
+			while (var8.hasNext()) {
+				final NetworkPlayerInfo var9 = (NetworkPlayerInfo) var8.next();
+
+				names.add(EnumChatFormatting.getTextWithoutFormattingCodes(var9.getPlayerNameForReal()));
+			}
+
+			if (!names.contains(
+					EnumChatFormatting.getTextWithoutFormattingCodes(ep.getDisplayName().getFormattedText()))) {
+				return false;
+			}
+
+		}
+		// if (YesCheat.mode == Mode.Gomme && ep.getHealth() < 20)
+		// return false;
+		// if (YesCheat.mode == Mode.Gomme &&
+		// !ep.getDisplayName().getFormattedText().startsWith("§")) {
+		// return false;
+		// }
+		if (Client.getValues().KillAura_OnlyIngame.getState() && ep.getName().contains("§")
+				&& ep.getName().length() == 11) {
+			return false;
+		}
+		if (Client.getValues().KillAura_SpeedCheck.getState() && ep.tooFastDown) {
+			return false;
+		}
+		if (Client.getValues().KillAura_WallDmg.getState() && ep.wallDmgd) {
+			return false;
+		}
+		if (Friends.contains(ep) && !Client.isToggled(new String(new byte[] { 0b1001110, 0b1101111, 0b1000110,
+				0b1110010, 0b1101001, 0b1100101, 0b1101110, 0b1100100, 0b1110011 }).toString())) {
+			return false;
+		}
+		if (ep.hurtTime > 0 && Client.getValues().KillAura_hurtCheck.getState()) {
+			return false;
+		}
+		if (Client.getValues().KillAura_IDCheck.getState()) {
+			if (ep.getEntityId() - 1073641823 > 0) {
+				return false;
+			}
+		}
+		if (EntityUtils.isinAngle(Minecraft.thePlayer.rotationYaw, EntityUtils.getRotationsNeeded(ep)[0],
+				Client.getValues().KillAura_yaw.getValue())
+				&& EntityUtils.isinAngle(Minecraft.thePlayer.rotationPitch, EntityUtils.getRotationsNeeded(ep)[1],
+						Client.getValues().KillAura_pitch.getValue())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public EntityPlayer getClosestEntity() {
+		try {
+			EntityPlayer closestEntity = null;
+			for (final Object o : Minecraft.theWorld.loadedEntityList) {
+				if (!(o instanceof EntityPlayer)) {
+					continue;
+				}
+				final EntityPlayer en = (EntityPlayer) o;
+				if (isValid(en)) {
+					if (closestEntity == null) {
+						closestEntity = en;
+					} else if (closestEntity.getDistanceToEntity(Minecraft.thePlayer) > en
+							.getDistanceToEntity(Minecraft.thePlayer)) {
+						closestEntity = en;
+					}
+				}
+			}
+			return closestEntity;
+		} catch (final Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static float[] getRotationsNeeded(final Entity entity) {
+		double diffY;
+		if (entity == null) {
+			return null;
+		}
+		final double diffX = entity.posX - Minecraft.thePlayer.posX;
+		final double diffZ = entity.posZ - Minecraft.thePlayer.posZ;
+		if (entity instanceof EntityLivingBase && !entity.isInvisible()) {
+			final EntityLivingBase entityLivingBase = (EntityLivingBase) entity;
+			diffY = entityLivingBase.posY + entityLivingBase.getEyeHeight()
+					- (Minecraft.thePlayer.posY + Minecraft.thePlayer.getEyeHeight());
+		} else {
+			diffY = (entity.boundingBox.minY + entity.boundingBox.maxY) / 2.0
+					- (Minecraft.thePlayer.posY + Minecraft.thePlayer.getEyeHeight());
+		}
+		final double dist = MathHelper.sqrt_double(diffX * diffX + diffZ * diffZ);
+		final float yaw = (float) (Math.atan2(diffZ, diffX) * 180.0 / 3.141592653589793) - 90.0f;
+		final float pitch = (float) (-Math.atan2(diffY, dist) * 180.0 / 3.141592653589793);
+		return new float[] {
+				Minecraft.thePlayer.rotationYaw
+						+ MathHelper.wrapAngleTo180_float(yaw - Minecraft.thePlayer.rotationYaw),
+				Minecraft.thePlayer.rotationPitch
+						+ MathHelper.wrapAngleTo180_float(pitch - Minecraft.thePlayer.rotationPitch) };
+	}
+}

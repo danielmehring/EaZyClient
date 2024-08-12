@@ -1,0 +1,70 @@
+package me.EaZy.client.modules;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+
+public class GommeLongJump extends Module {
+	public GommeLongJump() {
+		super("GommeLongJump", 0, "glongjump", Category.MOVEMENT, "LongJump for Gomme.\nCan be used as fly.");
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!this.isToggled()) {
+			if (this.togglecmd) {
+				this.setToggled(true);
+				this.onEnable();
+			}
+			return;
+		}
+		if (this.isToggled() && !this.togglecmd) {
+			this.setToggled(false);
+			this.onDisable();
+			return;
+		}
+
+		if (mc.thePlayer.motionX != 0 && mc.thePlayer.motionZ != 0 && !mc.thePlayer.isInWater()
+				&& !mc.thePlayer.isInWeb) {
+
+			mc.gameSettings.keyBindRight.pressed = false;
+			mc.gameSettings.keyBindLeft.pressed = false;
+
+			if (mc.thePlayer.motionY < 0 && mc.thePlayer.motionX != 0 && mc.thePlayer.motionZ != 0
+					&& mc.thePlayer.fallDistance < 1.3f) {
+				mc.thePlayer.motionY /= 1.22f;
+			}
+
+			if (mc.thePlayer.motionY > 0 && mc.thePlayer.motionX != 0 && mc.thePlayer.motionZ != 0) {
+				mc.thePlayer.motionY *= 1.26f;
+			}
+
+			if (mc.thePlayer.onGround) {
+				mc.thePlayer.jump();
+			} else {
+				mc.thePlayer.motionX /= 1.2f;
+				mc.thePlayer.motionZ /= 1.2f;
+				if (mc.thePlayer.ticksExisted % 2 == 0) {
+					mc.thePlayer.jumpMovementFactor = 0.1199f;
+				} else {
+					mc.thePlayer.jumpMovementFactor = 0.118f;
+				}
+			}
+		}
+
+		super.onUpdate();
+	}
+
+	@Override
+	public void onDisable() {
+		net.minecraft.util.Timer.timerSpeed = 1.0f;
+		mc.gameSettings.keyBindSneak.pressed = false;
+		mc.thePlayer.motionX = 0;
+		mc.thePlayer.motionZ = 0;
+	}
+
+	@Override
+	public void onEnable() {
+		mc.gameSettings.keyBindSneak.pressed = true;
+		mc.gameSettings.keyBindSneak.pressed = false;
+	}
+}

@@ -1,0 +1,50 @@
+package me.EaZy.client.modules;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+
+import net.minecraft.client.Minecraft;
+
+public class Sprint extends Module {
+	public Sprint() {
+		super("Sprint", 0, "", Category.PLAYER, "Automatically sprint.");
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!isToggled()) {
+			if (togglecmd) {
+				setToggled(true);
+				onEnable();
+			}
+			return;
+		}
+		if (isToggled() && !togglecmd) {
+			setToggled(false);
+			onDisable();
+			return;
+		}
+
+		if (Minecraft.gameSettings.keyBindForward.pressed) {
+			Minecraft.thePlayer.setSprinting(true);
+		}
+
+		if (!Minecraft.thePlayer.isSneaking() && !Minecraft.thePlayer.isCollidedHorizontally
+				&& !Minecraft.thePlayer.isBlocking() && Minecraft.thePlayer.moveForward > 0.0F
+				&& !Minecraft.thePlayer.isEating()) {
+			Minecraft.thePlayer.setSprinting(true);
+		}
+
+		if (!(Minecraft.thePlayer.moveForward > 0) && !(Minecraft.thePlayer.motionX == 0)
+				&& !(Minecraft.thePlayer.motionZ == 0) && !Minecraft.thePlayer.isSneaking()
+				&& !Minecraft.thePlayer.isCollidedHorizontally && !Minecraft.thePlayer.isBlocking()
+				&& Minecraft.thePlayer.onGround) {
+			Minecraft.thePlayer.setSprinting(true);
+			Minecraft.thePlayer.motionX *= 1.2f;
+			Minecraft.thePlayer.motionZ *= 1.2f;
+
+		}
+
+		super.onUpdate();
+	}
+}

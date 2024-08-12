@@ -1,0 +1,36 @@
+[19:46:27] [Client thread/INFO]: Setting user: Player464
+[19:46:27] [Client thread/INFO]: (Session ID is token:0:Player464)
+[19:46:29] [Client thread/INFO]: LWJGL Version: 2.9.1
+[19:46:32] [Client thread/INFO]: Reloading ResourceManager: Default, EaZy - Pack
+[19:46:32] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[19:46:32] [Thread-7/INFO]: Initializing LWJGL OpenAL
+[19:46:32] [Thread-7/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[19:46:32] [Thread-7/INFO]: OpenAL initialized.
+[19:46:33] [Sound Library Loader/INFO]: Sound engine started
+[19:46:41] [Client thread/WARN]: Unable to load item model: 'minecraft:item/stone' for item: 'minecraft:stone'
+java.lang.NullPointerException
+	at net.minecraft.client.resources.model.ModelBakery.loadModel(ModelBakery.java:252) ~[bin/:?]
+	at net.minecraft.client.resources.model.ModelBakery.loadItemModels(ModelBakery.java:284) [bin/:?]
+	at net.minecraft.client.resources.model.ModelBakery.func_177577_b(ModelBakery.java:125) [bin/:?]
+	at net.minecraft.client.resources.model.ModelBakery.setupModelRegistry(ModelBakery.java:105) [bin/:?]
+	at net.minecraft.client.resources.model.ModelManager.onResourceManagerReload(ModelManager.java:31) [bin/:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.registerReloadListener(SimpleReloadableResourceManager.java:120) [bin/:?]
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:609) [bin/:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:484) [bin/:?]
+	at net.minecraft.client.main.Main.start(Main.java:175) [bin/:?]
+	at Start.main(Start.java:9) [bin/:?]
+[19:46:41] [Client thread/WARN]: Unable to load item model: 'minecraft:item/sticky_piston' for item: 'minecraft:sticky_piston'
+java.lang.NullPointerException
+	at net.minecraft.client.resources.model.ModelBakery.loadModel(ModelBakery.java:252) ~[bin/:?]
+	at net.minecraft.client.resources.model.ModelBakery.loadItemModels(ModelBakery.java:284) [bin/:?]
+	at net.minecraft.client.resources.model.ModelBakery.func_177577_b(ModelBakery.java:125) [bin/:?]
+	at net.minecraft.client.resources.model.ModelBakery.setupModelRegistry(ModelBakery.java:105) [bin/:?]
+	at net.minecraft.client.resources.model.ModelManager.onResourceManagerReload(ModelManager.java:31) [bin/:?]
+	at net.minecraft.client.resources.SimpleReloadableResourceManager.registerReloadListener(SimpleReloadableResourceManager.java:120) [bin/:?]
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:609) [bin/:?]
+	at net.minecraft.client.Minecraft.run(Minecraft.java:484) [bin/:?]
+	at net.minecraft.client.main.Main.start(Main.java:175) [bin/:?]
+	at Start.main(Start.java:9) [bin/:?]
+[19:46:45] [Client thread/INFO]: Created: 4096x2048 textures-atlas
+[19:46:46] [Client thread/WARN]: Missing model for: minecraft:item/stone
+[19:46:46] [Client thread/WARN]: Missing model for: minecraft:item/sticky_piston

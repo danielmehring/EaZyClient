@@ -1,0 +1,93 @@
+---- Minecraft Crash Report ----
+// You're mean.
+
+Time: 02.02.17 19:49
+Description: Ticking entity
+
+java.lang.NullPointerException: Ticking entity
+	at net.minecraft.entity.Entity.onUpdate(Entity.java:403)
+	at net.minecraft.entity.item.EntityXPOrb.onUpdate(EntityXPOrb.java:86)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1607)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:671)
+	at net.minecraft.world.World.updateEntity(World.java:1582)
+	at net.minecraft.world.World.updateEntities(World.java:1457)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:528)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:691)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:607)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:236)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:514)
+	at java.lang.Thread.run(Unknown Source)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at net.minecraft.entity.Entity.onUpdate(Entity.java:403)
+	at net.minecraft.entity.item.EntityXPOrb.onUpdate(EntityXPOrb.java:86)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1607)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:671)
+	at net.minecraft.world.World.updateEntity(World.java:1582)
+
+-- Entity being ticked --
+Details:
+	Entity Type: XPOrb (net.minecraft.entity.item.EntityXPOrb)
+	Entity ID: 28
+	Entity Name: Experience Orb
+	Entity's Exact location: 243,75, 65,00, 371,50
+	Entity's Block location: 243,00,65,00,371,00 - World: (243,65,371), Chunk: (at 3,4,3 in 15,23; contains blocks 240,0,368 to 255,255,383), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Entity's Momentum: 0,00, -0,00, 0,00
+	Entity's Rider: ~~ERROR~~ NullPointerException: null
+	Entity's Vehicle: ~~ERROR~~ NullPointerException: null
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:1457)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:528)
+
+-- Affected level --
+Details:
+	Level name: mcpworld
+	All players: 0 total; []
+	Chunk stats: ServerChunkCache: 625 Drop: 0
+	Level seed: -1587754402
+	Level generator: ID 02 - largeBiomes, ver 0. Features enabled: true
+	Level generator options: 
+	Level spawn location: 400,00,70,00,395,00 - World: (400,70,395), Chunk: (at 0,4,11 in 25,24; contains blocks 400,0,384 to 415,255,399), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Level time: 1357741 game time, 20000 day time
+	Level dimension: 0
+	Level storage version: 0x04ABD - Anvil
+	Level weather: Rain time: 7034 (now: true), thunder time: 12066 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:691)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:607)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:236)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:514)
+	at java.lang.Thread.run(Unknown Source)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_101, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 802538160 bytes (765 MB) / 1038876672 bytes (990 MB) up to 1038876672 bytes (990 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 12, tcache: 0, allocated: 13, tallocated: 99
+	EaZy Version: EaZy b16.05
+	Error Code: 778fe75879998f5a47e8bac4594ab272
+	Profiler Position: N/A (disabled)
+	Player Count: 0 / 8; []
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Very likely; Jar signature invalidated
+	OptiFine Version: OptiFine_1.8_HD_U_H6
+	Render Distance Chunks: 10
+	Mipmaps: 4
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.5.0 NVIDIA 369.09
+	OpenGlRenderer: GeForce GTX 960/PCIe/SSE2
+	OpenGlVendor: NVIDIA Corporation
+	CpuCount: 4

@@ -1,0 +1,170 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import de.Exe.Utils.BlockUtils;
+import de.Exe.Utils.EntityUtils;
+import net.minecraft.block.BlockAir;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Timer;
+import net.minecraft.util.Vec3;
+
+public class GommeScaffold extends Module {
+
+	public GommeScaffold() {
+		super("GommeScaffold", Keyboard.KEY_G, Category.Player);
+	}
+
+	public void onPreUpdate() {
+		if (!this.getState())
+			return;
+
+		if (mc.thePlayer.getCurrentEquippedItem() != null
+				&& mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemBlock && mc.thePlayer.onGround) {
+			BlockPos floorPos;
+			if (BlockUtils.getBlock(
+					floorPos = EntityUtils.getBlockPosReallyBeneathEntity(mc.thePlayer)) instanceof BlockAir) {
+				mc.thePlayer.swingItem();
+				mc.thePlayer.sendQueue.netManager
+						.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(0.0f, 90.0f, true));
+				mc.playerController.func_178890_a(mc.thePlayer, mc.theWorld, mc.thePlayer.inventory.getCurrentItem(),
+						floorPos.offsetDown(), EnumFacing.UP,
+						new Vec3(floorPos.getX(), floorPos.getY(), floorPos.getZ()));
+
+			}
+
+			if (mc.thePlayer.onGround) {
+				if (EnumFacing.NORTH != null) {
+					if (mc.gameSettings.keyBindForward.pressed && !mc.gameSettings.keyBindBack.pressed
+							&& !mc.gameSettings.keyBindRight.pressed && !mc.gameSettings.keyBindLeft.pressed) {
+						mc.thePlayer.sendQueue.netManager
+								.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(-56.9f, 78.4f, true));
+						mc.thePlayer.rotationYawHead = -56.9f;
+					}
+
+					if (!mc.gameSettings.keyBindForward.pressed && mc.gameSettings.keyBindBack.pressed
+							&& !mc.gameSettings.keyBindRight.pressed && !mc.gameSettings.keyBindLeft.pressed) {
+						mc.thePlayer.sendQueue.netManager
+								.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(139.1f, 78.3f, true));
+						mc.thePlayer.rotationYawHead = 139.1f;
+					}
+
+					if (!mc.gameSettings.keyBindForward.pressed && !mc.gameSettings.keyBindBack.pressed
+							&& mc.gameSettings.keyBindRight.pressed && !mc.gameSettings.keyBindLeft.pressed) {
+						mc.thePlayer.sendQueue.netManager
+								.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(126.4f, 79.4f, true));
+						mc.thePlayer.rotationYawHead = 126.4f;
+					}
+
+					if (!mc.gameSettings.keyBindForward.pressed && !mc.gameSettings.keyBindBack.pressed
+							&& !mc.gameSettings.keyBindRight.pressed && mc.gameSettings.keyBindLeft.pressed) {
+						mc.thePlayer.sendQueue.netManager
+								.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(-134.5f, 78.2f, true));
+						mc.thePlayer.rotationYawHead = -134.5f;
+					}
+
+				}
+
+				if (EnumFacing.EAST != null) {
+					if (mc.gameSettings.keyBindForward.pressed && !mc.gameSettings.keyBindBack.pressed
+							&& !mc.gameSettings.keyBindRight.pressed && !mc.gameSettings.keyBindLeft.pressed) {
+						mc.thePlayer.sendQueue.netManager
+								.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(126.4f, 79.4f, true));
+						mc.thePlayer.rotationYawHead = 126.4f;
+					}
+
+					if (!mc.gameSettings.keyBindForward.pressed && mc.gameSettings.keyBindBack.pressed
+							&& !mc.gameSettings.keyBindRight.pressed && !mc.gameSettings.keyBindLeft.pressed) {
+						mc.thePlayer.sendQueue.netManager
+								.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(-134.5f, 78.2f, true));
+						mc.thePlayer.rotationYawHead = -134.5f;
+					}
+
+					if (!mc.gameSettings.keyBindForward.pressed && !mc.gameSettings.keyBindBack.pressed
+							&& mc.gameSettings.keyBindRight.pressed && !mc.gameSettings.keyBindLeft.pressed) {
+						mc.thePlayer.sendQueue.netManager
+								.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(139.1f, 78.3f, true));
+						mc.thePlayer.rotationYawHead = 139.1f;
+					}
+
+					if (!mc.gameSettings.keyBindForward.pressed && !mc.gameSettings.keyBindBack.pressed
+							&& !mc.gameSettings.keyBindRight.pressed && mc.gameSettings.keyBindLeft.pressed) {
+						mc.thePlayer.sendQueue.netManager
+								.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(-56.9f, 78.4f, true));
+						mc.thePlayer.rotationYawHead = -56.9f;
+					}
+
+				}
+
+				if (EnumFacing.SOUTH != null) {
+					if (mc.gameSettings.keyBindForward.pressed && !mc.gameSettings.keyBindBack.pressed
+							&& !mc.gameSettings.keyBindRight.pressed && !mc.gameSettings.keyBindLeft.pressed) {
+						mc.thePlayer.sendQueue.netManager
+								.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(139.1f, 78.3f, true));
+						mc.thePlayer.rotationYawHead = 139.1f;
+					}
+
+					if (!mc.gameSettings.keyBindForward.pressed && mc.gameSettings.keyBindBack.pressed
+							&& !mc.gameSettings.keyBindRight.pressed && !mc.gameSettings.keyBindLeft.pressed) {
+						mc.thePlayer.sendQueue.netManager
+								.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(-56.9f, 78.4f, true));
+						mc.thePlayer.rotationYawHead = -56.9f;
+					}
+
+					if (!mc.gameSettings.keyBindForward.pressed && !mc.gameSettings.keyBindBack.pressed
+							&& mc.gameSettings.keyBindRight.pressed && !mc.gameSettings.keyBindLeft.pressed) {
+						mc.thePlayer.sendQueue.netManager
+								.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(-134.5f, 78.2f, true));
+						mc.thePlayer.rotationYawHead = -134.5f;
+					}
+
+					if (!mc.gameSettings.keyBindForward.pressed && !mc.gameSettings.keyBindBack.pressed
+							&& !mc.gameSettings.keyBindRight.pressed && mc.gameSettings.keyBindLeft.pressed) {
+						mc.thePlayer.sendQueue.netManager
+								.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(126.4f, 79.4f, true));
+						mc.thePlayer.rotationYawHead = 126.4f;
+					}
+				}
+
+				if (EnumFacing.WEST != null) {
+					if (mc.gameSettings.keyBindForward.pressed && !mc.gameSettings.keyBindBack.pressed
+							&& !mc.gameSettings.keyBindRight.pressed && !mc.gameSettings.keyBindLeft.pressed) {
+						mc.thePlayer.sendQueue.netManager
+								.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(-134.5f, 78.2f, true));
+						mc.thePlayer.rotationYawHead = -134.5f;
+					}
+
+					if (!mc.gameSettings.keyBindForward.pressed && mc.gameSettings.keyBindBack.pressed
+							&& !mc.gameSettings.keyBindRight.pressed && !mc.gameSettings.keyBindLeft.pressed) {
+						mc.thePlayer.sendQueue.netManager
+								.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(139.1f, 78.3f, true));
+						mc.thePlayer.rotationYawHead = 139.1f;
+					}
+
+					if (!mc.gameSettings.keyBindForward.pressed && !mc.gameSettings.keyBindBack.pressed
+							&& mc.gameSettings.keyBindRight.pressed && !mc.gameSettings.keyBindLeft.pressed) {
+						mc.thePlayer.sendQueue.netManager
+								.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(-56.9f, 78.4f, true));
+						mc.thePlayer.rotationYawHead = -56.9f;
+					}
+
+					if (!mc.gameSettings.keyBindForward.pressed && !mc.gameSettings.keyBindBack.pressed
+							&& !mc.gameSettings.keyBindRight.pressed && mc.gameSettings.keyBindLeft.pressed) {
+						mc.thePlayer.sendQueue.netManager
+								.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(139.1f, 78.3f, true));
+						mc.thePlayer.rotationYawHead = 139.1f;
+					}
+				}
+			}
+
+			// TODO: Place blocks below you
+
+		}
+
+	}
+}

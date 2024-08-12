@@ -1,0 +1,93 @@
+---- Minecraft Crash Report ----
+// You should try our sister game, Minceraft!
+
+Time: 16.12.16 22:00
+Description: Ticking entity
+
+java.lang.NullPointerException: Ticking entity
+	at de.Exe.Modules.MotionClickTP.onPreUpdate(MotionClickTP.java:84)
+	at net.minecraft.client.entity.EntityPlayerSP.func_175161_p(EntityPlayerSP.java:248)
+	at net.minecraft.client.entity.EntityPlayerSP.onUpdate(EntityPlayerSP.java:155)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1594)
+	at net.minecraft.world.World.updateEntity(World.java:1569)
+	at net.minecraft.world.World.updateEntities(World.java:1444)
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:2201)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1110)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:414)
+	at net.minecraft.client.main.Main.main(Main.java:111)
+	at Start.main(Start.java:11)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at de.Exe.Modules.MotionClickTP.onPreUpdate(MotionClickTP.java:84)
+	at net.minecraft.client.entity.EntityPlayerSP.func_175161_p(EntityPlayerSP.java:248)
+	at net.minecraft.client.entity.EntityPlayerSP.onUpdate(EntityPlayerSP.java:155)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1594)
+	at net.minecraft.world.World.updateEntity(World.java:1569)
+
+-- Entity being ticked --
+Details:
+	Entity Type: null (net.minecraft.client.entity.EntityPlayerSP)
+	Entity ID: 304
+	Entity Name: MozzyPlayS
+	Entity's Exact location: 1,98, 4,00, -2,93
+	Entity's Block location: 1,00,4,00,-3,00 - World: (1,4,-3), Chunk: (at 1,0,13 in 0,-1; contains blocks 0,0,-16 to 15,255,-1), Region: (0,-1; contains chunks 0,-32 to 31,-1, blocks 0,0,-512 to 511,255,-1)
+	Entity's Momentum: 0,00, -0,08, 0,00
+	Entity's Rider: ~~ERROR~~ NullPointerException: null
+	Entity's Vehicle: ~~ERROR~~ NullPointerException: null
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:1444)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 4 total; [EntityPlayerSP['MozzyPlayS'/304, l='MpServer', x=1,98, y=4,00, z=-2,93], EntityOtherPlayerMP['ByteCoding'/257, l='MpServer', x=-17,69, y=24,00, z=-17,31], EntityOtherPlayerMP['hdftlib'/307, l='MpServer', x=3,41, y=0,83, z=-2,28], EntityOtherPlayerMP['ByteCoding'/1073782807, l='MpServer', x=2,94, y=7,38, z=-2,28]]
+	Chunk stats: MultiplayerChunkCache: 289, 289
+	Level seed: 0
+	Level generator: ID 01 - flat, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 7,00,4,00,0,00 - World: (7,4,0), Chunk: (at 7,0,0 in 0,0; contains blocks 0,0,0 to 15,255,15), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Level time: 225380623 game time, 1138 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false
+	Forced entities: 10 total; [EntityOtherPlayerMP['hdftlib'/307, l='MpServer', x=3,41, y=0,83, z=-2,28], EntityOtherPlayerMP['ByteCoding'/1073782807, l='MpServer', x=2,94, y=7,38, z=-2,28], EntityOtherPlayerMP['ByteCoding'/257, l='MpServer', x=-17,69, y=24,00, z=-17,31], EntityOtherPlayerMP['ByteCoding'/1073748150, l='MpServer', x=2,66, y=7,38, z=-2,78], EntityPlayerSP['MozzyPlayS'/304, l='MpServer', x=1,98, y=4,00, z=-2,93], EntityOtherPlayerMP['hdftlib'/307, l='MpServer', x=3,41, y=0,83, z=-2,28], EntityOtherPlayerMP['hrcnvrr'/305, l='MpServer', x=7,66, y=1,67, z=2,00], EntityOtherPlayerMP['ByteCoding'/1073782807, l='MpServer', x=2,94, y=7,38, z=-2,28], EntityOtherPlayerMP['bbcqix'/306, l='MpServer', x=3,19, y=4,61, z=-2,22], EntityOtherPlayerMP['ByteCoding'/257, l='MpServer', x=-17,69, y=24,00, z=-17,31]]
+	Retry entities: 0 total; []
+	Server brand: CraftBukkit
+	Server type: Non-integrated multiplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:395)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2718)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:435)
+	at net.minecraft.client.main.Main.main(Main.java:111)
+	at Start.main(Start.java:11)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_101, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 653209328 bytes (622 MB) / 1038876672 bytes (990 MB) up to 1038876672 bytes (990 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	Launched Version: mcp
+	LWJGL: 2.9.1
+	OpenGL: GeForce GTX 960/PCIe/SSE2 GL version 4.5.0 NVIDIA 369.09, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: []
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)

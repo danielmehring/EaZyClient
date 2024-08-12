@@ -1,0 +1,35 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.stats.AchievementList;
+
+public class GTAKill extends Module{
+	
+	public GTAKill() {
+		super("KillBlur", Keyboard.KEY_RSHIFT, Category.Render);
+		
+		
+	
+
+
+	private void onKillEntity(EntityLivingBase entityLivingIn){
+        if (entityLivingIn instanceof EntityPlayer){
+           
+        }
+
+        EntityList.EntityEggInfo var2 = (EntityList.EntityEggInfo)EntityList.entityEggs.get(Integer.valueOf(EntityList.getEntityID(entityLivingIn)));
+
+        if (var2 != null)
+        {
+            
+        }
+    }
+}

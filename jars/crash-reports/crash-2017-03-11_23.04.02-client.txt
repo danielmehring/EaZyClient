@@ -1,0 +1,88 @@
+---- Minecraft Crash Report ----
+// This is a token for 1 free hug. Redeem at your nearest Mojangsta: [~~HUG~~]
+
+Time: 11.03.17 23:04
+Description: Unexpected error
+
+java.lang.NoSuchFieldError: cameraPitching
+	at net.minecraft.client.renderer.EntityRenderer.setupCameraTransform(EntityRenderer.java:819)
+	at net.minecraft.client.renderer.EntityRenderer.func_175068_a(EntityRenderer.java:1422)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1389)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1206)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1080)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:455)
+	at net.minecraft.client.main.Main.start(Main.java:149)
+	at Start.main(Start.java:7)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at net.minecraft.client.renderer.EntityRenderer.setupCameraTransform(EntityRenderer.java:819)
+	at net.minecraft.client.renderer.EntityRenderer.func_175068_a(EntityRenderer.java:1422)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1389)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player11'/113, l='MpServer', x=227,09, y=63,00, z=2058,71]]
+	Chunk stats: MultiplayerChunkCache: 225, 225
+	Level seed: 0
+	Level generator: ID 00 - default, ver 1. Features enabled: false
+	Level generator options: 
+	Level spawn location: 16,00,64,00,256,00 - World: (16,64,256), Chunk: (at 0,4,0 in 1,16; contains blocks 16,0,256 to 31,255,271), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Level time: 301329 game time, 301329 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 15 total; [EntitySkeleton['Skeleton'/2881, l='MpServer', x=174,02, y=14,17, z=2082,34], EntitySkeleton['Skeleton'/2908, l='MpServer', x=221,50, y=28,00, z=1985,50], EntitySpider['Spider'/2405, l='MpServer', x=238,50, y=24,00, z=2025,50], EntityPig['Pig'/128, l='MpServer', x=266,28, y=64,00, z=2020,19], EntityPig['Pig'/129, l='MpServer', x=272,16, y=64,00, z=2018,06], EntitySheep['Sheep'/136, l='MpServer', x=264,13, y=63,00, z=2069,88], EntitySheep['Sheep'/151, l='MpServer', x=283,63, y=65,00, z=2055,44], EntityPlayerSP['Player11'/113, l='MpServer', x=227,09, y=63,00, z=2058,71], EntityBat['Bat'/2746, l='MpServer', x=262,00, y=20,42, z=2049,23], EntityZombie['Zombie'/2787, l='MpServer', x=204,50, y=41,00, z=2126,50], EntityCreeper['Creeper'/2024, l='MpServer', x=299,50, y=40,00, z=2078,81], EntityCreeper['Creeper'/2800, l='MpServer', x=217,81, y=35,00, z=2127,75], EntityCreeper['Creeper'/2801, l='MpServer', x=224,66, y=34,00, z=2134,09], EntityCreeper['Creeper'/2802, l='MpServer', x=217,94, y=36,00, z=2130,50], EntityCreeper['Creeper'/2803, l='MpServer', x=225,50, y=34,00, z=2135,50]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:377)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2427)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:476)
+	at net.minecraft.client.main.Main.start(Main.java:149)
+	at Start.main(Start.java:7)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_101, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 621779464 bytes (592 MB) / 1038876672 bytes (990 MB) up to 1038876672 bytes (990 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 1, tcache: 1, allocated: 12, tallocated: 94
+	EaZy Version: 19.05
+	Error Code: 778fe75879998f5a47e8bac4594ab272
+	Launched Version: mcp
+	LWJGL: 2.9.1
+	OpenGL: GeForce GTX 960/PCIe/SSE2 GL version 4.5.0 NVIDIA 376.53, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: [ThugLifePackv2]
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	OptiFine Version: OptiFine_1.8_HD_U_H6
+	Render Distance Chunks: 7
+	Mipmaps: 4
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.5.0 NVIDIA 376.53
+	OpenGlRenderer: GeForce GTX 960/PCIe/SSE2
+	OpenGlVendor: NVIDIA Corporation
+	CpuCount: 4

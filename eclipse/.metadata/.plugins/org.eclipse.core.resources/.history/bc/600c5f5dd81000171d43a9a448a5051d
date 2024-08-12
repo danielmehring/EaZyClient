@@ -1,0 +1,202 @@
+package me.EaZy.client.modules;
+
+import com.darkmagician6.eventapi.EventManager;
+import com.darkmagician6.eventapi.EventTarget;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.events.EventMovePlayer;
+import me.EaZy.client.events.EventPostMotionUpdates;
+import me.EaZy.client.events.EventReceivePacket;
+import me.EaZy.client.utils.PlayerUtil;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.play.server.S08PacketPlayerPosLook;
+import net.minecraft.util.EnumFacing;
+
+public class AAATestModule extends Module {
+	public AAATestModule() {
+		super("AAATestModule", 0, "", Category.HIDDEN, "Description not set.");
+	}
+
+	@Override
+	public String getRenderName() {
+		return "AAATestModule";
+	}
+
+	public static int i1 = 0;
+	public static int i2 = 0;
+	public static float f1 = 0;
+	public static float f2 = 0;
+	public static boolean b1 = false;
+	public static boolean b2 = false;
+
+	public EventTarget onMove(final EventMovePlayer e) {
+
+		if (!Minecraft.thePlayer.onGround && b1) {
+			if(f1 > 340 || f1 < 20 || f1 > 70 && f1 < 110 || f1 > 160 && f1 < 200 || f1 > 250 && f1 < 290) {
+				e.x *= 1.1;
+				e.z *= 1.1;
+			}
+			b1 = false;
+		}
+
+		return null;
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!isToggled()) {
+			if (togglecmd) {
+				setToggled(true);
+				onEnable();
+			}
+			return;
+		}
+		if (isToggled() && !togglecmd) {
+			setToggled(false);
+			onDisable();
+			return;
+		}
+
+		f1 = (float) PlayerUtil.getMoveDirection360();
+
+		Minecraft.gameSettings.keyBindForward.pressed = true;
+		Minecraft.gameSettings.keyBindSprint.pressed = true;
+
+		Minecraft.thePlayer.setSprinting(true);
+
+		if (Minecraft.thePlayer.fallDistance > 0.05) {
+			b1 = true;
+			Minecraft.thePlayer.motionY = 0.0969;
+			Minecraft.thePlayer.fallDistance = 0;
+		}
+		if (i1 == 1) {
+			if (Minecraft.thePlayer.getFacingDirection() == EnumFacing.EAST) {
+				Minecraft.thePlayer.motionX = 0.3;
+			}
+
+			if (Minecraft.thePlayer.getFacingDirection() == EnumFacing.SOUTH) {
+				Minecraft.thePlayer.motionZ = 0.3;
+			}
+
+			if (Minecraft.thePlayer.getFacingDirection() == EnumFacing.NORTH) {
+				Minecraft.thePlayer.motionZ = -0.3;
+			}
+
+			if (Minecraft.thePlayer.getFacingDirection() == EnumFacing.WEST) {
+				Minecraft.thePlayer.motionX = -0.3;
+			}
+		}
+
+		if (i1 == 2) {
+			if (Minecraft.thePlayer.getFacingDirection() == EnumFacing.EAST) {
+				Minecraft.thePlayer.motionX = 0.4;
+
+			}
+
+			if (Minecraft.thePlayer.getFacingDirection() == EnumFacing.SOUTH) {
+				Minecraft.thePlayer.motionZ = 0.4;
+			}
+
+			if (Minecraft.thePlayer.getFacingDirection() == EnumFacing.NORTH) {
+				Minecraft.thePlayer.motionZ = -0.4;
+			}
+
+			if (Minecraft.thePlayer.getFacingDirection() == EnumFacing.WEST) {
+				Minecraft.thePlayer.motionX = -0.4;
+
+			}
+		}
+
+		if (i1 == 3) {
+			if (Minecraft.thePlayer.getFacingDirection() == EnumFacing.EAST) {
+				Minecraft.thePlayer.motionX = 0.4;
+			}
+
+			if (Minecraft.thePlayer.getFacingDirection() == EnumFacing.SOUTH) {
+				Minecraft.thePlayer.motionZ = 0.4;
+			}
+
+			if (Minecraft.thePlayer.getFacingDirection() == EnumFacing.NORTH) {
+				Minecraft.thePlayer.motionZ = -0.4;
+			}
+
+			if (Minecraft.thePlayer.getFacingDirection() == EnumFacing.WEST) {
+				Minecraft.thePlayer.motionX = -0.4;
+			}
+		}
+
+		if (i1 > 3 && i1 < 7) {
+
+			if (Minecraft.thePlayer.getFacingDirection() == EnumFacing.SOUTH) {
+				Minecraft.thePlayer.motionZ = 0.44;
+			}
+
+			if (Minecraft.thePlayer.getFacingDirection() == EnumFacing.NORTH) {
+				Minecraft.thePlayer.motionZ = -0.44;
+			}
+
+			if (Minecraft.thePlayer.getFacingDirection() == EnumFacing.EAST) {
+				Minecraft.thePlayer.motionX = 0.44;
+			}
+
+			if (Minecraft.thePlayer.getFacingDirection() == EnumFacing.WEST) {
+				Minecraft.thePlayer.motionX = -0.44;
+			}
+		}
+
+		if (i1 >= 6) {
+
+			Minecraft.gameSettings.keyBindForward.pressed = true;
+			Minecraft.gameSettings.keyBindSprint.pressed = true;
+		}
+
+		i1++;
+
+		super.onUpdate();
+	}
+
+	public EventTarget onSendMU(final EventPostMotionUpdates e) {
+		if (i1 <= 9) {
+			// Minecraft.thePlayer.posX = f1;QQ
+			// Minecraft.thePlayer.posZ = f2;
+		}
+		return null;
+	}
+
+	@Override
+	public void onRender() {
+		if (!isToggled()) {
+			return;
+		}
+		super.onRender();
+	}
+
+	@Override
+	public void onEnable() {
+		EventManager.register(this);
+		msg("§2Test-Module enaled!");
+		super.onEnable();
+		if (Minecraft.thePlayer.onGround) {
+			Minecraft.thePlayer.jump();
+		}
+
+	}
+
+	public EventTarget sserverpacekts(final EventReceivePacket e) {
+		if (e.getPacket() instanceof S08PacketPlayerPosLook) {
+			b1 = true;
+		}
+		return null;
+	}
+
+	@Override
+	public void onDisable() {
+		i1 = 0;
+		Minecraft.thePlayer.speedInAir = 0.02f;
+		EventManager.unregister(this);
+		msg("§4Test-Module disabled!");
+		super.onDisable();
+	}
+
+}

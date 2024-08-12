@@ -1,0 +1,13 @@
+package me.EaZy.client.modules;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+
+public class ESP extends Module{
+
+	public ESP() {
+		super("ESP", 0, "ESP", Category.RENDER);
+		
+	}
+
+}

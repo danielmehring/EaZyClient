@@ -1,0 +1,199 @@
+package me.EaZy.client.modules.SpeedModes;
+
+import org.lwjgl.input.Keyboard;
+
+import com.darkmagician6.eventapi.EventManager;
+import com.darkmagician6.eventapi.EventTarget;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.events.EventMovePlayer;
+import me.EaZy.client.events.EventPostMotionUpdates;
+import me.EaZy.client.utils.MovementUtil;
+import net.minecraft.block.BlockAir;
+import net.minecraft.block.BlockSlab;
+import net.minecraft.block.BlockStairs;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.network.play.client.C0BPacketEntityAction;
+import net.minecraft.network.play.client.C0BPacketEntityAction.Action;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Timer;
+
+public class GommeOG extends Module {
+
+	double GraundROFL;
+
+	int i1;
+
+	public GommeOG() {
+		super("GommeOG", 0, "GommeOG", Category.SPEED);
+
+	}
+
+	public EventTarget onPlayerMove(final EventMovePlayer e) {
+
+		e.x *= 1.0;
+		e.z *= 1.0;
+
+		if (Minecraft.thePlayer.motionY < 0) {
+			e.y *= 1.1;
+		} else if (Minecraft.thePlayer.motionY < 0.25) {
+			e.y /= 1.07;
+		}
+
+		return null;
+
+	}
+
+	@Override
+	public String getRenderName() {
+		if (GuiMainMenu.ersterapril) {
+			return "GammelAufBoden";
+		} else {
+			return super.getRenderName();
+		}
+	}
+
+	public EventTarget onPostMotionUpdates(final EventPostMotionUpdates event) {
+
+		if (!Minecraft.thePlayer.movementInput.jump && Minecraft.theWorld
+				.getBlockState(
+						new BlockPos(Minecraft.thePlayer.posX, Minecraft.thePlayer.posY - 1, Minecraft.thePlayer.posZ))
+				.getBlock() instanceof BlockAir
+				|| !Minecraft.thePlayer.movementInput.jump && Minecraft.theWorld.getBlockState(
+						new BlockPos(Minecraft.thePlayer.posX, Minecraft.thePlayer.posY - 1, Minecraft.thePlayer.posZ))
+						.getBlock() instanceof BlockSlab
+				|| !Minecraft.thePlayer.movementInput.jump && Minecraft.theWorld.getBlockState(
+						new BlockPos(Minecraft.thePlayer.posX, Minecraft.thePlayer.posY - 1, Minecraft.thePlayer.posZ))
+						.getBlock() instanceof BlockStairs) {
+		} else {
+
+			Minecraft.gameSettings.keyBindJump.pressed = false;
+
+			if (Minecraft.thePlayer.onGround & !Minecraft.thePlayer.movementInput.jump) {
+				GraundROFL = Minecraft.thePlayer.posY;
+			} else if (!Minecraft.thePlayer.movementInput.jump) {
+				Minecraft.thePlayer.posY = GraundROFL;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void onEnable() {
+		GraundROFL = Minecraft.thePlayer.posY;
+		EventManager.register(this);
+		super.onEnable();
+	}
+
+	@Override
+	public void onDisable() {
+		i1 = 0;
+		Minecraft.thePlayer.speedInAir = (float) 0.02;
+		EventManager.unregister(this);
+
+		Minecraft.thePlayer.sendQueue.netManager
+				.sendPacket(new C0BPacketEntityAction(Minecraft.thePlayer, Action.START_SPRINTING));
+
+		super.onDisable();
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!isToggled()) {
+			if (togglecmd) {
+				setToggled(true);
+				onEnable();
+			}
+			return;
+		}
+
+		if (isToggled() && !togglecmd) {
+			setToggled(false);
+			onDisable();
+			return;
+		}
+
+		// Minecraft.gameSettings.keyBindForward.pressed = true;
+		// Minecraft.gameSettings.keyBindSprint.pressed = true;
+
+		if (!MovementUtil.areWalkingKeysDown()) {
+			Minecraft.thePlayer.motionX /= 1.9;
+			Minecraft.thePlayer.motionZ /= 1.9;
+		}
+
+		if (Minecraft.thePlayer.capabilities.isFlying || Minecraft.thePlayer.isInWeb || Minecraft.thePlayer.isOnLadder()
+				|| Keyboard.isKeyDown(Minecraft.gameSettings.keyBindJump.getKeyCode())
+				|| !MovementUtil.areWalkingKeysDown()) {
+			return;
+		}
+
+		// 0.4339999854564667
+		// -0.21499999999999986
+		// -0.21899998545646682
+
+		if (!Minecraft.thePlayer.movementInput.jump && Minecraft.theWorld
+				.getBlockState(
+						new BlockPos(Minecraft.thePlayer.posX, Minecraft.thePlayer.posY - 1, Minecraft.thePlayer.posZ))
+				.getBlock() instanceof BlockAir
+				|| !Minecraft.thePlayer.movementInput.jump && Minecraft.theWorld.getBlockState(
+						new BlockPos(Minecraft.thePlayer.posX, Minecraft.thePlayer.posY - 1, Minecraft.thePlayer.posZ))
+						.getBlock() instanceof BlockSlab
+				|| !Minecraft.thePlayer.movementInput.jump && Minecraft.theWorld.getBlockState(
+						new BlockPos(Minecraft.thePlayer.posX, Minecraft.thePlayer.posY - 1, Minecraft.thePlayer.posZ))
+						.getBlock() instanceof BlockStairs) {
+
+		} else {
+
+			if (Minecraft.thePlayer.ticksExisted % 3 == 0) {
+				Timer.timerSpeed = (float) 1.23;
+			} else {
+				Timer.timerSpeed = (float) 1.0;
+			}
+
+			if (Minecraft.thePlayer.onGround) {
+
+				if (Minecraft.thePlayer.hurtTime <= 8) {
+					Minecraft.thePlayer.motionX *= Minecraft.thePlayer.ticksExisted % 2 == 0 ? 1.75 : 1.69;
+					Minecraft.thePlayer.motionZ *= Minecraft.thePlayer.ticksExisted % 2 == 0 ? 1.75 : 1.69;
+				}
+				Minecraft.thePlayer.motionY = 0.4339999854564667;
+
+				i1 = 0;
+			} else {
+				i1++;
+				if (i1 == 1) {
+					Minecraft.thePlayer.motionY = -0.195454545;
+
+				}
+
+				if (i1 == 2) {
+					if (Minecraft.thePlayer.hurtTime <= 8) {
+						Minecraft.thePlayer.motionX = 0;
+						Minecraft.thePlayer.motionZ = 0;
+						Minecraft.thePlayer.jumpMovementFactor = Minecraft.thePlayer.ticksExisted % 2 == 0 ? 0.2945f
+								: 0.295f;
+					}
+					Minecraft.thePlayer.motionY = -0.21899998545646682;
+				}
+			}
+
+		}
+
+		// if (i1 == 0) {
+		// Minecraft.thePlayer.jump();
+		// Minecraft.thePlayer.motionY = 0.4339999854564667;
+		// i1 = 1;
+		// } else if (i1 == 1) {
+		// Minecraft.thePlayer.motionY = -0.21499999999999986;
+		// i1 = 2;
+		// } else if (i1 == 2) {
+		// Minecraft.thePlayer.motionY = -0.21899998545646682;
+		// i1 = 0;
+		// }
+
+		super.onUpdate();
+	}
+
+}

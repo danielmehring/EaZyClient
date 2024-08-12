@@ -1,0 +1,40 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import net.minecraft.util.Timer;
+
+public class LongJump extends Module {
+
+	public LongJump() {
+		super("LongJump", Keyboard.KEY_M, Category.Movement);
+	}
+
+	public void onPreUpdate() {
+		if (!this.getState())
+			return;
+
+		if (mc.thePlayer.onGround && !(mc.thePlayer.motionX == 0) && !(mc.thePlayer.motionZ == 0)) {
+			mc.thePlayer.jump();
+		}
+
+		mc.thePlayer.motionX = 0;
+		mc.thePlayer.motionZ = 0;
+
+		if (mc.thePlayer.motionY < 0) {
+			Timer.timerSpeed = 0.5f;
+			mc.thePlayer.jumpMovementFactor = 0.6f;
+		} else {
+			Timer.timerSpeed = 1f;
+			mc.thePlayer.jumpMovementFactor = 0.3f;
+		}
+	}
+
+	public void onDissable() {
+
+		Timer.timerSpeed = 1f;
+
+	}
+}

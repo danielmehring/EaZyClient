@@ -1,0 +1,52 @@
+package me.EaZy.client.modules.SpeedModes;
+
+import com.darkmagician6.eventapi.EventManager;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.fields;
+import me.EaZy.client.events.EventMovePlayer;
+import me.EaZy.client.utils.MovementUtil;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.util.Timer;
+
+public class GommeMJ extends Module {
+
+	public GommeMJ() {
+		super("GommeMJ", 0, "", Category.SPEED);
+	}
+
+	@Override
+	public void onDisable() {
+		EventManager.unregister(this);
+		super.onDisable();
+	}
+
+	@Override
+	public void onEnable() {
+		EventManager.register(this);
+		super.onEnable();
+	}
+
+	@Override
+	public void onUpdate() {
+
+		if (!MovementUtil.areWalkingKeysDown())
+			return;
+
+		if (mc.thePlayer.onGround) {
+			mc.thePlayer.jump();
+			mc.thePlayer.motionY = 0.3850;
+		} else {
+			
+		}
+
+		super.onUpdate();
+	}
+
+	public EventManager move(EventMovePlayer e) {
+
+		return null;
+	}
+
+}

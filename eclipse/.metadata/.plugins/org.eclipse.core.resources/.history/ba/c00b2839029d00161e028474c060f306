@@ -1,0 +1,37 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+
+public class GommeLongJump extends Module{
+
+	public GommeLongJump() {
+		super("GommeLongJump", Keyboard.KEY_X, Category.Movement);
+		
+	}
+	
+	int Damaged;
+	
+	public void onPreUpdate(){
+		if(!this.getState())
+			return;
+
+		if(mc.thePlayer.hurtTime > 0){
+			Damaged ++;
+		}
+		if(Damaged == 0 && mc.thePlayer.fallDistance < 4f){
+			mc.thePlayer.motionX /= 1.5f;
+			mc.thePlayer.motionZ /= 1.5f;
+			
+			
+			
+		}
+		
+		
+	}
+	public void onDissable(){
+		Damaged = 0;
+	}
+}

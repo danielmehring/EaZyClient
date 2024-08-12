@@ -1,0 +1,112 @@
+---- Minecraft Crash Report ----
+// Daisy, daisy...
+
+Time: 08.02.17 20:04
+Description: Ticking entity
+
+java.lang.NullPointerException: Ticking entity
+	at me.EaZy.client.modules.BowAimbot.onUpdate(BowAimbot.java:75)
+	at me.EaZy.client.main.Client.onUpdate(Client.java:698)
+	at net.minecraft.client.entity.EntityPlayerSP.onLivingUpdate(EntityPlayerSP.java:2688)
+	at net.minecraft.entity.EntityLivingBase.onUpdate(EntityLivingBase.java:1623)
+	at net.minecraft.entity.player.EntityPlayer.onUpdate(EntityPlayer.java:325)
+	at net.minecraft.client.entity.EntityPlayerSP.onUpdate(EntityPlayerSP.java:333)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1611)
+	at net.minecraft.world.World.updateEntity(World.java:1586)
+	at net.minecraft.world.World.updateEntities(World.java:1461)
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:1993)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1076)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:484)
+	at net.minecraft.client.main.Main.start(Main.java:183)
+	at Start.main(Start.java:7)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at me.EaZy.client.modules.BowAimbot.onUpdate(BowAimbot.java:75)
+	at me.EaZy.client.main.Client.onUpdate(Client.java:698)
+	at net.minecraft.client.entity.EntityPlayerSP.onLivingUpdate(EntityPlayerSP.java:2688)
+	at net.minecraft.entity.EntityLivingBase.onUpdate(EntityLivingBase.java:1623)
+	at net.minecraft.entity.player.EntityPlayer.onUpdate(EntityPlayer.java:325)
+	at net.minecraft.client.entity.EntityPlayerSP.onUpdate(EntityPlayerSP.java:333)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1611)
+	at net.minecraft.world.World.updateEntity(World.java:1586)
+
+-- Entity being ticked --
+Details:
+	Entity Type: null (net.minecraft.client.entity.EntityPlayerSP)
+	Entity ID: 32777
+	Entity Name: Danito_99
+	Entity's Exact location: -25,69, 59,00, -6,47
+	Entity's Block location: -26,00,59,00,-7,00 - World: (-26,59,-7), Chunk: (at 6,3,9 in -2,-1; contains blocks -32,0,-16 to -17,255,-1), Region: (-1,-1; contains chunks -32,-32 to -1,-1, blocks -512,0,-512 to -1,255,-1)
+	Entity's Momentum: 0,02, -0,08, -0,15
+	Entity's Rider: ~~ERROR~~ NullPointerException: null
+	Entity's Vehicle: ~~ERROR~~ NullPointerException: null
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:1461)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 9 total; [EntityPlayerSP['Danito_99'/32777, l='MpServer', x=-25,69, y=59,00, z=-6,47], EntityOtherPlayerMP['gabekurz123'/2942, l='MpServer', x=-42,69, y=55,86, z=-23,56], EntityOtherPlayerMP['BlueWarriorBR'/2951, l='MpServer', x=9,21, y=58,00, z=21,57], EntityOtherPlayerMP['CosmosWarrior'/2950, l='MpServer', x=34,69, y=52,00, z=-28,38], EntityOtherPlayerMP['Ctech83'/2946, l='MpServer', x=33,31, y=55,31, z=-32,75], EntityOtherPlayerMP['isedsmartYT'/2955, l='MpServer', x=-22,51, y=56,40, z=-42,47], EntityOtherPlayerMP['Costi_FTW'/2956, l='MpServer', x=-30,86, y=56,00, z=-30,59], EntityOtherPlayerMP['zack503'/2969, l='MpServer', x=-25,92, y=59,86, z=-5,42], EntityOtherPlayerMP['Dumbi34'/3131, l='MpServer', x=-42,75, y=62,80, z=-23,25]]
+	Chunk stats: MultiplayerChunkCache: 441, 441
+	Level seed: 0
+	Level generator: ID 00 - default, ver 1. Features enabled: false
+	Level generator options: 
+	Level spawn location: -43,00,55,00,-24,00 - World: (-43,55,-24), Chunk: (at 5,3,8 in -3,-2; contains blocks -48,0,-32 to -33,255,-17), Region: (-1,-1; contains chunks -32,-32 to -1,-1, blocks -512,0,-512 to -1,255,-1)
+	Level time: 36974840 game time, 6000 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false
+	Forced entities: 41 total; [EntityOtherPlayerMP['Ctech83'/2946, l='MpServer', x=33,31, y=55,31, z=-32,75], EntityOtherPlayerMP['CosmosWarrior'/2950, l='MpServer', x=34,69, y=52,00, z=-28,38], EntityOtherPlayerMP['BlueWarriorBR'/2951, l='MpServer', x=9,21, y=58,00, z=21,57], EntityOtherPlayerMP['uFaasteyUS'/2945, l='MpServer', x=-27,47, y=-41,22, z=36,16], EntityOtherPlayerMP['AkielPlayz'/2949, l='MpServer', x=42,70, y=56,47, z=20,43], EntityOtherPlayerMP['iMatthyB'/2943, l='MpServer', x=-39,78, y=-43,60, z=23,83], EntityOtherPlayerMP['gabekurz123'/2942, l='MpServer', x=-42,69, y=55,86, z=-23,56], EntityOtherPlayerMP['isedsmartYT'/2955, l='MpServer', x=-22,51, y=56,40, z=-42,47], EntityItem['item.item.pickaxeWood'/3595, l='MpServer', x=40,81, y=56,00, z=-21,19], EntityOtherPlayerMP['Costi_FTW'/2956, l='MpServer', x=-30,86, y=56,00, z=-30,59], EntityPlayerSP['Danito_99'/32777, l='MpServer', x=-25,69, y=59,00, z=-6,47], EntityOtherPlayerMP['Ctech83'/2946, l='MpServer', x=33,31, y=55,31, z=-32,75], EntityOtherPlayerMP['isedsmartYT'/2955, l='MpServer', x=-22,51, y=56,40, z=-42,47], EntityOtherPlayerMP['Costi_FTW'/2956, l='MpServer', x=-30,86, y=56,00, z=-30,59], EntityOtherPlayerMP['BlueWarriorBR'/2951, l='MpServer', x=9,21, y=58,00, z=21,57], EntityOtherPlayerMP['CosmosWarrior'/2950, l='MpServer', x=34,69, y=52,00, z=-28,38], EntityOtherPlayerMP['ItsNinjaCola'/2948, l='MpServer', x=33,48, y=54,39, z=-32,69], EntityOtherPlayerMP['PaulMCMiner'/2947, l='MpServer', x=-22,03, y=-41,94, z=42,91], EntityOtherPlayerMP['zack503'/2969, l='MpServer', x=-25,92, y=59,86, z=-5,42], EntityArrow['arrow'/3756, l='MpServer', x=-41,00, y=56,53, z=-18,97], EntityItem['item.item.leggingsCloth'/3762, l='MpServer', x=-42,72, y=51,50, z=-22,22], EntityItem['item.item.swordDiamond'/3763, l='MpServer', x=33,13, y=52,00, z=-32,88], EntityItem['item.item.bow'/3764, l='MpServer', x=33,13, y=52,00, z=-32,13], EntityItem['item.item.swordStone'/3765, l='MpServer', x=33,13, y=51,50, z=-31,13], EntityItem['item.item.hatchetIron'/3766, l='MpServer', x=33,37, y=52,00, z=-32,38], EntityItem['item.item.bucketWater'/3767, l='MpServer', x=33,13, y=51,50, z=-31,50], EntityItem['item.item.arrow'/3768, l='MpServer', x=32,84, y=51,50, z=-32,88], EntityItem['item.tile.stone.stone'/3769, l='MpServer', x=33,53, y=52,00, z=-32,41], EntityOtherPlayerMP['Dumbi34'/3131, l='MpServer', x=-42,75, y=62,80, z=-23,25], EntityItem['item.tile.wood.oak'/3771, l='MpServer', x=33,13, y=52,00, z=-32,83], EntityItem['item.item.bootsDiamond'/3772, l='MpServer', x=33,13, y=51,50, z=-31,13], EntityItem['item.item.chestplateDiamond'/3773, l='MpServer', x=33,13, y=51,50, z=-31,13], EntityItem['item.item.helmetIron'/3774, l='MpServer', x=33,33, y=52,00, z=-32,88], EntityItem['item.item.swordDiamond'/3775, l='MpServer', x=-42,69, y=51,50, z=-22,28], EntityItem['item.item.bootsCloth'/3776, l='MpServer', x=-42,69, y=51,50, z=-22,28], EntityItem['item.item.glassBottle'/3781, l='MpServer', x=10,65, y=58,00, z=21,44], EntityOtherPlayerMP['zack503'/2969, l='MpServer', x=-25,92, y=59,86, z=-5,42], EntityOtherPlayerMP['Dumbi34'/3131, l='MpServer', x=-42,75, y=62,80, z=-23,25], EntityArrow['arrow'/3703, l='MpServer', x=-30,97, y=58,94, z=38,50], EntityItem['item.item.helmetIron'/3704, l='MpServer', x=-40,13, y=51,51, z=-21,53], EntityOtherPlayerMP['gabekurz123'/2942, l='MpServer', x=-42,69, y=55,86, z=-23,56]]
+	Retry entities: 0 total; []
+	Server brand: BungeeCord (Hypixel) <- vanilla
+	Server type: Non-integrated multiplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:377)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2448)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:500)
+	at net.minecraft.client.main.Main.start(Main.java:183)
+	at Start.main(Start.java:7)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_101, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 673307888 bytes (642 MB) / 1038876672 bytes (990 MB) up to 1038876672 bytes (990 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 95
+	EaZy Version: EaZy b16.16
+	Error Code: 778fe75879998f5a47e8bac4594ab272
+	Launched Version: mcp
+	LWJGL: 2.9.1
+	OpenGL: GeForce GTX 960/PCIe/SSE2 GL version 4.5.0 NVIDIA 369.09, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: [NexaLight x512.zip]
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	OptiFine Version: OptiFine_1.8_HD_U_H6
+	Render Distance Chunks: 8
+	Mipmaps: 4
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.5.0 NVIDIA 369.09
+	OpenGlRenderer: GeForce GTX 960/PCIe/SSE2
+	OpenGlVendor: NVIDIA Corporation
+	CpuCount: 4

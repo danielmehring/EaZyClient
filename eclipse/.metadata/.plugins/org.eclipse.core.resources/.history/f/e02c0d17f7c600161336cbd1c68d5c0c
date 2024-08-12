@@ -1,0 +1,123 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import de.Exe.Utils.Wrapper;
+import net.minecraft.block.BlockAir;
+import net.minecraft.block.BlockLiquid;
+import net.minecraft.network.play.client.C00PacketKeepAlive;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.network.play.client.C0BPacketEntityAction;
+import net.minecraft.network.play.client.C0BPacketEntityAction.Action;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Timer;
+
+public class GommeSpeed extends Module {
+
+	public GommeSpeed() {
+		super("GommeSpeed", Keyboard.KEY_X, Category.Movement);
+
+	}
+
+	int damaged;
+
+	double Ground;
+
+	boolean LastBobingWasTrue;
+
+	boolean YPurd;
+
+	boolean kek;
+
+	int kekdelay;
+
+	int delay;
+	int stage;
+
+	public void onPreUpdate() {
+		if (!this.getState())
+			return;
+
+		if (mc.thePlayer.motionX != 0 && mc.thePlayer.motionZ != 0) {
+
+			delay++;
+
+			if (delay > 20) {
+				delay = 0;
+				mc.thePlayer.motionX /= 1.5;
+				mc.thePlayer.motionZ /= 1.5;
+			}
+			
+			if (mc.thePlayer.moveForward > 0)
+				mc.thePlayer.setSprinting(true);
+
+			if (mc.thePlayer.onGround) {
+				kek = true;
+			} else {
+				mc.thePlayer.motionX /= 1.2f;
+				mc.thePlayer.motionZ /= 1.2f;
+				if (mc.thePlayer.ticksExisted % 2 == 0)
+					mc.thePlayer.jumpMovementFactor = 0.115f;
+				else
+					mc.thePlayer.jumpMovementFactor = 0.105f;
+			}
+
+			if (mc.thePlayer.onGround)
+				// mc.thePlayer.jump();
+
+				if (kek) {
+					mc.thePlayer.jump();
+				}
+			if (kekdelay == 5) {
+				kek = false;
+			}
+
+			if (mc.thePlayer.motionY < 0)
+				mc.thePlayer.motionY /= 1.01f;
+
+			if (kek) {
+				kekdelay++;
+			}
+
+			// if (mc.thePlayer.onGround) {
+			// if (YPurd) {
+			// if (mc.thePlayer.onGround) {
+			// mc.thePlayer.jump();
+			// // Ground = mc.thePlayer.posY;
+			// } else {
+			// mc.thePlayer.motionY = -1f;
+			// // mc.thePlayer.posY = Ground;
+			// }
+			// YPurd = false;
+			// } else {
+			// mc.thePlayer.jump();
+			// YPurd = true;
+			// }
+			// }
+		}
+	}
+
+	public void onEnable() {
+		Timer.timerSpeed = 1f;
+		// if (mc.gameSettings.viewBobbing) {
+		// LastBobingWasTrue = true;
+		// } else {
+		// LastBobingWasTrue = false;
+		// }
+		// mc.gameSettings.viewBobbing = false;
+
+	}
+
+	public void onDisable() {
+		Timer.timerSpeed = 1f;
+		// if (LastBobingWasTrue) {
+		// mc.gameSettings.viewBobbing = true;
+		// } else {
+		// mc.gameSettings.viewBobbing = false;
+		// }
+		Timer.timerSpeed = 1.0f;
+
+	}
+}

@@ -1,0 +1,60 @@
+package me.EaZy.client.modules;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+
+public class GommeLadderLongjump extends Module {
+
+	public GommeLadderLongjump() {
+		super("GommeLadderLongjump", 0, "", Category.MOVEMENT);
+	}
+
+	boolean wasonläddahXD;
+
+	int airdelay;
+
+	@Override
+	public void onUpdate() {
+		if (!this.isToggled()) {
+			if (this.togglecmd) {
+				this.setToggled(true);
+				this.onEnable();
+			}
+			return;
+		}
+		if (this.isToggled() && !this.togglecmd) {
+			this.setToggled(false);
+			this.onDisable();
+			return;
+		}
+
+		if (wasonläddahXD && !mc.thePlayer.onGround) {
+			airdelay++;
+		}
+		if (mc.thePlayer.onGround) {
+			airdelay = 0;
+		}
+		
+		
+		if(airdelay  > 0 && airdelay != 0){
+
+			mc.thePlayer.jumpMovementFactor = 0.07f;
+		
+
+		}
+
+		if (mc.thePlayer.isOnLadder()) {
+			mc.thePlayer.motionY = 1.3f;
+			wasonläddahXD = true;
+		}
+		
+
+	}
+
+	@Override
+	public void onDisable() {
+		wasonläddahXD = false;
+		airdelay = 0;
+	}
+
+}

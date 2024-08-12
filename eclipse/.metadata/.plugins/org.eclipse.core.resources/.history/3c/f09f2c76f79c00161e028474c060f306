@@ -1,0 +1,24 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+
+public class GommeLongJump extends Module{
+
+	public GommeLongJump() {
+		super("GommeLongJump", Keyboard.KEY_X, Category.Movement);
+		
+	}
+	
+	int Damaged;
+	
+	public void onPreUpdate(){
+		if(!this.getState())
+			return;
+		
+		
+		
+	}
+}

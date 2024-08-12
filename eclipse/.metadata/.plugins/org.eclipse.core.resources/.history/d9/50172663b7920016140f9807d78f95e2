@@ -1,0 +1,45 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import net.minecraft.util.Timer;
+
+public class OhrenKrebs extends
+ Module{
+
+	public OhrenKrebs() {
+		super("OHRENKREEEBS", Keyboard.KEY_RSHIFT, Category.Fun);
+		
+	}
+	public void onPreUpdate(){
+		if(!this.getState())
+			return;
+		
+//		mc.thePlayer.playSound("gui.button.press", 1.0f, 0.1f);
+//		mc.thePlayer.playSound("gui.button.press", 1.0f, 0.2f);
+//		mc.thePlayer.playSound("gui.button.press", 1.0f, 0.3f);
+//		mc.thePlayer.playSound("gui.button.press", 1.0f, 0.4f);
+//		mc.thePlayer.playSound("gui.button.press", 1.0f, 0.5f);
+//		mc.thePlayer.playSound("gui.button.press", 1.0f, 0.6f);
+//		mc.thePlayer.playSound("gui.button.press", 1.0f, 0.7f);
+//		mc.thePlayer.playSound("gui.button.press", 1.0f, 0.8f);
+//		mc.thePlayer.playSound("gui.button.press", 1.0f, 0.9f);
+//		mc.thePlayer.playSound("gui.button.press", 1.0f, 1.0f);
+//		mc.thePlayer.playSound("liquid.lava", 1.0f, 0.1f);
+//		mc.thePlayer.playSound("liquid.lava", 1.0f, 0.2f);
+//		mc.thePlayer.playSound("liquid.lava", 1.0f, 0.3f);
+//		mc.thePlayer.playSound("liquid.lava", 1.0f, 0.4f);
+//		mc.thePlayer.playSound("liquid.lava", 1.0f, 0.5f);
+//		mc.thePlayer.playSound("liquid.lava", 1.0f, 0.6f);
+//		mc.thePlayer.playSound("liquid.lava", 1.0f, 0.7f);
+//		mc.thePlayer.playSound("liquid.lava", 1.0f, 0.8f);
+//		mc.thePlayer.playSound("liquid.lava", 1.0f, 0.9f);
+//		mc.thePlayer.playSound("liquid.lava", 1.0f, 1.0f);
+//		mc.thePlayer.playSound("portal.portal", 1.0f, 1.0f);
+		
+		
+		
+	}
+}

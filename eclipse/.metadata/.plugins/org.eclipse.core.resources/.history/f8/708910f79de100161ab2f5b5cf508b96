@@ -1,0 +1,119 @@
+package me.EaZy.client.modules;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.main.Client;
+import me.EaZy.client.utils.BlockUtils;
+import me.EaZy.client.utils.EntityUtils;
+
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.network.play.client.C08PacketPlayerBlockPlacement;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class ChestAura extends Module {
+	public ChestAura() {
+		super("ChestAura", 23, "caura", Category.WORLD, "Opens the chests\nnear your.");
+	}
+
+	public int xOffset;
+	public int yOffset;
+	public int zOffset;
+	public BlockPos ChestPos;
+	public static ArrayList<BlockPos> openedChests = new ArrayList<>();
+	public List<Block> blacklist = Arrays.asList(Blocks.air, Blocks.water, Blocks.flowing_water, Blocks.lava,
+			Blocks.flowing_lava);
+
+	public int delay = 0;
+
+	@Override
+	public void onUpdate() {
+		if (!this.isToggled()) {
+			if (this.togglecmd) {
+				this.setToggled(true);
+				this.onEnable();
+			}
+			return;
+		}
+		if (this.isToggled() && !this.togglecmd) {
+			this.setToggled(false);
+			this.onDisable();
+			return;
+		}
+		if (this.mc.theWorld == null) {
+			return;
+		}
+		delay++;
+		if (mc.currentScreen == null && delay > 1 && !Client.isToggled("Blink")) {
+			final BlockPos v1 = this.getChestPos();
+			try {
+				if (v1 != null) {
+					this.openChest(v1);
+					this.ChestPos = v1;
+				} else {
+					this.ChestPos = null;
+				}
+			} catch (final Exception e) {
+				e.printStackTrace();
+			}
+			delay = 0;
+		}
+
+		super.onUpdate();
+	}
+
+	public void openChest(final BlockPos chestPos) {
+		mc.playerController.syncCurrentPlayItem();
+		EntityUtils.setLookChanged(true);
+		BlockUtils.faceBlockPacket(chestPos);
+		mc.getNetHandler().addToSendQueue(new C08PacketPlayerBlockPlacement(chestPos, EnumFacing.UP.getIndex(),
+				mc.thePlayer.getCurrentEquippedItem(), chestPos.getX(), chestPos.getY(), chestPos.getZ()));
+		mc.thePlayer.swingItem();
+		EntityUtils.setLookChanged(false);
+		openedChests.add(chestPos);
+	}
+
+	public BlockPos getChestPos() {
+		this.xOffset = -3;
+		while (this.xOffset < 4) {
+			this.zOffset = -3;
+			while (this.zOffset < 4) {
+				this.yOffset = 3;
+				while (this.yOffset > -3) {
+					final double v1 = this.mc.thePlayer.posX + this.xOffset;
+					final double v2 = this.mc.thePlayer.posY + this.yOffset;
+					final double v3 = this.mc.thePlayer.posZ + this.zOffset;
+					final int v4 = Block
+							.getIdFromBlock(this.mc.theWorld.getBlockState(new BlockPos(v1, v2, v3)).getBlock());
+					if ((v4 == 54 || v4 == 130 || v4 == 146) && this.ChestPos == null
+							&& !openedChests.contains(new BlockPos(v1, v2, v3))
+							&& (Client.getValues().ChestAura_WallCheck.getState() ? true
+									: mc.thePlayer.canBlockBeSeen(new BlockPos(v1, v2, v3)))) {
+						return new BlockPos(v1, v2, v3);
+					}
+					--this.yOffset;
+				}
+				++this.zOffset;
+			}
+			++this.xOffset;
+		}
+		return null;
+	}
+
+	@Override
+	public void onEnable() {
+		this.ChestPos = null;
+		super.onEnable();
+	}
+
+	@Override
+	public void onDisable() {
+		openedChests.clear();
+		super.onDisable();
+	}
+}

@@ -1,0 +1,177 @@
+package me.EaZy.client.modules.SpeedModes;
+
+import com.darkmagician6.eventapi.EventManager;
+import com.darkmagician6.eventapi.EventTarget;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.events.EventMovePlayer;
+import me.EaZy.client.events.EventPostMotionUpdates;
+import me.EaZy.client.utils.PlayerUtil;
+import net.minecraft.block.BlockAir;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Timer;
+
+public class GommeExtreme extends Module {
+
+	public GommeExtreme() {
+		super("GommeExtreme", 0, "GommeExtreme", Category.SPEED);
+
+	}
+
+	double dir;
+
+	int delay;
+
+	double Ground;
+
+	float JumpMoveFactorUP;
+	float JumpMoveFactorDOWN;
+
+	float JMFupFADE = 0.8f;
+	float JMFdownFADE = 0.8f;
+
+	@Override
+	public void onEnable() {
+		EventManager.register(this);
+		super.onEnable();
+	}
+
+	public EventTarget onPlayerMove(final EventMovePlayer e) {
+
+		if (Minecraft.thePlayer.motionY < 0) {
+
+			if (dir > 350 || dir < 10 || dir > 80 && dir < 100 || dir < 190 && dir > 170 || dir > 260 && dir < 280) {
+
+				e.y *= 1.169;
+			} else {
+
+				e.y *= 1.1;
+			}
+		} else {
+
+			e.y /= 1.139;
+		}
+		return null;
+	}
+
+	public EventTarget onPostMotionUpdates(final EventPostMotionUpdates event) {
+		if (!Minecraft.thePlayer.movementInput.jump && Minecraft.theWorld
+				.getBlockState(
+						new BlockPos(Minecraft.thePlayer.posX, Minecraft.thePlayer.posY - 1, Minecraft.thePlayer.posZ))
+				.getBlock() instanceof BlockAir) {
+
+		} else {
+
+			if (Minecraft.thePlayer.posY % 1 == 0 && Minecraft.thePlayer.motionX != 0
+					&& Minecraft.thePlayer.motionZ != 0) {
+				Minecraft.thePlayer.cameraYaw = 0.1f;
+			}
+			// if (Minecraft.thePlayer.onGround &
+			// !Minecraft.thePlayer.movementInput.jump) {
+			// Ground = Minecraft.thePlayer.posY;
+			// } else if (!Minecraft.thePlayer.movementInput.jump) {
+			// Minecraft.thePlayer.posY = Ground;
+			// }
+		}
+
+		return null;
+
+	}
+
+	@Override
+	public void onUpdate() {
+
+		if (!isToggled()) {
+			if (togglecmd) {
+				setToggled(true);
+				onEnable();
+			}
+			return;
+		}
+
+		if (isToggled() && !togglecmd) {
+			setToggled(false);
+			onDisable();
+			return;
+		}
+		if (!Minecraft.thePlayer.onGround) {
+			if (Minecraft.thePlayer.motionY > 0) {
+				Minecraft.thePlayer.motionX /= 1.2;
+				Minecraft.thePlayer.motionZ /= 1.2;
+				Minecraft.thePlayer.jumpMovementFactor = JumpMoveFactorUP;
+			} else if (Minecraft.theWorld.getBlockState(
+					new BlockPos(Minecraft.thePlayer.posX, Minecraft.thePlayer.posY - 0.1, Minecraft.thePlayer.posZ))
+					.getBlock() instanceof BlockAir) {
+				Minecraft.thePlayer.motionX /= 1.2;
+				Minecraft.thePlayer.motionZ /= 1.2;
+				Minecraft.thePlayer.jumpMovementFactor = JumpMoveFactorDOWN;
+			}
+		}
+
+		dir = PlayerUtil.getMoveDirection360();
+
+		// msg(PlayerUtil.getMoveDirection360() + "");
+
+		if (Minecraft.gameSettings.keyBindForward.pressed || Minecraft.gameSettings.keyBindBack.pressed
+				|| Minecraft.gameSettings.keyBindRight.pressed || Minecraft.gameSettings.keyBindLeft.pressed) {
+
+			if (Minecraft.thePlayer.onGround) {
+				Timer.timerSpeed = 1;
+				Minecraft.thePlayer.jump();
+				Minecraft.thePlayer.motionY = 0.409;
+				delay = 0;
+			} else {
+
+				delay++;
+
+				if (Minecraft.thePlayer.motionY > 0) {
+
+					Minecraft.thePlayer.motionY /= 1.01;
+
+					if (delay == 2) {
+						Timer.timerSpeed = 4.2f;
+					} else {
+						Timer.timerSpeed = 1.0f;
+					}
+				} else {
+					if (delay == 7 || delay == 8) {
+						Timer.timerSpeed = 0.6f;
+					} else {
+						Timer.timerSpeed = 1.2f;
+					}
+				}
+			}
+		}
+
+		Minecraft.thePlayer.setSprinting(true);
+
+		if (dir > 350 || dir < 10 || dir > 80 && dir < 100 || dir < 190 && dir > 170 || dir > 260 && dir < 280) {
+			JumpMoveFactorUP = 0.139f;
+			JumpMoveFactorDOWN = 0.104f;
+
+		} else if (dir > 10 && dir < 25 || dir > 65 && dir < 80 || dir > 100 && dir < 125 || dir > 155 && dir < 170
+				|| dir > 190 && dir < 205 || dir > 245 && dir < 260 || dir > 280 && dir < 295
+				|| dir > 335 && dir < 350) {
+			JumpMoveFactorUP = 0.119f;
+			JumpMoveFactorDOWN = 0.09f;
+		} else {
+			JumpMoveFactorUP = 0.07f;
+			JumpMoveFactorDOWN = 0.07f;
+		}
+
+		super.onUpdate();
+	}
+
+	@Override
+	public void onDisable() {
+
+		Minecraft.thePlayer.motionX /= 2;
+		Minecraft.thePlayer.motionZ /= 2;
+
+		EventManager.unregister(this);
+		delay = 0;
+		Timer.timerSpeed = 1;
+	}
+}

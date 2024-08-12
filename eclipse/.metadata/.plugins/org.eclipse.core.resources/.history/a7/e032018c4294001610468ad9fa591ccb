@@ -1,0 +1,30 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+
+public class XACGlide extends Module{
+
+	public XACGlide() {
+		super("XACGlide", Keyboard.KEY_F, Category.Movement);
+		
+	}
+	public void onUpdate(){
+		if(!this.getState())
+			return;
+		
+		if(mc.thePlayer.fallDistance > 1.1F && !mc.thePlayer.isInWeb && !mc.thePlayer.isInWater()){
+			mc.thePlayer.motionY /= 1.3f;
+			mc.thePlayer.jump();
+			mc.thePlayer.motionY /= 1.3f;
+			mc.thePlayer.fallDistance = 0;
+			
+		}
+		
+		
+		
+		
+	}
+}

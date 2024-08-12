@@ -1,0 +1,45 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import net.minecraft.util.Timer;
+
+public class LowHop extends Module{
+
+	public LowHop() {
+		super("LowHop", Keyboard.KEY_M, Category.Movement);	
+	}
+	public void onUpdate(){
+		if(!this.getState())
+			return;
+		
+		if(mc.thePlayer.motionY < 0f && !mc.thePlayer.onGround && !(mc.thePlayer.motionX == 0.0f) && !(mc.thePlayer.motionZ == 0.0f) && !mc.thePlayer.isInWeb && !mc.thePlayer.isInWater() && mc.thePlayer.fallDistance < 1.0f && !(mc.thePlayer.hurtTime > 0.0f) && !mc.thePlayer.movementInput.jump){
+			Timer.timerSpeed = 1.0f;
+			
+			mc.thePlayer.motionX = 0f;
+			mc.thePlayer.motionZ = 0f;
+			mc.thePlayer.jumpMovementFactor = 0.48f;
+		}
+		if(mc.thePlayer.motionY > 0f && !mc.thePlayer.onGround && !(mc.thePlayer.motionX == 0.0f) && !(mc.thePlayer.motionZ == 0.0f) && !mc.thePlayer.isInWeb && !mc.thePlayer.isInWater() && !mc.thePlayer.movementInput.jump){
+			Timer.timerSpeed = 1.0f;
+			
+			mc.thePlayer.motionX = 0f;
+			mc.thePlayer.motionZ = 0f;
+			mc.thePlayer.jumpMovementFactor = 0.345f;
+		}
+		if(mc.thePlayer.onGround && mc.thePlayer.onGround && !(mc.thePlayer.motionX == 0.0f) && !(mc.thePlayer.motionZ == 0.0f) && !mc.thePlayer.isInWeb && !mc.thePlayer.isInWater() && !mc.thePlayer.movementInput.jump){
+			mc.thePlayer.motionY = 0.245f;
+			mc.thePlayer.motionX /= 2.5f;
+			mc.thePlayer.motionZ /= 2.5f;
+			Timer.timerSpeed = 2.5f;
+		}
+		if(mc.thePlayer.onGround || mc.thePlayer.isInWater() || mc.thePlayer.isInWeb || mc.thePlayer.isOnLadder()){
+			mc.thePlayer.fallDistance = 0;
+			
+		}
+		
+		
+	}
+}

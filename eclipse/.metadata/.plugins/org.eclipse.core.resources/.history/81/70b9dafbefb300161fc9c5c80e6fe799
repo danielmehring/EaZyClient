@@ -1,0 +1,81 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.network.play.client.C03PacketPlayer;
+
+public class KillAura extends Module {
+
+	public KillAura() {
+		super("KillAura", Keyboard.KEY_R, Category.Combat);
+
+	}
+
+	public static int crack = 10;
+	public static double reach = 4.0;
+
+	public void onPreUpdate() {
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// if (!this.getState())
+		// return;
+		// final double[] jumpOffsets = new double[] { 0.41999998688697815,
+		// 0.7531999805212015,
+		// 1.001335979112147, 1.1661092609382138, 1.249187078744681,
+		// 1.249187078744681, 1.1707870772188018,
+		// 1.0155550727021998, 0.7850277037892361, 0.48071087633169185,
+		// 0.10408037809303661, 0.0 };
+		//
+		// double[] arrd = jumpOffsets;
+		// int n = arrd.length;
+		// int n2 = 0;
+		// double start = mc.thePlayer.posY;
+		// while (n2 < n) {
+		// double jumpOffset = arrd[n2];
+		// mc.thePlayer.sendQueue.addToSendQueue(new
+		// C03PacketPlayer.C04PacketPlayerPosition(
+		// mc.thePlayer.posX, start - (jumpOffset * 100) , mc.thePlayer.posZ,
+		// false));
+		// ++n2;
+		// }
+		//
+
+		// mc.thePlayer.setSprinting(true);
+		//
+		// crack++;
+		//
+		// for (Object j : mc.theWorld.loadedEntityList) {
+		// Entity e = (Entity) j;
+		//
+		// if (e instanceof EntityLivingBase) {
+		// if (e != mc.thePlayer) {
+		// if (mc.thePlayer.getDistanceToEntity(e) <= KillAura.this.reach) {
+		//
+		// mc.playerController.attackEntity(mc.thePlayer, e);
+		// mc.thePlayer.swingItem();
+		//
+		// mc.thePlayer.setSprinting(true);
+		//
+		// }
+		//
+		// }
+		//
+		// }
+		//
+		// }
+
+	}
+
+}

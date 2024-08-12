@@ -1,0 +1,14 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+
+public class SpinnenBot extends Module{
+
+	public SpinnenBot() {
+		super("SpinnenBot", Keyboard.KEY_F10, Category.Player);
+	}
+
+}

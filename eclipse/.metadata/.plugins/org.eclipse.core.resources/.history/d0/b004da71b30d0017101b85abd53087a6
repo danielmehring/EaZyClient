@@ -1,0 +1,348 @@
+package me.EaZy.client.gui;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.URL;
+
+import org.jibble.pircbot.Sbgioaubsf;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
+
+import com.darkmagician6.eventapi.events.callables.Tuihbsad;
+import com.google.gson.JsonObject;
+
+import me.EaZy.client.Configs;
+import me.EaZy.client.EnumFadeDirection;
+import me.EaZy.client.FileManager;
+import me.EaZy.client.Updater;
+import me.EaZy.client.alts.GuiEmailFieldLogin;
+import me.EaZy.client.alts.GuiPasswordFieldLogin;
+import me.EaZy.client.main.Client;
+import me.EaZy.client.utils.JsonUtils;
+import me.EaZy.client.utils.RenderUtils;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.entity.monster.SPOnggas;
+import net.minecraft.event.KLgbasdig;
+import net.minecraft.network.status.server.ISBjaskbg;
+import net.minecraft.world.gen.layer.Siutbgsa;
+import net.minecraftforge.client.model.pipeline.Sfgbsaifgboi;
+import optifine.KJSBgigas;
+
+public class GuiEaZyLogin extends GuiScreen {
+
+	private int fading = 0;
+
+	private GuiEmailFieldLogin usernameBox;
+	private GuiPasswordFieldLogin passwordBox;
+
+	@Override
+	public void drawScreen(final int par1, final int par2, final float par3) {
+		final ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.displayWidth,
+				Minecraft.displayHeight);
+
+		drawDefaultBackground();
+
+		int color = 0x01000000;
+
+		if (fading == 0) {
+			color = 0xFF000000;
+		} else if (fading == 1) {
+			color = 0xFA000000;
+		} else if (fading == 2) {
+			color = 0xD5000000;
+		} else if (fading == 3) {
+			color = 0xC8000000;
+		} else if (fading == 4) {
+			color = 0xBC000000;
+		} else if (fading == 5) {
+			color = 0xAF000000;
+		} else if (fading == 6) {
+			color = 0xAF000000;
+		} else if (fading == 7) {
+			color = 0xA3000000;
+		} else if (fading == 8) {
+			color = 0x96000000;
+		} else if (fading == 9) {
+			color = 0x8A000000;
+		} else if (fading == 10) {
+			color = 0x71000000;
+		} else if (fading == 11) {
+			color = 0x7D000000;
+		} else if (fading == 12) {
+			color = 0x71000000;
+		} else if (fading == 13) {
+			color = 0x64000000;
+		} else if (fading == 14) {
+			// hier 88 xd
+			color = 0x58000000;
+		} else if (fading == 15) {
+			color = 0x4B000000;
+		} else if (fading == 16) {
+			color = 0x3F000000;
+		} else if (fading == 17) {
+			color = 0x32000000;
+		} else if (fading == 18) {
+			color = 0x26000000;
+		} else if (fading == 19) {
+			color = 0x19000000;
+		} else if (fading == 20) {
+			color = 0xC0000000;
+		}
+
+		if (fading < 21) {
+			fading++;
+
+			drawRect(0, 0, sr.getScaledWidth(), sr.getScaledHeight(), color);
+		}
+
+		drawRect(0, 0, sr.getScaledWidth(), sr.getScaledHeight(), 0x7c000000);
+
+		drawRect(sr.getScaledWidth() / 2 - 90, sr.getScaledHeight() / 2 - 80, sr.getScaledWidth() / 2 + 90,
+				sr.getScaledHeight() / 2 + 50, 0x60000000);
+		final int lol = 7;
+		RenderUtils.drawFadeRect(sr.getScaledWidth() / 2 - 90, sr.getScaledHeight() / 2 + 50,
+				sr.getScaledWidth() / 2 + 90, sr.getScaledHeight() / 2 + 50 + lol, 0x30000000, 0, 100, lol,
+				EnumFadeDirection.DOWN);
+		RenderUtils.drawFadeRect(sr.getScaledWidth() / 2 - 90, sr.getScaledHeight() / 2 - 80 - lol,
+				sr.getScaledWidth() / 2 + 90, sr.getScaledHeight() / 2 - 80, 0x30000000, 0, 100, lol,
+				EnumFadeDirection.UP);
+		RenderUtils.drawFadeRect(sr.getScaledWidth() / 2 + 90, sr.getScaledHeight() / 2 - 80,
+				sr.getScaledWidth() / 2 + 90 + lol, sr.getScaledHeight() / 2 + 50, 0x30000000, 0, 100, lol,
+				EnumFadeDirection.RIGHT);
+		RenderUtils.drawFadeRect(sr.getScaledWidth() / 2 - 90 - lol, sr.getScaledHeight() / 2 - 80,
+				sr.getScaledWidth() / 2 - 90, sr.getScaledHeight() / 2 + 50, 0x30000000, 0, 100, lol,
+				EnumFadeDirection.LEFT);
+
+		// DrawRects 4 LoginButton
+		RenderUtils.drawHollowRect(sr.getScaledWidth() / 2 + 3 + 39 - 1 + 10, sr.getScaledHeight() / 2 + 31,
+				sr.getScaledWidth() / 2 + 58 + mc.fontRendererObj.getStringWidth("Login"),
+				sr.getScaledHeight() / 2 + 46, 1.0f, 0x8000face);
+
+		drawString(fontRendererObj, "Login", sr.getScaledWidth() / 2 + 55, sr.getScaledHeight() / 2 + 34, 0x00face);
+
+		drawString(fontRendererObj,
+				new String(new byte[] { 106, 102, 82, 111, 97, 113 }).toString().substring(2, 3)
+						+ new String(new byte[] { 120, 118, 110, 101, 121, 99 }).toString().substring(3, 4)
+						+ new String(new byte[] { 113, 116, 103, 112, 109, 121 }).toString().substring(4, 5)
+						+ new String(new byte[] { 101, 98, 98, 101, 117, 108 }).toString().substring(3, 4)
+						+ new String(new byte[] { 120, 101, 109, 120, 116, 111 }).toString().substring(2, 3)
+						+ new String(new byte[] { 98, 108, 98, 105, 102, 100 }).toString().substring(0, 1)
+						+ new String(new byte[] { 106, 99, 99, 103, 101, 117 }).toString().substring(4, 5)
+						+ new String(new byte[] { 98, 109, 108, 117, 114, 107 }).toString().substring(4, 5)
+						+ new String(new byte[] { 99, 63, 117, 109, 118, 107 }).toString().substring(1, 2),
+				sr.getScaledWidth() / 2 - 79 + 5, sr.getScaledHeight() / 2 + 36, 0x00face);
+
+		// Draw Remember Box
+		RenderUtils.drawHollowRect(sr.getScaledWidth() / 2 - 80 + 5 - 11, sr.getScaledHeight() / 2 + 36 - 1 - 1,
+				sr.getScaledWidth() / 2 - 80 + 5 + 10 - 11, sr.getScaledHeight() / 2 + 36 + 10 - 2, 1.0f, 0x60000000);
+
+		GL11.glPushMatrix();
+		GL11.glTranslated(sr.getScaledWidth() / 2, sr.getScaledHeight() / 2 - 70, 0);
+		GL11.glScaled(3, 3, 0);
+		drawCenteredString(fontRendererObj, "EaZy", 0, 0, 0x00face);
+		GL11.glPopMatrix();
+
+		GL11.glPushMatrix();
+		GL11.glTranslated(sr.getScaledWidth() / 2 - 70, sr.getScaledHeight() / 2 - 30, 0);
+		GL11.glScaled(0.5, 0.5, 0.5);
+		drawCenteredString(fontRendererObj, new String(new byte[] { 0b1010101, 0b1110011, 0b1100101, 0b1110010,
+				0b1101110, 0b1100001, 0b1101101, 0b1100101, 0b111010 }).toString(), 0, 0, 0x00face);
+		GL11.glPopMatrix();
+
+		GL11.glPushMatrix();
+		GL11.glTranslated(sr.getScaledWidth() / 2 - 70, sr.getScaledHeight() / 2 - 5, 0);
+		GL11.glScaled(0.5, 0.5, 0.5);
+		drawCenteredString(fontRendererObj, new String(new byte[] { 0b1010000, 0b1100001, 0b1110011, 0b1110011,
+				0b1110111, 0b1101111, 0b1110010, 0b1100100, 0b111010 }).toString(), 0, 0, 0x00face);
+		GL11.glPopMatrix();
+
+		// Draw Remember Boolean draw Dings da
+		if (Configs.saveEaZyLogin) {
+			drawString(fontRendererObj, "\u2714", sr.getScaledWidth() / 2 - 80 + 5 - 11 + 1,
+					sr.getScaledHeight() / 2 + 36 - 1, 0x00face);
+		}
+
+		usernameBox.drawTextBox();
+		passwordBox.drawTextBox();
+
+		super.drawScreen(par1, par2, par3);
+	}
+
+	@Override
+	public void updateScreen() {
+		usernameBox.updateCursorCounter();
+		passwordBox.updateCursorCounter();
+		((GuiButton) buttonList.get(0)).enabled = usernameBox.getText().trim().length() > 0
+				&& passwordBox.getText().length() > 0;
+	}
+
+	@Override
+	public void initGui() {
+
+		final ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.displayWidth,
+				Minecraft.displayHeight);
+		Keyboard.enableRepeatEvents(true);
+		buttonList.add(new GuiInvisButton(3, width / 2 + 20 - 20 - 0 + 41 + 10, height / 2 + 31, 35, 15,
+				new String(new byte[] { 116, 32, 119, 111, 121, 120 }).toString().substring(1, 2)));
+
+		buttonList.add(
+				new GuiInvisButton(42, sr.getScaledWidth() / 2 - 79 - 7, sr.getScaledHeight() / 2 + 35, 10, 10, ""));
+
+		usernameBox = new GuiEmailFieldLogin(0, fontRendererObj, sr.getScaledWidth() / 2 - 70,
+				sr.getScaledHeight() / 2 - 20, 150, 10);
+		usernameBox.setMaxStringLength(48);
+		usernameBox.setFocused(true);
+		usernameBox.setText(Configs.saveEaZyLogin ? Configs.loginName : "");
+		passwordBox = new GuiPasswordFieldLogin(fontRendererObj, sr.getScaledWidth() / 2 - 70,
+				sr.getScaledHeight() / 2 + 5, 150, 10);
+		passwordBox.setFocused(false);
+		passwordBox.setText(Configs.saveEaZyLogin ? Configs.loginPassword : "");
+
+	}
+
+	@Override
+	public void onGuiClosed() {
+		Keyboard.enableRepeatEvents(false);
+	}
+
+	@Override
+	protected void actionPerformed(final GuiButton clickedButton) {
+		if (clickedButton.id == 3) {
+
+			mc.displayGuiScreen(new GuiMainMenu());
+
+			try {
+				final String name = login(usernameBox.getText(), passwordBox.getText());
+				if (name.equalsIgnoreCase(usernameBox.getText())) {
+					Client.playOffline = false;
+					Client.username = name;
+					// Display.setTitle(Client.title + " - registered for "
+					// + name);
+					Display.setTitle(Client.title
+							+ new String(new byte[] { 105, 32, 103, 101, 113, 111 }).toString().substring(1, 2)
+							+ new String(new byte[] { 101, 106, 45, 98, 101, 101 }).toString().substring(2, 3)
+							+ new String(new byte[] { 32, 114, 121, 104, 105, 110 }).toString().substring(0, 1)
+							+ new String(new byte[] { 111, 114, 112, 110, 112, 108 }).toString().substring(1, 2)
+							+ new String(new byte[] { 101, 114, 121, 101, 114, 109 }).toString().substring(3, 4)
+							+ new String(new byte[] { 114, 115, 101, 103, 110, 119 }).toString().substring(3, 4)
+							+ new String(new byte[] { 114, 101, 107, 105, 112, 101 }).toString().substring(3, 4)
+							+ new String(new byte[] { 104, 103, 115, 109, 113, 118 }).toString().substring(2, 3)
+							+ new String(new byte[] { 116, 104, 103, 120, 119, 116 }).toString().substring(0, 1)
+							+ new String(new byte[] { 106, 116, 120, 110, 101, 117 }).toString().substring(4, 5)
+							+ new String(new byte[] { 112, 101, 97, 114, 115, 99 }).toString().substring(3, 4)
+							+ new String(new byte[] { 111, 114, 100, 98, 101, 118 }).toString().substring(4, 5)
+							+ new String(new byte[] { 100, 116, 113, 107, 108, 102 }).toString().substring(0, 1)
+							+ new String(new byte[] { 32, 97, 99, 116, 108, 115 }).toString().substring(0, 1)
+							+ new String(new byte[] { 101, 102, 106, 97, 101, 114 }).toString().substring(1, 2)
+							+ new String(new byte[] { 111, 103, 104, 119, 117, 104 }).toString().substring(0, 1)
+							+ new String(new byte[] { 106, 119, 114, 121, 108, 116 }).toString().substring(2, 3)
+							+ new String(new byte[] { 114, 106, 121, 32, 104, 111 }).toString().substring(3, 4) + name);
+
+					if (Configs.saveEaZyLogin) {
+						Configs.loginName = usernameBox.getText();
+						Configs.loginPassword = passwordBox.getText();
+						FileManager.saveLogin();
+						FileManager.saveMain();
+					}
+
+					Client.ircManager.setUsername(name);
+
+					try {
+						final BufferedReader load = new BufferedReader(
+								new FileReader(
+										new File(Client.getEaZyJarPath(),
+												new String(new byte[] { 0b1000101, 0b1100001, 0b1011010, 0b1111001,
+														0b101110, 0b1101010, 0b1110011, 0b1101111, 0b1101110 })
+																.toString())));
+						final JsonObject json = (JsonObject) JsonUtils.jsonParser.parse(load);
+						load.close();
+						if (json.get(new String(new byte[] { 0b1000101, 0b1101110, 0b1100001, 0b1101101, 0b1100101 })
+								.toString()) == null) {
+							json.addProperty(
+									new String(new byte[] { 0b1000101, 0b1101110, 0b1100001, 0b1101101, 0b1100101 })
+											.toString(),
+									name);
+							final PrintWriter save = new PrintWriter(
+									new FileWriter(new File(Client.getEaZyJarPath(),
+											new String(new byte[] { 0b1000101, 0b1100001, 0b1011010, 0b1111001,
+													0b101110, 0b1101010, 0b1110011, 0b1101111, 0b1101110 })
+															.toString())));
+							save.println(JsonUtils.prettyGson.toJson(json));
+							save.close();
+						}
+					} catch (final Exception e) {
+					}
+
+					try {
+						Updater.checkAndUpdate();
+					} catch (final Exception e) {
+						e.printStackTrace();
+					}
+					mc.displayGuiScreen(new GuiMainMenu());
+
+				} else {
+					usernameBox.setText(new String(new byte[] { 118, 98, 69, 102, 101, 103 }).toString().substring(2, 3)
+							+ new String(new byte[] { 114, 100, 97, 112, 102, 100 }).toString().substring(0, 1)
+							+ new String(new byte[] { 106, 115, 114, 117, 101, 99 }).toString().substring(2, 3)
+							+ new String(new byte[] { 111, 97, 106, 113, 98, 101 }).toString().substring(0, 1)
+							+ new String(new byte[] { 104, 114, 103, 107, 114, 121 }).toString().substring(1, 2)
+							+ new String(new byte[] { 112, 99, 113, 58, 107, 119 }).toString().substring(3, 4)
+							+ new String(new byte[] { 104, 112, 32, 112, 100, 113 }).toString().substring(2, 3) + name);
+					passwordBox.setText("");
+				}
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+		}
+		if (clickedButton.id == 42) {
+			Configs.saveEaZyLogin = !Configs.saveEaZyLogin;
+		}
+	}
+
+	private String login(final String Timer, final String Speed) throws IOException {
+		// http://ni368223_2.vweb18.nitrado.net/login.php?username=name&passwort=pw&hwid=hwid
+		final URL url = KLgbasdig.get(Timer, Speed);
+		final InputStream response = url.openStream();
+		final BufferedReader reader = new BufferedReader(new InputStreamReader(response));
+		for (String line; (line = reader.readLine()) != null;) {
+			if (line.split(Siutbgsa.asd).length == 2) {
+				return iUZVFUA.get(line.split(ISBjaskbg.asd)[1]);
+			} else if (line.contains(Sfgbsaifgboi.lol)) {
+				Client.crash(KJSBgigas.lol);
+			} else if (line.contains(SPOnggas.asd)) {
+				return Sbgioaubsf.asd;
+			}
+		}
+		return Tuihbsad.asd;
+	}
+
+	@Override
+	protected void keyTyped(final char par1, final int par2) {
+		usernameBox.textboxKeyTyped(par1, par2);
+		passwordBox.textboxKeyTyped(par1, par2);
+		if (par2 == 28 || par2 == 156) {
+			actionPerformed((GuiButton) buttonList.get(0));
+		}
+		if (par2 == Keyboard.KEY_F5) {
+			mc.displayGuiScreen(this);
+		}
+	}
+
+	@Override
+	protected void mouseClicked(final int par1, final int par2, final int par3) throws IOException {
+		super.mouseClicked(par1, par2, par3);
+		usernameBox.mouseClicked(par1, par2, par3);
+		passwordBox.mouseClicked(par1, par2, par3);
+	}
+}

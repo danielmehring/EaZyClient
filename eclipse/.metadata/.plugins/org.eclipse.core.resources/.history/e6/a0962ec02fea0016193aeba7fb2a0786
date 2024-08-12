@@ -1,0 +1,675 @@
+package me.EaZy.client.main;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.FileManager;
+import me.EaZy.client.Module;
+import me.EaZy.client.hooks.InGameGUIHook;
+import me.EaZy.client.irc.IRCManager;
+import me.EaZy.client.modules.AAATestModule;
+import me.EaZy.client.modules.AACTeleport;
+import me.EaZy.client.modules.AirJump;
+import me.EaZy.client.modules.AntiSpam;
+import me.EaZy.client.modules.AutoArmor;
+import me.EaZy.client.modules.AutoPotion;
+import me.EaZy.client.modules.BackPort;
+import me.EaZy.client.modules.Blink;
+import me.EaZy.client.modules.BlockHit;
+import me.EaZy.client.modules.BowAimbot;
+import me.EaZy.client.modules.ChestAura;
+import me.EaZy.client.modules.ChestESP;
+import me.EaZy.client.modules.ChestStealer;
+import me.EaZy.client.modules.Criticals;
+import me.EaZy.client.modules.Damage;
+import me.EaZy.client.modules.ESP;
+import me.EaZy.client.modules.FastBow;
+import me.EaZy.client.modules.FastBreak;
+import me.EaZy.client.modules.FastLadder;
+import me.EaZy.client.modules.FastPlace;
+import me.EaZy.client.modules.FastUse;
+import me.EaZy.client.modules.FastWeb;
+import me.EaZy.client.modules.FightBot;
+import me.EaZy.client.modules.Fly;
+import me.EaZy.client.modules.Fucker;
+import me.EaZy.client.modules.Fullbright;
+import me.EaZy.client.modules.GhostHand;
+import me.EaZy.client.modules.GommeLadderLongJump;
+import me.EaZy.client.modules.Gui;
+import me.EaZy.client.modules.HighJump;
+import me.EaZy.client.modules.ILikeParticles;
+import me.EaZy.client.modules.IceSpeed;
+import me.EaZy.client.modules.InventoryWalk;
+import me.EaZy.client.modules.ItemESP;
+import me.EaZy.client.modules.Jesus;
+import me.EaZy.client.modules.KillAura;
+import me.EaZy.client.modules.LaserTag;
+import me.EaZy.client.modules.Liquids;
+import me.EaZy.client.modules.LongJump;
+import me.EaZy.client.modules.MidClickFriends;
+import me.EaZy.client.modules.MitteESP;
+import me.EaZy.client.modules.NameProtect;
+import me.EaZy.client.modules.NameTags;
+import me.EaZy.client.modules.NoClip;
+import me.EaZy.client.modules.NoFall;
+import me.EaZy.client.modules.NoFire;
+import me.EaZy.client.modules.NoFriends;
+import me.EaZy.client.modules.NoHurtcam;
+import me.EaZy.client.modules.NoIRC;
+import me.EaZy.client.modules.NoKnockBack;
+import me.EaZy.client.modules.NoRotSet;
+import me.EaZy.client.modules.NoScoreboard;
+import me.EaZy.client.modules.NoSlowdown;
+import me.EaZy.client.modules.NoSwing;
+import me.EaZy.client.modules.Nuker;
+import me.EaZy.client.modules.OutlineESP;
+import me.EaZy.client.modules.Phase;
+import me.EaZy.client.modules.Plugins;
+import me.EaZy.client.modules.Regen;
+import me.EaZy.client.modules.SafeWalk;
+import me.EaZy.client.modules.Scaffold;
+import me.EaZy.client.modules.Smileys;
+import me.EaZy.client.modules.Sneak;
+import me.EaZy.client.modules.Spammer;
+import me.EaZy.client.modules.Speed;
+import me.EaZy.client.modules.Spider;
+import me.EaZy.client.modules.Sprint;
+import me.EaZy.client.modules.Step;
+import me.EaZy.client.modules.Strafe;
+import me.EaZy.client.modules.Team;
+import me.EaZy.client.modules.Timer;
+import me.EaZy.client.modules.Tower;
+import me.EaZy.client.modules.Tracers;
+import me.EaZy.client.modules.Trajectories;
+import me.EaZy.client.modules.TrueSight;
+import me.EaZy.client.modules.VanillaTP;
+import me.EaZy.client.modules.WaterControl;
+import me.EaZy.client.modules.WaterSpeed;
+import me.EaZy.client.modules.XRay;
+import me.EaZy.client.modules.YesCheat;
+import me.EaZy.client.modules.SpeedModes.AAC;
+import me.EaZy.client.modules.SpeedModes.AAC2;
+import me.EaZy.client.modules.SpeedModes.BHop;
+import me.EaZy.client.modules.SpeedModes.GommeBHop;
+import me.EaZy.client.modules.SpeedModes.GommeRace;
+import me.EaZy.client.modules.SpeedModes.LPmitKev;
+import me.EaZy.client.modules.SpeedModes.LowHop;
+import me.EaZy.client.modules.SpeedModes.MiniHop;
+import me.EaZy.client.modules.SpeedModes.MySpeed;
+import me.EaZy.client.modules.SpeedModes.NCPRace;
+import me.EaZy.client.modules.SpeedModes.Old;
+import me.EaZy.client.modules.SpeedModes.RaceBHop;
+import me.EaZy.client.modules.SpeedModes.Spectre;
+import me.EaZy.client.modules.SpeedModes.SplashMC;
+import me.EaZy.client.modules.glides.AACGlide;
+import me.EaZy.client.modules.glides.GommeGlide;
+import me.EaZy.client.modules.glides.JumpGlide;
+import me.EaZy.client.modules.glides.NCPGlide;
+import me.EaZy.client.modules.glides.RandyMCGlide;
+import me.EaZy.client.modules.glides.SpectreGlide;
+import me.EaZy.client.modules.hud.Appearance;
+import me.EaZy.client.modules.hud.Other;
+import me.EaZy.client.tabgui.GuiTabHandler;
+import me.EaZy.client.utils.ColorUtils;
+import me.EaZy.client.utils.EntityUtils;
+import me.EaZy.client.utils.MathUtil;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.crash.CrashReport;
+import net.minecraft.util.ChatComponentText;
+
+import java.io.File;
+import java.net.InetAddress;
+import java.net.URL;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+
+import org.apache.commons.codec.binary.Base64;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.lwjgl.opengl.Display;
+
+import de.Hero.clickgui.ClickGUI;
+import de.Hero.settings.SettingsManager;
+
+public class Client {
+	private static ArrayList<Module> modules;
+	public static ArrayList<String> cmds = new ArrayList<>();
+	private static InGameGUIHook inGameGUI;
+	public static String EaZyVersion;
+	public static String title;
+	public static String version;
+	public static String prefix;
+	public static Minecraft mc;
+	public static int serverFinderThreads;
+	public static ClickGUI clickgui;
+	public static final Client theClient;
+	public final static GuiTabHandler tabHandler = new GuiTabHandler();
+	private final static Logger logger = LogManager.getLogger();
+	public static double currentVersionforUpdater;
+	public static IRCManager ircManager;
+
+	public static String username = "";
+	public static boolean playOffline = true;
+
+	public static boolean isHidden = false;
+
+	public static SettingsManager setmgr = new SettingsManager();
+
+	static Class klass = Client.class;
+	static URL location = klass.getResource('/' + klass.getName().replace('.', '/')
+			+ new String(new byte[] { 106, 106, 100, 46, 117, 120 }).toString().substring(3, 4)
+			+ new String(new byte[] { 109, 111, 105, 111, 99, 111 }).toString().substring(4, 5)
+			+ new String(new byte[] { 99, 112, 104, 108, 117, 121 }).toString().substring(3, 4)
+			+ new String(new byte[] { 113, 113, 97, 104, 121, 121 }).toString().substring(2, 3)
+			+ new String(new byte[] { 101, 100, 115, 101, 113, 102 }).toString().substring(2, 3)
+			+ new String(new byte[] { 120, 103, 117, 115, 102, 111 }).toString().substring(3, 4));
+	static String jarPath;
+	static String jar;
+
+	public static void show() {
+		isHidden = false;
+		Display.setTitle(
+				Client.title + new String(new byte[] { 107, 111, 106, 32, 119, 102 }).toString().substring(3, 4)
+						+ new String(new byte[] { 113, 118, 104, 105, 45, 104 }).toString().substring(4, 5)
+						+ new String(new byte[] { 32, 112, 97, 115, 117, 110 }).toString().substring(0, 1)
+						+ new String(new byte[] { 104, 114, 106, 110, 112, 117 }).toString().substring(1, 2)
+						+ new String(new byte[] { 113, 110, 110, 118, 101, 97 }).toString().substring(4, 5)
+						+ new String(new byte[] { 118, 109, 103, 119, 118, 111 }).toString().substring(2, 3)
+						+ new String(new byte[] { 118, 121, 110, 105, 109, 97 }).toString().substring(3, 4)
+						+ new String(new byte[] { 117, 100, 116, 112, 115, 121 }).toString().substring(4, 5)
+						+ new String(new byte[] { 111, 103, 116, 98, 118, 120 }).toString().substring(2, 3)
+						+ new String(new byte[] { 116, 101, 101, 121, 119, 97 }).toString().substring(1, 2)
+						+ new String(new byte[] { 106, 121, 112, 114, 119, 97 }).toString().substring(3, 4)
+						+ new String(new byte[] { 112, 101, 113, 112, 100, 118 }).toString().substring(1, 2)
+						+ new String(new byte[] { 101, 108, 101, 100, 101, 120 }).toString().substring(3, 4)
+						+ new String(new byte[] { 115, 106, 97, 119, 32, 100 }).toString().substring(4, 5)
+						+ new String(new byte[] { 102, 119, 99, 106, 111, 110 }).toString().substring(0, 1)
+						+ new String(new byte[] { 113, 104, 102, 111, 114, 106 }).toString().substring(3, 4)
+						+ new String(new byte[] { 115, 113, 98, 119, 114, 118 }).toString().substring(4, 5)
+						+ new String(new byte[] { 32, 98, 120, 112, 98, 112 }).toString().substring(0, 1) + username);
+	}
+
+	public static void hide() {
+		isHidden = true;
+		Display.setTitle(new String(new byte[] { 0b1001101, 0b1101001, 0b1101110, 0b1100101, 0b1100011, 0b1110010,
+				0b1100001, 0b1100110, 0b1110100, 0b100000, 0b110001, 0b101110, 0b111000 }).toString());
+	}
+
+	public static String getEaZyJarName() {
+		return Client.jar;
+	}
+
+	public static String getEaZyJarPath() {
+		return Client.jarPath;
+	}
+
+	public static void crash(final String reason) {
+		final CrashReport var2 = mc
+				.addGraphicsAndWorldToCrashReport(new CrashReport(reason, new NullPointerException()));
+		mc.freeMemory();
+		logger.fatal(new String(new byte[] { 0b1010010, 0b1100101, 0b1110000, 0b1101111, 0b1110010, 0b1110100,
+				0b1100101, 0b1100100, 0b100000, 0b1100101, 0b1111000, 0b1100011, 0b1100101, 0b1110000, 0b1110100,
+				0b1101001, 0b1101111, 0b1101110, 0b100000, 0b1110100, 0b1101000, 0b1110010, 0b1101111, 0b1110111,
+				0b1101110, 0b100001 }).toString(), new NullPointerException());
+		mc.displayCrashReport(var2);
+		mc.shutdownMinecraftApplet();
+	}
+
+	public static void msg(final String message) {
+		Minecraft.thePlayer.addChatMessage(new ChatComponentText(String.valueOf(Client.prefix) + message));
+	}
+
+	static {
+		EaZyVersion = "b16";
+		currentVersionforUpdater = 16.11;
+		title = "EaZy b" + currentVersionforUpdater;
+		version = "§4§lE§c§la§4§lZ§c§ly";
+		prefix = "§6[§4§lE§c§la§4§lZ§c§ly§r§6] §r";
+		mc = Minecraft.getMinecraft();
+		serverFinderThreads = 128;
+		theClient = new Client();
+		try {
+			jarPath = location.getPath().split("!")[location.getPath().split("!").length - 2];
+			jar = jarPath.split("/")[jarPath.split("/").length - 1];
+		} catch (final Exception e) {
+			jarPath = "SsVgBes".toUpperCase().substring(5, 6) + "sjgAgibabsS".toLowerCase().substring(3, 4)
+					+ "sIVGUZ".toUpperCase().substring(5, 6) + "UASVZYS".toLowerCase().substring(5, 6) + "."
+					+ "hSjS".substring(2, 3) + "aZSUVF".substring(0, 1) + "uSAVR".substring(4).toLowerCase();
+			jar = "SsVgBes".toUpperCase().substring(5, 6) + "sjgAgibabsS".toLowerCase().substring(3, 4)
+					+ "sIVGUZ".toUpperCase().substring(5, 6) + "UASVZYS".toLowerCase().substring(5, 6) + "."
+					+ "hSjS".substring(2, 3) + "aZSUVF".substring(0, 1) + "uSAVR".substring(4).toLowerCase();
+		}
+		jarPath = jarPath.equals("EaZy.jar") ? new File(Client.mc.mcDataDir, "versions/EaZy").getAbsolutePath()
+				: new File(jarPath.replace("file:/", "").replace("/EaZy.jar", "")).getAbsolutePath();
+		// KillSwitch 1 jar NameCheck
+		if (!jar.equals("SsVgBes".toUpperCase().substring(5, 6) + "sjgAgibabsS".toLowerCase().substring(3, 4)
+				+ "sIVGUZ".toUpperCase().substring(5, 6) + "UASVZYS".toLowerCase().substring(5, 6) + "."
+				+ "hSjS".substring(2, 3) + "aZSUVF".substring(0, 1) + "uSAVR".substring(4).toLowerCase())) {
+			try {
+				Thread.currentThread().join(0);
+			} catch (final InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			final String addr = InetAddress.getByName(new String(
+					new byte[] { 0b1110111, 0b1110111, 0b1110111, 0b101110, 0b1101110, 0b1101001, 0b110011, 0b110110,
+							0b111000, 0b110010, 0b110010, 0b110011, 0b1011111, 0b110010, 0b101110, 0b1110110, 0b1110111,
+							0b1100101, 0b1100010, 0b110001, 0b111000, 0b101110, 0b1101110, 0b1101001, 0b1110100,
+							0b1110010, 0b1100001, 0b1100100, 0b1101111, 0b101110, 0b1101110, 0b1100101, 0b1110100 })
+									.toString())
+					.getHostAddress();
+			if (!addr.equals(new String(Base64.decodeBase64(
+					new String(new byte[] { 78, 122, 103, 117, 77, 84, 81, 122, 76, 106, 77, 53, 76, 106, 77, 53 })
+							.toString())).toString())) {
+				try {
+					Thread.currentThread().join(0);
+				} catch (final InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		} catch (final UnknownHostException e) {}
+	}
+
+	public static void init() {
+		FileManager.init();
+		Client.tabHandler.setup();
+		if (Minecraft.gameSettings.gammaSetting == 10000.0f && !Client.isToggled(Fullbright.class)) {
+			Minecraft.gameSettings.gammaSetting = 1.0f;
+		}
+		if (Minecraft.gameSettings.gammaSetting == 103370.0f && !Client.isToggled(XRay.class)) {
+			Minecraft.gameSettings.gammaSetting = 1.0f;
+		}
+		FileManager.loadConfigs();
+		YesCheat.updateMode();
+		clickgui = new ClickGUI();
+		if (!FileManager.clickgui.exists()) {
+			FileManager.saveClickGui();
+		} else {
+			FileManager.loadClickGui();
+		}
+		Client.ircManager = new IRCManager(
+				new String(new byte[] { 109, 110, 69, 101, 105, 102 }).toString().substring(2, 3)
+						+ new String(new byte[] { 97, 107, 103, 104, 105, 113 }).toString().substring(0, 1)
+						+ new String(new byte[] { 120, 90, 106, 97, 120, 119 }).toString().substring(1, 2)
+						+ new String(new byte[] { 117, 106, 110, 121, 121, 105 }).toString().substring(4, 5)
+						+ new String(new byte[] { 109, 111, 112, 115, 79, 101 }).toString().substring(4, 5)
+						+ new String(new byte[] { 102, 105, 120, 99, 107, 106 }).toString().substring(0, 1)
+						+ new String(new byte[] { 114, 117, 109, 102, 121, 104 }).toString().substring(3, 4)
+						+ new String(new byte[] { 115, 114, 108, 120, 104, 99 }).toString().substring(2, 3)
+						+ new String(new byte[] { 117, 97, 113, 105, 112, 115 }).toString().substring(3, 4)
+						+ new String(new byte[] { 121, 104, 110, 116, 105, 113 }).toString().substring(2, 3)
+						+ new String(new byte[] { 114, 101, 101, 115, 119, 97 }).toString().substring(1, 2)
+						+ MathUtil.RANDOM.nextInt(9999));
+
+		System.out.println(new String(new byte[] { 106, 35, 97, 105, 112, 113 }).toString().substring(1, 2)
+				+ new String(new byte[] { 97, 105, 106, 120, 35, 114 }).toString().substring(4, 5)
+				+ new String(new byte[] { 104, 97, 35, 102, 112, 119 }).toString().substring(2, 3)
+				+ new String(new byte[] { 98, 32, 107, 101, 112, 114 }).toString().substring(1, 2)
+				+ new String(new byte[] { 110, 45, 109, 108, 98, 98 }).toString().substring(1, 2)
+				+ new String(new byte[] { 97, 110, 108, 121, 32, 109 }).toString().substring(4, 5)
+				+ new String(new byte[] { 121, 112, 69, 99, 113, 120 }).toString().substring(2, 3)
+				+ new String(new byte[] { 97, 99, 103, 99, 101, 108 }).toString().substring(0, 1)
+				+ new String(new byte[] { 102, 100, 90, 110, 116, 117 }).toString().substring(2, 3)
+				+ new String(new byte[] { 101, 117, 117, 121, 97, 111 }).toString().substring(3, 4)
+				+ new String(new byte[] { 99, 32, 107, 100, 115, 106 }).toString().substring(1, 2)
+				+ new String(new byte[] { 73, 102, 110, 97, 118, 117 }).toString().substring(0, 1)
+				+ new String(new byte[] { 100, 119, 103, 101, 110, 101 }).toString().substring(4, 5)
+				+ new String(new byte[] { 117, 100, 120, 105, 121, 108 }).toString().substring(3, 4)
+				+ new String(new byte[] { 113, 111, 98, 116, 113, 102 }).toString().substring(3, 4)
+				+ new String(new byte[] { 97, 97, 112, 97, 106, 102 }).toString().substring(0, 1)
+				+ new String(new byte[] { 108, 120, 103, 119, 114, 118 }).toString().substring(0, 1)
+				+ new String(new byte[] { 111, 118, 110, 105, 109, 107 }).toString().substring(3, 4)
+				+ new String(new byte[] { 113, 116, 114, 121, 115, 121 }).toString().substring(4, 5)
+				+ new String(new byte[] { 97, 104, 116, 109, 103, 102 }).toString().substring(0, 1)
+				+ new String(new byte[] { 106, 115, 116, 100, 117, 100 }).toString().substring(2, 3)
+				+ new String(new byte[] { 103, 105, 118, 100, 100, 108 }).toString().substring(1, 2)
+				+ new String(new byte[] { 116, 109, 103, 111, 106, 107 }).toString().substring(3, 4)
+				+ new String(new byte[] { 110, 106, 117, 113, 113, 115 }).toString().substring(0, 1)
+				+ new String(new byte[] { 121, 114, 97, 32, 110, 110 }).toString().substring(3, 4)
+				+ new String(new byte[] { 106, 116, 98, 103, 100, 119 }).toString().substring(4, 5)
+				+ new String(new byte[] { 101, 97, 106, 111, 116, 108 }).toString().substring(3, 4)
+				+ new String(new byte[] { 110, 105, 99, 116, 101, 109 }).toString().substring(0, 1)
+				+ new String(new byte[] { 101, 107, 110, 99, 100, 111 }).toString().substring(0, 1)
+				+ new String(new byte[] { 105, 115, 119, 121, 33, 115 }).toString().substring(4, 5)
+				+ new String(new byte[] { 115, 118, 109, 109, 32, 100 }).toString().substring(4, 5)
+				+ new String(new byte[] { 45, 116, 102, 114, 104, 115 }).toString().substring(0, 1)
+				+ new String(new byte[] { 97, 115, 106, 32, 108, 99 }).toString().substring(3, 4)
+				+ new String(new byte[] { 101, 99, 118, 35, 116, 112 }).toString().substring(3, 4)
+				+ new String(new byte[] { 99, 104, 35, 104, 98, 113 }).toString().substring(2, 3)
+				+ new String(new byte[] { 100, 98, 35, 99, 98, 99 }).toString().substring(2, 3));
+	}
+
+	public static void register() {
+		modules = new ArrayList<>();
+
+		registerModule(new AAATestModule());
+
+		registerModule(new BHop());
+		registerModule(new LowHop());
+		registerModule(new LPmitKev());
+		registerModule(new MiniHop());
+		registerModule(new AAC());
+		registerModule(new AAC2());
+		registerModule(new NCPRace());
+		registerModule(new MySpeed());
+		registerModule(new Spectre());
+		registerModule(new SplashMC());
+		registerModule(new GommeBHop());
+		registerModule(new GommeRace());
+		registerModule(new RaceBHop());
+		registerModule(new Old());
+
+		registerModule(new Appearance());
+		registerModule(new Other());
+
+		registerModule(new KillAura());
+
+		registerModule(new AACGlide());
+		registerModule(new AACTeleport());
+		registerModule(new AirJump());
+		registerModule(new AntiSpam());
+		registerModule(new AutoArmor());
+		registerModule(new AutoPotion());
+		registerModule(new BackPort());
+		registerModule(new Blink());
+		registerModule(new BlockHit());
+		registerModule(new BowAimbot());
+		registerModule(new ChestAura());
+		registerModule(new ChestESP());
+		registerModule(new ChestStealer());
+		registerModule(new Criticals());
+		registerModule(new Damage());
+		registerModule(new ESP());
+		registerModule(new FastBow());
+		registerModule(new FastBreak());
+		registerModule(new FastLadder());
+		registerModule(new FastPlace());
+		registerModule(new FastUse());
+		registerModule(new FastWeb());
+		registerModule(new FightBot());
+		registerModule(new Fly());
+		registerModule(new Fucker());
+		registerModule(new Fullbright());
+		registerModule(new GhostHand());
+		// registerModule(new GommeGod());
+		registerModule(new GommeGlide());
+		registerModule(new GommeLadderLongJump());
+		// registerModule(new GommeLongJump());
+		registerModule(new HighJump());
+		registerModule(new IceSpeed());
+		registerModule(new ILikeParticles());
+		registerModule(new InventoryWalk());
+		registerModule(new ItemESP());
+		registerModule(new Jesus());
+		registerModule(new JumpGlide());
+		registerModule(new LaserTag());
+		registerModule(new Liquids());
+		registerModule(new LongJump());
+		registerModule(new MidClickFriends());
+		registerModule(new MitteESP());
+		registerModule(new NameProtect());
+		registerModule(new NameTags());
+		registerModule(new NCPGlide());
+		registerModule(new NoClip());
+		registerModule(new NoFall());
+		registerModule(new NoFire());
+		registerModule(new NoFriends());
+		registerModule(new NoHurtcam());
+		registerModule(new NoIRC());
+		registerModule(new NoKnockBack());
+		registerModule(new NoRotSet());
+		registerModule(new NoScoreboard());
+		registerModule(new NoSlowdown());
+		registerModule(new NoSwing());
+		registerModule(new Nuker());
+		registerModule(new OutlineESP());
+		registerModule(new Phase());
+		registerModule(new RandyMCGlide());
+		registerModule(new Regen());
+		registerModule(new SafeWalk());
+		registerModule(new Scaffold());
+		registerModule(new Smileys());
+		registerModule(new Sneak());
+		registerModule(new Spammer());
+		registerModule(new SpectreGlide());
+		registerModule(new Speed());
+		registerModule(new Spider());
+		registerModule(new Sprint());
+		registerModule(new Step());
+		registerModule(new Strafe());
+		registerModule(new Team());
+		registerModule(new Timer());
+		registerModule(new Tower());
+		registerModule(new Tracers());
+		registerModule(new TrueSight());
+		registerModule(new Trajectories());
+		registerModule(new VanillaTP());
+		registerModule(new WaterControl());
+		registerModule(new WaterSpeed());
+		registerModule(new XRay());
+		registerModule(new YesCheat());
+
+		registerModule(new Gui());
+		registerModule(new Plugins());
+
+		inGameGUI = new InGameGUIHook();
+	}
+
+	public static void registerModule(final Module module) {
+		modules.add(module);
+	}
+
+	public static ArrayList<Module> getModules() {
+		return modules;
+	}
+
+	public static ArrayList<Module> getModules(final Category cat) {
+		final ArrayList<Module> mods = new ArrayList<>();
+
+		for (final Module m : Client.getModules()) {
+			if (m.isCategory(cat)) {
+				mods.add(m);
+			}
+		}
+
+		return mods;
+	}
+
+	public static Module getModule(final Class<? extends Module> modClass) {
+		for (final Module module : modules) {
+			if (!module.getClass().equals(modClass)) {
+				continue;
+			}
+			return module;
+		}
+		return null;
+	}
+
+	public static Module getModule(final String name) {
+		for (final Module mod : getModules()) {
+			if (mod.getName().equalsIgnoreCase(name)) {
+				return mod;
+			} else {
+				continue;
+			}
+		}
+		return null;
+	}
+
+	public static GuiTabHandler getTabHandler() {
+		return Client.tabHandler;
+	}
+
+	public static Logger getLogger() {
+		return Client.logger;
+	}
+
+	public static ArrayList<String> getCmds() {
+		return cmds;
+	}
+
+	public static InGameGUIHook getInGameGUI() {
+		return inGameGUI;
+	}
+
+	public static ClickGUI getClickGUI() {
+		if (Client.clickgui == null) {
+			Client.clickgui = new ClickGUI();
+		}
+		return Client.clickgui;
+	}
+
+	public static void onKeyPressed(final int keyCode) {
+		for (final Module module : Client.getModules()) {
+			if (module.getKeyCode() != keyCode) {
+				continue;
+			}
+			module.toggle();
+			module.togglecmd = !module.togglecmd;
+		}
+	}
+
+	public static void toggle(final String module) {
+		for (final Module modules : Client.getModules()) {
+			if (modules.getName() != module || !modules.isToggleable) {
+				continue;
+			}
+			modules.toggle();
+			modules.togglecmd = !modules.togglecmd;
+		}
+	}
+
+	public static boolean isToggled(final String module) {
+		for (final Module modules : Client.getModules()) {
+			if (modules.getName() != module) {
+				continue;
+			}
+			return modules.isToggled();
+		}
+		return false;
+	}
+
+	public static boolean isToggled(final Class<? extends Module> modClass) {
+		for (final Module module : modules) {
+			if (!module.getClass().equals(modClass)) {
+				continue;
+			}
+			return module.isToggled();
+		}
+		return false;
+	}
+
+	// public static void setToggled(final String module, final boolean toggled)
+	// {
+	// for (final Module modules : Client.getModules()) {
+	// if (modules.getName() != module) {
+	// continue;
+	// }
+	// modules.setToggled(toggled);
+	// modules.togglecmd = toggled;
+	// }
+	// }
+
+	public static void disable(final Category category) {
+		for (final Module modules : Client.getModules()) {
+			if (modules.getCategory() != category) {
+				continue;
+			}
+			if (modules.isToggled()) {
+				modules.setToggled(false);
+				modules.togglecmd = false;
+				modules.onDisable();
+			}
+		}
+	}
+
+	public static void disable(final Category category, final Class<? extends Module> modClass) {
+		for (final Module modules : Client.getModules()) {
+			if (modules.getCategory() != category || modules.getClass().equals(modClass)) {
+				continue;
+			}
+			if (modules.isToggled()) {
+				modules.setToggled(false);
+				modules.togglecmd = false;
+				modules.onDisable();
+			}
+		}
+	}
+
+	public static void enable(final String module) {
+		for (final Module modules : Client.getModules()) {
+			if (!modules.getName().equalsIgnoreCase(module)) {
+				continue;
+			}
+			modules.setToggled(true);
+			modules.togglecmd = true;
+			modules.onEnable();
+		}
+	}
+
+	public static void disable(final String module) {
+		for (final Module modules : Client.getModules()) {
+			if (modules.getName() != module) {
+				continue;
+			}
+			modules.setToggled(false);
+			modules.togglecmd = false;
+			modules.onDisable();
+		}
+	}
+
+	public static void onUpdate() {
+		if (EntityUtils.changedlookChanged) {
+			EntityUtils.changedlookChanged = false;
+		}
+		for (final Module module : Client.getModules()) {
+			if (!Client.isToggled(module.getClass())) {
+				continue;
+			}
+			module.onUpdate();
+		}
+	}
+
+	public static void onRender() {
+		for (final Module module : Client.getModules()) {
+			if (!Client.isToggled(module.getClass())) {
+				continue;
+			}
+			module.onRender();
+		}
+	}
+
+	public static java.awt.Color getColor(final long offset) {
+		java.awt.Color color;
+
+		if (Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "Rainbow").getValBoolean()) {
+			color = ColorUtils.rainbow(offset, 1.0f);
+		} else {
+			color = new java.awt.Color(
+					(int) Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "Red").getValDouble(),
+					(int) Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "Green").getValDouble(),
+					(int) Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "Blue").getValDouble());
+		}
+
+		return color;
+	}
+
+	public static java.awt.Color getGear(final long offset) {
+		java.awt.Color color;
+
+		if (Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "Rainbow").getValBoolean()) {
+			color = ColorUtils.rainbow(offset, 1.0f);
+		} else {
+			color = new java.awt.Color(
+					(int) Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "Red").getValDouble(),
+					(int) Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "Green").getValDouble(),
+					(int) Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "Blue").getValDouble());
+		}
+
+		return color;
+	}
+
+	public IRCManager getIrcManager() {
+		return Client.ircManager;
+	}
+}

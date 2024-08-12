@@ -1,0 +1,116 @@
+package me.EaZy.client.gui;
+
+import java.awt.Color;
+import java.io.IOException;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+
+import me.EaZy.client.main.Client;
+import me.EaZy.client.utils.ColorUtils;
+import me.EaZy.client.utils.MiscUtils;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
+
+public class CuzImGeileSchnitte extends GuiScreen {
+	private final GuiScreen prevMenu;
+
+	@Override
+	public void drawScreen(final int par1, final int par2, final float par3) {
+		drawDefaultBackground();
+		final ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.displayWidth,
+				Minecraft.displayHeight);
+		drawDefaultBackground();
+
+		final Color color = Client.getColor(0l);
+
+		drawRect(0, 0, sr.getScaledWidth() * 2, 20, 0xb7111111);
+		drawRect(0, sr.getScaledHeight(), sr.getScaledWidth() * 2, sr.getScaledHeight() - 20, 0xb7111111);
+
+		drawRect(sr.getScaledWidth() - 61, sr.getScaledHeight() - 20, sr.getScaledWidth() - 60, sr.getScaledHeight(),
+				color.getRGB());
+
+		drawRect(0, +20, sr.getScaledWidth(), +21, color.getRGB());
+		drawRect(0, sr.getScaledHeight() - 20, sr.getScaledWidth(), sr.getScaledHeight() - 21, color.getRGB());
+
+		GL11.glPushMatrix();
+		GL11.glTranslated(sr.getScaledWidth() / 2 - mc.fontRendererObj.getStringWidth("Credits") / 2 - 10, 0, 42);
+		GL11.glScaled(2.5f, 2.5f, 42);
+		drawString(fontRendererObj, "Credits", 0, 0, color.getRGB());
+		GL11.glPopMatrix();
+
+		drawCenteredString(fontRendererObj, "§nCoder", width / 2, 25,
+				ColorUtils.rainbow((long) (200000000L * ((10 - 10) * -0.1)), 1.0F).getRGB());
+		drawCenteredString(fontRendererObj, "EaZyCode", width / 2, 40,
+				ColorUtils.rainbow((long) (200000000L * ((20 - 10) * -0.1)), 1.0F).getRGB());
+
+
+				ColorUtils.rainbow((long) (200000000L * ((30 - 10) * -0.1)), 1.0F).getRGB());
+		drawCenteredString(fontRendererObj, "XYZERTUBE", width / 2, 55,
+				ColorUtils.rainbow((long) (200000000L * ((40 - 10) * -0.1)), 1.0F).getRGB());
+
+		drawCenteredString(fontRendererObj, "§nHelpers", width / 2, 95 - 20,
+				ColorUtils.rainbow((long) (200000000L * ((50 - 10) * -0.1)), 1.0F).getRGB());
+		drawCenteredString(fontRendererObj, "HeroCode", width / 2, 110 - 20,
+				ColorUtils.rainbow((long) (200000000L * ((60 - 10) * -0.1)), 1.0F).getRGB());
+		drawCenteredString(fontRendererObj, "ShiroYT", width / 2, 122 - 20,
+				ColorUtils.rainbow((long) (200000000L * ((70 - 10) * -0.1)), 1.0F).getRGB());
+		drawCenteredString(fontRendererObj, "-> YouTube <-", width / 2, 150,
+				ColorUtils.rainbow((long) (200000000L * ((90 - 10) * -0.1)), 1.0F).getRGB());
+		drawCenteredString(fontRendererObj, "-> Twitter <-", width / 2, 163,
+				ColorUtils.rainbow((long) (200000000L * ((100 - 10) * -0.1)), 1.0F).getRGB());
+		super.drawScreen(par1, par2, par3);
+	}
+
+	public CuzImGeileSchnitte(final GuiScreen prevMultiplayerMenu) {
+		prevMenu = prevMultiplayerMenu;
+	}
+
+	@Override
+	public void updateScreen() {
+	}
+
+	@Override
+	public void initGui() {
+		Keyboard.enableRepeatEvents(true);
+		buttonList.add(new GuiButton(100, width / 2 - 100, height / 4 + 48 + 24 * 2 + 50, "BACK"));
+		buttonList.add(new GuiButton(101, width / 2 - 38, 148, 75, 11, "HIDETHISBUTTON"));
+		buttonList.add(new GuiButton(102, width / 2 - 34, 161, 67, 11, "HIDETHISBUTTON"));
+	}
+
+	@Override
+	public void onGuiClosed() {
+		Keyboard.enableRepeatEvents(false);
+	}
+
+	@Override
+	protected void actionPerformed(final GuiButton clickedButton) {
+		if (clickedButton.enabled) {
+			if (clickedButton.id == 100) {
+				mc.displayGuiScreen(prevMenu);
+			} else if (clickedButton.id == 101) { // YouTube
+				MiscUtils.openLink("https://youtube.com/EaZyClient");
+			} else if (clickedButton.id == 102) { // Twitter
+				MiscUtils.openLink("https://twitter.com/EaZyClientHack");
+			}
+		}
+	}
+
+	@Override
+	protected void keyTyped(final char par1, final int par2) {
+		if (par2 == 28 || par2 == 156) {
+			actionPerformed((GuiButton) buttonList.get(0));
+		}
+		if (par2 == 1) {
+			mc.displayGuiScreen(new GuiMainMenu());
+		}
+	}
+
+	@Override
+	protected void mouseClicked(final int par1, final int par2, final int par3) throws IOException {
+		super.mouseClicked(par1, par2, par3);
+	}
+}

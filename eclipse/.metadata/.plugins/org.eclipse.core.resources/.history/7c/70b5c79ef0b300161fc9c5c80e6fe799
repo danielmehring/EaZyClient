@@ -1,0 +1,132 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderGlobal;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.util.BlockPos;
+
+public class KillAura extends Module {
+
+	public KillAura() {
+		super("KillAura", Keyboard.KEY_R, Category.Combat);
+
+	}
+	
+	public static boolean isTpProgress;
+	public BlockPos tpPos;
+	public int delay = 0;
+	
+	public static int crack = 10;
+	public static double reach = 4.0;
+
+	public void onPreUpdate() {
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// if (!this.getState())
+		// return;
+		// final double[] jumpOffsets = new double[] { 0.41999998688697815,
+		// 0.7531999805212015,
+		// 1.001335979112147, 1.1661092609382138, 1.249187078744681,
+		// 1.249187078744681, 1.1707870772188018,
+		// 1.0155550727021998, 0.7850277037892361, 0.48071087633169185,
+		// 0.10408037809303661, 0.0 };
+		//
+		// double[] arrd = jumpOffsets;
+		// int n = arrd.length;
+		// int n2 = 0;
+		// double start = mc.thePlayer.posY;
+		// while (n2 < n) {
+		// double jumpOffset = arrd[n2];
+		// mc.thePlayer.sendQueue.addToSendQueue(new
+		// C03PacketPlayer.C04PacketPlayerPosition(
+		// mc.thePlayer.posX, start - (jumpOffset * 100) , mc.thePlayer.posZ,
+		// false));
+		// ++n2;
+		// }
+		//
+
+		// mc.thePlayer.setSprinting(true);
+		//
+		// crack++;
+		//
+		// for (Object j : mc.theWorld.loadedEntityList) {
+		// Entity e = (Entity) j;
+		//
+		// if (e instanceof EntityLivingBase) {
+		// if (e != mc.thePlayer) {
+		// if (mc.thePlayer.getDistanceToEntity(e) <= KillAura.this.reach) {
+		//
+		// mc.playerController.attackEntity(mc.thePlayer, e);
+		// mc.thePlayer.swingItem();
+		//
+		// mc.thePlayer.setSprinting(true);
+		//
+		// }
+		//
+		// }
+		//
+		// }
+		//
+		// }
+
+	}
+	
+	public void onRender() {
+        
+        if (delay >= 20 && tpPos != null)
+            return;
+ 
+        BlockPos asd = EntityUtil.rayTrace(9001, mc.timer.renderPartialTicks).getBlockPos();
+        Block selectBlock = mc.theWorld.getBlockState(asd).getBlock();
+ 
+        if (selectBlock instanceof BlockAir)
+            return;
+ 
+        int color = -1;
+ 
+        
+        color = -48574;
+ 
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        GL11.glLineWidth(2.0F);
+        GlStateManager.func_179090_x();
+        GlStateManager.depthMask(false);
+ 
+        selectBlock.setBlockBoundsBasedOnState(mc.theWorld, asd);
+        double var8 = mc.thePlayer.lastTickPosX
+                + (mc.thePlayer.posX - mc.thePlayer.lastTickPosX) * mc.timer.renderPartialTicks;
+        double var10 = mc.thePlayer.lastTickPosY
+                + (mc.thePlayer.posY - mc.thePlayer.lastTickPosY) * mc.timer.renderPartialTicks;
+        double var12 = mc.thePlayer.lastTickPosZ
+                + (mc.thePlayer.posZ - mc.thePlayer.lastTickPosZ) * mc.timer.renderPartialTicks;
+        RenderGlobal.drawOutlinedBoundingBox(selectBlock.getSelectedBoundingBox(mc.theWorld, asd)
+                .expand(0.0020000000949949026D, 0.0020000000949949026D, 0.0020000000949949026D)
+                .offset(-var8, -var10, -var12), color);
+ 
+        GlStateManager.depthMask(true);
+        GlStateManager.func_179098_w();
+        GlStateManager.disableBlend();
+ 
+
+    }
+	
+
+}

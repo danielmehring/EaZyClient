@@ -1,0 +1,83 @@
+package me.EaZy.client.modules;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import net.minecraft.network.handshake.client.C00Handshake;
+import net.minecraft.network.play.client.C00PacketKeepAlive;
+import net.minecraft.network.play.client.C03PacketPlayer;
+
+public class AAATestModule extends Module {
+	public AAATestModule() {
+		super("AAATestModule", 0, "", Category.HIDDEN, "Description not set.");
+	}
+
+	@Override
+	public String getRenderName() {
+		return "AAATestModule";
+	}
+
+	public static int i1 = 0;
+	public static int i2 = 0;
+	public static float f1 = 0;
+	public static float f2 = 0;
+	public static boolean b1 = false;
+	public static boolean b2 = false;
+
+	@Override
+	public void onUpdate() {
+		if (!this.isToggled()) {
+			if (this.togglecmd) {
+				this.setToggled(true);
+				this.onEnable();
+			}
+			return;
+		}
+		if (this.isToggled() && !this.togglecmd) {
+			this.setToggled(false);
+			this.onDisable();
+			return;
+		}
+
+		// mc.thePlayer.sendQueue.netManager.sendPacket(new C00Handshake());
+		
+			mc.thePlayer.sendQueue.netManager.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(360, 360, mc.thePlayer.onGround));
+		
+		if (!mc.thePlayer.movementInput.jump && !mc.thePlayer.movementInput.sneak)
+			mc.thePlayer.motionY = 0;
+
+		if (mc.thePlayer.movementInput.jump && !mc.thePlayer.movementInput.sneak)
+			mc.thePlayer.motionY = 0.1;
+
+		if (!mc.thePlayer.movementInput.jump && mc.thePlayer.movementInput.sneak)
+			mc.thePlayer.motionY = -0.1;
+
+		mc.thePlayer.motionX = 0;
+		mc.thePlayer.motionZ = 0;
+		mc.thePlayer.jumpMovementFactor = 1.1f;
+
+		super.onUpdate();
+	}
+
+	@Override
+	public void onRender() {
+		if (!this.isToggled()) {
+			return;
+		}
+
+		super.onRender();
+	}
+
+	@Override
+	public void onEnable() {
+
+		msg("§2Test-Module enaled!");
+		super.onEnable();
+	}
+
+	@Override
+	public void onDisable() {
+		msg("§4Test-Module disabled!");
+		mc.thePlayer.capabilities.isFlying = false;
+		super.onDisable();
+	}
+}

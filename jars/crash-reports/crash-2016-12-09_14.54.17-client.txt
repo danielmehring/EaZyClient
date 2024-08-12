@@ -1,0 +1,93 @@
+---- Minecraft Crash Report ----
+// I blame Dinnerbone.
+
+Time: 09.12.16 14:54
+Description: Ticking entity
+
+java.lang.NullPointerException: Ticking entity
+	at de.Exe.Modules.MotionClickTP.onPreUpdate(MotionClickTP.java:84)
+	at net.minecraft.client.entity.EntityPlayerSP.func_175161_p(EntityPlayerSP.java:248)
+	at net.minecraft.client.entity.EntityPlayerSP.onUpdate(EntityPlayerSP.java:155)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1594)
+	at net.minecraft.world.World.updateEntity(World.java:1569)
+	at net.minecraft.world.World.updateEntities(World.java:1444)
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:2201)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1110)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:414)
+	at net.minecraft.client.main.Main.main(Main.java:111)
+	at Start.main(Start.java:11)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at de.Exe.Modules.MotionClickTP.onPreUpdate(MotionClickTP.java:84)
+	at net.minecraft.client.entity.EntityPlayerSP.func_175161_p(EntityPlayerSP.java:248)
+	at net.minecraft.client.entity.EntityPlayerSP.onUpdate(EntityPlayerSP.java:155)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1594)
+	at net.minecraft.world.World.updateEntity(World.java:1569)
+
+-- Entity being ticked --
+Details:
+	Entity Type: null (net.minecraft.client.entity.EntityPlayerSP)
+	Entity ID: 492
+	Entity Name: Player996
+	Entity's Exact location: -239,97, 213,94, 747,95
+	Entity's Block location: -240,00,213,00,747,00 - World: (-240,213,747), Chunk: (at 0,13,11 in -15,46; contains blocks -240,0,736 to -225,255,751), Region: (-1,1; contains chunks -32,32 to -1,63, blocks -512,0,512 to -1,255,1023)
+	Entity's Momentum: -71,40, -0,10, 223,14
+	Entity's Rider: ~~ERROR~~ NullPointerException: null
+	Entity's Vehicle: ~~ERROR~~ NullPointerException: null
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:1444)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player996'/492, l='MpServer', x=-239,97, y=213,94, z=747,95]]
+	Chunk stats: MultiplayerChunkCache: 729, 729
+	Level seed: 0
+	Level generator: ID 00 - default, ver 1. Features enabled: false
+	Level generator options: 
+	Level spawn location: -196,00,64,00,256,00 - World: (-196,64,256), Chunk: (at 12,4,0 in -13,16; contains blocks -208,0,256 to -193,255,271), Region: (-1,0; contains chunks -32,0 to -1,31, blocks -512,0,0 to -1,255,511)
+	Level time: 110197 game time, 110197 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false
+	Forced entities: 185 total; [EntityPlayerSP['Player996'/492, l='MpServer', x=-239,97, y=213,94, z=747,95], EntityPig['Pig'/167, l='MpServer', x=-159,53, y=63,00, z=188,19], EntityPig['Pig'/168, l='MpServer', x=-157,50, y=64,00, z=191,13], EntityPig['Pig'/170, l='MpServer', x=-157,88, y=69,00, z=208,19], EntityPig['Pig'/172, l='MpServer', x=-156,84, y=72,00, z=278,94], EntityChicken['Chicken'/184, l='MpServer', x=-120,41, y=70,00, z=226,59], EntityChicken['Chicken'/185, l='MpServer', x=-112,51, y=70,00, z=234,23], EntityChicken['Chicken'/186, l='MpServer', x=-117,44, y=70,00, z=254,63], EntityChicken['Chicken'/187, l='MpServer', x=-122,53, y=70,00, z=252,66], EntityZombie['Zombie'/188, l='MpServer', x=-117,25, y=39,00, z=263,75], EntityChicken['Chicken'/191, l='MpServer', x=-117,34, y=70,00, z=269,34], EntitySheep['Sheep'/194, l='MpServer', x=-120,06, y=71,00, z=275,00], EntitySheep['Sheep'/197, l='MpServer', x=-115,38, y=85,00, z=293,53], EntitySheep['Sheep'/198, l='MpServer', x=-115,59, y=85,00, z=302,31], EntityItem['item.item.egg'/209, l='MpServer', x=-107,81, y=70,00, z=235,53], EntityChicken['Chicken'/210, l='MpServer', x=-109,41, y=70,00, z=233,44], EntityChicken['Chicken'/211, l='MpServer', x=-110,44, y=71,00, z=229,63], EntityChicken['Chicken'/212, l='MpServer', x=-102,38, y=70,00, z=242,38], EntitySheep['Sheep'/213, l='MpServer', x=-109,47, y=74,00, z=283,09], EntityChicken['Chicken'/241, l='MpServer', x=-82,38, y=70,00, z=243,41], EntityChicken['Chicken'/243, l='MpServer', x=-88,53, y=75,00, z=269,94], EntityChicken['Chicken'/248, l='MpServer', x=-77,38, y=68,00, z=186,63], EntityChicken['Chicken'/250, l='MpServer', x=-76,34, y=69,00, z=219,53], EntityItem['item.tile.grass'/251, l='MpServer', x=-64,38, y=68,00, z=223,88], EntityChicken['Chicken'/252, l='MpServer', x=-71,63, y=69,00, z=214,50], EntityChicken['Chicken'/253, l='MpServer', x=-71,41, y=69,00, z=217,41], EntityChicken['Chicken'/254, l='MpServer', x=-65,63, y=69,00, z=217,59], EntityChicken['Chicken'/255, l='MpServer', x=-74,53, y=70,00, z=222,63], EntityRabbit['Rabbit'/256, l='MpServer', x=-74,63, y=69,00, z=216,38], EntityChicken['Chicken'/257, l='MpServer', x=-72,44, y=69,00, z=217,63], EntityChicken['Chicken'/258, l='MpServer', x=-73,44, y=70,00, z=224,25], EntityChicken['Chicken'/262, l='MpServer', x=-70,28, y=71,00, z=245,56], EntityItem['item.item.egg'/263, l='MpServer', x=-66,97, y=70,00, z=247,13], EntityXPOrb['Experience Orb'/275, l='MpServer', x=-60,19, y=63,00, z=162,75], EntityXPOrb['Experience Orb'/276, l='MpServer', x=-59,75, y=63,00, z=166,75], EntityChicken['Chicken'/283, l='MpServer', x=-53,72, y=62,66, z=177,31], EntityChicken['Chicken'/284, l='MpServer', x=-60,38, y=64,00, z=186,47], EntityXPOrb['Experience Orb'/285, l='MpServer', x=-62,69, y=64,00, z=183,69], EntityXPOrb['Experience Orb'/286, l='MpServer', x=-63,22, y=64,00, z=182,16], EntityChicken['Chicken'/287, l='MpServer', x=-56,41, y=68,00, z=202,63], EntityXPOrb['Experience Orb'/288, l='MpServer', x=-48,41, y=64,00, z=197,78], EntityXPOrb['Experience Orb'/289, l='MpServer', x=-48,22, y=64,00, z=195,47], EntityXPOrb['Experience Orb'/290, l='MpServer', x=-49,16, y=64,00, z=194,81], EntityXPOrb['Experience Orb'/291, l='MpServer', x=-52,72, y=63,00, z=220,03], EntityChicken['Chicken'/292, l='MpServer', x=-60,63, y=68,00, z=223,59], EntityXPOrb['Experience Orb'/293, l='MpServer', x=-50,06, y=68,00, z=215,66], EntityXPOrb['Experience Orb'/294, l='MpServer', x=-59,72, y=68,00, z=208,16], EntityXPOrb['Experience Orb'/295, l='MpServer', x=-48,56, y=68,00, z=217,19], EntityXPOrb['Experience Orb'/296, l='MpServer', x=-49,94, y=68,00, z=217,91], EntityChicken['Chicken'/297, l='MpServer', x=-60,66, y=68,00, z=222,63], EntityXPOrb['Experience Orb'/298, l='MpServer', x=-48,75, y=68,00, z=215,25], EntityXPOrb['Experience Orb'/299, l='MpServer', x=-49,81, y=68,00, z=217,00], EntityChicken['Chicken'/300, l='MpServer', x=-50,00, y=70,00, z=237,91], EntityChicken['Chicken'/301, l='MpServer', x=-57,11, y=71,05, z=241,46], EntityChicken['Chicken'/302, l='MpServer', x=-56,44, y=79,00, z=260,63], EntityXPOrb['Experience Orb'/311, l='MpServer', x=-42,13, y=62,00, z=188,47], EntityXPOrb['Experience Orb'/312, l='MpServer', x=-42,09, y=62,00, z=187,50], EntityXPOrb['Experience Orb'/313, l='MpServer', x=-47,06, y=62,00, z=190,09], EntityXPOrb['Experience Orb'/314, l='MpServer', x=-34,53, y=67,00, z=188,28], EntityXPOrb['Experience Orb'/315, l='MpServer', x=-36,25, y=68,00, z=179,00], EntityXPOrb['Experience Orb'/317, l='MpServer', x=-39,44, y=61,00, z=197,13], EntityChicken['Chicken'/318, l='MpServer', x=-37,09, y=62,75, z=201,63], EntityXPOrb['Experience Orb'/319, l='MpServer', x=-36,25, y=63,00, z=206,00], EntityXPOrb['Experience Orb'/320, l='MpServer', x=-43,66, y=61,00, z=195,38], EntityXPOrb['Experience Orb'/321, l='MpServer', x=-43,72, y=63,00, z=199,22], EntityXPOrb['Experience Orb'/322, l='MpServer', x=-39,28, y=61,00, z=199,03], EntityXPOrb['Experience Orb'/323, l='MpServer', x=-45,09, y=63,00, z=195,53], EntityXPOrb['Experience Orb'/324, l='MpServer', x=-43,78, y=61,00, z=194,25], EntityChicken['Chicken'/325, l='MpServer', x=-36,22, y=62,69, z=199,59], EntityXPOrb['Experience Orb'/328, l='MpServer', x=-33,75, y=63,00, z=200,16], EntityXPOrb['Experience Orb'/329, l='MpServer', x=-32,78, y=65,00, z=193,06], EntityXPOrb['Experience Orb'/330, l='MpServer', x=-32,91, y=64,00, z=198,75], EntityXPOrb['Experience Orb'/331, l='MpServer', x=-32,38, y=64,00, z=197,69], EntityXPOrb['Experience Orb'/332, l='MpServer', x=-46,09, y=67,00, z=207,66], EntityXPOrb['Experience Orb'/333, l='MpServer', x=-34,00, y=64,00, z=197,16], EntityItem['item.item.chickenRaw'/334, l='MpServer', x=-47,13, y=50,00, z=216,13], EntityChicken['Chicken'/336, l='MpServer', x=-45,69, y=68,00, z=218,63], EntityChicken['Chicken'/338, l='MpServer', x=-39,46, y=69,00, z=231,94], EntityChicken['Chicken'/339, l='MpServer', x=-33,65, y=70,00, z=235,43], EntityXPOrb['Experience Orb'/340, l='MpServer', x=-39,94, y=69,00, z=228,06], EntityChicken['Chicken'/342, l='MpServer', x=-45,21, y=70,00, z=238,08], EntityChicken['Chicken'/343, l='MpServer', x=-42,66, y=77,00, z=254,53], EntityChicken['Chicken'/344, l='MpServer', x=-40,63, y=74,00, z=247,56], EntityChicken['Chicken'/345, l='MpServer', x=-42,72, y=75,00, z=250,56], EntityChicken['Chicken'/346, l='MpServer', x=-33,27, y=72,00, z=243,34], EntityChicken['Chicken'/348, l='MpServer', x=-45,41, y=91,00, z=307,63], EntityXPOrb['Experience Orb'/364, l='MpServer', x=-28,25, y=68,00, z=191,13], EntityChicken['Chicken'/366, l='MpServer', x=-17,72, y=64,00, z=207,50], EntityXPOrb['Experience Orb'/367, l='MpServer', x=-28,78, y=64,00, z=202,94], EntityXPOrb['Experience Orb'/368, l='MpServer', x=-30,28, y=67,00, z=193,59], EntityChicken['Chicken'/369, l='MpServer', x=-29,34, y=64,00, z=202,59], EntityXPOrb['Experience Orb'/370, l='MpServer', x=-28,53, y=64,00, z=201,44], EntityXPOrb['Experience Orb'/371, l='MpServer', x=-22,69, y=63,00, z=209,59], EntityChicken['Chicken'/372, l='MpServer', x=-17,47, y=62,94, z=215,53], EntityXPOrb['Experience Orb'/373, l='MpServer', x=-22,75, y=60,00, z=221,06], EntityXPOrb['Experience Orb'/374, l='MpServer', x=-26,06, y=63,00, z=223,72], EntityXPOrb['Experience Orb'/375, l='MpServer', x=-19,97, y=60,00, z=222,88], EntityXPOrb['Experience Orb'/376, l='MpServer', x=-25,38, y=62,00, z=209,97], EntityXPOrb['Experience Orb'/377, l='MpServer', x=-22,00, y=61,00, z=212,44], EntityXPOrb['Experience Orb'/378, l='MpServer', x=-29,75, y=63,00, z=214,81], EntityXPOrb['Experience Orb'/381, l='MpServer', x=-29,81, y=63,00, z=214,63], EntityChicken['Chicken'/382, l='MpServer', x=-16,06, y=62,59, z=215,19], EntityChicken['Chicken'/383, l='MpServer', x=-25,84, y=62,69, z=211,03], EntityXPOrb['Experience Orb'/385, l='MpServer', x=-23,28, y=61,00, z=212,25], EntityXPOrb['Experience Orb'/386, l='MpServer', x=-21,28, y=60,00, z=215,59], EntityXPOrb['Experience Orb'/387, l='MpServer', x=-27,19, y=62,00, z=208,78], EntityChicken['Chicken'/388, l='MpServer', x=-19,00, y=62,47, z=218,00], EntityXPOrb['Experience Orb'/389, l='MpServer', x=-19,72, y=60,00, z=216,28], EntityXPOrb['Experience Orb'/391, l='MpServer', x=-25,00, y=62,00, z=221,75], EntityXPOrb['Experience Orb'/392, l='MpServer', x=-26,19, y=63,00, z=223,72], EntityXPOrb['Experience Orb'/393, l='MpServer', x=-23,28, y=62,00, z=210,25], EntityXPOrb['Experience Orb'/394, l='MpServer', x=-23,19, y=60,00, z=219,91], EntityXPOrb['Experience Orb'/395, l='MpServer', x=-28,69, y=62,00, z=209,00], EntityXPOrb['Experience Orb'/396, l='MpServer', x=-27,75, y=61,00, z=209,88], EntityXPOrb['Experience Orb'/397, l='MpServer', x=-26,63, y=62,00, z=208,19], EntityXPOrb['Experience Orb'/398, l='MpServer', x=-31,75, y=65,00, z=220,84], EntityChicken['Chicken'/399, l='MpServer', x=-27,53, y=64,00, z=221,69], EntityItem['item.item.rottenFlesh'/400, l='MpServer', x=-23,13, y=17,00, z=237,97], EntityXPOrb['Experience Orb'/401, l='MpServer', x=-22,53, y=61,00, z=226,84], EntityXPOrb['Experience Orb'/402, l='MpServer', x=-16,03, y=63,00, z=225,28], EntityXPOrb['Experience Orb'/403, l='MpServer', x=-19,28, y=60,00, z=224,75], EntityXPOrb['Experience Orb'/404, l='MpServer', x=-18,38, y=61,00, z=224,72], EntityXPOrb['Experience Orb'/405, l='MpServer', x=-19,28, y=60,00, z=225,25], EntityXPOrb['Experience Orb'/406, l='MpServer', x=-22,88, y=61,00, z=225,19], EntityXPOrb['Experience Orb'/407, l='MpServer', x=-22,38, y=61,00, z=225,72], EntityXPOrb['Experience Orb'/408, l='MpServer', x=-25,75, y=63,00, z=224,56], EntityChicken['Chicken'/409, l='MpServer', x=-21,59, y=62,72, z=225,88], EntityXPOrb['Experience Orb'/410, l='MpServer', x=-20,72, y=61,00, z=228,22], EntityXPOrb['Experience Orb'/411, l='MpServer', x=-23,22, y=61,00, z=226,09], EntityChicken['Chicken'/413, l='MpServer', x=-23,31, y=62,50, z=227,06], EntityXPOrb['Experience Orb'/414, l='MpServer', x=-20,03, y=61,00, z=229,66], EntityXPOrb['Experience Orb'/415, l='MpServer', x=-18,38, y=61,00, z=226,78], EntityXPOrb['Experience Orb'/416, l='MpServer', x=-17,56, y=62,00, z=229,38], EntityChicken['Chicken'/417, l='MpServer', x=-21,66, y=62,50, z=228,75], EntityXPOrb['Experience Orb'/418, l='MpServer', x=-18,75, y=61,00, z=232,03], EntityXPOrb['Experience Orb'/419, l='MpServer', x=-19,84, y=61,00, z=227,59], EntityXPOrb['Experience Orb'/420, l='MpServer', x=-23,47, y=62,00, z=227,69], EntityChicken['Chicken'/421, l='MpServer', x=-18,06, y=62,72, z=236,03], EntityChicken['Chicken'/422, l='MpServer', x=-31,50, y=70,00, z=236,63], EntityChicken['Chicken'/423, l='MpServer', x=-20,63, y=64,00, z=238,38], EntityChicken['Chicken'/424, l='MpServer', x=-30,59, y=68,00, z=231,28], EntityRabbit['Rabbit'/425, l='MpServer', x=-24,70, y=70,00, z=241,42], EntityChicken['Chicken'/426, l='MpServer', x=-24,03, y=71,00, z=243,34], EntityChicken['Chicken'/427, l='MpServer', x=-18,34, y=69,00, z=246,38], EntityChicken['Chicken'/428, l='MpServer', x=-16,47, y=64,00, z=244,50], EntityChicken['Chicken'/431, l='MpServer', x=-26,75, y=71,00, z=273,50], EntityItem['item.item.seeds'/943, l='MpServer', x=-79,68, y=72,92, z=251,29], EntityItem['item.item.egg'/432, l='MpServer', x=-29,31, y=71,00, z=272,25], EntityChicken['Chicken'/433, l='MpServer', x=-29,31, y=71,00, z=272,53], EntityChicken['Chicken'/434, l='MpServer', x=-31,19, y=95,00, z=285,66], EntityChicken['Chicken'/443, l='MpServer', x=-3,50, y=69,00, z=185,47], EntityChicken['Chicken'/444, l='MpServer', x=-4,31, y=70,00, z=204,38], EntityChicken['Chicken'/445, l='MpServer', x=-4,44, y=70,00, z=205,59], EntityChicken['Chicken'/446, l='MpServer', x=-10,63, y=69,00, z=195,56], EntityChicken['Chicken'/447, l='MpServer', x=-2,47, y=69,00, z=197,63], EntityChicken['Chicken'/448, l='MpServer', x=-7,47, y=70,00, z=206,31], EntityXPOrb['Experience Orb'/451, l='MpServer', x=-12,28, y=63,00, z=222,41], EntityChicken['Chicken'/455, l='MpServer', x=-11,56, y=66,00, z=212,47], EntityChicken['Chicken'/456, l='MpServer', x=-6,41, y=69,00, z=218,41], EntityChicken['Chicken'/457, l='MpServer', x=-5,38, y=69,00, z=213,50], EntityXPOrb['Experience Orb'/458, l='MpServer', x=-13,03, y=64,00, z=223,16], EntityChicken['Chicken'/459, l='MpServer', x=-9,47, y=66,00, z=218,63], EntityChicken['Chicken'/460, l='MpServer', x=-3,47, y=70,00, z=220,66], EntityChicken['Chicken'/461, l='MpServer', x=-10,53, y=68,00, z=210,88], EntityXPOrb['Experience Orb'/464, l='MpServer', x=-9,44, y=60,00, z=236,94], EntityChicken['Chicken'/465, l='MpServer', x=-6,66, y=62,59, z=236,53], EntityXPOrb['Experience Orb'/466, l='MpServer', x=-10,84, y=63,00, z=232,91], EntityXPOrb['Experience Orb'/467, l='MpServer', x=-14,63, y=61,00, z=235,56], EntityXPOrb['Experience Orb'/468, l='MpServer', x=-15,78, y=61,00, z=235,97], EntityXPOrb['Experience Orb'/469, l='MpServer', x=-15,63, y=61,00, z=238,72], EntityXPOrb['Experience Orb'/471, l='MpServer', x=-15,69, y=63,00, z=224,41], EntityXPOrb['Experience Orb'/472, l='MpServer', x=-15,44, y=63,00, z=227,66], EntityXPOrb['Experience Orb'/473, l='MpServer', x=-13,34, y=62,00, z=234,16], EntityChicken['Chicken'/474, l='MpServer', x=-14,22, y=62,59, z=230,19], EntityXPOrb['Experience Orb'/475, l='MpServer', x=-3,84, y=63,00, z=233,25], EntityXPOrb['Experience Orb'/476, l='MpServer', x=-3,97, y=63,00, z=233,25], EntityXPOrb['Experience Orb'/477, l='MpServer', x=-14,38, y=61,00, z=238,72], EntityChicken['Chicken'/478, l='MpServer', x=-13,16, y=63,00, z=228,94], EntityChicken['Chicken'/483, l='MpServer', x=-3,78, y=62,66, z=243,88], EntityXPOrb['Experience Orb'/484, l='MpServer', x=-9,84, y=61,00, z=241,69], EntityChicken['Chicken'/485, l='MpServer', x=-9,53, y=69,00, z=253,25], EntityChicken['Chicken'/486, l='MpServer', x=-9,75, y=70,00, z=254,34], EntityChicken['Chicken'/487, l='MpServer', x=-4,59, y=75,00, z=281,38], EntityChicken['Chicken'/488, l='MpServer', x=-4,50, y=73,00, z=281,50], EntityChicken['Chicken'/489, l='MpServer', x=-4,50, y=73,00, z=281,50]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:395)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2718)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:435)
+	at net.minecraft.client.main.Main.main(Main.java:111)
+	at Start.main(Start.java:11)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_101, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 738807280 bytes (704 MB) / 1038876672 bytes (990 MB) up to 1038876672 bytes (990 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 95
+	Launched Version: mcp
+	LWJGL: 2.9.1
+	OpenGL: GeForce GTX 960/PCIe/SSE2 GL version 4.5.0 NVIDIA 369.09, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: []
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)

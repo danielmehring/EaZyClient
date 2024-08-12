@@ -1,0 +1,31 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import net.minecraft.util.Timer;
+
+public class Step extends Module{
+
+	public Step() {
+		super("Step", Keyboard.KEY_P, Category.Movement);
+		
+	}
+	
+	public void onPreUpdate(){
+		if(!this.getState())
+			return;
+		if(mc.thePlayer.isCollidedHorizontally && mc.thePlayer.onGround){
+			mc.thePlayer.motionY = 0.3682f;
+			Timer.timerSpeed = 2f;
+		}
+		if(!mc.thePlayer.isCollidedHorizontally){
+			Timer.timerSpeed = 1f;
+		}
+		
+		
+		
+		
+	}
+}

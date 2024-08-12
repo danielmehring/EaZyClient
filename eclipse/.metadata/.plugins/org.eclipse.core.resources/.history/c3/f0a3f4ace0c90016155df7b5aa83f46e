@@ -1,0 +1,87 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import de.Exe.Utils.Wrapper;
+import net.minecraft.block.BlockAir;
+import net.minecraft.block.BlockLiquid;
+import net.minecraft.network.play.client.C00PacketKeepAlive;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.network.play.client.C0BPacketEntityAction;
+import net.minecraft.network.play.client.C0BPacketEntityAction.Action;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Timer;
+
+public class GommeSpeed extends Module {
+
+	public GommeSpeed() {
+		super("GommeSpeed", Keyboard.KEY_X, Category.Movement);
+
+	}
+
+
+
+
+	int delay;
+
+
+	public void onPreUpdate() {
+		if (!this.getState())
+			return;
+
+		delay++;
+		if (delay < 70)
+			mc.gameSettings.keyBindSneak.pressed = false;
+
+		if (delay > 70)
+			mc.gameSettings.keyBindSneak.pressed = true;
+
+		if (delay > 72) {
+			mc.gameSettings.keyBindSneak.pressed = true;
+			delay = 0;
+		}
+
+		if (!mc.gameSettings.keyBindRight.pressed && !mc.gameSettings.keyBindLeft.pressed
+				&& !mc.gameSettings.keyBindForward.pressed && !mc.gameSettings.keyBindBack.pressed) {
+			mc.thePlayer.motionX = 0;
+			mc.thePlayer.motionZ = 0;
+		}
+
+		if (mc.thePlayer.motionX != 0 && mc.thePlayer.motionZ != 0 && mc.thePlayer.onGround) {
+			mc.thePlayer.jump();
+			mc.thePlayer.motionX /= 1.65f;
+			mc.thePlayer.motionZ /= 1.65f;
+
+			mc.thePlayer.motionY = 0.37f;
+		} else if (mc.thePlayer.motionX != 0 && mc.thePlayer.motionZ != 0) {
+			mc.thePlayer.jumpMovementFactor = 0.1087f;
+			mc.thePlayer.motionX /= 1.2f;
+			mc.thePlayer.motionZ /= 1.2f;
+		}
+
+	}
+
+	public void onEnable() {
+		Timer.timerSpeed = 1f;
+		// if (mc.gameSettings.viewBobbing) {
+		// LastBobingWasTrue = true;
+		// } else {
+		// LastBobingWasTrue = false;
+		// }
+		// mc.gameSettings.viewBobbing = false;
+	}
+
+	public void onDisable() {
+		mc.gameSettings.keyBindLeft.pressed = false;
+		mc.gameSettings.keyBindRight.pressed = false;
+		Timer.timerSpeed = 1f;
+		mc.gameSettings.keyBindSneak.pressed = false;
+		// if (LastBobingWasTrue) {
+		// mc.gameSettings.viewBobbing = true;
+		// } else {
+		// mc.gameSettings.viewBobbing = false;
+		// }
+	}
+}

@@ -1,0 +1,78 @@
+package de.Exe.gui.guis;
+
+import java.io.IOException;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Utils.ColorUtil;
+import de.Exe.gui.GUIIButton;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
+
+public class EaZyLogin extends GuiScreen {
+	private GuiMainMenu prevMenu;
+
+	@Override
+	public void drawScreen(int par1, int par2, float par3) {
+		ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth,
+				Minecraft.getMinecraft().displayHeight);
+		this.drawDefaultBackground();
+
+		super.drawScreen(par1, par2, par3);
+	}
+
+	public void GuiPelikanLadeScreen(GuiMainMenu prevMultiplayerMenu) {
+		this.prevMenu = prevMultiplayerMenu;
+	}
+
+	@Override
+	public void updateScreen() {
+	}
+
+	@Override
+	public void initGui() {
+		Keyboard.enableRepeatEvents(true);
+		this.buttonList.add(new GUIIButton(100, this.width / 2 - 100, (this.height / 4 + 48) + 24 * 2 + 50, "BACK"));
+		
+		this.buttonList.add(new GUIIButton(3, width / 2 - 20, height / 2 - 20, 40, 20, "Login"));
+		this.buttonList.add(new GUIIButton(4, width / 2 + 20, height / 2 - 20, 40, 20, "Offline"));
+		
+	}
+
+	@Override
+	public void onGuiClosed() {
+		Keyboard.enableRepeatEvents(false);
+	}
+
+	@Override
+	protected void actionPerformed(GuiButton clickedButton) {
+		if (clickedButton.id == 100) {
+			this.mc.displayGuiScreen(prevMenu);
+		}
+
+		if (clickedButton.id == 3) {
+			// Login
+		}
+		if (clickedButton.id == 4) {
+			// Offline
+		}
+	}
+
+	@Override
+	protected void keyTyped(char par1, int par2) {
+		if (par2 == 28 || par2 == 156) {
+			this.actionPerformed((GuiButton) this.buttonList.get(0));
+		}
+		if (par2 == 1) {
+			this.mc.displayGuiScreen(new GuiMainMenu());
+		}
+	}
+
+	@Override
+	protected void mouseClicked(int par1, int par2, int par3) throws IOException {
+		super.mouseClicked(par1, par2, par3);
+	}
+}

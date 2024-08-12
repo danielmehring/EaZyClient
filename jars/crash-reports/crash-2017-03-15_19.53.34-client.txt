@@ -1,0 +1,92 @@
+---- Minecraft Crash Report ----
+// Surprise! Haha. Well, this is awkward.
+
+Time: 15.03.17 19:53
+Description: Rendering screen
+
+java.lang.NullPointerException: Rendering screen
+	at de.Hero.clickgui.Panel.drawScreen(Panel.java:72)
+	at de.Hero.clickgui.ClickGUI.drawScreen(ClickGUI.java:153)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1265)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1080)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:455)
+	at net.minecraft.client.main.Main.start(Main.java:149)
+	at Start.main(Start.java:7)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at de.Hero.clickgui.Panel.drawScreen(Panel.java:72)
+	at de.Hero.clickgui.ClickGUI.drawScreen(ClickGUI.java:153)
+
+-- Screen render details --
+Details:
+	Screen name: de.Hero.clickgui.ClickGUI
+	Mouse location: Scaled: (480, 254). Absolute: (960, 508)
+	Screen size: Scaled: (960, 509). Absolute: (1920, 1017). Scale factor of 2
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 3 total; [EntityPlayerSP['XYZERTUBE'/4464, l='MpServer', x=-8,50, y=21,00, z=8,75], EntityOtherPlayerMP['Sanmo093'/4462, l='MpServer', x=0,56, y=21,00, z=0,47], EntityOtherPlayerMP['TomatoPlays'/4417, l='MpServer', x=-58,06, y=12,00, z=40,75]]
+	Chunk stats: MultiplayerChunkCache: 289, 289
+	Level seed: 0
+	Level generator: ID 01 - flat, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 1,00,4,00,0,00 - World: (1,4,0), Chunk: (at 1,0,0 in 0,0; contains blocks 0,0,0 to 15,255,15), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Level time: 205474248 game time, 72000 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false
+	Forced entities: 11 total; [EntityPlayerSP['XYZERTUBE'/4464, l='MpServer', x=-8,50, y=21,00, z=8,75], EntityArmorStand['§cCombat'/272, l='MpServer', x=-8,50, y=20,72, z=9,50], EntityArmorStand['§7Items'/273, l='MpServer', x=-12,50, y=20,72, z=0,53], EntityOtherPlayerMP['TomatoPlays'/4417, l='MpServer', x=-58,06, y=12,00, z=40,75], EntityArmorStand['§aBuilding'/274, l='MpServer', x=-8,50, y=20,72, z=-8,50], EntityArmorStand['§6Movement'/275, l='MpServer', x=9,47, y=20,72, z=-8,50], EntityOtherPlayerMP['Sanmo093'/4462, l='MpServer', x=0,56, y=21,00, z=0,47], EntityArmorStand['§9Jump and Run'/1768, l='MpServer', x=9,47, y=20,73, z=9,50], EntityOtherPlayerMP['TomatoPlays'/4417, l='MpServer', x=-58,06, y=12,00, z=40,75], EntityArmorStand['§an AntiCheat!           '/266, l='MpServer', x=-5,50, y=20,53, z=0,50], EntityOtherPlayerMP['Sanmo093'/4462, l='MpServer', x=0,56, y=21,00, z=0,47]]
+	Retry entities: 0 total; []
+	Server brand: BungeeCord (git:BungeeCord-Bootstrap:1.11-SNAPSHOT:6104354:1217) <- PaperSpigot
+	Server type: Non-integrated multiplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:377)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2427)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:471)
+	at net.minecraft.client.main.Main.start(Main.java:149)
+	at Start.main(Start.java:7)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_101, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 685161608 bytes (653 MB) / 1038876672 bytes (990 MB) up to 1038876672 bytes (990 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	EaZy Version: 19.05
+	Error Code: 778fe75879998f5a47e8bac4594ab272
+	Launched Version: mcp
+	LWJGL: 2.9.1
+	OpenGL: GeForce GTX 960/PCIe/SSE2 GL version 4.5.0 NVIDIA 376.53, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: [ThugLifePackv2]
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	OptiFine Version: OptiFine_1.8_HD_U_H6
+	Render Distance Chunks: 7
+	Mipmaps: 4
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.5.0 NVIDIA 376.53
+	OpenGlRenderer: GeForce GTX 960/PCIe/SSE2
+	OpenGlVendor: NVIDIA Corporation
+	CpuCount: 4

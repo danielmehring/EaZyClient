@@ -1,0 +1,34 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+
+public class AACSpeed2 extends Module{
+
+	public AACSpeed2() {
+		super("AACSpeed2", Keyboard.KEY_NONE, Category.Movement);
+		
+		
+		
+	}
+	
+	//public static float DerUnötigsteIntengerObwohlDasHierGarKeinIntengerIstUndFürDieDummenAuchKeinIntSpeed = 1.0f;
+	
+	public void onPreUpdate(){
+		if(!this.getState())
+			return;
+		
+		if(mc.thePlayer.onGround && !mc.thePlayer.isInWeb && !mc.thePlayer.isInWater()){
+			
+		mc.thePlayer.motionX *= 1.8f;
+		mc.thePlayer.motionZ *= 1.8f;
+
+		}
+		
+		
+		
+		
+	}
+}

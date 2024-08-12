@@ -1,0 +1,211 @@
+package me.EaZy.client.modules;
+
+import java.util.ArrayList;
+
+import de.Hero.settings.Setting;
+import me.EaZy.client.Category;
+import me.EaZy.client.Configs;
+import me.EaZy.client.Module;
+import me.EaZy.client.main.Client;
+import me.EaZy.client.utils.BlockUtils;
+import me.EaZy.client.utils.EntityUtils;
+import net.minecraft.block.BlockAir;
+import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Timer;
+import net.minecraft.util.Vec3;
+
+public class Tower extends Module {
+	public Tower() {
+		super("Tower", 46, "", Category.WORLD, "Build up very fast.");
+		final ArrayList<String> options = new ArrayList<>();
+		options.add("SlowJump");
+		options.add("TimerJump");
+		options.add("Gomme");
+		options.add("Motion");
+		Client.setmgr.rSetting(new Setting("Mode", this, "TimerJump", options));
+	}
+	
+	String yee = Client.setmgr.getSettingByName(this, "Mode").getValString();
+
+	private String suffix;
+
+	public static String renderName = "TimerJump";
+
+	public boolean isPerformingJump = false;
+	public int delay = 0;
+	public static int jumpDelay = 1;
+
+	@Override
+	public String getRenderName() {
+		if (Configs.suffix) {
+			suffix = "Tower [" + renderName + "]";
+		} else {
+			suffix = "Tower";
+		}
+
+		return suffix;
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!isToggled()) {
+			if (togglecmd) {
+				setToggled(true);
+				onEnable();
+			}
+			return;
+		}
+		if (isToggled() && !togglecmd) {
+			setToggled(false);
+			onDisable();
+			return;
+		}
+
+		if (delay > 0) {
+			--delay;
+		}
+		if (Minecraft.thePlayer.getCurrentEquippedItem() != null
+				&& Minecraft.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemBlock
+				&& !Minecraft.thePlayer.movementInput.sneak) {
+			BlockPos floorPos;
+			if (yee.equalsIgnoreCase("Gomme")) {
+				renderName = "Gomme";
+				if (Minecraft.thePlayer.onGround) {
+					Minecraft.thePlayer.jump();
+				}
+				if (Minecraft.thePlayer.onGround && !Minecraft.thePlayer.isOnLadder()) {
+					Minecraft.thePlayer.jump();
+					Minecraft.thePlayer.motionY = 0.405;
+				}
+				if (Minecraft.thePlayer.motionY > 0) {
+
+					Minecraft.thePlayer.motionY /= 1.025f;
+
+				}
+
+				if (BlockUtils.getBlock(floorPos = EntityUtils
+						.getBlockPosReallyBeneathEntity(Minecraft.thePlayer)) instanceof BlockAir) {
+					Minecraft.thePlayer.swingItem();
+					Minecraft.thePlayer.sendQueue.netManager.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(
+							Minecraft.thePlayer.rotationYaw, 90.0f, Minecraft.thePlayer.onGround));
+
+					Minecraft.playerController.placeBlock(Minecraft.thePlayer, Minecraft.theWorld,
+							Minecraft.thePlayer.inventory.getCurrentItem(), floorPos.offsetDown(), EnumFacing.UP,
+							new Vec3(floorPos.getX(), floorPos.getY(), floorPos.getZ()));
+				}
+			}
+			if (yee.equalsIgnoreCase("TimerJump")) {
+				renderName = "TimerJump";
+				if (Minecraft.thePlayer.onGround && delay <= 0) {
+					if (!YesCheat.enabled) {
+						Minecraft.thePlayer.setPosition(Minecraft.thePlayer.posX, Minecraft.thePlayer.posY + 0.5,
+								Minecraft.thePlayer.posZ);
+						Minecraft.thePlayer.motionY = 0.5;
+						isPerformingJump = true;
+					} else {
+						Timer.timerSpeed = 1.6f;
+						Minecraft.thePlayer.jump();
+						isPerformingJump = true;
+					}
+				}
+				if (isPerformingJump && delay <= 0 && BlockUtils.getBlock(floorPos = EntityUtils
+						.getBlockPosReallyBeneathEntity(Minecraft.thePlayer)) instanceof BlockAir) {
+					Minecraft.thePlayer.swingItem();
+					Minecraft.thePlayer.sendQueue.netManager.sendPacket(
+							new C03PacketPlayer.C05PacketPlayerLook(Minecraft.thePlayer.rotationYaw, 90.0f, true));
+					Minecraft.playerController.placeBlock(Minecraft.thePlayer, Minecraft.theWorld,
+							Minecraft.thePlayer.inventory.getCurrentItem(), floorPos.offsetDown(), EnumFacing.UP,
+							new Vec3(floorPos.getX(), floorPos.getY(), floorPos.getZ()));
+					isPerformingJump = false;
+					Timer.timerSpeed = 1.0f;
+					Minecraft.thePlayer.motionY = -0.10000000149011612;
+					if (YesCheat.enabled) {
+						delay = Tower.jumpDelay;
+					}
+				}
+			}
+
+			if (yee.equalsIgnoreCase("SlowJump")) {
+				renderName = "SlowJump";
+				if (Minecraft.thePlayer.onGround && delay <= 0) {
+					if (!YesCheat.enabled) {
+						Minecraft.thePlayer.setPosition(Minecraft.thePlayer.posX, Minecraft.thePlayer.posY + 0.5,
+								Minecraft.thePlayer.posZ);
+						Minecraft.thePlayer.motionY = 0.5;
+						isPerformingJump = true;
+					} else {
+						Timer.timerSpeed = 1.0f;
+						Minecraft.thePlayer.jump();
+						isPerformingJump = true;
+					}
+				}
+				if (isPerformingJump && delay <= 0 && BlockUtils.getBlock(floorPos = EntityUtils
+						.getBlockPosReallyBeneathEntity(Minecraft.thePlayer)) instanceof BlockAir) {
+					Minecraft.thePlayer.swingItem();
+					Minecraft.thePlayer.sendQueue.netManager.sendPacket(
+							new C03PacketPlayer.C05PacketPlayerLook(Minecraft.thePlayer.rotationYaw, 90.0f, true));
+					Minecraft.playerController.placeBlock(Minecraft.thePlayer, Minecraft.theWorld,
+							Minecraft.thePlayer.inventory.getCurrentItem(), floorPos.offsetDown(), EnumFacing.UP,
+							new Vec3(floorPos.getX(), floorPos.getY(), floorPos.getZ()));
+					isPerformingJump = false;
+					Timer.timerSpeed = 1.0f;
+					Minecraft.thePlayer.motionY = -0.10000000149011612;
+					if (YesCheat.enabled) {
+						delay = Tower.jumpDelay;
+					}
+				}
+			}
+
+			if (yee.equalsIgnoreCase("Motion")) {
+				renderName = "Motion";
+				if (Minecraft.thePlayer.onGround && delay <= 0) {
+
+					Timer.timerSpeed = 1.0f;
+					Minecraft.thePlayer.motionY = 1.0f;
+					isPerformingJump = true;
+				}
+				if (!Minecraft.thePlayer.onGround) {
+					Minecraft.thePlayer.motionY = -0.0719217f;
+				}
+				if (isPerformingJump && delay <= 0 && BlockUtils.getBlock(floorPos = EntityUtils
+						.getBlockPosReallyBeneathEntity(Minecraft.thePlayer)) instanceof BlockAir) {
+					Minecraft.thePlayer.swingItem();
+					Minecraft.thePlayer.sendQueue.netManager.sendPacket(
+							new C03PacketPlayer.C05PacketPlayerLook(Minecraft.thePlayer.rotationYaw, 90.0f, true));
+					Minecraft.playerController.placeBlock(Minecraft.thePlayer, Minecraft.theWorld,
+							Minecraft.thePlayer.inventory.getCurrentItem(), floorPos.offsetDown(), EnumFacing.UP,
+							new Vec3(floorPos.getX(), floorPos.getY(), floorPos.getZ()));
+					isPerformingJump = false;
+					Timer.timerSpeed = 1.0f;
+
+				}
+			}
+
+		} else if (Minecraft.thePlayer.getCurrentEquippedItem() != null
+				&& Minecraft.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemBlock
+				&& Minecraft.thePlayer.movementInput.sneak) {
+			Timer.timerSpeed = 1.0f;
+		}
+		super.onUpdate();
+	}
+
+	@Override
+	public void onEnable() {
+		delay = 0;
+		isPerformingJump = false;
+		super.onEnable();
+	}
+
+	@Override
+	public void onDisable() {
+		if(yee.equalsIgnoreCase("Motion")) {
+			mc.thePlayer.motionY = 0;
+		}
+		Timer.timerSpeed = 1.0f;
+		super.onDisable();
+	}
+}

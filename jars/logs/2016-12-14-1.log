@@ -1,0 +1,12 @@
+[17:02:52] [Client thread/INFO]: Setting user: Player378
+[17:02:52] [Client thread/INFO]: (Session ID is token:0:Player378)
+[17:02:54] [Client thread/INFO]: LWJGL Version: 2.9.1
+[17:02:55] [Client thread/INFO]: Reloading ResourceManager: Default
+[17:02:55] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[17:02:56] [Thread-7/INFO]: Initializing LWJGL OpenAL
+[17:02:56] [Thread-7/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[17:02:56] [Thread-7/INFO]: OpenAL initialized.
+[17:02:56] [Sound Library Loader/INFO]: Sound engine started
+[17:03:00] [Client thread/ERROR]: Using missing texture, unable to load minecraft:mcpatcher/ctm/default/empty.png, java.io.FileNotFoundException
+[17:03:00] [Client thread/INFO]: Created: 512x512 textures-atlas
+[17:03:01] [Client thread/INFO]: Logging in with username & password

@@ -1,0 +1,51 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.Timer;
+
+
+public class OldSpeed extends Module{
+	
+    int delay = 0;
+	
+	
+	
+	public OldSpeed() {
+		super("OldSpeed", Keyboard.KEY_B, Category.Movement);
+	}
+	public void onPreUpdate(){
+		if(!this.getState())
+			return;
+		delay++;
+		
+		
+		if(!(mc.thePlayer.motionX == 0.0f) && !(mc.thePlayer.motionZ == 0.0f) && !mc.thePlayer.isInWeb && !mc.thePlayer.isInWater() && mc.thePlayer.onGround){
+			mc.thePlayer.motionY = 0.1f;
+		}
+
+			
+		
+		if(delay < 3 && !(mc.thePlayer.motionX == 0.0f) && !(mc.thePlayer.motionZ == 0.0f) && !mc.thePlayer.isInWeb && !mc.thePlayer.isInWater() && mc.thePlayer.onGround){
+//			mc.thePlayer.motionX *= 1.0f;
+//			mc.thePlayer.motionZ *= 1.0f;
+			Timer.timerSpeed = 1.0f;
+		}
+		if(delay > 3 && !(mc.thePlayer.motionX == 0.0f) && !(mc.thePlayer.motionZ == 0.0f) && !mc.thePlayer.isInWeb && !mc.thePlayer.isInWater() && mc.thePlayer.onGround){
+//			mc.thePlayer.motionX *= 1.7f;
+//			mc.thePlayer.motionZ *= 1.7f;
+			Timer.timerSpeed = 2.0f;
+		}
+		if(delay > 5){
+			delay = 0;
+		}
+		
+		
+	}
+	public void onDissable(){
+		Timer.timerSpeed = 1f;
+	}
+}

@@ -1,0 +1,112 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import de.Exe.Utils.BlockUtils;
+import de.Exe.Utils.EntityUtils;
+import net.minecraft.block.BlockAir;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Vec3;
+
+public class Step extends Module {
+
+	public Step() {
+		super("Step", Keyboard.KEY_P, Category.Movement);
+
+	}
+
+	public boolean isPerformingJump = false;
+	public int delay = 0;
+	public static int jumpDelay = 1;
+
+	public void onPreUpdate() {
+		if (!this.getState())
+			return;
+
+		// if(mc.thePlayer.fallDistance > 0.5 && !mc.thePlayer.onGround){
+		//
+		// if(mc.thePlayer.motionY > 0){
+		// //FL횳 NACH UNTEN
+		// mc.thePlayer.sendChatMessage("FL횳!!! XD");
+		// }
+		//
+		// if(mc.thePlayer.motionY < -3.8f){
+		// //FL횳 NACH UNTEN
+		// mc.thePlayer.sendChatMessage("FL횳!!! XD");
+		// }
+		//
+		//
+		// if(mc.thePlayer.onGround || mc.thePlayer.isInWater() ||
+		// mc.thePlayer.isInWeb || mc.thePlayer.isOnLadder()){
+		// mc.thePlayer.fallDistance = 0;
+		// }
+		//
+		// }
+
+		if (this.delay > 0) {
+			--this.delay;
+		}
+		if (mc.thePlayer.getCurrentEquippedItem() != null
+				&& mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemBlock
+				&& !mc.thePlayer.movementInput.sneak) {
+			BlockPos floorPos;
+			if (mc.thePlayer.onGround && this.delay <= 0) {
+
+				mc.timer.timerSpeed = 10.0f;
+				// mc.thePlayer.motionY = 0.36915f;
+
+				mc.thePlayer.jump();
+				this.isPerformingJump = true;
+
+			}
+			if (this.isPerformingJump && this.delay <= 0 && BlockUtils.getBlock(
+					floorPos = EntityUtils.getBlockPosReallyBeneathEntity(mc.thePlayer)) instanceof BlockAir) {
+				mc.thePlayer.swingItem();
+				mc.thePlayer.sendQueue.netManager
+						.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(0.0f, 90.0f, true));
+				mc.playerController.func_178890_a(mc.thePlayer, mc.theWorld, mc.thePlayer.inventory.getCurrentItem(),
+						floorPos.offsetDown(), EnumFacing.UP,
+						new Vec3(floorPos.getX(), floorPos.getY(), floorPos.getZ()));
+				this.isPerformingJump = false;
+				mc.timer.timerSpeed = 1.0f;
+				mc.thePlayer.motionY = -0.10000000149011612;
+
+			}
+		} else if (mc.thePlayer.getCurrentEquippedItem() != null
+				&& mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemBlock
+				&& mc.thePlayer.movementInput.sneak)
+			mc.timer.timerSpeed = 1.0f;
+
+		// if(mc.thePlayer.hurtTime > 0){
+		// mc.thePlayer.motionX = 0;
+		// mc.thePlayer.motionZ = 0;
+		// }
+		//
+		//
+		//
+		//
+		//
+		//
+		//
+		//
+		// if(mc.thePlayer.isCollidedHorizontally && mc.thePlayer.onGround &&
+		// mc.thePlayer.motionY > -0.1f){
+		// mc.thePlayer.motionY = 0.3682f;
+
+	}
+
+	public void onEnable() {
+		this.delay = 0;
+		this.isPerformingJump = false;
+	}
+
+	public void onDisable() {
+		mc.timer.timerSpeed = 1.0f;
+
+	}
+}

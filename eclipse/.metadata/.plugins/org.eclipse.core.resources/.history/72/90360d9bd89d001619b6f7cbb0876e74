@@ -1,0 +1,61 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import net.minecraft.util.Timer;
+
+public class GommeGlide extends Module{
+
+	public GommeGlide() {
+		super("VergewaltigungDesGommeACs", Keyboard.KEY_F, Category.Movement);
+	}
+	
+	
+	int delay;
+	
+	public void onPreUpdate(){
+		if(!this.getState())
+			return;
+		delay++;
+		
+		
+//		if(delay > 5){
+//		mc.thePlayer.motionY = -0.18f;
+//			mc.thePlayer.motionY = -0.15f;	
+//			Timer.timerSpeed = 1.0f;
+//			
+//			mc.thePlayer.motionX *= 1.15f;
+//			mc.thePlayer.motionZ *= 1.15f;
+//			
+//		}
+//		if(delay > 10){
+//			delay = 0;
+//			
+//		}
+//		if(delay < 5){
+//			Timer.timerSpeed = 1f;
+//			mc.thePlayer.motionY = -0.18f;
+//		}
+//		
+//		
+//		mc.thePlayer.motionY = -5f;
+		
+		//mc.thePlayer.motionY = -0.23f;
+		  if (mc.thePlayer.ticksExisted % 2 == 0)
+			   mc.thePlayer.motionY /= 2.0;
+			  else
+			   mc.thePlayer.motionY *= 1.5;
+		  if(!mc.thePlayer.onGround){
+			  mc.thePlayer.motionX = 0;
+			  mc.thePlayer.motionZ = 0;
+			  mc.thePlayer.jumpMovementFactor = 2.8f;
+		  }
+		
+	}
+	public void onDissable(){
+		Timer.timerSpeed = 1.0f;
+	}
+}
+

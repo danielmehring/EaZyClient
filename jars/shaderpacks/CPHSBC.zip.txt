@@ -1,0 +1,4 @@
+#Sun Jan 29 21:57:01 CET 2017
+Acid=10
+Contrast=1
+Hue=0.1

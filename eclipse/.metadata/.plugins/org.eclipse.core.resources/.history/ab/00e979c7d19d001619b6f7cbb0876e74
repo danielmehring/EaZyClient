@@ -1,0 +1,46 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import net.minecraft.util.Timer;
+
+public class GommeGlide extends Module{
+
+	public GommeGlide() {
+		super("GommeGlide", Keyboard.KEY_F, Category.Movement);
+	}
+	
+	
+	int delay;
+	
+	public void onPreUpdate(){
+		if(!this.getState())
+			return;
+		delay++;
+		
+		
+		if(delay > 5){
+//		mc.thePlayer.motionY = -0.18f;
+			mc.thePlayer.motionY = -0.09f;	
+			Timer.timerSpeed = 2f;
+		}
+		if(delay > 10){
+			delay = 0;
+			mc.thePlayer.motionY = -0.1f;
+		}
+		if(delay < 5){
+			Timer.timerSpeed = 1f;
+			
+		}
+		
+		
+//		mc.thePlayer.motionY = -5f;
+		
+	}
+	public void onDissable(){
+		Timer.timerSpeed = 1f;
+	}
+}
+

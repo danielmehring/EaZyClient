@@ -1,0 +1,27 @@
+INFO  2017-10-05 21:14:12,517 (Saros.java:220) Starting Saros 14.10.31 running:
+  Java Version: 1.8.0_101
+  Java Vendor: Oracle Corporation
+  Eclipse Runtime Version: 3.12.0.v20160606-1342
+  Operating System: Windows 10 (10.0)
+  Hardware Architecture: amd64
+INFO  2017-10-05 21:14:12,561 (SarosContext.java:153) creating Saros runtime context...
+DEBUG 2017-10-05 21:14:12,620 (XMPPAccountStore.java:117) loading accounts from file: C:\Users\xyzer\.saros\config.dat
+DEBUG 2017-10-05 21:14:13,013 (XMPPAccountStore.java:176) loaded 1 account(s)
+INFO  2017-10-05 21:14:13,202 (SarosContext.java:199) successfully created Saros runtime context
+DEBUG 2017-10-05 21:14:13,228 (DataTransferManager.java:467) used transport order for the current XMPP connection: [XMPP-Socks5-Transport, XMPP-IBB-Transport]
+INFO  2017-10-05 21:14:13,251 (PreferenceInitializer.java:50) initializing preference default values
+DEBUG 2017-10-05 21:14:13,292 (SarosAnnotation.java:117) resetting annotation colors
+DEBUG 2017-10-05 21:14:13,301 (Saros.java:430) skipping conversion of old XMPP accounts, because there are already new ones
+DEBUG 2017-10-05 21:14:20,510 (SharedDocumentProvider.java:77) SharedDocumentProvider created by Eclipse
+DEBUG 2017-10-05 21:14:34,634 (WhiteboardManager.java:194) WhiteboardManager instantiated
+DEBUG 2017-10-05 21:14:34,667 (DocumentRecord.java:93) Added Node: attr(15072308746645671) name=svg
+DEBUG 2017-10-05 21:14:35,849 (XMPPConnectionService.java:439) started Socks5 proxy on port: 7777 [listening on all interfaces]
+DEBUG 2017-10-05 21:14:37,709 (XMPPConnectionService.java:459) using autodetected addresses: [192.168.2.104, fe80:0:0:0:50fa:8586:2f83:e7%eth3, 2001:0:9d38:78cf:248a:94:af6d:ccd5, fe80:0:0:0:248a:94:af6d:ccd5%net2]
+DEBUG 2017-10-05 21:14:37,717 (XMPPConnectionService.java:398)  new connection state == CONNECTING
+DEBUG 2017-10-05 21:14:38,523 (XMPPConnectionService.java:398) xzer@saros-con.imp.fu-berlin.de/Saros new connection state == CONNECTED
+DEBUG 2017-10-05 21:14:38,524 (DataTransferManager.java:467) used transport order for the current XMPP connection: [XMPP-Socks5-Transport, XMPP-IBB-Transport]
+DEBUG 2017-10-05 21:14:38,530 (SkypeManager.java:289) Refreshing Skype username cache...
+WARN  2017-10-05 21:14:48,079 (StunServiceImpl.java:420) received no response from STUN server stunserver.org/67.227.226.240:3478 at local address /192.168.2.104:0
+DEBUG 2017-10-05 21:16:26,715 (XMPPConnectionService.java:398) xzer@saros-con.imp.fu-berlin.de/Saros new connection state == DISCONNECTING
+DEBUG 2017-10-05 21:16:26,880 (XMPPConnectionService.java:398)  new connection state == NOT_CONNECTED
+DEBUG 2017-10-05 21:16:26,881 (UPnPServiceImpl.java:295) deleting existing port mappings

@@ -1,0 +1,88 @@
+---- Minecraft Crash Report ----
+// There are four lights!
+
+Time: 09.03.17 21:31
+Description: Unexpected error
+
+java.lang.NoSuchFieldError: ywithfade
+	at me.EaZy.client.hooks.InGameGUIHook.drawArraylist(InGameGUIHook.java:137)
+	at me.EaZy.client.hooks.InGameGUIHook.renderScreen(InGameGUIHook.java:580)
+	at net.minecraft.client.gui.GuiIngame.func_175180_a(GuiIngame.java:337)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1225)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1080)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:455)
+	at net.minecraft.client.main.Main.start(Main.java:149)
+	at Start.main(Start.java:7)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at me.EaZy.client.hooks.InGameGUIHook.drawArraylist(InGameGUIHook.java:137)
+	at me.EaZy.client.hooks.InGameGUIHook.renderScreen(InGameGUIHook.java:580)
+	at net.minecraft.client.gui.GuiIngame.func_175180_a(GuiIngame.java:337)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['XYZERTUBE'/1826, l='MpServer', x=-81,33, y=95,00, z=382,30]]
+	Chunk stats: MultiplayerChunkCache: 441, 441
+	Level seed: 0
+	Level generator: ID 00 - default, ver 1. Features enabled: false
+	Level generator options: 
+	Level spawn location: -18,00,66,00,482,00 - World: (-18,66,482), Chunk: (at 14,4,2 in -2,30; contains blocks -32,0,480 to -17,255,495), Region: (-1,0; contains chunks -32,0 to -1,31, blocks -512,0,0 to -1,255,511)
+	Level time: 116261263 game time, 1000 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false
+	Forced entities: 1 total; [EntityPlayerSP['XYZERTUBE'/1826, l='MpServer', x=-81,33, y=95,00, z=382,30]]
+	Retry entities: 0 total; []
+	Server brand: Spigot
+	Server type: Non-integrated multiplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:377)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2427)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:476)
+	at net.minecraft.client.main.Main.start(Main.java:149)
+	at Start.main(Start.java:7)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_101, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 743091088 bytes (708 MB) / 1038876672 bytes (990 MB) up to 1038876672 bytes (990 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 17, allocated: 13, tallocated: 95
+	EaZy Version: 19.04
+	Error Code: 778fe75879998f5a47e8bac4594ab272
+	Launched Version: mcp
+	LWJGL: 2.9.1
+	OpenGL: GeForce GTX 960/PCIe/SSE2 GL version 4.5.0 NVIDIA 376.53, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: [ThugLifePackv2]
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	OptiFine Version: OptiFine_1.8_HD_U_H6
+	Render Distance Chunks: 10
+	Mipmaps: 4
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.5.0 NVIDIA 376.53
+	OpenGlRenderer: GeForce GTX 960/PCIe/SSE2
+	OpenGlVendor: NVIDIA Corporation
+	CpuCount: 4

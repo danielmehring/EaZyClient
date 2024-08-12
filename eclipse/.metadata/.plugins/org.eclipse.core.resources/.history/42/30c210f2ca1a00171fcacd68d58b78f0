@@ -1,0 +1,105 @@
+package me.EaZy.client.modules;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.fields;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.network.play.client.C0BPacketEntityAction;
+
+public class Sneak extends Module {
+	public Sneak() {
+		super("Sneak", 0, "", Category.PLAYER, "Sneak Server sided.");
+	}
+
+	@Override
+	public String getRenderName() {
+		if (GuiMainMenu.ersterapril) {
+			return "Schleicherei";
+		} else {
+			return super.getRenderName();
+		}
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!isToggled()) {
+			if (togglecmd) {
+				setToggled(true);
+				onEnable();
+			}
+			return;
+		}
+		if (isToggled() && !togglecmd) {
+			setToggled(false);
+			onDisable();
+			return;
+		}
+
+		if (Minecraft.thePlayer.onGround) {
+			if (Minecraft.thePlayer.hurtTime <= 8) {
+
+				Minecraft.thePlayer.motionX *= !Minecraft.gameSettings.keyBindRight.pressed
+						&& !Minecraft.gameSettings.keyBindLeft.pressed
+								? Minecraft.thePlayer.ticksExisted % 2 == 0 ? 1.80 : 1.79
+								: Minecraft.thePlayer.ticksExisted % 2 == 0 ? 1.72 : 1.69;
+				Minecraft.thePlayer.motionZ *= !Minecraft.gameSettings.keyBindRight.pressed
+						&& !Minecraft.gameSettings.keyBindLeft.pressed
+								? Minecraft.thePlayer.ticksExisted % 2 == 0 ? 1.80 : 1.79
+								: Minecraft.thePlayer.ticksExisted % 2 == 0 ? 1.72 : 1.69;
+			}
+			Minecraft.thePlayer.motionY = 0.4339999854564667;
+
+			Minecraft.thePlayer.sendQueue.addToSendQueue(
+					new C0BPacketEntityAction(Minecraft.thePlayer, C0BPacketEntityAction.Action.START_SNEAKING));
+
+			fields.i15 = 0;
+		} else {
+			fields.i15++;
+			if (fields.i15 == 1) {
+				Minecraft.thePlayer.motionY = -0.195454545;
+
+			}
+
+			if (fields.i15 == 2) {
+				if (Minecraft.thePlayer.hurtTime <= 8) {
+					Minecraft.thePlayer.motionX = 0;
+					Minecraft.thePlayer.motionZ = 0;
+					Minecraft.thePlayer.jumpMovementFactor = Minecraft.thePlayer.ticksExisted % 2 == 0 ? 0.2945f
+							: 0.295f;
+				}
+				Minecraft.thePlayer.motionY = -0.219;
+				Minecraft.thePlayer.sendQueue.addToSendQueue(
+						new C0BPacketEntityAction(Minecraft.thePlayer, C0BPacketEntityAction.Action.STOP_SNEAKING));
+
+			}
+
+		}
+
+		if (Minecraft.thePlayer.ticksExisted % 2 == 0) {
+
+		} else {
+
+		}
+
+		if (Minecraft.thePlayer.ticksExisted % 2 == 0) {
+
+			Minecraft.thePlayer.swingItem();
+			Minecraft.thePlayer.motionX = 0.28;
+			Minecraft.thePlayer.motionZ = -0.28;
+		} else {
+			Minecraft.thePlayer.swingItem();
+
+			Minecraft.thePlayer.motionX = -0.28;
+			Minecraft.thePlayer.motionZ = 0.28;
+		}
+		super.onUpdate();
+	}
+
+	@Override
+	public void onDisable() {
+		Minecraft.thePlayer.sendQueue.addToSendQueue(
+				new C0BPacketEntityAction(Minecraft.thePlayer, C0BPacketEntityAction.Action.STOP_SNEAKING));
+		super.onDisable();
+	}
+}

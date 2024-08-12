@@ -1,0 +1,6 @@
+
+public class Nico {
+
+	public int PenisLength = (Integer) null;
+
+}

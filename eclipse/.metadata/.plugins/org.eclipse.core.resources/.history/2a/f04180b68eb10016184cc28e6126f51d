@@ -1,0 +1,33 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+
+public class Jesus extends Module{
+
+	public Jesus() {
+		super("Jesus", Keyboard.KEY_H, Category.Movement);
+
+	}
+	public void onUpdate(){
+		if(!this.getState())
+			return;
+		
+		//mc.thePlayer.onGround =  true;
+		
+		if(mc.thePlayer.isInWater()){
+			mc.thePlayer.motionY = 0.12F;
+			mc.thePlayer.motionZ *= 1.0F;
+			mc.thePlayer.motionX *= 1.0F;
+		}
+		
+		mc.thePlayer.motionY = 2f;
+		
+		if(mc.thePlayer.movementInput.jump && mc.thePlayer.isInWater()){
+			mc.thePlayer.motionY = 0.15F;
+		}
+		
+	}
+}

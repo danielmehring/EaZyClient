@@ -1,0 +1,64 @@
+package me.EaZy.client.modules.SpeedModes;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.util.MathHelper;
+
+public class OldJump extends Module {
+
+public static OldJump mod;
+
+
+    public static final int EaZy = 177;
+
+    public void lambdaStuff() {
+        java.util.Arrays.asList().stream().filter((m) -> (false)).forEachOrdered((m) -> {
+        });
+    }
+
+    public OldJump() {
+        super("OldJump", 0, "", Category.SPEED);
+        mod = this;
+    }
+
+    @Override
+    public String getRenderName() {
+        if (GuiMainMenu.ersterapril) {
+            return "OldJump";
+        } else {
+            return super.getRenderName();
+        }
+    }
+
+    @Override
+    public void onUpdate() {
+        if (!isToggled()) {
+            if (togglecmd) {
+                setToggled(true);
+                onEnable();
+            }
+            return;
+        }
+        if (isToggled() && !togglecmd) {
+            setToggled(false);
+            onDisable();
+            return;
+        }
+        if (Minecraft.thePlayer.capabilities.isFlying) {
+            return;
+        }
+
+        if (Minecraft.thePlayer.onGround) {
+        	final float var1 = mc.thePlayer.rotationYaw * 0.017453292F;
+        	mc.thePlayer.motionX -= MathHelper.sin(var1) * 0.19F;
+        	mc.thePlayer.motionZ += MathHelper.cos(var1) * 0.19F;
+            mc.thePlayer.motionY = 0.099;
+        } else {
+           
+        }
+        super.onUpdate();
+    }
+
+}

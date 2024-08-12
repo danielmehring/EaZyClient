@@ -1,0 +1,340 @@
+/*
+ * Decompiled with CFR 0_117. Could not load the following classes:
+ * org.lwjgl.opengl.GL11
+ */
+package me.EaZy.client.gui.alts;
+
+import java.awt.Component;
+import java.awt.HeadlessException;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+
+import me.EaZy.client.FileManager;
+import me.EaZy.client.alts.Alt;
+import me.EaZy.client.alts.AltRenderer;
+import me.EaZy.client.alts.GuiAltsLogin;
+import me.EaZy.client.alts.LoginManager;
+import me.EaZy.client.gui.GuiCleanUpAltz;
+import me.EaZy.client.gui.GuiInvisButton;
+import me.EaZy.client.gui.GuiRedeemToken;
+import me.EaZy.client.hooks.FrameHook;
+import me.EaZy.client.main.Client;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiYesNo;
+import net.minecraft.client.gui.ScaledResolution;
+
+public class GuiAlts extends GuiScreen {
+	private final GuiScreen prevMenu;
+	public static GuiAltList altList;
+
+	public boolean isDirectEnabled = true;
+
+	int errorTimer;
+
+	public GuiAlts(final GuiScreen par1GuiScreen) {
+		prevMenu = par1GuiScreen;
+	}
+
+	@Override
+	public void initGui() {
+		altList = new GuiAltList(mc, this);
+		altList.registerScrollButtons(7, 8);
+		altList.elementClicked(-1, false, 0, 0);
+		buttonList.clear();
+
+		final ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.displayWidth,
+				Minecraft.displayHeight);
+		Keyboard.enableRepeatEvents(true);
+
+		buttonList.add(new GuiButton(42884288, 1, 1, "Osama bin laden"));
+
+		buttonList.add(
+				new GuiInvisButton(1, sr.getScaledWidth() / 2 - 28, sr.getScaledHeight() - 20, 60, 20, "Direct Login"));
+
+		buttonList.add(
+				new GuiInvisButton(0, sr.getScaledWidth() / 2 - 13 - 45, sr.getScaledHeight() - 20, 30, 20, "Use"));
+		buttonList.add(
+				new GuiInvisButton(4, sr.getScaledWidth() / 2 - 13 - 15, sr.getScaledHeight() - 20, 30, 20, "Edit"));
+		buttonList.add(
+				new GuiInvisButton(3, sr.getScaledWidth() / 2 - 13 + 15, sr.getScaledHeight() - 20, 30, 20, "Star"));
+		buttonList.add(
+				new GuiInvisButton(5, sr.getScaledWidth() / 2 - 13 + 45, sr.getScaledHeight() - 20, 30, 20, "Delete"));
+
+		buttonList.add(new GuiInvisButton(6, width - 30, sr.getScaledHeight() - 20, 30, 20, "Exit"));
+		buttonList.add(new GuiInvisButton(2, 0, sr.getScaledHeight() - 20, 30, 20, "Add"));
+
+		// TODO draw the other buttons
+
+		buttonList.add(new GuiInvisButton(7, 31, sr.getScaledHeight() - 20, 30, 20, "Import"));
+		buttonList.add(new GuiInvisButton(8, sr.getScaledWidth() - 60, sr.getScaledHeight() - 20, 30, 20, "Clean"));
+	}
+
+	@Override
+	public void updateScreen() {
+		if (!GuiAltList.alts.isEmpty() && altList.getSelectedSlot() != -1) { // Selected
+			isDirectEnabled = false;
+			((GuiButton) buttonList.get(0)).visible = false;
+			((GuiButton) buttonList.get(1)).visible = true;
+			((GuiButton) buttonList.get(2)).visible = true;
+			((GuiButton) buttonList.get(3)).visible = true;
+			((GuiButton) buttonList.get(4)).visible = true;
+			((GuiButton) buttonList.get(0)).enabled = false;
+			((GuiButton) buttonList.get(1)).enabled = true;
+			((GuiButton) buttonList.get(2)).enabled = true;
+			((GuiButton) buttonList.get(3)).enabled = true;
+			((GuiButton) buttonList.get(4)).enabled = true;
+		} else { // Nothing Selected
+			isDirectEnabled = true;
+			((GuiButton) buttonList.get(1)).visible = false;
+			((GuiButton) buttonList.get(2)).visible = false;
+			((GuiButton) buttonList.get(3)).visible = false;
+			((GuiButton) buttonList.get(4)).visible = false;
+			((GuiButton) buttonList.get(0)).visible = true;
+			((GuiButton) buttonList.get(0)).enabled = true;
+			((GuiButton) buttonList.get(1)).enabled = false;
+			((GuiButton) buttonList.get(2)).enabled = false;
+			((GuiButton) buttonList.get(3)).enabled = false;
+			((GuiButton) buttonList.get(4)).enabled = false;
+		}
+	}
+
+	@Override
+	protected void actionPerformed(final GuiButton clickedButton) {
+		if (clickedButton.id == 42884288) {
+			mc.displayGuiScreen(new GuiRedeemToken(false));
+		}
+
+		if (clickedButton.enabled) {
+			if (clickedButton.id == 0) {
+				final Alt alt = GuiAltList.alts.get(altList.getSelectedSlot());
+				if (alt.isCracked()) {
+					LoginManager.changeCrackedName(alt.getEmail());
+					mc.displayGuiScreen(prevMenu);
+				} else {
+					final String reply = LoginManager.login(alt.getEmail(), alt.getPassword());
+					if (reply.equals("")) {
+						mc.displayGuiScreen(prevMenu);
+						alt.setChecked(Minecraft.session.getUsername());
+						FileManager.saveAltsManager();
+					} else {
+						if (reply.equals("§4§lWrong password!")) {
+							final String deleteQuestion = "This Alt doesn\'t work or you are Mojang Banned! You wanna remove?";
+							final String deleteWarning = "\"" + alt.getNameOrEmail()
+									+ "\" will be lost forever! (A long time!)";
+							mc.displayGuiScreen(
+									new GuiYesNo(this, deleteQuestion, deleteWarning, "Delete", "Cancel", 1));
+						}
+					}
+				}
+			} else if (clickedButton.id == 1) {
+				mc.displayGuiScreen(new GuiAltsLogin(this));
+			} else if (clickedButton.id == 2) {
+				mc.displayGuiScreen(new GuiAltAdd(this));
+			} else if (clickedButton.id == 3) {
+				Alt alt = GuiAltList.alts.get(altList.getSelectedSlot());
+				alt.setStarred(!(alt = GuiAltList.alts.get(altList.getSelectedSlot())).isStarred());
+				GuiAltList.sortAlts();
+				FileManager.saveAltsManager();
+			} else if (clickedButton.id == 4) {
+				final Alt alt = GuiAltList.alts.get(altList.getSelectedSlot());
+				mc.displayGuiScreen(new GuiAltEdit(this, alt));
+			} else if (clickedButton.id == 5) {
+				final Alt alt = GuiAltList.alts.get(altList.getSelectedSlot());
+				final String deleteQuestion = "Are you sure you want to remove this alt?";
+				final String deleteWarning = "\"" + alt.getNameOrEmail() + "\" will be lost forever! (A long time!)";
+				mc.displayGuiScreen(new GuiYesNo(this, deleteQuestion, deleteWarning, "Delete", "Cancel", 1));
+			} else if (clickedButton.id == 6) {
+				mc.displayGuiScreen(prevMenu);
+			} else if (clickedButton.id == 7) {
+				new Thread(new Runnable() {
+
+					@Override
+					public void run() {
+						final JFileChooser fileChooser = new JFileChooser(FileManager.eazyDir) {
+
+							@Override
+							protected JDialog createDialog(final Component parent) throws HeadlessException {
+								final JDialog dialog = super.createDialog(parent);
+								dialog.setAlwaysOnTop(true);
+								return dialog;
+							}
+						};
+						fileChooser.setFileSelectionMode(0);
+						fileChooser.setAcceptAllFileFilterUsed(false);
+						fileChooser.addChoosableFileFilter(
+								new FileNameExtensionFilter("E-Mail:Password format (TXT)", "txt"));
+						final int action = fileChooser.showOpenDialog(FrameHook.getFrame());
+						if (action == 0) {
+							try {
+								final File file = fileChooser.getSelectedFile();
+								final BufferedReader load = new BufferedReader(new FileReader(file));
+								String line = "";
+								while ((line = load.readLine()) != null) {
+									final String[] data = line.split(":");
+									if (data.length != 2) {
+										continue;
+									}
+									GuiAltList.alts.add(new Alt(data[0], data[1], null));
+								}
+								load.close();
+								GuiAltList.sortAlts();
+								FileManager.saveAltsManager();
+							} catch (final IOException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+
+				}).start();
+			} else if (clickedButton.id == 8) {
+				mc.displayGuiScreen(new GuiCleanUpAltz(this));
+			}
+		}
+	}
+
+	@Override
+	public void confirmClicked(final boolean par1, final int par2) {
+		if (par2 == 1 && par1) {
+			GuiAltList.alts.remove(altList.getSelectedSlot());
+			GuiAltList.sortAlts();
+			FileManager.saveAltsManager();
+		}
+		if (par2 == 2 && par1) {
+			GuiAltList.deleteUnchecked();
+			GuiAltList.sortAlts();
+			FileManager.saveAltsManager();
+		}
+		mc.displayGuiScreen(this);
+	}
+
+	@Override
+	protected void keyTyped(final char par1, final int par2) {
+		if (par2 == 28 || par2 == 156) {
+			actionPerformed((GuiButton) buttonList.get(0));
+		}
+	}
+
+	@Override
+	protected void mouseClicked(final int par1, final int par2, final int par3) throws IOException {
+		if (par2 >= 36 && par2 <= height - 57 && (par1 >= width / 2 + 140 || par1 <= width / 2 - 126)) {
+			altList.elementClicked(-1, false, 0, 0);
+		}
+		super.mouseClicked(par1, par2, par3);
+	}
+
+	@Override
+	public void drawScreen(final int par1, final int par2, final float par3) {
+		drawDefaultBackground();
+
+		final ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.displayWidth,
+				Minecraft.displayHeight);
+
+		// Nerviges zeug weil faderect net geht
+		{
+			drawRect(0, 20, sr.getScaledWidth(), 21, 0xB9000000);
+			drawRect(0, 21, sr.getScaledWidth(), 22, 0xAF000000);
+			drawRect(0, 22, sr.getScaledWidth(), 23, 0xA5000000);
+			drawRect(0, 23, sr.getScaledWidth(), 24, 0x9B000000);
+			drawRect(0, 24, sr.getScaledWidth(), 25, 0x91000000);
+
+			drawRect(0, sr.getScaledHeight() - 24, sr.getScaledWidth(), sr.getScaledHeight() - 25, 0x91000000);
+			drawRect(0, sr.getScaledHeight() - 23, sr.getScaledWidth(), sr.getScaledHeight() - 24, 0x9B000000);
+			drawRect(0, sr.getScaledHeight() - 22, sr.getScaledWidth(), sr.getScaledHeight() - 23, 0xA5000000);
+			drawRect(0, sr.getScaledHeight() - 21, sr.getScaledWidth(), sr.getScaledHeight() - 22, 0xAF000000);
+			drawRect(0, sr.getScaledHeight() - 20, sr.getScaledWidth(), sr.getScaledHeight() - 21, 0xB9000000);
+		}
+
+		drawRect(0, 25, sr.getScaledWidth(), sr.getScaledHeight() - 25, 0x87000000);
+
+		Client.getColor(0l);
+
+		altList.drawScreen(par1, par2, par3);
+		// TODO
+		drawRect(0, 0, sr.getScaledWidth() * 2, 20, 0xc4111111);
+
+		drawRect(0, sr.getScaledHeight(), sr.getScaledWidth() * 2, sr.getScaledHeight() - 20, 0xc4111111);
+		drawRect(sr.getScaledWidth() - 28, sr.getScaledHeight(), sr.getScaledWidth() - 29, sr.getScaledHeight() - 20,
+				0x3c000000);
+		drawRect(27, sr.getScaledHeight() - 20, 28, sr.getScaledHeight(), 0x3c000000);
+		drawRect(64, sr.getScaledHeight() - 20, 65, sr.getScaledHeight(), 0x3c000000);
+		// drawRect(0, 20, sr.getScaledWidth(), 21, 0x3c000000);
+		// drawRect(0, sr.getScaledHeight() - 20, sr.getScaledWidth(),
+		// sr.getScaledHeight() - 21, 0x3c000000);
+		drawRect(sr.getScaledWidth() - 60, sr.getScaledHeight(), sr.getScaledWidth() - 61, sr.getScaledHeight() - 20,
+				0x3c000000);
+
+		GL11.glEnable(3042);
+		if (isDirectEnabled) {
+			drawRect(width / 2 - 31, sr.getScaledHeight() - 20, width / 2 - 30, sr.getScaledHeight(), 0x3c000000);
+			drawRect(width / 2 + 35, sr.getScaledHeight() - 20, width / 2 + 34, sr.getScaledHeight(), 0x3c000000);
+		} else {
+			drawRect(width / 2 - 57, sr.getScaledHeight() - 20, width / 2 - 58, sr.getScaledHeight(), 0x3c000000);
+			drawRect(width / 2 - 27, sr.getScaledHeight() - 20, width / 2 - 28, sr.getScaledHeight(), 0x3c000000);
+			drawRect(width / 2 + 3, sr.getScaledHeight() - 20, width / 2 + 2, sr.getScaledHeight(), 0x3c000000);
+			drawRect(width / 2 + 29, sr.getScaledHeight() - 20, width / 2 + 30, sr.getScaledHeight(), 0x3c000000);
+			drawRect(width / 2 + 64, sr.getScaledHeight() - 20, width / 2 + 65, sr.getScaledHeight(), 0x3c000000);
+		}
+		GL11.glDisable(3042);
+
+		AltRenderer.drawAltFace(mc.getSession().getUsername(), 1, 1, 18, 18, false);
+
+		final float scal333 = (float) 0.6;
+		GL11.glPushMatrix();
+		GL11.glTranslated(scal333, scal333, scal333);
+		GL11.glScaled(scal333, scal333, scal333);
+		drawString(fontRendererObj, "Logged in as", 34, 1, 0xFFFFFFFF);
+		GL11.glPopMatrix();
+		final float scale2 = (float) 1.2;
+		GL11.glPushMatrix();
+		GL11.glTranslated(scale2, scale2, scale2);
+		GL11.glScaled(scale2, scale2, scale2);
+		drawString(fontRendererObj, mc.getSession().getUsername(), 16, 5, 0xbb66ff00);
+		GL11.glPopMatrix();
+
+		if (altList.getSelectedSlot() != -1 && altList.getSelectedSlot() < GuiAltList.alts.size()) {
+			final Alt alt = GuiAltList.alts.get(altList.getSelectedSlot());
+			AltRenderer.drawAltBody(alt.getNameOrEmail(), sr.getScaledWidth() - sr.getScaledWidth() / 4,
+					height / 2 - 64 - 9, 64, 128);
+			mc.fontRendererObj.drawString("Information", sr.getScaledWidth() / 10, sr.getScaledHeight() / 4, 0x151515);
+			mc.fontRendererObj.drawString(
+					"OptiFine-Cape: " + (alt.hasOFCape == 0 ? "loading..."
+							: alt.hasOFCape == 1 ? "false" : alt.hasOFCape == 2 ? "true" : "IDK, itz uncheckd"),
+					sr.getScaledWidth() / 10, sr.getScaledHeight() / 4 + mc.fontRendererObj.FONT_HEIGHT, 0x151515);
+			mc.fontRendererObj.drawString(
+					"LabyMod-Cape: " + (alt.hasLabyModCape == 0 ? "loading..."
+							: alt.hasLabyModCape == 1 ? "false"
+									: alt.hasLabyModCape == 2 ? "true" : "IDK, itz uncheckd"),
+					sr.getScaledWidth() / 10, sr.getScaledHeight() / 4 + mc.fontRendererObj.FONT_HEIGHT * 2, 0x151515);
+		}
+		if (errorTimer > 0) {
+			GL11.glDisable(3553);
+			GL11.glDisable(2884);
+			GL11.glEnable(3042);
+			GL11.glColor4f(1.0f, 0.0f, 0.0f, errorTimer / 16.0f);
+			GL11.glBegin(7);
+			GL11.glVertex2d(0.0, 0.0);
+			GL11.glVertex2d(width, 0.0);
+			GL11.glVertex2d(width, height);
+			GL11.glVertex2d(0.0, height);
+			GL11.glEnd();
+			GL11.glEnable(3553);
+			GL11.glEnable(2884);
+			GL11.glDisable(3042);
+			--errorTimer;
+		}
+
+		super.drawScreen(par1, par2, par3);
+	}
+
+}

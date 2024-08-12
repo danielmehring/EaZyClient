@@ -1,0 +1,101 @@
+package me.EaZy.client.modules;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.utils.ColorUtils;
+import me.EaZy.client.utils.RenderUtils;
+import net.minecraft.block.Block;
+import net.minecraft.network.play.client.C07PacketPlayerDigging;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+
+public class Fucker extends Module {
+
+	public int xOffset;
+	public int yOffset;
+	public int zOffset;
+	public BlockPos BedPos;
+
+	public static List<Integer> ids = new ArrayList<Integer>();
+
+	public Fucker() {
+		super("Fucker", 0, "breaker", Category.WORLD, "Breaks blocks.\nUse the command\n\"fucker\" to edit\nthe block-list.");
+		ids.add(26);
+	}
+
+	@Override
+	public void onEnable() {
+		this.BedPos = null;
+		super.onEnable();
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!this.isToggled()) {
+			if (this.togglecmd) {
+				this.setToggled(true);
+				this.onEnable();
+			}
+			return;
+		}
+		if (this.isToggled() && !this.togglecmd) {
+			this.setToggled(false);
+			this.onDisable();
+			return;
+		}
+
+		if (this.mc.theWorld == null) {
+			return;
+		}
+		final BlockPos v1 = this.getBedPos();
+		try {
+			if (v1 != null) {
+				this.breakBlock(v1);
+				mc.thePlayer.swingItem();
+				this.BedPos = v1;
+			} else {
+				this.BedPos = null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		super.onUpdate();
+	}
+
+	public BlockPos getBedPos() {
+		this.xOffset = -4;
+		while (this.xOffset < 5) {
+			this.zOffset = -4;
+			while (this.zOffset < 5) {
+				this.yOffset = 4;
+				while (this.yOffset > -4) {
+					final double v1 = this.mc.thePlayer.posX + this.xOffset;
+					final double v2 = this.mc.thePlayer.posY + this.yOffset;
+					final double v3 = this.mc.thePlayer.posZ + this.zOffset;
+					final int v4 = Block
+							.getIdFromBlock(this.mc.theWorld.getBlockState(new BlockPos(v1, v2, v3)).getBlock());
+					if (ids.contains(v4) && (this.BedPos == null
+							|| (this.BedPos.getX() != v1 && this.BedPos.getY() != v2 && this.BedPos.getZ() != v3))) {
+						return new BlockPos(v1, v2, v3);
+					}
+					--this.yOffset;
+				}
+				++this.zOffset;
+			}
+			++this.xOffset;
+		}
+		return null;
+	}
+
+	public void breakBlock(final BlockPos bedPos) {
+		this.mc.thePlayer.sendQueue.addToSendQueue(
+				new C07PacketPlayerDigging(C07PacketPlayerDigging.Action.START_DESTROY_BLOCK, bedPos, EnumFacing.UP));
+		this.mc.thePlayer.sendQueue.addToSendQueue(
+				new C07PacketPlayerDigging(C07PacketPlayerDigging.Action.STOP_DESTROY_BLOCK, bedPos, EnumFacing.UP));
+	}
+
+}

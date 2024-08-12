@@ -1,0 +1,589 @@
+package me.EaZy.client.hooks;
+
+import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+import org.lwjgl.opengl.GL11;
+
+import com.darkmagician6.eventapi.EventManager;
+import com.darkmagician6.eventapi.EventTarget;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.events.EventReceivePacket;
+import me.EaZy.client.main.Client;
+import me.EaZy.client.modules.Speed;
+import me.EaZy.client.modules.hud.Appearance;
+import me.EaZy.client.tabgui.GuiTabHandler;
+import me.EaZy.client.utils.RenderUtils;
+import me.EaZy.client.utils.TimeHelper;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.network.NetworkPlayerInfo;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.play.server.S02PacketChat;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StringUtils;
+
+public class InGameGUIHook extends GuiScreen {
+
+	private final boolean watermark = true;
+	// private final boolean arraylist = true;
+	// public static boolean coords = false;
+	// public static boolean fps = false;
+	// public static boolean ign = false;
+	// public static boolean time = false;
+	// public static boolean potions = true;
+	// public static boolean armor = true;
+	// public static boolean Client.getValues().Other_TabGui.getState() = true;
+	// public static boolean ping = true;
+	private final TimeHelper timer = new TimeHelper();
+
+	public InGameGUIHook() {
+		EventManager.register(this);
+		mc = Minecraft.getMinecraft();
+	}
+
+	public static ArrayList<Module> sorted = new ArrayList<>();
+
+	@EventTarget
+	public void onEventCalled(final EventReceivePacket event) {
+		if (event.getPacket() instanceof S02PacketChat) {
+			return;
+		}
+		timer.reset();
+	}
+
+	public static void onUpdate() {
+		sort();
+	}
+
+	public static void addBiggestMod() {
+		Module modname = null;
+		for (final Module mod : Client.getModules()) {
+			if (!sorted.contains(mod)) {
+				try {
+					if (modname == null) {
+						modname = mod;
+					} else if (Client.mc.fontRendererObj.getStringWidth(mod.getRenderName()) > Client.mc.fontRendererObj
+							.getStringWidth(modname.getRenderName())) {
+						modname = mod;
+					}
+				} catch (final Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		sorted.add(modname);
+	}
+
+	public static void sort() {
+		sorted.clear();
+		for (final Module mod : Client.getModules()) {
+			addBiggestMod();
+		}
+	}
+
+	private void drawArraylist(final ScaledResolution scaledResolution) {
+
+		final int x = scaledResolution.getScaledWidth() - 1;
+		int y = 3;
+		try {
+			for (final Module mod3 : sorted) {
+				if (mod3.isCategory(Category.HIDDEN) || mod3.isCategory(Category.HUD)) {
+					continue;
+				}
+				if (mod3.isCategory(Category.SPEED) && Client.isToggled(Speed.class)) {
+					continue;
+				}
+
+				if (!Client.isToggled(mod3.getClass()) && mod3.xxx == -2) {
+					continue;
+				}
+
+				final int anispeed = 1;
+				if (mod3.isToggled()) {
+					if (mod3.xxx < Client.mc.fontRendererObj.getStringWidth(mod3.getRenderName())) {
+						mod3.xxx += anispeed;
+					} else {
+						mod3.xxx = Client.mc.fontRendererObj.getStringWidth(mod3.getRenderName());
+					}
+				} else if (!mod3.isToggled()) {
+					if (mod3.xxx > -2) {
+						mod3.xxx -= anispeed;
+					} else {
+						mod3.xxx = -2;
+					}
+				}
+
+				final String name = mod3.getRenderName();
+				if (Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "HudThemes").getValString()
+						.equalsIgnoreCase("New")) {
+					RenderUtils.drawRect(x - mod3.xxx - 1, y - 2, x + 1, y + 8,
+							new Color(0.1f, 0.1f, 0.1f, 0.6f).getRGB());
+				}
+				if (Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "HudThemes").getValString()
+						.equalsIgnoreCase("Old")) {
+					RenderUtils.drawRect(x - mod3.xxx - 1 - 1, y - 2, x + 1, y + 8,
+							new Color(0.1f, 0.1f, 0.1f, 0.6f).getRGB());
+					RenderUtils.drawRect(x - 1 - 0, y - 2, x + 1, y + 8, Client.getColor(0l).getRGB());
+				}
+				if (Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "HudThemes").getValString()
+						.equalsIgnoreCase("New")) {
+					mc.fontRendererObj.drawString(name, x - mod3.xxx, y,
+							Client.getColor((long) (600000000L * ((y - 2) * 0.05))).getRGB());
+				}
+				if (Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "HudThemes").getValString()
+						.equalsIgnoreCase("Old")) {
+					mc.fontRendererObj.drawString(name, x - mod3.xxx - 1, y,
+							Client.getColor((long) (600000000L * ((y - 2) * 0.05))).getRGB());
+				}
+				if (Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "HudThemes").getValString()
+						.equalsIgnoreCase("Modern")) {
+					RenderUtils.drawAbgerundetRect(x - mod3.xxx - 1 - 2, y - 2, x + 1, y + 9, 1,
+							new Color(52, 73, 94).getRGB());
+					mc.fontRendererObj.drawString(name, x - mod3.xxx - 1, y,
+							/*
+							 * Client.getColor((long) (200000000L * ((y - 2) *
+							 * 0.05))).getRGB()
+							 */ 0xFFFFFFFF);
+				}
+
+				if (Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "HudThemes").getValString()
+						.equalsIgnoreCase("Alpha")) {
+					RenderUtils.drawRect(x - mc.fontRendererObj.getStringWidth(name) - 2, y - 2, x + 0, y + 8,
+							0xff000000);
+					mc.fontRendererObj.drawString(name, x - mc.fontRendererObj.getStringWidth(name) - 1, y,
+							Client.getColor((long) (200000000L * ((y - 2) * 0.05))).getRGB());
+				}
+
+				y += 10;
+			}
+		} catch (final Exception e) {
+			e.printStackTrace();
+		}
+		// RenderUtils.drawRect(x + 1, 2, x + 4, y - 2,
+		// Client.getColor(0l).getRGB());
+		// } else {
+		// final int x = scaledResolution.getScaledWidth() - 2;
+		// int y = 2;
+		// for (final Module mod3 : Client.getModules()) {
+		// if (mod3.isCategory(Category.HIDDEN) || mod3.isCategory(Category.HUD)
+		// || !Client.isToggled(mod3.getClass())) {
+		// continue;
+		// }
+		// if (mod3.isCategory(Category.SPEED) && Client.isToggled(Speed.class))
+		// {
+		// continue;
+		// }
+		// final String name = mod3.getRenderName();
+		// mc.fontRendererObj.drawString(name, x -
+		// mc.fontRendererObj.getStringWidth(name), y,
+		// Client.getColor((long) (200000000L * ((y - 2) * 0.05))).getRGB());
+		// y += 10;
+		// }
+		// }
+	}
+
+	private void drawPing(final ScaledResolution scaledResolution) {
+		if (mc.isSingleplayer()) {
+			return;
+		}
+		int ping = 0;
+		for (final Object obj : Minecraft.getNetHandler().playerInfoMap.values()) {
+			if (!(obj instanceof NetworkPlayerInfo)) {
+				return;
+			}
+			final NetworkPlayerInfo player = (NetworkPlayerInfo) obj;
+			if (!StringUtils.stripControlCodes(player.getGameProfile().getName())
+					.equals(StringUtils.stripControlCodes(Minecraft.thePlayer.getName()))) {
+				continue;
+			}
+			ping = player.responseTime;
+			break;
+		}
+		scaledResolution.getScaledWidth();
+		int y = Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "TabGui")
+				.getValBoolean() ? 107 : 8;
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "Coords")
+				.getValBoolean()) {
+			y += 10;
+		}
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "IGN")
+				.getValBoolean()) {
+			y += 10;
+		}
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "FPS")
+				.getValBoolean()) {
+			y += 10;
+		}
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "ServerIP")
+				.getValBoolean()) {
+			y += 10;
+		}
+		mc.fontRendererObj.drawStringWithShadow("§6Ping: §a" + ping + "ms", 2, y += 10, -1);
+	}
+
+	private void drawLag(final ScaledResolution scaledResolution) {
+		if (mc.isSingleplayer()) {
+			return;
+		}
+		String lag = "";
+		String color;
+		if (timer.hasReached(20000)) {
+			color = "§4";
+		} else if (timer.hasReached(10000)) {
+			color = "§c";
+		} else if (timer.hasReached(5000)) {
+			color = "§6";
+		} else if (timer.hasReached(2500)) {
+			color = "§e";
+		} else if (timer.hasReached(1000)) {
+			color = "§a";
+		} else {
+			color = "§a";
+		}
+		if (timer.hasReached(1000)) {
+			lag = color + timer.getDifference() + "ms";
+		} else {
+			return;
+		}
+		scaledResolution.getScaledWidth();
+		int y = Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "TabGui")
+				.getValBoolean() ? 107 : 8;
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "Coords")
+				.getValBoolean()) {
+			y += 10;
+		}
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "IGN")
+				.getValBoolean()) {
+			y += 10;
+		}
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "FPS")
+				.getValBoolean()) {
+			y += 10;
+		}
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "Ping")
+				.getValBoolean()) {
+			y += 10;
+		}
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "ServerIP")
+				.getValBoolean()) {
+			y += 10;
+		}
+		mc.fontRendererObj.drawStringWithShadow("§6Lag: " + color + lag, 2, y += 10, -1);
+	}
+
+	private void drawArmor(final ScaledResolution scaledResolution) {
+		if (Minecraft.playerController.isNotCreative()) {
+			int x = 14;
+			final int width = scaledResolution.getScaledWidth() / 2;
+			final int height = scaledResolution.getScaledHeight()
+					- (Minecraft.thePlayer.isInsideOfMaterial(Material.water)
+							? Minecraft.thePlayer.getActivePotionEffect(Potion.absorption) != null ? 55 : 65 : 55);
+			GlStateManager.pushMatrix();
+			GlStateManager.enableRescaleNormal();
+			GlStateManager.disableBlend();
+			for (int index = 3; index >= 0; --index) {
+				final ItemStack stack = Minecraft.thePlayer.inventory.armorInventory[index];
+				if (stack == null) {
+					continue;
+				}
+				RenderHelper.enableStandardItemLighting();
+				mc.getRenderItem().renderItemAndEffectIntoGUI(stack, width + x, height);
+				mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, stack, width + x, height);
+				RenderHelper.disableStandardItemLighting();
+				GlStateManager.disableDepth();
+				GlStateManager.depthMask(false);
+				GlStateManager.scale(0.5f, 0.5f, 0.5f);
+				if (stack.getItem() == Items.golden_apple && stack.hasEffect()) {
+					mc.fontRendererObj.drawStringWithShadow("god", (width + x) * 2, height * 2, -65536);
+				} else {
+					final NBTTagList enchants = stack.getEnchantmentTagList();
+					if (enchants != null) {
+						int encY = 0;
+						final Enchantment[] important = new Enchantment[] { Enchantment.protection,
+								Enchantment.unbreaking, Enchantment.sharpness, Enchantment.fireAspect,
+								Enchantment.efficiency, Enchantment.feather_falling, Enchantment.power,
+								Enchantment.flame, Enchantment.punch, Enchantment.fortune, Enchantment.infinity,
+								Enchantment.thorns };
+						if (enchants.tagCount() >= 6) {
+							mc.fontRendererObj.drawStringWithShadow("god", (width + x) * 2, height * 2, -65536);
+						} else {
+							block1: for (int index1 = 0; index1 < enchants.tagCount(); ++index1) {
+								final short id = enchants.getCompoundTagAt(index1).getShort("id");
+								final short level = enchants.getCompoundTagAt(index1).getShort("lvl");
+								final Enchantment enc = Enchantment.func_180306_c(id);
+								if (enc == null) {
+									continue;
+								}
+								for (final Enchantment importantEnchantment : important) {
+									if (enc != importantEnchantment) {
+										continue;
+									}
+									String encName = enc.getTranslatedName(level).substring(0, 1).toLowerCase();
+									encName = level > 99 ? encName + "99+" : encName + level;
+									mc.fontRendererObj.drawStringWithShadow(encName, (width + x) * 2,
+											(height + encY) * 2, -5592406);
+									encY += 5;
+									continue block1;
+								}
+							}
+						}
+					}
+				}
+				GlStateManager.depthMask(true);
+				GlStateManager.enableDepth();
+				GlStateManager.scale(2.0f, 2.0f, 2.0f);
+				x += 18;
+			}
+			GlStateManager.disableRescaleNormal();
+			GlStateManager.popMatrix();
+		}
+	}
+
+	private void drawPotions(final ScaledResolution scaledResolution) {
+		final int x = scaledResolution.getScaledWidth() - 2;
+		int y = scaledResolution.getScaledHeight() - 10;
+		if (mc.ingameGUI.getChatGUI().getChatOpen()) {
+			y -= 13;
+		}
+		for (final Object o : Minecraft.thePlayer.getActivePotionEffects()) {
+			final PotionEffect effect = (PotionEffect) o;
+			String name = I18n.format(effect.getEffectName(), new Object[0]);
+			if (effect.getAmplifier() == 1) {
+				name = name + " " + I18n.format("enchantment.level.2", new Object[0]);
+			} else if (effect.getAmplifier() == 2) {
+				name = name + " " + I18n.format("enchantment.level.3", new Object[0]);
+			} else if (effect.getAmplifier() == 3) {
+				name = name + " " + I18n.format("enchantment.level.4", new Object[0]);
+			} else if (effect.getAmplifier() > 0) {
+				name = name + " " + (effect.getAmplifier() + 1);
+			}
+			int var1 = effect.getDuration() / 20;
+			final int var2 = var1 / 60;
+			var1 %= 60;
+			int color = 55;
+			if (var2 == 0) {
+				if (var1 <= 5) {
+					color = 52;
+				} else if (var1 <= 10) {
+					color = 99;
+				} else if (var1 <= 15) {
+					color = 54;
+				} else if (var1 <= 20) {
+					color = 101;
+				}
+			}
+			name = String.format("%s §%s%s", name, Character.valueOf((char) color), Potion.getDurationString(effect));
+			mc.fontRendererObj.drawStringWithShadow(name, x - mc.fontRendererObj.getStringWidth(name), y,
+					Potion.potionTypes[effect.getPotionID()].getLiquidColor());
+			y -= 10;
+		}
+	}
+
+	private void drawInfo(final ScaledResolution scaledResolution) {
+		final ArrayList<String> info = new ArrayList<>();
+		int y = Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "TabGui")
+				.getValBoolean() ? 107 : 8;
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "Coords")
+				.getValBoolean()) {
+			info.add(String.format("§6XYZ:§a %s %s %s", MathHelper.floor_double(Minecraft.thePlayer.posX),
+					MathHelper.floor_double(Minecraft.thePlayer.posY),
+					MathHelper.floor_double(Minecraft.thePlayer.posZ)));
+		}
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "IGN")
+				.getValBoolean()) {
+			info.add(String.format("§6IGN:§a %s", mc.getSession().getUsername()));
+		}
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "FPS")
+				.getValBoolean()) {
+			info.add(String.format("§6FPS:§a %s", mc.debug.split(" fps")[0]));
+		}
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "ServerIP")
+				.getValBoolean()) {
+			info.add(String.format("§6ServerIP:§a %s",
+					mc.getCurrentServerData() == null ? "SinglePlayer" : mc.getCurrentServerData().serverIP));
+		}
+		for (final String infoString : info) {
+			mc.fontRendererObj.drawStringWithShadow(infoString, 2, y + 10, -1);
+			y += 10;
+		}
+	}
+
+	public void renderScreen() {
+		int x;
+		int y;
+		if (Minecraft.gameSettings.showDebugInfo) {
+			return;
+		}
+		final ScaledResolution scaledResolution = RenderUtils.newScaledResolution();
+		GlStateManager.pushMatrix();
+		GlStateManager.enableBlend();
+		if (watermark) {
+			// TODO Noize hier :D
+			if (Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "HudThemes").getValString()
+					.equalsIgnoreCase("Alpha")) {
+				GlStateManager.color((float) Client.getColor(0l).getRed() / 255,
+						(float) Client.getColor(0l).getGreen() / 255, (float) Client.getColor(0l).getBlue() / 255,
+						1.0f);
+
+				GL11.glEnable(3042);
+				GL11.glBlendFunc(770, 771);
+				GL11.glColorMask(true, true, true, false);
+
+				Minecraft.getTextureManager().bindTexture(new ResourceLocation("EaZy/motorblockeazy.png"));
+
+				GL11.glPushMatrix();
+				{
+					GL11.glScalef(0.257f, 0.125f, 0.25f);
+					drawTexturedModalRect(0, -56, 0, 0, 256, 256);
+					// drawTexturedModalRect(x, y, textureX, textureY, x, y);
+				}
+				GL11.glPopMatrix();
+			}
+
+			if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "TabGui")
+					.getValBoolean()) {
+				// Gui.drawRect(2, 25, GuiTabHandler.width - 45, 97 + 24,
+				// Client.getColor(0l).getRGB());
+				// GL11.glPushMatrix();
+				// GL11.glEnable(GL_BLEND);
+				// GL11.glDisable(GL_TEXTURE_2D);
+				// final Color c = Client.getColor(0l);
+				// GL11.glColor4d((float) c.getRed() / 255, (float) c.getGreen()
+				// / 255, (float) c.getBlue() / 255, 1.0f);
+				// GL11.glBegin(GL11.GL_QUADS);
+				// GL11.glVertex2d(0, 25);
+				// GL11.glVertex2d(0, 97 + 24);
+				// GL11.glVertex2d(2, 97 + 24);
+				// GL11.glVertex2d(2, 25);
+				// GL11.glEnd();
+				// GL11.glEnable(GL_TEXTURE_2D);
+				// GL11.glDisable(GL_BLEND);
+				// GL11.glPopMatrix();
+			}
+			if (Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "HudThemes").getValString()
+					.equalsIgnoreCase("New")) {
+				drawRect(1, 1, 69, 15, 0x79000000);
+
+				drawRect(2, 2, 68, 3, Client.getColor(0l).getRGB());
+
+				drawRect(2, 13, 68, 14, Client.getColor(0l).getRGB());
+			}
+
+			if (Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "HudThemes").getValString()
+					.equalsIgnoreCase("Old")) {
+				GL11.glPushMatrix();
+				mc.fontRendererObj.drawString("aZy", 15, 10, Client.getColor(0l).getRGB());
+				GL11.glPopMatrix();
+
+				GL11.glPushMatrix();
+				{
+					GL11.glScaled(2.5, 2.4, 2.5);
+					mc.fontRendererObj.drawString("E", 1, 1, Client.getColor(0l).getRGB());
+				}
+				GL11.glPopMatrix();
+				GL11.glPushMatrix();
+				{
+					GL11.glScaled(1, 1, 1);
+				}
+				GL11.glPopMatrix();
+				GL11.glPushMatrix();
+				{
+					GL11.glScaled(0.75, 0.75, 0.75);
+					mc.fontRendererObj.drawString("§8" + Client.EaZyVersion, 20, 5, -1);
+				}
+				GL11.glPopMatrix();
+
+			}
+			if (Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "HudThemes").getValString()
+					.equalsIgnoreCase("New")) {
+				GL11.glPushMatrix();
+
+				mc.fontRendererObj.drawString("EaZy", 35 - mc.fontRendererObj.getStringWidth("EaZy") / 2, 4,
+						Client.getColor(0l).getRGB());
+
+				GL11.glPopMatrix();
+
+			}
+			if (Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "HudThemes").getValString()
+					.equalsIgnoreCase("Modern")) {
+				RenderUtils.drawAbgerundetRect(1, 1, 66 / 2, 30 / 2, 2, new Color(52, 73, 94).getRGB());
+				// GL11.glPushMatrix();
+				// GL11.glScaled(1.4, 1.4, 42);
+				mc.fontRendererObj.drawString("EaZy", 7, 4, 0xffffffff);
+				// GL11.glPopMatrix();
+			}
+
+		}
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "Time")
+				.getValBoolean()) {
+			x = 70;
+			final SimpleDateFormat format = new SimpleDateFormat("hh:mm a");
+			mc.fontRendererObj.drawStringWithShadow("§6" + format.format(new Date()), x, 2.0f, 0);
+		}
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "TabGui")
+				.getValBoolean()) {
+			// Teste hier bei der value das ist die Höhe vom tabgui
+			// such dann nach Client.getValues().Other_TabGui.getState()
+			// da sind dann immer solche Sachen wie y =
+			// Client.getValues().Other_TabGui.getState() ? 125 : 18 oder so
+			// da musst du jeweils beide values ändern die sind für z.b.
+			// ping,ign,...
+			y = 20;
+			// TODO
+			if (Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "HudThemes").getValString()
+					.equalsIgnoreCase("Modern")) {
+				RenderUtils.drawAbgerundetRect(1, y - 1, GuiTabHandler.width + 6, 95 + y + 2, 2,
+						new Color(52, 73, 94).getRGB());
+			}
+			if (Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "HudThemes").getValString()
+					.equalsIgnoreCase("Alpha")) {
+				Gui.drawRect(2, y + 1, GuiTabHandler.width + 7, 95 + y, new Color(0.1f, 0.1f, 0.1f, 0.6f).getRGB());
+			} else if (!Client.setmgr.getSettingByName(Client.getModule(Appearance.class), "HudThemes").getValString()
+					.equalsIgnoreCase("Modern")) {
+				Gui.drawRect(2, y, GuiTabHandler.width + 6, 96 + y, new Color(0.1f, 0.1f, 0.1f, 0.6f).getRGB());
+			}
+			Client.getTabHandler().drawGui(2, y);
+		}
+		drawInfo(scaledResolution);
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "ArrayList")
+				.getValBoolean()) {
+			drawArraylist(scaledResolution);
+		}
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "Potions")
+				.getValBoolean()) {
+			drawPotions(scaledResolution);
+		}
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "Armor")
+				.getValBoolean()) {
+			drawArmor(scaledResolution);
+		}
+		if (Client.setmgr.getSettingByName(Client.getModule(me.EaZy.client.modules.hud.Other.class), "Ping")
+				.getValBoolean()) {
+			drawPing(scaledResolution);
+		}
+		drawLag(scaledResolution);
+		if (Minecraft.currentScreen == null) {
+			mc.fontRendererObj.drawString(Client.username, 2,
+					scaledResolution.getScaledHeight() - mc.fontRendererObj.FONT_HEIGHT, 0xffffffff);
+		}
+		GlStateManager.disableBlend();
+		GlStateManager.popMatrix();
+	}
+}

@@ -1,0 +1,87 @@
+package me.EaZy.client.modules.SpeedModes;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.main.Client;
+
+public class AAC2 extends Module {
+
+	public AAC2() {
+		super(new String(new byte[] { 0b1000001, 0b1000001, 0b1000011, 0b110010 }).toString(), 0, "", Category.SPEED);
+	}
+
+	public int delay = 0;
+	public int groundTicks;
+
+	@Override
+	public void onEnable() {
+		if (Client.isToggled(new String(
+				new byte[] { 0b1000001, 0b1000001, 0b1000011, 0b1000111, 0b1101100, 0b1101001, 0b1100100, 0b1100101 })
+						.toString())) {
+			Client.disable(new String(new byte[] { 0b1000001, 0b1000001, 0b1000011, 0b1000111, 0b1101100, 0b1101001,
+					0b1100100, 0b1100101 }).toString());
+			msg(new String(new byte[] { 0b11111111111111111111111110100111, 0b1100011, 0b1011001, 0b1101111, 0b1110101,
+					0b100000, 0b1100011, 0b1100001, 0b1101110, 0b100000, 0b1101110, 0b1101111, 0b1110100, 0b100000,
+					0b1110101, 0b1110011, 0b1100101, 0b100000, 0b1000001, 0b1000001, 0b1000011, 0b1000111, 0b1101100,
+					0b1101001, 0b1100100, 0b1100101, 0b100000, 0b1100001, 0b1101110, 0b1100100, 0b100000, 0b1000001,
+					0b1000001, 0b1000011, 0b100000, 0b1010011, 0b1110000, 0b1100101, 0b1100101, 0b1100100, 0b100000,
+					0b1100001, 0b1110100, 0b100000, 0b1110100, 0b1101000, 0b1100101, 0b100000, 0b1110011, 0b1100001,
+					0b1101101, 0b1100101, 0b100000, 0b1110100, 0b1101001, 0b1101101, 0b1100101, 0b100001 }).toString());
+		}
+		super.onEnable();
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!this.isToggled()) {
+			if (this.togglecmd) {
+				this.setToggled(true);
+				this.onEnable();
+			}
+			return;
+		}
+		if (this.isToggled() && !this.togglecmd) {
+			this.setToggled(false);
+			this.onDisable();
+			return;
+		}
+
+		if (mc.thePlayer.capabilities.isFlying) {
+			return;
+		}
+
+		delay++;
+		final int n = !mc.thePlayer.onGround ? (this.groundTicks = this.groundTicks + 1) : 0;
+		this.groundTicks = n;
+		if (mc.thePlayer.onGround && mc.thePlayer.moveForward > 0.0f && !mc.thePlayer.movementInput.jump
+				&& !mc.thePlayer.isOnLadder() && !mc.thePlayer.isInWater()) {
+
+			mc.thePlayer.motionY = 0.25f;
+			mc.thePlayer.posY -= 0.7f;
+		}
+		if (!mc.thePlayer.onGround && delay < 9 && !mc.thePlayer.movementInput.jump && !mc.thePlayer.isOnLadder()
+				&& !mc.thePlayer.isInWater()) {
+
+			mc.thePlayer.motionY = -0.450f;
+			mc.thePlayer.motionX = 0f;
+			mc.thePlayer.motionZ = 0f;
+			mc.thePlayer.jumpMovementFactor = 0.57f;
+			mc.thePlayer.posY -= 0.7f;
+		}
+		if (!mc.thePlayer.onGround && delay > 9 && !mc.thePlayer.movementInput.jump && !mc.thePlayer.isOnLadder()
+				&& !mc.thePlayer.isInWater()) {
+
+			mc.thePlayer.motionY = -0.450f;
+			mc.thePlayer.motionX = 0f;
+			mc.thePlayer.motionZ = 0f;
+			mc.thePlayer.jumpMovementFactor = 0.66f;
+			mc.thePlayer.posY -= 0.7f;
+		}
+
+		if (delay > 13) {
+			delay = 0;
+		}
+
+	}
+
+}

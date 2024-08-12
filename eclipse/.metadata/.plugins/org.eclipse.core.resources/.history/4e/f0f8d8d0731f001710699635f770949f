@@ -1,0 +1,107 @@
+package me.EaZy.client.modules.SpeedModes;
+
+import org.lwjgl.input.Keyboard;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.utils.MovementUtil;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.util.Timer;
+
+public class GommeBHop extends Module {
+
+	public static final int EaZy = 166;
+
+	public GommeBHop() {
+		super("GommeBHop", 0, "", Category.SPEED);
+	}
+
+	double strafetarget;
+
+	double strafewfloat;
+
+	private int speedTimer;
+
+	@Override
+	public void onDisable() {
+		Minecraft.thePlayer.speedInAir = 0.02f;
+		speedTimer = 0;
+		Timer.timerSpeed = 1;
+	}
+
+	@Override
+	public String getRenderName() {
+		if (GuiMainMenu.ersterapril) {
+			return "GammelHazenHüpfer";
+		} else {
+			return super.getRenderName();
+		}
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!isToggled()) {
+			if (togglecmd) {
+				setToggled(true);
+				onEnable();
+			}
+			return;
+		}
+		if (isToggled() && !togglecmd) {
+			setToggled(false);
+			onDisable();
+			return;
+		}
+
+		if (MovementUtil.areWalkingKeysDown()) {
+
+			if (Minecraft.thePlayer.onGround) {
+				Minecraft.thePlayer.jump();
+				Minecraft.thePlayer.motionY = 0.398;
+				Minecraft.thePlayer.speedInAir = 0.0203F; // 0.02 legit
+
+				speedTimer = 0;
+			} else {
+				if (Minecraft.thePlayer.isInWater()) {
+					return;
+				}
+				float s = 0.02F;
+				if (speedTimer == 1) {
+					s = 0.0210F;
+				} else if (speedTimer == 2) {
+					s = 0.0210F;
+				} else if (speedTimer == 3) {
+					s = 0.0210F;
+				} else if (speedTimer == 4) {
+					s = 0.0210F;
+				} else if (speedTimer == 5) {
+					s = 0.0210F;
+				} else if (speedTimer == 6) {
+					s = 0.021F;
+				} else if (speedTimer == 7) {
+					s = 0.0210F;
+				} else if (speedTimer == 8) {
+				}
+				if (Keyboard.isKeyDown(Minecraft.gameSettings.keyBindLeft.getKeyCode())
+						|| Keyboard.isKeyDown(Minecraft.gameSettings.keyBindRight.getKeyCode())) {
+					strafetarget = 4.4;
+				} else {
+					strafetarget = 4.49;
+				}
+
+				speedTimer++;
+
+				Minecraft.thePlayer.motionX /= 1.5;
+				Minecraft.thePlayer.motionZ /= 1.5;
+
+				Minecraft.thePlayer.speedInAir = (float) (s * strafetarget);
+				Timer.timerSpeed = 1F;
+
+			}
+		} else {
+			Minecraft.thePlayer.motionX /= 1.5;
+			Minecraft.thePlayer.motionZ /= 1.5;
+		}
+	}
+}

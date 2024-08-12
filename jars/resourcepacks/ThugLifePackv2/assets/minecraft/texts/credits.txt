@@ -1,0 +1,86 @@
+﻿[C]§f===============
+[C]§eMinecraft Credits
+[C]§f===============
+
+§7Created by:
+§f			Markus Persson
+
+§7Game design, programming and graphics:
+§f			Markus Persson
+§f			Jens Bergensten
+
+§7Music and sound:
+§f			Daniel Rosenfeld
+
+§7Ingame artwork and paintings:
+§f			Kristoffer Zetterstrand
+
+§7End game narrative:
+§f			Julian Gough
+
+§7Website development:
+§f			Tobias Möllstam
+§f			Daniel Frisk
+§f			Leonard Axelsson
+§f			Jens Bergensten
+§f			Markus Persson
+
+§7Logo and promotional artwork:
+§f			Markus Toivonen
+
+§7Business and administration:
+§f			Carl Manneh
+§f			Daniel Kaplan
+
+§7Director of fun:
+§f			Lydia Winters
+
+§7Number crunching and statistics:
+§f			Patrick Geuder
+
+§7Additional programming:
+§f			Paul Spooner
+§f			Ryan 'Scaevolus' Hitchman
+§f			Elliot 'Hippoplatimus' Segal
+
+§7Technologies used:
+§f			Java by Oracle
+§f			LWJGL by many talented people
+§f			"3d Sound System" by Paul Lamb
+§f			JOrbis by JCraft
+
+
+§7Music used:
+§f			Evening Breeze
+§f			Spring Charm
+§f			Morning Dew
+§f			Cliffs of Moher
+§f			The Fall of Enêxa-Lir
+§f			Beautiful Dreams
+§f			Wild Flower
+§f			Ode to the Fallen
+§f			Kingdom of Bards
+§f			Land of the Free
+§f			What the Forest Taught Me
+§f			Phantom and a Rose
+§f			Star of Darkness
+§f			Circle of Life
+§f			A Celtic Tale
+§f			Gaelic Earth
+§f			Prophecy
+§f			A Celtic Lore
+§f			Where I Belong
+§f			Dance with the Trees
+§f			Hail to the King
+§f			Wolf Blood
+§f			Evocation
+
+§f			all Music by AdrianvonZiegler
+
+§7Resource Pack creators:
+§f			JoeDeluxe
+§f			BlowJoe	
+
+
+
+§f"Twenty years from now you will be more disappointed by the things that you didn't do than by the ones you did do. So throw off the bowlines. Sail away from the safe harbor. Catch the trade winds in your sails. Explore. Dream. Discover." §7- Unknown

@@ -1,0 +1,174 @@
+package me.EaZy.client.gui;
+
+import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.ArrayList;
+
+import me.EaZy.client.main.Client;
+import me.EaZy.client.utils.RenderUtils;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+
+public class GuiChangelog extends GuiScreen {
+
+	private final GuiMainMenu prevMenu;
+
+	public GuiChangelog(final GuiMainMenu prevMultiplayerMenu) {
+		this.prevMenu = prevMultiplayerMenu;
+	}
+
+	public static ArrayList<String> changelogs = new ArrayList();
+	int updateTime = 0;
+	int scrollPos = 50;
+
+	@Override
+	public void updateScreen() {}
+
+	@Override
+	public void initGui() {
+		Keyboard.enableRepeatEvents(true);
+		this.buttonList.clear();
+		final ScaledResolution res = RenderUtils.newScaledResolution();
+		this.buttonList.add(new GuiButton(0, res.getScaledWidth() / 4, this.height / 4 + 120,
+				res.getScaledWidth() / 4 * 2, 20, "Cancel"));
+
+		loadChangelog();
+	}
+
+	public void loadChangelog() {
+		changelogs.clear();
+		new Thread("EaZy Changelog Getter") {
+
+			@Override
+			public void run() {
+				try {
+					final ArrayList<String> asd = new ArrayList<>();
+					String inputLine;
+					final URL changelog = new URL("oghdvd".substring(2, 3) + "edtuto".substring(2, 3)
+							+ "yqtaer".substring(2, 3) + "foptip".substring(2, 3) + "uw:wml".substring(2, 3)
+							+ "ao/pvt".substring(2, 3) + "nt/bea".substring(2, 3) + "finutl".substring(2, 3)
+							+ "pciwol".substring(2, 3) + "xa3mvh".substring(2, 3) + "ds6lcf".substring(2, 3)
+							+ "qt8mmu".substring(2, 3) + "yd2egn".substring(2, 3) + "tu2uut".substring(2, 3)
+							+ "ki3auh".substring(2, 3) + "vp_vyq".substring(2, 3) + "qq2wft".substring(2, 3)
+							+ "ca.sks".substring(2, 3) + "cjvyot".substring(2, 3) + "cnwsam".substring(2, 3)
+							+ "lselbl".substring(2, 3) + "debvsq".substring(2, 3) + "ft1fqf".substring(2, 3)
+							+ "qv8ljq".substring(2, 3) + "fa.onu".substring(2, 3) + "qnnnya".substring(2, 3)
+							+ "aviyav".substring(2, 3) + "lmtlet".substring(2, 3) + "lcrwgf".substring(2, 3)
+							+ "ewakob".substring(2, 3) + "xkdrpf".substring(2, 3) + "nkodgq".substring(2, 3)
+							+ "vl.djp".substring(2, 3) + "frngks".substring(2, 3) + "nleccm".substring(2, 3)
+							+ "nxtwqh".substring(2, 3) + "gn/job".substring(2, 3) + "umCfao".substring(2, 3)
+							+ "nqhcuq".substring(2, 3) + "bnaivl".substring(2, 3) + "kgnooq".substring(2, 3)
+							+ "dmgadn".substring(2, 3) + "bwevke".substring(2, 3) + "welgjx".substring(2, 3)
+							+ "nworck".substring(2, 3) + "qjgrxd".substring(2, 3) + "lb.bwy".substring(2, 3)
+							+ "pytojr".substring(2, 3) + "vdxvnq".substring(2, 3) + "mutotg".substring(2, 3));
+					final BufferedReader changelogInput = new BufferedReader(
+							new InputStreamReader(changelog.openStream()));
+					while ((inputLine = changelogInput.readLine()) != null) {
+						if (asd.size() > 12 || asd.contains(inputLine)) {
+							continue;
+						}
+						asd.add(inputLine);
+					}
+					changelogInput.close();
+					for (final String xD : asd) {
+						changelogs.add(xD);
+					}
+				} catch (final Exception changelog) {
+					// empty catch block
+				}
+			}
+		}.start();
+	}
+
+	@Override
+	protected void actionPerformed(final GuiButton clickedButton) {
+		if (clickedButton.enabled) {
+			if (clickedButton.id == 0) {
+				mc.displayGuiScreen(this.prevMenu);
+			}
+		}
+	}
+
+	@Override
+	protected void keyTyped(final char par1, final int par2) {
+		if (par2 == 28 || par2 == 156) {
+			this.actionPerformed((GuiButton) this.buttonList.get(0));
+		}
+	}
+
+	@Override
+	protected void mouseClicked(final int par1, final int par2, final int par3) throws IOException {
+		super.mouseClicked(par1, par2, par3);
+	}
+
+	@Override
+	public void drawScreen(final int par1, final int par2, final float par3) {
+		ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth,
+				Minecraft.getMinecraft().displayHeight);
+		++this.updateTime;
+		this.drawDefaultBackground();
+		
+		drawRect(0, 0, sr.getScaledWidth() * 2, 20, 0xb7111111);
+//		drawRect(0, 0, sr.getScaledWidth() * 2, 20, 0xb7111111);
+		// TODO Draw down rect
+		drawRect(0, sr.getScaledHeight(), sr.getScaledWidth() * 2, sr.getScaledHeight() - 20, 0xb7111111);
+//		drawRect(0, sr.getScaledHeight(), sr.getScaledWidth() * 2, sr.getScaledHeight() - 20, 0xb7111111);
+
+		drawRect(0, + 20, sr.getScaledWidth(), +21, Client.getColor(0l).getRGB());
+		drawRect(0,sr.getScaledHeight() - 20, sr.getScaledWidth(),sr.getScaledHeight() - 21, Client.getColor(0l).getRGB());
+		
+		
+		GL11.glPushMatrix();
+		GL11.glTranslated(sr.getScaledWidth() / 2 - 28 , 1, 42);
+		GL11.glScaled(2.5f, 2.5f, 42);
+		drawString(fontRendererObj, "Panel", 0, 0, 0xFFFFFFFF);
+		GL11.glPopMatrix();
+		
+		
+		this.drawCenteredString(this.fontRendererObj, "ChangeLog", this.width / 2, 20, 16777215);
+
+		if (this.updateTime >= 600 && changelogs.isEmpty()) {
+			loadChangelog();
+			updateTime = 0;
+		}
+
+		final ScaledResolution res = RenderUtils.newScaledResolution();
+		GL11.glPushMatrix();
+		try {
+			if (changelogs.isEmpty()) {
+				RenderUtils.drawRect(res.getScaledWidth() / 4, 50 - mc.fontRendererObj.FONT_HEIGHT - 3,
+						res.getScaledWidth() / 4 * 3, 50 - mc.fontRendererObj.FONT_HEIGHT + 7,
+						new Color(0, 0, 0, 110).getRGB());
+				this.drawCenteredString(this.fontRendererObj, "Loading...", res.getScaledWidth() / 2,
+						50 - Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT - 2, -1);
+			} else {
+				int offset = 5;
+				for (final String s : changelogs) {
+					final int height = 10 * offset;
+					RenderUtils.drawRect(res.getScaledWidth() / 4, height - mc.fontRendererObj.FONT_HEIGHT - 3,
+							res.getScaledWidth() / 4 * 3, height - mc.fontRendererObj.FONT_HEIGHT + 7,
+							new Color(0, 0, 0, 110).getRGB());
+					this.drawCenteredString(this.fontRendererObj, s, res.getScaledWidth() / 2,
+							height - Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT - 2, -1);
+					++offset;
+				}
+
+			}
+		} catch (final Exception offset) {
+			// empty catch block
+		}
+		GL11.glPopMatrix();
+
+		super.drawScreen(par1, par2, par3);
+	}
+}

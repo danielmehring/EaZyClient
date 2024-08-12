@@ -1,0 +1,121 @@
+package me.EaZy.client.modules.SpeedModes;
+
+import org.lwjgl.input.Keyboard;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.MathHelper;
+
+public class GommeRace extends Module {
+
+	public GommeRace() {
+		super("GommeRace", 0, "", Category.SPEED);
+	}
+
+	public int delay = 0;
+
+	@Override
+	public void onUpdate() {
+		if (!isToggled()) {
+			if (togglecmd) {
+				setToggled(true);
+				onEnable();
+			}
+			return;
+		}
+
+		// msg(Float.toString(Float.valueOf(MathHelper.wrapAngleTo180_float(mc.thePlayer.rotationYaw))));
+
+		if (isToggled() && !togglecmd) {
+			setToggled(false);
+			onDisable();
+			return;
+		}
+		if (Minecraft.thePlayer.capabilities.isFlying || Minecraft.thePlayer.isInWeb || Minecraft.thePlayer.isOnLadder()
+				|| Keyboard.isKeyDown(Minecraft.gameSettings.keyBindJump.getKeyCode())) {
+			return;
+		}
+
+		if (Minecraft.gameSettings.keyBindRight.pressed || Minecraft.gameSettings.keyBindLeft.pressed
+				|| Minecraft.gameSettings.keyBindForward.pressed || Minecraft.gameSettings.keyBindBack.pressed) {
+			if (!Minecraft.thePlayer.onGround) {
+				if (Minecraft.thePlayer.motionY < 0) {
+					delay++;
+
+					if (Minecraft.thePlayer.fallDistance <= 0.7029932) {
+						Minecraft.thePlayer.motionY *= 1.05f;
+					}
+
+				} else {
+
+					if (Float.valueOf(MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) < -85
+							&& Float.valueOf(MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) > -95
+							|| Float.valueOf(MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) > -175
+									&& Float.valueOf(
+											MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) > 175
+							|| Float.valueOf(MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) > 85
+									&& Float.valueOf(
+											MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) < 95
+							|| Float.valueOf(MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) > -5
+									&& Float.valueOf(
+											MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) < 5) {
+
+						 Minecraft.thePlayer.motionX /= 1.2;
+						 Minecraft.thePlayer.motionZ /= 1.2;
+						 Minecraft.thePlayer.jumpMovementFactor = 0.9f;
+
+					}
+
+					if (Float.valueOf(MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) > 95
+							&& Float.valueOf(MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) < 110
+							|| Float.valueOf(MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) > 70
+									&& Float.valueOf(
+											MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) < 85
+							|| Float.valueOf(MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) > 5
+									&& Float.valueOf(
+											MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) < 20
+							//
+							|| Float.valueOf(MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) > -20
+									&& Float.valueOf(
+											MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) < -5
+							//
+							|| Float.valueOf(MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) < -70
+									&& Float.valueOf(
+											MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) > -85
+							//
+							|| Float.valueOf(MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) < -95
+									&& Float.valueOf(
+											MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) > -110
+							//
+							|| Float.valueOf(MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) < -160
+									&& Float.valueOf(
+											MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) > -175
+							//
+							|| Float.valueOf(MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) > 160
+									&& Float.valueOf(
+											MathHelper.wrapAngleTo180_float(Minecraft.thePlayer.rotationYaw)) < 175) {
+
+						 Minecraft.thePlayer.motionX /= 1.2;
+						 Minecraft.thePlayer.motionZ /= 1.2;
+						 Minecraft.thePlayer.jumpMovementFactor = 0.9f;
+					}
+
+				}
+
+			} else {
+				delay = 0;
+				Minecraft.thePlayer.jump();
+				Minecraft.thePlayer.motionY = 0.391f;
+			}
+		}
+
+		if (Minecraft.thePlayer.onGround || Minecraft.thePlayer.isInWater() || Minecraft.thePlayer.isInWeb
+				|| Minecraft.thePlayer.isOnLadder()) {
+			Minecraft.thePlayer.fallDistance = 0;
+		}
+
+		super.onUpdate();
+	}
+
+}

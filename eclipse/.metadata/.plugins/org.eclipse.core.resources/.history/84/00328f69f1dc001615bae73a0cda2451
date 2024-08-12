@@ -1,0 +1,177 @@
+package me.EaZy.client.gui;
+
+import java.io.IOException;
+
+import me.EaZy.client.Configs;
+import me.EaZy.client.FileManager;
+import me.EaZy.client.main.Client;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.geom.Rectangle;
+
+public class GuiCookieClicker extends GuiScreen {
+
+	private final GuiScreen prevMenu;
+
+	private static final ResourceLocation cookie = new ResourceLocation("EaZy/cookie.png");
+	Rectangle rect = new Rectangle(157, 46, 168, 145);
+
+	private int saveDelay = 0;
+
+	public GuiCookieClicker(final GuiScreen prevMenu) {
+		this.prevMenu = prevMenu;
+	}
+
+	@Override
+	public void updateScreen() {
+		if (saveDelay < 300) {
+			saveDelay++;
+		} else {
+			FileManager.saveMain();
+			saveDelay = 0;
+		}
+	}
+
+	@Override
+	public void initGui() {
+		Keyboard.enableRepeatEvents(true);
+		this.buttonList.clear();
+		this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120 + 30, "Cancel"));
+	}
+
+	@Override
+	public void onGuiClosed() {
+		Keyboard.enableRepeatEvents(false);
+	}
+
+	@Override
+	protected void actionPerformed(final GuiButton clickedButton) {
+		if (clickedButton.enabled) {
+			if (clickedButton.id == 0) {
+				FileManager.saveMain();
+				mc.displayGuiScreen(this.prevMenu);
+			}
+		}
+	}
+
+	@Override
+	protected void keyTyped(final char par1, final int par2) {
+		if (par2 == 28 || par2 == 156) {
+			this.actionPerformed((GuiButton) this.buttonList.get(0));
+		}
+	}
+
+	@Override
+	protected void mouseClicked(final int x, final int y, final int button) throws IOException {
+
+		if (button == 0) {
+
+			if (rect.contains(x, y)) {
+				Configs.cookies++;
+			}
+
+		}
+
+		super.mouseClicked(x, y, button);
+	}
+
+	@Override
+	public void drawScreen(final int par1, final int par2, final float par3) {
+		ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth,
+				Minecraft.getMinecraft().displayHeight);
+		this.drawDefaultBackground();
+		
+		drawRect(0, 0, sr.getScaledWidth() * 2, 20, 0xb7111111);
+//		drawRect(0, 0, sr.getScaledWidth() * 2, 20, 0xb7111111);
+		// TODO Draw down rect
+		drawRect(0, sr.getScaledHeight(), sr.getScaledWidth() * 2, sr.getScaledHeight() - 20, 0xb7111111);
+//		drawRect(0, sr.getScaledHeight(), sr.getScaledWidth() * 2, sr.getScaledHeight() - 20, 0xb7111111);
+
+		drawRect(0, + 20, sr.getScaledWidth(), +21, Client.getColor(0l).getRGB());
+		drawRect(0,sr.getScaledHeight() - 20, sr.getScaledWidth(),sr.getScaledHeight() - 21, Client.getColor(0l).getRGB());
+		
+		
+		GL11.glPushMatrix();
+		GL11.glTranslated(sr.getScaledWidth() / 2 - 50 , 0, 42);
+		GL11.glScaled(2.5f, 2.5f, 42);
+		drawString(fontRendererObj, "Changelog", 0, 0, 0xFFFFFFFF);
+		GL11.glPopMatrix();
+		
+		
+		GL11.glPushMatrix();
+		GL11.glTranslated(width / 2 - 242, height / 2 - 170, 0);
+		
+		
+		if (!Mouse.isButtonDown(0)) {
+			GL11.glEnable(3042);
+			GL11.glBlendFunc(770, 771);
+			GL11.glColorMask(true, true, true, false);
+
+			GlStateManager.color(1.0f, 1.0f, 0.0f, 1.0f);
+
+			this.mc.getTextureManager().bindTexture(cookie);
+
+			GL11.glPushMatrix();
+			{
+				GL11.glScalef(0.75f, 0.75f, 0.75f);
+				this.drawTexturedModalRect(193, 30, 0, 0, 256, 256);
+
+			}
+			GL11.glPopMatrix();
+
+			GL11.glDisable(3042);
+		} else if (Mouse.isButtonDown(0) && rect.contains(par1, par2)) {
+			GL11.glEnable(3042);
+			GL11.glBlendFunc(770, 771);
+			GL11.glColorMask(true, true, true, false);
+
+			GlStateManager.color(1.0f, 1.0f, 0.0f, 1.0f);
+
+			this.mc.getTextureManager().bindTexture(cookie);
+
+			GL11.glPushMatrix();
+			{
+				GL11.glScalef(0.7f, 0.7f, 0.7f);
+				this.drawTexturedModalRect(215, 39, 0, 0, 256, 256);
+
+			}
+			GL11.glPopMatrix();
+
+			GL11.glDisable(3042);
+		} else {
+			GL11.glEnable(3042);
+			GL11.glBlendFunc(770, 771);
+			GL11.glColorMask(true, true, true, false);
+
+			GlStateManager.color(1.0f, 1.0f, 0.0f, 1.0f);
+
+			this.mc.getTextureManager().bindTexture(cookie);
+
+			GL11.glPushMatrix();
+			{
+				GL11.glScalef(0.75f, 0.75f, 0.75f);
+				this.drawTexturedModalRect(193, 30, 0, 0, 256, 256);
+
+			}
+			GL11.glPopMatrix();
+
+			GL11.glDisable(3042);
+		}
+		
+		GL11.glPopMatrix();
+
+		if (saveDelay < 10) {
+			this.drawString(this.fontRendererObj, "Omg you found me!!!!!! and btw im saving :^)", 2, this.height - 10, 0xffffffff);
+		}
+		this.drawCenteredString(this.fontRendererObj, "Cookies: " + Configs.cookies, this.width / 2, 30, 16777215);
+		super.drawScreen(par1, par2, par3);
+	}
+}

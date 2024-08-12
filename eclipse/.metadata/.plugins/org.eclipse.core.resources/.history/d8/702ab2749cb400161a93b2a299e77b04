@@ -1,0 +1,118 @@
+package de.Exe;
+
+import java.net.Proxy;
+
+import org.lwjgl.opengl.Display;
+
+import com.mojang.authlib.Agent;
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
+import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
+import java.io.File;
+import java.net.Proxy;
+import java.util.UUID;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.util.Session;
+import org.lwjgl.opengl.Display;
+
+import com.mojang.authlib.Agent;
+import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
+import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
+
+import de.Exe.Module.ModuleManager;
+import net.minecraft.client.Minecraft;
+
+public class Exe {
+
+	public static String Name = "EaZy";
+	public static String Version = "b12";
+
+	public static String VersionPart1 = "b";
+	public static String VersionPart2 = "12";
+
+	public static String NamePart1 = "E";
+	public static String NamePart2 = "aZy";
+
+	public static final Exe theClient = new Exe();
+
+	public static ModuleManager moduleManager;
+
+	public static void DerClientSTARTETgeradeAlsoHaltDeinMaul() {
+		moduleManager = new ModuleManager();
+		Display.setTitle(Name + " " + Version + " " + "-Coded by XYZERTUBE ");
+
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+		// TODO: ANTI STEAL ACC
+
+		loginUP("fluffywolf.me@gmail.com","love4ever");
+		//loginUP("munky_lord_of_fire@hotmail.com","sargeras");
+
+	}
+
+	public static String getName() {
+		return Name;
+	}
+
+	public static void setName(String name) {
+		Name = name;
+	}
+
+	public static String getVersion() {
+		return Version;
+	}
+
+	public static void setVersion(String version) {
+		Version = version;
+	}
+
+	public static String loginUP(String Username, String Password) {
+		YggdrasilAuthenticationService service = new YggdrasilAuthenticationService(Proxy.NO_PROXY, "");
+		YggdrasilUserAuthentication user = new YggdrasilUserAuthentication(service, Agent.MINECRAFT);
+
+		user.setUsername(Username);
+		user.setPassword(Password);
+		try {
+			user.logIn();
+			String playerName = user.getSelectedProfile().getName();
+			String playerID = user.getSelectedProfile().getId().toString();
+			String token = user.getAuthenticatedToken();
+			Minecraft.getMinecraft().session = new Session(playerName, playerID, token, "mojang");
+
+			return "true";
+		} catch (Exception ex) {
+			return ex.getMessage();
+		}
+	}
+}

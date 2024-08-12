@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="878.0" style="-fx-background-color: #2c3e50;" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.medox.altchecker.Main">
+    <children>
+        <JFXButton buttonType="RAISED" layoutX="309.0" layoutY="423.0" onAction="#check" prefHeight="41.0" prefWidth="104.0" ripplerFill="#137560" style="-fx-background-color: #16a085;" text="CHECK" textFill="WHITE" />
+        <JFXButton buttonType="RAISED" layoutX="588.0" layoutY="96.0" onAction="#openAltFileChooser" ripplerFill="#29333c" style="-fx-background-color: #2c3e50;" text="..." textFill="WHITE" />
+        <JFXTextField fx:id="altListTextField" editable="false" labelFloat="true" layoutX="237.0" layoutY="93.0" maxWidth="348.0" minWidth="185.0" prefHeight="30.0" prefWidth="348.0" promptText="Alts" style="-fx-text-fill: #ecf0f1;" />
+        <JFXTextField fx:id="proxyListTextField" editable="false" labelFloat="true" layoutX="237.0" layoutY="135.0" maxWidth="348.0" minWidth="185.0" prefHeight="30.0" prefWidth="348.0" promptText="Proxies" style="-fx-text-fill: #ecf0f1;" />
+        <JFXButton buttonType="RAISED" layoutX="588.0" layoutY="138.0" onAction="#openProxyFileChooser" ripplerFill="#29333c" style="-fx-background-color: #2c3e50;" text="..." textFill="WHITE" />
+        <Label layoutX="339.0" layoutY="23.0" text="Alt Checker" textFill="#bdc3c7">
+            <font>
+                <Font size="30.0" />
+            </font>
+        </Label>
+        <Label layoutX="194.0" layoutY="238.0" text="Working Alts:" textFill="#2ecc71" />
+        <Label layoutX="398.0" layoutY="238.0" text="Banned Alts:" textFill="#bf6d2c" />
+        <JFXTextArea fx:id="altArea" editable="false" focusColor="#141f40" layoutX="91.0" layoutY="263.0" maxWidth="530.0" minWidth="348.0" prefHeight="140.0" prefWidth="348.0" promptText="Working Alts.." style="-fx-text-fill: #7f8c8d;" stylesheets="@styles.css" unFocusColor="#0a2239" />
+        <JFXTextField fx:id="serverTextField" labelFloat="true" layoutX="361.0" layoutY="196.0" maxWidth="193.0" minWidth="193.0" prefHeight="30.0" prefWidth="193.0" promptText="Server IP" style="-fx-text-fill: #ecf0f1;" unFocusColor="#5d6079" />
+        <Label layoutX="275.0" layoutY="203.0" text="Server-IP: " textFill="#bdc3c7" />
+        <Label fx:id="workingAltsTextField" layoutX="285.0" layoutY="238.0" prefHeight="16.0" prefWidth="65.0" text="0" textFill="WHITE" />
+        <Label fx:id="bannedAltsTextField" layoutX="492.0" layoutY="238.0" prefHeight="16.0" prefWidth="65.0" text="0" textFill="WHITE" />
+        <JFXButton buttonType="RAISED" cancelButton="true" layoutX="828.0" layoutY="15.0" onAction="#close" prefHeight="24.0" prefWidth="23.0" style="-fx-background-color: #34495e;" text="X" textFill="#dddddd" />
+        <JFXButton buttonType="RAISED" cancelButton="true" layoutX="524.0" layoutY="28.0" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: #34495e;" text="VEIV" textFill="#dddddd" />
+        <JFXButton buttonType="RAISED" layoutX="460.0" layoutY="423.0" onAction="#stopChecking" prefHeight="41.0" prefWidth="104.0" ripplerFill="#137560" style="-fx-background-color: #16a085;" text="STOP" textFill="WHITE" />
+        <JFXTextArea layoutX="-63.0" layoutY="129.0" prefWidth="47.0" />
+        <Label layoutX="699.0" layoutY="456.0" text="THREADS" textFill="#f8f8f8" />
+        <Label layoutX="548.0" layoutY="238.0" text="Mojang Banned: " textFill="RED" />
+        <Label fx:id="mojangBannedAltsTextField" layoutX="663.0" layoutY="238.0" text="0" textFill="WHITE" />
+        <JFXTextArea fx:id="bannedAltArea" editable="false" focusColor="#141f40" layoutX="444.0" layoutY="263.0" maxWidth="530.0" minWidth="348.0" prefHeight="140.0" prefWidth="348.0" promptText="Banned Alts..." style="-fx-text-fill: #7f8c8d;" stylesheets="@styles.css" unFocusColor="#0a2239" />
+        <JFXButton layoutX="21.0" layoutY="137.0" mnemonicParsing="false" onAction="#checkProxys" prefHeight="26.0" prefWidth="202.0" ripplerFill="#2c3e50" text="Check Proxies" textFill="#1c9feb" />
+        <JFXSlider fx:id="slider" layoutX="603.0" layoutY="436.0" min="1.0" prefHeight="15.0" prefWidth="254.0" value="25.0" />
+      <JFXToggleButton fx:id="useProxy" layoutX="26.0" layoutY="407.0" text="Use Proxies " textFill="#b9b9b9" />
+      <Label layoutX="26.0" layoutY="456.0" prefHeight="16.0" prefWidth="193.0" text="Proxies are buggy at the Moment!" textFill="WHITE">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="655.0" layoutY="138.0" onAction="#howToCheckWithoutProxies" text="How to Check without Proxies" textFill="#0bade8" />
+    </children>
+</Pane>

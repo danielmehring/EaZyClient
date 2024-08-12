@@ -1,0 +1,39 @@
+package me.EaZy.client;
+
+public class Configs {
+	public static String commandPrefix = "-";
+	/**
+	 * Modes: 0 = Normal, 1 = Color Changing White, 2 = dark button
+	 */
+	public static int buttonMode = 2;
+	public static boolean blurredBackground = false;
+	public static boolean toggleSounds = false;
+	public static boolean noBob = true;
+	public static boolean smoothZoom = true;
+	public static boolean advancedHotbar = true;
+	public static boolean saveEaZyLogin = false;
+	public static boolean itemPhysics = false;
+	public static boolean betterChat = true;
+	public static boolean prefix = true;
+
+	public static String loginName = "";
+	public static String loginPassword = "";
+
+	public static long cookies = 0l;
+	public static long tritte = 0l;
+
+	public static String buttonModeName = "Dark";
+
+	public static void nextButtonMode() {
+		if (buttonMode == 0) {
+			buttonMode = 1;
+			buttonModeName = "Light";
+		} else if (buttonMode == 1) {
+			buttonMode = 2;
+			buttonModeName = "Dark";
+		} else if (buttonMode == 2) {
+			buttonMode = 0;
+			buttonModeName = "Minecraft";
+		}
+	}
+}

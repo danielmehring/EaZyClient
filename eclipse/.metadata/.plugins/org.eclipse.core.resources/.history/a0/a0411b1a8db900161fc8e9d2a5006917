@@ -1,0 +1,41 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import net.minecraft.block.BlockAir;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.util.BlockPos;
+
+public class NCPGlide extends Module {
+
+	public NCPGlide() {
+		super("NCPGlide", Keyboard.KEY_G, Category.Movement);
+	}
+
+	int damaged;
+
+	public void onEnable() {
+		mc.thePlayer.jump();
+	}
+
+	public void onPreUpdate() {
+		if (!this.getState())
+			return;
+		
+		if(mc.theWorld.getBlockState(new BlockPos(mc.thePlayer.posX, mc.thePlayer.posY - 0.1, mc.thePlayer.posX)).getBlock() instanceof BlockAir){
+			
+		}else{
+			mc.thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer.C04PacketPlayerPosition(mc.thePlayer.posX,mc.thePlayer.posY + 0.049, mc.thePlayer.posZ, false));
+            mc.thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer.C04PacketPlayerPosition(mc.thePlayer.posX,mc.thePlayer.posY, mc.thePlayer.posZ, false));
+            mc.thePlayer.jump();
+		}
+
+	}
+
+	public void onDisble() {
+		
+	}
+
+}

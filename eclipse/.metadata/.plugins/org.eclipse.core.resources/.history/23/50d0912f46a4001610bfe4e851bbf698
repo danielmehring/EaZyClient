@@ -1,0 +1,94 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import net.minecraft.util.Timer;
+
+public class RewiLongJump extends Module{
+
+	public RewiLongJump() {
+		super("RewiLangerSprung", Keyboard.KEY_NUMPAD3, Category.Movement);
+		// TODO Auto-generated constructor stub
+	}
+	public void onEnable()
+	  {
+	   
+	  }
+	  
+	  public void onDisable()
+	  {
+	    
+	    Timer.timerSpeed = 1.0f;
+	  }
+	  
+	  @EventTarget
+	  public void onMotion(EventMove event)
+	  {
+	    if (this.speed)
+	    {
+	      if (mc.thePlayer.onGround) {
+	        this.cock.reset();
+	      }
+	      if (roundToPlace(mc.thePlayer.posY - (int)mc.thePlayer.posY, 3) == roundToPlace(0.41D, 3)) {
+	        mc.thePlayer.motionY = 0.0D;
+	      }
+	      if ((mc.thePlayer.moveStrafing <= 0.0F) && (mc.thePlayer.moveForward <= 0.0F)) {
+	        this.stage = 1;
+	      }
+	      if (round(mc.thePlayer.posY - (int)mc.thePlayer.posY, 3) == round(0.943D, 3)) {
+	        mc.thePlayer.motionY = 0.0D;
+	      }
+	      if ((this.stage == 1) && ((mc.thePlayer.moveForward != 0.0F) || (mc.thePlayer.moveStrafing != 0.0F)))
+	      {
+	        this.stage = 2;
+	        this.moveSpeed = (4.515D * getBaseMoveSpeed() - 0.01D);
+	      }
+	      else if (this.stage == 2)
+	      {
+	        this.stage = 3;
+	        if (!Boolean.valueOf(this.mini.getValue()).booleanValue()) {
+	          mc.thePlayer.motionY = 0.424D;
+	        }
+	        event.y = 0.424D;
+	        this.moveSpeed *= 2.149802D;
+	      }
+	      else if (this.stage == 3)
+	      {
+	        this.stage = 4;
+	        double difference = 0.66D * (this.lastDist - getBaseMoveSpeed());
+	        this.moveSpeed = (this.lastDist - difference);
+	      }
+	      else
+	      {
+	        if ((mc.theWorld.getCollidingBoundingBoxes(mc.thePlayer, mc.thePlayer.boundingBox.offset(0.0D, mc.thePlayer.motionY, 0.0D)).size() > 0) || (mc.thePlayer.isCollidedVertically)) {
+	          this.stage = 1;
+	        }
+	        this.moveSpeed = (this.lastDist - this.lastDist / 159.0D);
+	      }
+	      this.moveSpeed = Math.max(this.moveSpeed, getBaseMoveSpeed());
+	      float forward = mc.thePlayer.movementInput.moveForward;
+	      float strafe = mc.thePlayer.movementInput.moveStrafe;
+	      float yaw = mc.thePlayer.rotationYaw;
+	      if ((forward == 0.0F) && (strafe == 0.0F))
+	      {
+	        event.x = 0.0D;
+	        event.z = 0.0D;
+	      }
+	      else if (forward != 0.0F)
+	      {
+	        if (strafe >= 1.0F)
+	        {
+	          yaw += (forward > 0.0F ? -45 : 45);
+	          strafe = 0.0F;
+	        }
+	        else if (strafe <= -1.0F)
+	        {
+	          yaw += (forward > 0.0F ? 45 : -45);
+	          strafe = 0.0F;
+	        }
+	        if (forward > 0.0F) {
+	          forward = 1.0F
+
+}

@@ -1,0 +1,15 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+
+public class GTAKill extends Module{
+
+	public GTAKill() {
+		super("KillBlur", Keyboard.KEY_RSHIFT, Category.Render);
+		
+	}
+
+}

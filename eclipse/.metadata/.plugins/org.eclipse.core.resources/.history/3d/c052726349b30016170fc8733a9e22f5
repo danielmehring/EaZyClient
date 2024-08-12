@@ -1,0 +1,48 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import net.minecraft.network.play.client.C00PacketKeepAlive;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.util.Timer;
+
+public class GommeSpeed extends Module {
+
+	public GommeSpeed() {
+		super("GommeSpeed", Keyboard.KEY_X, Category.Movement);
+
+	}
+
+	double Ground;
+
+	int delay;
+	int delay2;
+
+	public void onPreUpdate() {
+		if (!this.getState())
+			return;
+
+		// mc.thePlayer.setSprinting(true);
+		// mc.gameSettings.keyBindForward.pressed = true;
+
+		delay++;
+
+		if (mc.thePlayer.onGround && !(mc.thePlayer.motionX == 0) && !(mc.thePlayer.motionZ == 0)) {
+			mc.thePlayer.jump();
+		}
+
+		if (!mc.thePlayer.onGround) {
+			mc.thePlayer.setSprinting(true);
+			
+			mc.thePlayer.jumpMovementFactor = 0.153f;
+		}
+
+	}
+
+	public void onDisable() {
+		Timer.timerSpeed = 1.0f;
+
+	}
+}

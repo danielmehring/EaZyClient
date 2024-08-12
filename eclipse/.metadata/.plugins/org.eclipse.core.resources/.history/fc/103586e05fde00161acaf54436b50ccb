@@ -1,0 +1,52 @@
+package me.EaZy.client.modules.SpeedModes;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+
+import net.minecraft.client.Minecraft;
+
+public class GommeBHop extends Module {
+
+	public GommeBHop() {
+		super("GommeBHop", 0, "", Category.SPEED);
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!this.isToggled()) {
+			if (this.togglecmd) {
+				this.setToggled(true);
+				this.onEnable();
+			}
+			return;
+		}
+		if (this.isToggled() && !this.togglecmd) {
+			this.setToggled(false);
+			this.onDisable();
+			return;
+		}
+		
+		mc.gameSettings.keyBindRight.pressed = false;
+		mc.gameSettings.keyBindLeft.pressed = false;
+		
+		if (Minecraft.thePlayer.isInWeb | Minecraft.thePlayer.isInWater() | mc.gameSettings.keyBindJump.pressed)
+			return;
+		if (Minecraft.thePlayer.onGround
+				&& (Minecraft.thePlayer.moveForward != 0.0f || Minecraft.thePlayer.moveStrafing != 0.0f))
+			Minecraft.thePlayer.jump();
+		if (!Minecraft.thePlayer.onGround && !Minecraft.thePlayer.isOnLadder()) {
+			Minecraft.thePlayer.motionX /= 1.2;
+			Minecraft.thePlayer.motionZ /= 1.2;
+			if (Minecraft.thePlayer.motionY > 0) {
+				Minecraft.thePlayer.jumpMovementFactor = (float) (0.05 * 2);
+				Minecraft.thePlayer.motionY *= 1.05;
+			} else {
+				Minecraft.thePlayer.jumpMovementFactor = (float) (0.044 * 2);
+				if(mc.thePlayer.fallDistance < 2)
+					Minecraft.thePlayer.motionY /= 1.15;
+			}
+		}
+
+	}
+
+}

@@ -1,0 +1,107 @@
+package me.EaZy.client.modules.SpeedModes;
+
+import com.darkmagician6.eventapi.EventManager;
+import com.darkmagician6.eventapi.EventTarget;
+
+import de.Hero.settings.Setting;
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.events.EventMovePlayer;
+import me.EaZy.client.events.EventPostMotionUpdates;
+import me.EaZy.client.main.Client;
+import me.EaZy.client.utils.PlayerUtil;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Timer;
+
+public class GommeOG extends Module {
+
+	public static GommeOG mod;
+
+	public static final int EaZy = 2044;
+
+	public void lambdaStuff() {
+		java.util.Arrays.asList().stream().filter((m) -> (false)).forEachOrdered((m) -> {
+		});
+	}
+
+	public GommeOG() {
+		super("GommeOG", 0, "", Category.SPEED);
+		mod = this;
+	}
+
+	private double GraundROFL;
+
+	@Override
+	public void onEnable() {
+		EventManager.register(this);
+		Timer.timerSpeed = 1.0f;
+		GraundROFL = Minecraft.thePlayer.posY;
+		super.onEnable();
+	}
+
+	@Override
+	public String getRenderName() {
+		if (GuiMainMenu.ersterapril) {
+			return "GammelBoden";
+		} else {
+			return super.getRenderName();
+		}
+	}
+
+	int i;
+
+	@Override
+	public void onDisable() {
+		EventManager.unregister(this);
+		Timer.timerSpeed = 1.0f;
+		super.onDisable();
+	}
+
+	public EventTarget onPostMotionUpdates(final EventPostMotionUpdates event) {
+
+		return null;
+	}
+
+	public EventTarget onPlayerMove(final EventMovePlayer e) {
+		if(i == 1) {
+			e.x = 0;
+			e.z = 0;
+		}
+		return null;
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!isToggled()) {
+			if (togglecmd) {
+				setToggled(true);
+				onEnable();
+			}
+			return;
+		}
+		if (isToggled() && !togglecmd) {
+			setToggled(false);
+			onDisable();
+			return;
+		}
+		if (mc.thePlayer.onGround) {
+			++i;
+			if (i == 0) {
+				final float var1 = mc.thePlayer.rotationYaw * 0.017453292F;
+				mc.thePlayer.motionX -= MathHelper.sin(var1) * 0.2F;
+				mc.thePlayer.motionZ += MathHelper.cos(var1) * 0.2F;
+			}
+
+			if (i == 1) {
+				mc.thePlayer.motionY += 0.179F;
+			}
+		} else {
+			i = 0;
+			mc.thePlayer.motionY -= 0.179F;
+		}
+	}
+
+}

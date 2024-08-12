@@ -1,0 +1,73 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import net.minecraft.util.Timer;
+
+public class TCCGlide extends Module {
+
+	public TCCGlide() {
+		super("TCCGlide", Keyboard.KEY_PERIOD, Category.Movement);
+
+	}
+
+	int delay;
+	double startposy;
+
+	public void onPreUpdate() {
+		if (!this.getState())
+			return;
+
+		if (mc.thePlayer.motionY < 0)
+			delay++;
+
+		if (!mc.thePlayer.onGround) {
+			mc.thePlayer.cameraYaw = 0.02f;
+
+			mc.thePlayer.motionX = 0f;
+			mc.thePlayer.motionZ = 0f;
+			mc.thePlayer.jumpMovementFactor = 0.275f;
+
+		}
+
+		if (mc.thePlayer.fallDistance > 0.8F && !mc.thePlayer.isInWeb && !mc.thePlayer.isInWater()
+				&& !mc.thePlayer.movementInput.sneak && delay < 9) {
+			mc.thePlayer.motionY = 0.1f;
+			mc.thePlayer.fallDistance = 0;
+
+		}
+		if (!mc.thePlayer.isInWeb && !mc.thePlayer.isInWater() && !mc.thePlayer.movementInput.sneak && delay > 9
+				&& mc.thePlayer.fallDistance > 0.8) {
+			mc.thePlayer.motionY = 0.2f;
+			mc.thePlayer.fallDistance = 0;
+
+		}
+
+		if (delay > 11)
+			delay = 0;
+
+		if (mc.thePlayer.isInWater() && mc.thePlayer.isInWeb && mc.thePlayer.isOnLadder()) {
+
+		}
+
+		if (mc.thePlayer.onGround || mc.thePlayer.isInWater() || mc.thePlayer.isInWeb || mc.thePlayer.isOnLadder()) {
+			mc.thePlayer.fallDistance = 0;
+
+		}
+		// if(mc.thePlayer.onGround && !mc.thePlayer.isInWeb &&
+		// !mc.thePlayer.isInWater() && !mc.thePlayer.isCollidedHorizontally)
+		// startposy = mc.thePlayer.posY;
+
+	}
+
+	public void onDisable() {
+
+	}
+
+	public void onEnable() {
+
+	}
+
+}

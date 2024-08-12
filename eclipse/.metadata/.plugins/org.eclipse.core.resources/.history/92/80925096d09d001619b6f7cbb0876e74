@@ -1,0 +1,25 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+
+public class GommeGlide extends Module{
+
+	public GommeGlide() {
+		super("GommeGlide", Keyboard.KEY_F, Category.Movement);
+	}
+	public void onPreUpdate(){
+		if(!this.getState())
+			return;
+		
+		
+		mc.thePlayer.motionY = -0.2f;
+		
+		
+//		mc.thePlayer.motionY = -5f;
+		
+	}
+}
+

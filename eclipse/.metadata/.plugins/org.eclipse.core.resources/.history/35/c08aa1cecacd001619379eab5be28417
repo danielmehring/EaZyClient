@@ -1,0 +1,63 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+import org.omg.CORBA.PRIVATE_MEMBER;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import net.minecraft.block.BlockLiquid;
+import net.minecraft.util.BlockPos;
+
+public class AACJesus extends Module {
+	private int X88;
+	private int Y88;
+	private int Z88;
+
+	public AACJesus() {
+		super("AACJesus", Keyboard.KEY_J, Category.Movement);
+
+	}
+
+	public void onUpdate() {
+		if (!this.getState())
+			return;
+		
+		
+		
+		if (mc.thePlayer.onGround && mc.thePlayer.isInWater()) {
+			mc.thePlayer.motionX *= 1.11f;
+			mc.thePlayer.motionZ *= 1.11f;
+		}
+
+		if (!mc.thePlayer.onGround) {
+
+			if (mc.thePlayer.isInWater()) {
+				mc.thePlayer.motionX *= 1.0138F;
+				mc.thePlayer.motionZ *= 1.0138F;
+			}
+
+			if (mc.theWorld.getBlockState(new BlockPos(mc.thePlayer.posX, mc.thePlayer.posY - 0.2, mc.thePlayer.posZ))
+					.getBlock() instanceof BlockLiquid) {
+				if (!mc.thePlayer.onGround) {
+					mc.thePlayer.motionX = 0;
+					mc.thePlayer.motionZ = 0;
+					mc.thePlayer.jumpMovementFactor = 0.21f;
+					mc.thePlayer.setSprinting(false);
+					;
+				}
+			}
+			
+		
+			if (mc.thePlayer.isInWater()) {
+				mc.thePlayer.motionY = 0.27f;
+
+			}
+			// aac is not TopKEK ;c
+
+			if (mc.thePlayer.isSneaking())
+				mc.thePlayer.motionY = -0.3F;
+
+		}
+
+	}
+}

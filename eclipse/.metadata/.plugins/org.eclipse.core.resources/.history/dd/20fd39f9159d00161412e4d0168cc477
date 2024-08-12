@@ -1,0 +1,22 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+
+public class SpinnenBot extends Module{
+
+	public SpinnenBot() {
+		super("SachemalSpinnstDu?", Keyboard.KEY_F10, Category.Player);
+	}
+	
+	int delay;
+	
+	public void onPreUpdate(){
+		if(!this.getState())
+			return;
+				mc.thePlayer.prevRotationYaw = 0f;
+		
+	}	
+}

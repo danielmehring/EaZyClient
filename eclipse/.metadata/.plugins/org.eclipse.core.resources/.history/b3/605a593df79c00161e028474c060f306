@@ -1,0 +1,46 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+
+public class AACBhop extends Module{
+
+	public AACBhop() {
+		super("AACBunnyHop", Keyboard.KEY_NONE, Category.Movement);	
+	}
+	public void onUpdate(){
+		if(!this.getState())
+			return;
+		
+		
+		if(mc.thePlayer.onGround || mc.thePlayer.isInWater() || mc.thePlayer.isInWeb || mc.thePlayer.isOnLadder()){
+			mc.thePlayer.fallDistance = 0;
+		
+		}
+		
+		
+		
+		
+		
+		
+		
+		if( !(mc.thePlayer.motionZ == 0f) && !(mc.thePlayer.motionX == 0f) && mc.thePlayer.onGround && !mc.thePlayer.isInWater() && !mc.thePlayer.isInWeb && !mc.thePlayer.movementInput.jump){
+			mc.thePlayer.jump();
+			mc.thePlayer.fallDistance = 0;
+		}
+		if(mc.thePlayer.isAirBorne && mc.thePlayer.fallDistance > 0 && !(mc.thePlayer.fallDistance > 2)){
+			mc.thePlayer.motionX = 0f;
+			mc.thePlayer.motionZ = 0f;
+			mc.thePlayer.jumpMovementFactor = 0.4f;
+		}
+		if(mc.thePlayer.isAirBorne && mc.thePlayer.fallDistance > 2){
+			mc.thePlayer.motionX = 0f;
+			mc.thePlayer.motionZ = 0f;
+			mc.thePlayer.jumpMovementFactor = 0.3f;
+		}
+		
+		
+	}
+}

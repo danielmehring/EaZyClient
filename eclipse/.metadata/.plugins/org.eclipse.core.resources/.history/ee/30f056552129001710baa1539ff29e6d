@@ -1,0 +1,85 @@
+package me.EaZy.client.modules.SpeedModes;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.fields;
+import me.EaZy.client.utils.MovementUtil;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Timer;
+
+public class OldJump extends Module {
+
+public static OldJump mod;
+
+
+    public static final int EaZy = 177;
+
+    public void lambdaStuff() {
+        java.util.Arrays.asList().stream().filter((m) -> (false)).forEachOrdered((m) -> {
+        });
+    }
+
+    public OldJump() {
+        super("OldJump", 0, "", Category.SPEED);
+        mod = this;
+    }
+
+    @Override
+    public String getRenderName() {
+        if (GuiMainMenu.ersterapril) {
+            return "OldJump";
+        } else {
+            return super.getRenderName();
+        }
+    }
+
+    @Override
+    public void onUpdate() {
+        if (!isToggled()) {
+            if (togglecmd) {
+                setToggled(true);
+                onEnable();
+            }
+            return;
+        }
+        if (isToggled() && !togglecmd) {
+            setToggled(false);
+            onDisable();
+            return;
+        }
+        
+        if(mc.thePlayer.onGround) {
+        	Timer.timerSpeed = 1;
+        }
+        
+        if (Minecraft.thePlayer.capabilities.isFlying || !MovementUtil.areWalkingKeysDown()) {
+            return;
+        }
+        
+        fields.i2++;
+
+        if (Minecraft.thePlayer.onGround) {
+        	final float var1 = mc.thePlayer.rotationYaw * 0.017453292F;
+        	mc.thePlayer.motionX -= MathHelper.sin(var1) * 0.209F;
+        	mc.thePlayer.motionZ += MathHelper.cos(var1) * 0.209F;
+            mc.thePlayer.motionY = 0.099;
+        } else {
+        	if(mc.thePlayer.fallDistance > 0.1)
+        		return;
+        	mc.thePlayer.motionX = 0;
+        	mc.thePlayer.motionZ = 0;
+        	if(fields.i2 > 200) {
+        		mc.thePlayer.jumpMovementFactor = mc.thePlayer.ticksExisted % 2 == 0 ? 0.326f : 0.29f;
+        		if(fields.i2 > 205) {
+        			fields.i2 = 0;
+        		}
+        	} else 
+        		mc.thePlayer.jumpMovementFactor = mc.thePlayer.ticksExisted % 2 == 0 ? 0.346f : 0.306f;
+           
+        }
+        super.onUpdate();
+    }
+
+}

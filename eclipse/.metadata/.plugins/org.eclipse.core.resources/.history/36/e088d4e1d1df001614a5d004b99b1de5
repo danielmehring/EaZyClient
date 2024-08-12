@@ -1,0 +1,130 @@
+package me.EaZy.client.modules;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.modules.YesCheat.Mode;
+import me.EaZy.client.utils.BlockUtils;
+import me.EaZy.client.utils.EntityUtils;
+
+import net.minecraft.block.BlockAir;
+import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Timer;
+import net.minecraft.util.Vec3;
+
+public class Tower extends Module {
+	public Tower() {
+		super("Tower", 46, "", Category.WORLD, "Build up very fast.");
+	}
+
+	boolean NicoWollteDasNicht;
+
+	public boolean isPerformingJump = false;
+	public int delay = 0;
+	public static int jumpDelay = 1;
+
+	@Override
+	public void onUpdate() {
+		if (!this.isToggled()) {
+			if (this.togglecmd) {
+				this.setToggled(true);
+				this.onEnable();
+			}
+			return;
+		}
+		if (this.isToggled() && !this.togglecmd) {
+			this.setToggled(false);
+			this.onDisable();
+			return;
+		}
+		
+		if(YesCheat.mode != Mode.Gomme){
+			NicoWollteDasNicht = true;
+		}else{
+			if (mc.thePlayer.movementInput.jump) {
+				NicoWollteDasNicht = true;
+			}
+		}
+		
+
+
+		if (NicoWollteDasNicht) {
+			if (this.delay > 0) {
+				--this.delay;
+			}
+			if (Minecraft.thePlayer.getCurrentEquippedItem() != null
+					&& Minecraft.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemBlock
+					&& !Minecraft.thePlayer.movementInput.sneak) {
+				BlockPos floorPos;
+				if (YesCheat.enabled && YesCheat.mode == Mode.Gomme) {
+					if (Minecraft.thePlayer.onGround)
+						Minecraft.thePlayer.jump();
+					if (!Minecraft.thePlayer.onGround && !Minecraft.thePlayer.isOnLadder()) {
+						if (Minecraft.thePlayer.motionY > 0) {
+							Minecraft.thePlayer.motionY *= 1.15;
+						} else {
+							Minecraft.thePlayer.motionY /= 1.15;
+						}
+					}
+					if (BlockUtils.getBlock(floorPos = EntityUtils
+							.getBlockPosReallyBeneathEntity(Minecraft.thePlayer)) instanceof BlockAir) {
+						Minecraft.thePlayer.swingItem();
+						Minecraft.thePlayer.sendQueue.netManager.sendPacket(new C03PacketPlayer.C05PacketPlayerLook(
+								Minecraft.thePlayer.rotationYaw, 90.0f, Minecraft.thePlayer.onGround));
+						mc.playerController.placeBlock(Minecraft.thePlayer, Minecraft.theWorld,
+								Minecraft.thePlayer.inventory.getCurrentItem(), floorPos.offsetDown(), EnumFacing.UP,
+								new Vec3(floorPos.getX(), floorPos.getY(), floorPos.getZ()));
+					}
+				} else {
+					if (Minecraft.thePlayer.onGround && this.delay <= 0) {
+						if (!YesCheat.enabled) {
+							Minecraft.thePlayer.setPosition(Minecraft.thePlayer.posX, Minecraft.thePlayer.posY + 0.5,
+									Minecraft.thePlayer.posZ);
+							Minecraft.thePlayer.motionY = 0.5;
+							this.isPerformingJump = true;
+						} else {
+							Timer.timerSpeed = 1.6f;
+							Minecraft.thePlayer.jump();
+							this.isPerformingJump = true;
+						}
+					}
+					if (this.isPerformingJump && this.delay <= 0 && BlockUtils.getBlock(floorPos = EntityUtils
+							.getBlockPosReallyBeneathEntity(Minecraft.thePlayer)) instanceof BlockAir) {
+						Minecraft.thePlayer.swingItem();
+						Minecraft.thePlayer.sendQueue.netManager.sendPacket(
+								new C03PacketPlayer.C05PacketPlayerLook(Minecraft.thePlayer.rotationYaw, 90.0f, true));
+						mc.playerController.placeBlock(Minecraft.thePlayer, Minecraft.theWorld,
+								Minecraft.thePlayer.inventory.getCurrentItem(), floorPos.offsetDown(), EnumFacing.UP,
+								new Vec3(floorPos.getX(), floorPos.getY(), floorPos.getZ()));
+						this.isPerformingJump = false;
+						Timer.timerSpeed = 1.0f;
+						Minecraft.thePlayer.motionY = -0.10000000149011612;
+						if (YesCheat.enabled)
+							this.delay = Tower.jumpDelay;
+					}
+				}
+			} else if (Minecraft.thePlayer.getCurrentEquippedItem() != null
+					&& Minecraft.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemBlock
+					&& Minecraft.thePlayer.movementInput.sneak)
+				Timer.timerSpeed = 1.0f;
+			super.onUpdate();
+		}
+	}
+
+	@Override
+	public void onEnable() {
+		this.delay = 0;
+		this.isPerformingJump = false;
+		super.onEnable();
+	}
+
+	@Override
+	public void onDisable() {
+		NicoWollteDasNicht = false;
+		Timer.timerSpeed = 1.0f;
+		super.onDisable();
+	}
+}

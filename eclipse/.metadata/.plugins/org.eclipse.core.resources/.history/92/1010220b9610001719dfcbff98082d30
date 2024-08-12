@@ -1,0 +1,43 @@
+
+package me.EaZy.client.modules;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+
+import net.minecraft.client.Minecraft;
+
+public class Fullbright extends Module {
+
+	public Fullbright() {
+		super("Fullbright", 0, "bright", Category.RENDER, "Makes all brigther.");
+	}
+
+	@Override
+	public void onEnable() {
+		Minecraft.gameSettings.gammaSetting = 1000.0f;
+		super.onEnable();
+	}
+
+	@Override
+	public void onDisable() {
+		Minecraft.gameSettings.gammaSetting = 1.0f;
+		super.onDisable();
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!isToggled()) {
+			if (togglecmd) {
+				setToggled(true);
+				onEnable();
+			}
+			return;
+		}
+		if (isToggled() && !togglecmd) {
+			setToggled(false);
+			onDisable();
+			return;
+		}
+		super.onUpdate();
+	}
+}

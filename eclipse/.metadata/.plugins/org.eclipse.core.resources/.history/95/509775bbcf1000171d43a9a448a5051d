@@ -1,0 +1,148 @@
+package me.EaZy.client.modules;
+
+import com.darkmagician6.eventapi.EventManager;
+import com.darkmagician6.eventapi.EventTarget;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.events.EventMovePlayer;
+import me.EaZy.client.events.EventPostMotionUpdates;
+import me.EaZy.client.events.EventReceivePacket;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.play.server.S08PacketPlayerPosLook;
+
+public class AAATestModule extends Module {
+	public AAATestModule() {
+		super("AAATestModule", 0, "", Category.HIDDEN, "Description not set.");
+	}
+
+	@Override
+	public String getRenderName() {
+		return "AAATestModule";
+	}
+
+	public static int i1 = 0;
+	public static int i2 = 0;
+	public static float f1 = 0;
+	public static float f2 = 0;
+	public static boolean b1 = false;
+	public static boolean b2 = false;
+
+	public EventTarget onMove(final EventMovePlayer e) {
+
+		if (b1) {
+			e.x *= 1.0;
+			e.z *= 1.0;
+			b1 = false;
+		}
+
+		return null;
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!isToggled()) {
+			if (togglecmd) {
+				setToggled(true);
+				onEnable();
+			}
+			return;
+		}
+		if (isToggled() && !togglecmd) {
+			setToggled(false);
+			onDisable();
+			return;
+		}
+		Minecraft.gameSettings.keyBindForward.pressed = true;
+		Minecraft.gameSettings.keyBindSprint.pressed = true;
+
+		Minecraft.thePlayer.setSprinting(true);
+
+		if (Minecraft.thePlayer.fallDistance > 0) {
+			b1 = true;
+			Minecraft.thePlayer.motionY = 0.099;
+			Minecraft.thePlayer.fallDistance = 0;
+		}
+		if (i1 == 1) {
+			Minecraft.thePlayer.motionX = 0.3;
+		}
+
+		if (i1 == 2) {
+			Minecraft.thePlayer.motionX = 0.4;
+		}
+
+		if (i1 == 3) {
+			Minecraft.thePlayer.motionX = 0.4;
+		}
+
+		if (i1 > 3 && i1 < 7) {
+			Minecraft.thePlayer.motionX = 0.44;
+		}
+
+		if (i1 >= 6) {
+
+			Minecraft.gameSettings.keyBindForward.pressed = true;
+			Minecraft.gameSettings.keyBindSprint.pressed = true;
+		}
+
+		i1++;
+
+		super.onUpdate();
+	}
+
+	public EventTarget onSendMU(final EventPostMotionUpdates e) {
+		if (i1 <= 9) {
+			// Minecraft.thePlayer.posX = f1;
+			// Minecraft.thePlayer.posZ = f2;
+		}
+		return null;
+	}
+
+	@Override
+	public void onRender() {
+		if (!isToggled()) {
+			return;
+		}
+		super.onRender();
+	}
+
+	@Override
+	public void onEnable() {
+		EventManager.register(this);
+		msg("§2Test-Module enaled!");
+		// if (Keyboard.isKeyDown(Keyboard.KEY_RCONTROL)) {
+		// fakePlayer = new EntityOtherPlayerMP(Minecraft.theWorld,
+		// Minecraft.thePlayer.getGameProfile());
+		// fakePlayer.clonePlayer(Minecraft.thePlayer, true);
+		// fakePlayer.copyLocationAndAnglesFrom(Minecraft.thePlayer);
+		// fakePlayer.rotationYawHead = Minecraft.thePlayer.rotationYawHead;
+		// Minecraft.theWorld.addEntityToWorld(-1337, fakePlayer);
+		// }
+		super.onEnable();
+		if (Minecraft.thePlayer.onGround) {
+			Minecraft.thePlayer.jump();
+		}
+
+		f1 = (float) Minecraft.thePlayer.posX;
+		f2 = (float) Minecraft.thePlayer.posZ;
+	}
+
+	public EventTarget sserverpacekts(final EventReceivePacket e) {
+		if (e.getPacket() instanceof S08PacketPlayerPosLook) {
+			b1 = true;
+		}
+		return null;
+	}
+
+	@Override
+	public void onDisable() {
+		i1 = 0;
+
+		Minecraft.thePlayer.speedInAir = 0.02f;
+		EventManager.unregister(this);
+		msg("§4Test-Module disabled!");
+		// Minecraft.theWorld.removeEntityFromWorld(-1337);
+		// fakePlayer = null;
+		super.onDisable();
+	}
+}

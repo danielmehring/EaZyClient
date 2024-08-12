@@ -1,0 +1,105 @@
+package me.EaZy.client.modules.glides;
+
+import org.lwjgl.input.Keyboard;
+
+import com.darkmagician6.eventapi.EventManager;
+import com.darkmagician6.eventapi.EventTarget;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.events.EventMovePlayer;
+import me.EaZy.client.events.EventReceivePacket;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.play.server.S08PacketPlayerPosLook;
+
+public class GommeGlide extends Module {
+	public GommeGlide() {
+		super("GommeGlide", 0, "", Category.GLIDE);
+	}
+
+	public static int i1 = 0;
+	public static float f1 = 0;
+	public static boolean b1 = false;
+
+	public EventTarget onMove(final EventMovePlayer e) {
+		// if (!Minecraft.thePlayer.onGround && b1) {
+		// if (f1 > 340 || f1 < 20 || f1 > 70 && f1 < 110 || f1 > 160 && f1 <
+		// 200 || f1 > 250 && f1 < 290 && i1 > 8) {
+		// e.x *= 1.15;
+		// e.z *= 1.15;
+		// }
+		// b1 = false;
+		// }
+
+		return null;
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!isToggled()) {
+			if (togglecmd) {
+				setToggled(true);
+				onEnable();
+			}
+			return;
+		}
+		if (isToggled() && !togglecmd) {
+			setToggled(false);
+			onDisable();
+			return;
+		}
+
+		if (Minecraft.thePlayer.onGround) {
+			i1 = 0;
+		}
+		
+		if(i1 == 12) {
+			msg(mc.thePlayer.posY + "");
+		}
+
+		i1++;
+
+		super.onUpdate();
+	}
+
+	@Override
+	public void onRender() {
+		if (!isToggled()) {
+			return;
+		}
+		super.onRender();
+	}
+
+	@Override
+	public void onEnable() {
+		EventManager.register(this);
+		if (Minecraft.thePlayer.onGround) {
+			Minecraft.thePlayer.jump();
+		}
+		super.onEnable();
+
+	}
+
+	public EventTarget sserverpacekts(final EventReceivePacket e) {
+		if (e.getPacket() instanceof S08PacketPlayerPosLook) {
+			b1 = true;
+		}
+		return null;
+	}
+
+	@Override
+	public void onDisable() {
+		EventManager.unregister(this);
+		i1 = 0;
+
+		Minecraft.thePlayer.speedInAir = 0.02f;
+		try {
+			Minecraft.gameSettings.keyBindForward.pressed = Keyboard
+					.isKeyDown(Minecraft.gameSettings.keyBindForward.getKeyCode());
+			Minecraft.gameSettings.keyBindSprint.pressed = Keyboard
+					.isKeyDown(Minecraft.gameSettings.keyBindSprint.getKeyCode());
+		} catch (final Exception e) {
+		}
+		super.onDisable();
+	}
+}

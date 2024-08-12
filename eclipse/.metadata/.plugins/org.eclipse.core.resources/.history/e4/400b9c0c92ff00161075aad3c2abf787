@@ -1,0 +1,121 @@
+package me.EaZy.client.tabgui;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+
+import com.darkmagician6.eventapi.EventManager;
+import com.darkmagician6.eventapi.EventTarget;
+import com.google.common.collect.Lists;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.events.KeyPressEvent;
+import me.EaZy.client.main.Client;
+import me.EaZy.client.modules.hud.Other;
+import me.EaZy.client.tabgui.tab.GuiItem;
+import me.EaZy.client.tabgui.tab.GuiTab;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+
+public class GuiTabHandler {
+	private List<GuiTab> tabs;
+	private int selected;
+	private boolean opened;
+	public static int width;
+
+	public void setup() {
+		EventManager.register(this);
+		tabs = Lists.newArrayList();
+		selected = 0;
+		GuiTabHandler.width = 0;
+		for (final Category type : Category.values()) {
+			if (type.name().equalsIgnoreCase("HIDDEN") || type.name().equalsIgnoreCase("HUD")) {
+				continue;
+			}
+			final String catNamelower = type.name().toLowerCase();
+			final String catName = Character.toUpperCase(catNamelower.charAt(0)) + catNamelower.substring(1);
+			final GuiTab tab = new GuiTab(catName);
+			for (final Module mod : Client.getModules()) {
+				if (!mod.isCategory(type) || mod.isCategory(Category.HIDDEN) || mod.isCategory(Category.HUD)) {
+					continue;
+				}
+				tab.addButton(new GuiItem(mod));
+			}
+			tabs.add(tab);
+		}
+		tabs.sort(new Comparator<GuiTab>() {
+			@Override
+			public int compare(final GuiTab o1, final GuiTab o2) {
+				return o1.getTabName().compareTo(o2.getTabName());
+			}
+		});
+	}
+
+	// TODO
+
+	public void drawGui(final int startX, final int startY) {
+
+		final FontRenderer font = Minecraft.getMinecraft().fontRendererObj;
+		for (final GuiTab tab : tabs) {
+			if (font.getStringWidth(tab.getTabName()) < GuiTabHandler.width) {
+				continue;
+			}
+			GuiTabHandler.width = font.getStringWidth(" " + tab.getTabName());
+		}
+		int height = startY;
+		for (final GuiTab tab2 : tabs) {
+			tab2.drawTab(startX + 2 + 3, height + 2, GuiTabHandler.width, tabs.get(selected) == tab2 && opened,
+					tabs.get(selected) == tab2);
+			tab2.drawButtons(height, GuiTabHandler.width, tabs.get(selected) == tab2 && opened,
+					tabs.get(selected) == tab2);
+			height += 12;
+		}
+
+
+	}
+
+	@EventTarget
+	public void onEventCalled(final KeyPressEvent event) {
+		if (!Client.setmgr.getSettingByName(Client.getModule(Other.class), "TabGui").getValBoolean()) {
+			return;
+		}
+		if (event.getKeyCode() == 203) {
+			opened = false;
+		}
+		tabs.stream().filter(new Predicate<GuiTab>() {
+			@Override
+			public boolean test(final GuiTab tab) {
+				return opened && tabs.get(selected) == tab;
+			}
+		}).forEach(new Consumer<GuiTab>() {
+			@Override
+			public void accept(final GuiTab tab) {
+				tab.keyboard(event.getKeyCode());
+			}
+		});
+		if (opened) {
+			return;
+		}
+		if (event.getKeyCode() == 208) {
+			++selected;
+			if (selected > tabs.size() - 1) {
+				selected = 0;
+			}
+		}
+		if (event.getKeyCode() == 200) {
+			--selected;
+			if (selected < 0) {
+				selected = tabs.size() - 1;
+			}
+		}
+		if (event.getKeyCode() == 205 || event.getKeyCode() == 28) {
+			opened = true;
+		}
+	}
+
+	public int getTabHeight() {
+		return 12;
+	}
+}

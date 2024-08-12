@@ -1,0 +1,138 @@
+package me.EaZy.client.modules.SpeedModes;
+
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+
+import com.darkmagician6.eventapi.EventManager;
+import com.darkmagician6.eventapi.EventTarget;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.events.EventMovePlayer;
+import me.EaZy.client.events.EventPostMotionUpdates;
+import me.EaZy.client.utils.MovementUtil;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.network.play.client.C0BPacketEntityAction;
+import net.minecraft.network.play.client.C0BPacketEntityAction.Action;
+import net.minecraft.util.Timer;
+
+public class GommeOG extends Module {
+
+	public static final int EaZy = 169;
+
+	@Override
+	public void lambdaStuff() {
+		java.util.Arrays.asList().stream().filter(new Predicate<Object>() {
+			@Override
+			public boolean test(final Object m) {
+				return false;
+			}
+		}).forEachOrdered(new Consumer<Object>() {
+			@Override
+			public void accept(final Object m) {
+			}
+		});
+	}
+
+	double GraundROFL;
+
+	int i1;
+
+	public GommeOG() {
+		super("GommeOG", 0, "GommeOG", Category.SPEED);
+
+	}
+
+	public EventTarget onPlayerMove(final EventMovePlayer e) {
+		if (Minecraft.thePlayer.motionY > 0 && Minecraft.thePlayer.motionY < 0.34) {
+			e.y /= 1.06;
+		}
+
+		if (Minecraft.thePlayer.motionY < 0) {
+			e.y *= 1.19;
+		}
+
+		return null;
+
+	}
+
+	@Override
+	public String getRenderName() {
+		if (GuiMainMenu.ersterapril) {
+			return "GammelAufBoden";
+		} else {
+			return super.getRenderName();
+		}
+	}
+
+	public EventTarget onPostMotionUpdates(final EventPostMotionUpdates event) {
+
+		return null;
+	}
+
+	@Override
+	public void onEnable() {
+		GraundROFL = Minecraft.thePlayer.posY;
+		EventManager.register(this);
+		super.onEnable();
+	}
+
+	@Override
+	public void onDisable() {
+		i1 = 0;
+		Minecraft.thePlayer.speedInAir = (float) 0.02;
+		Timer.timerSpeed = 1f;
+		EventManager.unregister(this);
+
+		Minecraft.thePlayer.sendQueue.netManager
+				.sendPacket(new C0BPacketEntityAction(Minecraft.thePlayer, Action.START_SPRINTING));
+
+		super.onDisable();
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!isToggled()) {
+			if (togglecmd) {
+				setToggled(true);
+				onEnable();
+			}
+			return;
+		}
+
+		if (isToggled() && !togglecmd) {
+			setToggled(false);
+			onDisable();
+			return;
+		}
+		if (!MovementUtil.areWalkingKeysDown()) {
+			return;
+		}
+
+		if (Minecraft.thePlayer.onGround) {
+			Minecraft.thePlayer.jump();
+			Minecraft.thePlayer.motionY = 0.343;
+		} else {
+			if (Minecraft.thePlayer.isInWater()) {
+				return;
+			}
+
+			if (Minecraft.thePlayer.fallDistance < 1.8) {
+				if (Minecraft.thePlayer.realPosY % 1 <= 2939 && Minecraft.thePlayer.motionY < 0) {
+					Timer.timerSpeed = (float) 1.14;
+
+				} else {
+					Timer.timerSpeed = 1;
+
+				}
+			} else {
+				Timer.timerSpeed = 1;
+
+			}
+		}
+
+		super.onUpdate();
+	}
+
+}

@@ -1,0 +1,56 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import net.minecraft.util.Timer;
+
+public class AACSpeed2 extends Module{
+
+	public AACSpeed2() {
+		super("AACSpeed2", Keyboard.KEY_Z, Category.Movement);
+		
+		
+		
+	}
+	
+	//public static float DerUnötigsteIntengerObwohlDasHierGarKeinIntengerIstUndFürDieDummenAuchKeinIntSpeed = 1.0f;
+	
+	public void onPreUpdate(){
+		if(!this.getState())
+			return;
+		
+		if(!mc.thePlayer.onGround){
+			mc.thePlayer.motionX = 0;
+			mc.thePlayer.motionZ = 0;
+			mc.thePlayer.jumpMovementFactor = 0.393f;
+		}
+		
+		
+		if(mc.thePlayer.onGround && !(mc.thePlayer.motionX == 0) && !(mc.thePlayer.motionZ == 0)){
+			mc.thePlayer.motionY = 0.2f;
+		}
+		
+		if(!mc.thePlayer.onGround && !(mc.thePlayer.motionX == 0) && !(mc.thePlayer.motionZ == 0) && mc.thePlayer.ticksExisted % 2 == 0){
+			
+		}
+		
+//		if(!((mc.thePlayer.ticksExisted % 2) == 0)){
+//			Timer.timerSpeed = 1f;
+//		}else{
+//			Timer.timerSpeed = 1.2f;
+//			if(mc.thePlayer.motionY < 0)
+//			mc.thePlayer.motionY /= 1.0f;
+//		}
+		
+	}
+	public void onDissable(){
+		Timer.timerSpeed = 1f;
+		
+	}
+	
+	
+}
+
+

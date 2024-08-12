@@ -1,0 +1,46 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+
+public class WaterSpeed extends Module{
+
+	public WaterSpeed() {
+		super("WaterSpeed", Keyboard.KEY_N, Category.Movement);
+	}
+	
+	
+	public void onPreUpdate(){
+		if(!this.getState())
+			return;
+		
+		
+		if(!mc.thePlayer.onGround){
+			
+			
+			mc.thePlayer.jumpMovementFactor = 0.03f;
+			
+			
+		}
+			
+		
+		if(mc.thePlayer.isInWater()){
+			
+			mc.thePlayer.motionX *= 1.2f;
+			mc.thePlayer.motionZ *= 1.2f;
+			
+			mc.thePlayer.motionY = 0.1f;
+			
+			if(mc.thePlayer.ticksExisted % 2 == 0){
+				
+			}else{
+				mc.thePlayer.motionY = -0.01f;
+			}
+				
+			
+		}
+		
+	}
+}

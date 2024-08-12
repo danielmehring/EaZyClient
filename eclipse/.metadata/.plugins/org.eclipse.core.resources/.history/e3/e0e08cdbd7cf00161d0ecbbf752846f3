@@ -1,0 +1,63 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import de.Exe.Utils.Wrapper;
+import net.minecraft.block.BlockAir;
+import net.minecraft.block.BlockLiquid;
+import net.minecraft.entity.Entity;
+import net.minecraft.network.play.client.C00PacketKeepAlive;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.network.play.client.C0BPacketEntityAction;
+import net.minecraft.network.play.client.C0BPacketEntityAction.Action;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Timer;
+
+public class GommeSpeed extends Module {
+
+	public GommeSpeed() {
+		super("GommeSpeed", Keyboard.KEY_X, Category.Movement);
+
+	}
+
+	int delay;
+
+	public void onPreUpdate() {
+		if (!this.getState())
+			return;
+
+		if (mc.thePlayer.motionY < 0 && mc.thePlayer.fallDistance < 1.1f)
+			mc.thePlayer.motionY /= 1.2f;
+
+		mc.gameSettings.keyBindRight.pressed = false;
+		mc.gameSettings.keyBindLeft.pressed = false;
+
+		if (mc.thePlayer.onGround && mc.thePlayer.motionX != 0 && mc.thePlayer.motionZ != 0) {
+			mc.thePlayer.jump();
+			mc.thePlayer.motionY *= 0.9f;
+		} else if (mc.thePlayer.motionX != 0 && mc.thePlayer.motionZ != 0) {
+			mc.thePlayer.motionX /= 1.2f;
+			mc.thePlayer.motionZ /= 1.2f;
+			mc.thePlayer.jumpMovementFactor = 0.089f;
+		}
+
+		if (!mc.thePlayer.onGround) {
+			if (mc.thePlayer.ticksExisted % 2 == 0)
+				Timer.timerSpeed = 1.12f;
+			else
+				Timer.timerSpeed = 1.13f;
+		}
+
+	}
+
+	public void onEnable() {
+		Timer.timerSpeed = 1.0f;
+	}
+
+	public void onDisable() {
+		Timer.timerSpeed = 1f;
+	}
+}

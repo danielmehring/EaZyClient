@@ -1,0 +1,77 @@
+package me.EaZy.client.modules.glides;
+
+import com.darkmagician6.eventapi.EventManager;
+import com.darkmagician6.eventapi.EventTarget;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.events.EventMovePlayer;
+import me.EaZy.client.events.EventSendPacket;
+import me.EaZy.client.main.Client;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.util.Timer;
+
+public class GommeGlide extends Module {
+	public GommeGlide() {
+		super("GommeGlide", 0, "", Category.GLIDE, "Glide for Gomme.");
+
+	}
+
+	int packetdelay = 0;
+
+	public EventTarget onPlayerMove(final EventMovePlayer e) {
+
+		e.y /= 1.1;
+
+		return null;
+	}
+
+	@Override
+	public void onEnable() {
+
+		EventManager.register(this);
+		Client.disable(Category.GLIDE, this.getClass());
+		super.onEnable();
+	}
+
+	@Override
+	public void onDisable() {
+		EventManager.unregister(this);
+		Minecraft.thePlayer.speedInAir = 0.02f;
+		Timer.timerSpeed = 1f;
+		super.onDisable();
+	}
+
+	public EventTarget onReceivePacketANDMove(final EventSendPacket event) {
+		if (event.getPacket() instanceof C03PacketPlayer) {
+			packetdelay++;
+			if (packetdelay < 10) {
+				// event.setCancelled(true);
+			} else {
+				packetdelay = 0;
+			}
+
+		}
+
+		return null;
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!isToggled()) {
+			if (togglecmd) {
+				setToggled(true);
+				onEnable();
+			}
+			return;
+		}
+		if (isToggled() && !togglecmd) {
+			setToggled(false);
+			onDisable();
+			return;
+		}
+
+		super.onUpdate();
+	}
+}

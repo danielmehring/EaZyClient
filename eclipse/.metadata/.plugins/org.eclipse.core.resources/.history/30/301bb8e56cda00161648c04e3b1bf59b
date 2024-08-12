@@ -1,0 +1,71 @@
+package me.EaZy.client.modules.SpeedModes;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.main.Client;
+
+public class Old extends Module {
+
+	public Old() {
+		super(new String(new byte[] { 0b1000001, 0b1000001, 0b1000011, 0b110010 }).toString(), 0, "", Category.SPEED);
+	}
+
+	public int delay = 0;
+	public int groundTicks;
+
+	@Override
+	public void onEnable() {
+		if (Client.isToggled(new String(
+				new byte[] { 0b1000001, 0b1000001, 0b1000011, 0b1000111, 0b1101100, 0b1101001, 0b1100100, 0b1100101 })
+						.toString())) {
+			Client.disable(new String(new byte[] { 0b1000001, 0b1000001, 0b1000011, 0b1000111, 0b1101100, 0b1101001,
+					0b1100100, 0b1100101 }).toString());
+			msg(new String(new byte[] { 0b11111111111111111111111110100111, 0b1100011, 0b1011001, 0b1101111, 0b1110101,
+					0b100000, 0b1100011, 0b1100001, 0b1101110, 0b100000, 0b1101110, 0b1101111, 0b1110100, 0b100000,
+					0b1110101, 0b1110011, 0b1100101, 0b100000, 0b1000001, 0b1000001, 0b1000011, 0b1000111, 0b1101100,
+					0b1101001, 0b1100100, 0b1100101, 0b100000, 0b1100001, 0b1101110, 0b1100100, 0b100000, 0b1000001,
+					0b1000001, 0b1000011, 0b100000, 0b1010011, 0b1110000, 0b1100101, 0b1100101, 0b1100100, 0b100000,
+					0b1100001, 0b1110100, 0b100000, 0b1110100, 0b1101000, 0b1100101, 0b100000, 0b1110011, 0b1100001,
+					0b1101101, 0b1100101, 0b100000, 0b1110100, 0b1101001, 0b1101101, 0b1100101, 0b100001 }).toString());
+		}
+		super.onEnable();
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!this.isToggled()) {
+			if (this.togglecmd) {
+				this.setToggled(true);
+				this.onEnable();
+			}
+			return;
+		}
+		if (this.isToggled() && !this.togglecmd) {
+			this.setToggled(false);
+			this.onDisable();
+			return;
+		}
+
+		if (mc.thePlayer.capabilities.isFlying) {
+			return;
+		}
+
+		if (mc.thePlayer.onGround) {
+			if (mc.thePlayer.ticksExisted % 4 == 0) {
+				mc.thePlayer.motionX *= 3.51f;
+				mc.thePlayer.motionZ *= 3.51f;
+
+			} else {
+				mc.thePlayer.motionX /= 1.3f;
+				mc.thePlayer.motionZ /= 1.3f;
+
+			}
+		} else {
+			mc.thePlayer.motionX *= 1.1f;
+			mc.thePlayer.motionZ *= 1.1f;
+			mc.thePlayer.motionX /= 1.1f;
+			mc.thePlayer.motionZ /= 1.1f;
+		}
+	}
+
+}

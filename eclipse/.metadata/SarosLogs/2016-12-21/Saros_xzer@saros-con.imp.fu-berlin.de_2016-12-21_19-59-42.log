@@ -1,0 +1,1218 @@
+INFO  2016-12-21 19:59:20,846 (Saros.java:220) Starting Saros 14.10.31 running:
+  Java Version: 1.8.0_101
+  Java Vendor: Oracle Corporation
+  Eclipse Runtime Version: 3.12.0.v20160606-1342
+  Operating System: Windows 10 (10.0)
+  Hardware Architecture: amd64
+INFO  2016-12-21 19:59:20,882 (SarosContext.java:153) creating Saros runtime context...
+DEBUG 2016-12-21 19:59:20,929 (XMPPAccountStore.java:117) loading accounts from file: C:\Users\xyzer\.saros\config.dat
+DEBUG 2016-12-21 19:59:21,228 (XMPPAccountStore.java:176) loaded 1 account(s)
+INFO  2016-12-21 19:59:21,547 (SarosContext.java:199) successfully created Saros runtime context
+DEBUG 2016-12-21 19:59:21,603 (DataTransferManager.java:467) used transport order for the current XMPP connection: [XMPP-Socks5-Transport, XMPP-IBB-Transport]
+INFO  2016-12-21 19:59:21,652 (PreferenceInitializer.java:50) initializing preference default values
+DEBUG 2016-12-21 19:59:21,716 (SarosAnnotation.java:117) resetting annotation colors
+DEBUG 2016-12-21 19:59:21,727 (Saros.java:430) skipping conversion of old XMPP accounts, because there are already new ones
+DEBUG 2016-12-21 19:59:36,854 (WhiteboardManager.java:194) WhiteboardManager instantiated
+DEBUG 2016-12-21 19:59:36,877 (DocumentRecord.java:93) Added Node: attr(14823467768742146) name=svg
+DEBUG 2016-12-21 19:59:37,049 (XMPPConnectionService.java:439) started Socks5 proxy on port: 7777 [listening on all interfaces]
+DEBUG 2016-12-21 19:59:40,709 (XMPPConnectionService.java:459) using autodetected addresses: [192.168.2.108, fe80:0:0:0:50fa:8586:2f83:e7%eth3]
+DEBUG 2016-12-21 19:59:40,715 (XMPPConnectionService.java:398)  new connection state == CONNECTING
+DEBUG 2016-12-21 19:59:42,057 (XMPPConnectionService.java:398) xzer@saros-con.imp.fu-berlin.de/Saros new connection state == CONNECTED
+DEBUG 2016-12-21 19:59:42,058 (DataTransferManager.java:467) used transport order for the current XMPP connection: [XMPP-Socks5-Transport, XMPP-IBB-Transport]
+DEBUG 2016-12-21 19:59:42,060 (SkypeManager.java:289) Refreshing Skype username cache...
+DEBUG 2016-12-21 19:59:42,765 (DiscoveryManager.java:382) Inserted DiscoveryInfo into Cache for: eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 19:59:46,324 (VersionManager.java:90) received version request from eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 19:59:46,326 (VersionManager.java:160) send version response to eazycode@saros-con.imp.fu-berlin.de/Saros
+INFO  2016-12-21 19:59:46,459 (InvitationHandler.java:115) received invitation from eazycode@saros-con.imp.fu-berlin.de/Saros [invitation id: -2933747985969657518, session id: 765913088, version: 14.10.31]
+DEBUG 2016-12-21 19:59:48,925 (IncomingSessionNegotiation.java:103) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : invitation accepted
+DEBUG 2016-12-21 19:59:48,930 (IncomingSessionNegotiation.java:188) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : sending invitation accepted confirmation
+DEBUG 2016-12-21 19:59:48,930 (IncomingSessionNegotiation.java:219) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : sending session negotiation data
+DEBUG 2016-12-21 19:59:48,932 (IncomingSessionNegotiation.java:232) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : waiting for host's session parameters
+DEBUG 2016-12-21 19:59:49,405 (IncomingSessionNegotiation.java:252) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : received host's session parameters
+DEBUG 2016-12-21 19:59:49,405 (IncomingSessionNegotiation.java:265) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : initializing session
+DEBUG 2016-12-21 19:59:49,406 (MUCNegotiationManager.java:143) Got hosts Communication Config: server conference.saros-con.imp.fu-berlin.de room SAROS_765913088 pw 2036155224
+INFO  2016-12-21 19:59:49,433 (StatisticManager.java:184) Current feedback settings:
+  Feedback disabled: false
+  Feedback interval: 5
+  Statistic submission allowed: false
+  Pseudonym submission allowed: false
+INFO  2016-12-21 19:59:49,443 (ErrorLogManager.java:257) Current error log settings:
+  Error log submission allowed: false
+  Full Error log submission allowed: false
+INFO  2016-12-21 19:59:49,447 (SarosSessionManager.java:281) joined uninitialized Saros session
+INFO  2016-12-21 19:59:49,448 (DataTransferManager.java:409) establishing connection to eazycode@saros-con.imp.fu-berlin.de/Saros from xzer@saros-con.imp.fu-berlin.de/Saros using transport XMPP-Socks5-Transport
+DEBUG 2016-12-21 19:59:49,449 (ByteStreamTransport.java:45) establishing bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 19:59:49,449 (Socks5Transport.java:493) [SOCKS5Transport] establishing connection to eazycode@saros-con.imp.fu-berlin.de/Saroswith local SOCKS5 proxy running [port=7777, configured streamhosts=[192.168.2.108, fe80:0:0:0:50fa:8586:2f83:e7%eth3]]...
+WARN  2016-12-21 19:59:51,436 (StunServiceImpl.java:420) received no response from STUN server stunserver.org/69.172.201.153:3478 at local address /192.168.2.108:0
+DEBUG 2016-12-21 19:59:52,140 (ByteStreamTransport.java:72) received request to establish a  bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros [de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1@491f47d9]
+DEBUG 2016-12-21 19:59:52,141 (Socks5Transport.java:311) [SOCKS5Transport] receiving response connection from eazycode@saros-con.imp.fu-berlin.de/Saroswith local SOCKS5 proxy running [port=7777, configured streamhosts=[192.168.2.108, fe80:0:0:0:50fa:8586:2f83:e7%eth3]]
+WARN  2016-12-21 20:00:00,869 (Socks5Transport.java:544) [SOCKS5Transport] could not establish a connection to eazycode@saros-con.imp.fu-berlin.de/Saros, remote side could not connect to any offered stream hosts: item-not-found(404) Could not establish socket with any provided host
+DEBUG 2016-12-21 20:00:00,882 (Socks5Transport.java:567) [SOCKS5Transport] waiting for eazycode@saros-con.imp.fu-berlin.de/Saros to establish a connection...
+ERROR 2016-12-21 20:00:02,313 (ByteStreamTransport.java:105) could not establish bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+Could not establish socket with any provided host: item-not-found(404) Could not establish socket with any provided host
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.cancelRequest(Socks5BytestreamRequest.java:277)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.accept(Socks5BytestreamRequest.java:247)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.accept(Socks5BytestreamRequest.java:34)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.handleResponse(Socks5Transport.java:315)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.acceptRequest(Socks5Transport.java:471)
+	at de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1.incomingBytestreamRequest(ByteStreamTransport.java:77)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.processRequest(InitiationListener.java:91)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.access$000(InitiationListener.java:37)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener$1.run(InitiationListener.java:63)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+WARN  2016-12-21 20:00:30,883 (DataTransferManager.java:415) failed to connect to eazycode@saros-con.imp.fu-berlin.de/Saros using transport: XMPP-Socks5-Transport
+java.io.IOException: [SOCKS5Transport] waiting for a response session timed out (30000ms) and could not establish a connection from this side, too:
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.establishBinaryChannel(Socks5Transport.java:592)
+	at de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport.connect(ByteStreamTransport.java:48)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.connectInternal(DataTransferManager.java:412)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.connect(DataTransferManager.java:297)
+	at de.fu_berlin.inf.dpp.negotiation.IncomingSessionNegotiation.accept(IncomingSessionNegotiation.java:167)
+	at de.fu_berlin.inf.dpp.ui.wizards.JoinSessionWizard$2.run(JoinSessionWizard.java:128)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: item-not-found(404) Could not establish socket with any provided host
+	at org.jivesoftware.smack.util.SyncPacketSend.getReply(SyncPacketSend.java:54)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:481)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:83)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.establishBinaryChannel(Socks5Transport.java:512)
+	... 6 more
+INFO  2016-12-21 20:00:30,892 (DataTransferManager.java:409) establishing connection to eazycode@saros-con.imp.fu-berlin.de/Saros from xzer@saros-con.imp.fu-berlin.de/Saros using transport XMPP-IBB-Transport
+DEBUG 2016-12-21 20:00:30,892 (ByteStreamTransport.java:45) establishing bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:00:31,912 (DataTransferManager.java:136) bytestream connection changed [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros, inc=false, pool id=saros-main-session:out:eazycode@saros-con.imp.fu-berlin.de/Saros]
+DEBUG 2016-12-21 20:00:31,913 (IncomingSessionNegotiation.java:304) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : starting session
+DEBUG 2016-12-21 20:00:31,914 (BinaryChannelConnection.java:103) [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros ReceiverThread started.
+DEBUG 2016-12-21 20:00:31,917 (MultiUserChatService.java:100) Joining MUC...
+INFO  2016-12-21 20:00:31,917 (StatisticManager.java:163) Session count: 2
+INFO  2016-12-21 20:00:31,918 (ParticipantCollector.java:134) Session started: Current number of participants: 2
+DEBUG 2016-12-21 20:00:31,920 (XStreamExtensionProvider.java:149) Registering new converter of class de.fu_berlin.inf.dpp.misc.xstream.SPathConverter
+DEBUG 2016-12-21 20:00:31,921 (XStreamExtensionProvider.java:194) Registering new converter of class de.fu_berlin.inf.dpp.misc.xstream.UserConverter
+DEBUG 2016-12-21 20:00:31,921 (MultiUserChat.java:264) Trying to create room on server conference.saros-con.imp.fu-berlin.de
+DEBUG 2016-12-21 20:00:31,925 (ActivityHandler.java:89) activity dispatcher started
+DEBUG 2016-12-21 20:00:31,930 (ConsistencyAction.java:173) Inconsistency indicator goes: off
+DEBUG 2016-12-21 20:00:31,931 (WhiteboardManager.java:108) Preparing Whiteboard for receiving an invitation
+WARN  2016-12-21 20:00:31,973 (SubscriptionHandler.java:148) received error presence package from saros_765913088@conference.saros-con.imp.fu-berlin.de/xzer@saros-con.imp.fu-berlin.de/Saros, condition: not-authorized, message: A password is required to enter this room
+DEBUG 2016-12-21 20:00:32,035 (MultiUserChat.java:297) MUC joined. Server: conference.saros-con.imp.fu-berlin.de Room: SAROS_765913088 Password 2036155224
+DEBUG 2016-12-21 20:00:32,040 (ColorUtils.java:21) set foregroundcolor RGB {237, 237, 169}
+DEBUG 2016-12-21 20:00:32,060 (IncomingSessionNegotiation.java:318) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : invitation has completed successfully
+DEBUG 2016-12-21 20:00:32,136 (MultiUserChatStateManager.java:101) Incoming Message from saros_765913088@conference.saros-con.imp.fu-berlin.de/xzer@saros-con.imp.fu-berlin.de/Saros with state: active
+DEBUG 2016-12-21 20:00:32,138 (MultiUserChat.java:79) stateChanged fired with state: active
+DEBUG 2016-12-21 20:00:32,141 (MultiUserChat.java:133) processPacket called
+DEBUG 2016-12-21 20:00:32,866 (IncomingSessionNegotiation.java:331) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : invitation complete confirmation sent
+DEBUG 2016-12-21 20:00:33,523 (UserInformationHandler.java:293) received user list from eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:00:33,524 (UserInformationHandler.java:317) updating permissions for user: xzer@saros-con.imp.fu-berlin.de/Saros [WRITE_ACCESS]
+DEBUG 2016-12-21 20:00:33,524 (UserInformationHandler.java:317) updating permissions for user: eazycode@saros-con.imp.fu-berlin.de/Saros [WRITE_ACCESS]
+DEBUG 2016-12-21 20:00:33,524 (UserInformationHandler.java:347) sending user list received confirmation to eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:00:34,643 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:00:34,645 (ChangeColorManager.java:238) received color id change fo user : eazycode@saros-con.imp.fu-berlin.de/Saros [1]
+DEBUG 2016-12-21 20:00:34,647 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:00:34,649 (ChangeColorManager.java:238) received color id change fo user : xzer@saros-con.imp.fu-berlin.de/Saros [3]
+DEBUG 2016-12-21 20:00:34,650 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:00:35,523 (CancelableProcess.java:353) process ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] exit status: OK
+DEBUG 2016-12-21 20:00:36,082 (ByteStreamTransport.java:72) received request to establish a  bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros [de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1@491f47d9]
+DEBUG 2016-12-21 20:00:36,083 (Socks5Transport.java:368) [SOCKS5Transport] receiving request from eazycode@saros-con.imp.fu-berlin.de/Saroswith local SOCKS5 proxy running [port=7777, configured streamhosts=[192.168.2.108, fe80:0:0:0:50fa:8586:2f83:e7%eth3]]
+DEBUG 2016-12-21 20:00:36,084 (Socks5Transport.java:624) [SOCKS5Transport] Start to establish new response connection
+WARN  2016-12-21 20:00:46,271 (Socks5Transport.java:411) [SOCKS5Transport] Couldn't accept request but still trying to establish a response connection: Could not establish socket with any provided host
+ERROR 2016-12-21 20:00:46,773 (Socks5Transport.java:440) An error occurred while establishing a response connection 
+item-not-found(404) Could not establish socket with any provided host
+	at org.jivesoftware.smack.util.SyncPacketSend.getReply(SyncPacketSend.java:54)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:481)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:83)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.establishResponseSession(Socks5Transport.java:631)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport$1.call(Socks5Transport.java:108)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport$1.call(Socks5Transport.java:1)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+ERROR 2016-12-21 20:00:46,794 (ByteStreamTransport.java:105) could not establish bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+java.io.IOException: [SOCKS5Transport] Neither connection could be established. 
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.acceptNewRequest(Socks5Transport.java:446)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.acceptRequest(Socks5Transport.java:474)
+	at de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1.incomingBytestreamRequest(ByteStreamTransport.java:77)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.processRequest(InitiationListener.java:91)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.access$000(InitiationListener.java:37)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener$1.run(InitiationListener.java:63)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+DEBUG 2016-12-21 20:01:16,759 (ByteStreamTransport.java:72) received request to establish a  bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros [de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1@2f7837f0]
+DEBUG 2016-12-21 20:01:16,760 (DataTransferManager.java:136) bytestream connection changed [mode=IBB, id=default] eazycode@saros-con.imp.fu-berlin.de/Saros, inc=true, pool id=default:in:eazycode@saros-con.imp.fu-berlin.de/Saros]
+DEBUG 2016-12-21 20:01:16,760 (BinaryChannelConnection.java:103) [mode=IBB, id=default] eazycode@saros-con.imp.fu-berlin.de/Saros ReceiverThread started.
+DEBUG 2016-12-21 20:01:17,317 (SXEIncomingSynchronizationProcess.java:65) SXE(3313) invitation from eazycode@saros-con.imp.fu-berlin.de/Saros received
+DEBUG 2016-12-21 20:01:17,318 (SXEController.java:537) Whiteboard state changed from INIT to CONNECTING
+DEBUG 2016-12-21 20:01:17,319 (SXEIncomingSynchronizationProcess.java:87) SXE(3313) queue incoming records from now
+DEBUG 2016-12-21 20:01:17,319 (SarosSXETransmitter.java:151) SXE send accept-state to eazycode@saros-con.imp.fu-berlin.de/Saros waiting for [state]
+DEBUG 2016-12-21 20:01:18,590 (SXEIncomingSynchronizationProcess.java:99) SXE(3313) state received
+DEBUG 2016-12-21 20:01:18,591 (SXEController.java:137) SXE (3313): receive state and start session at invitee side
+DEBUG 2016-12-21 20:01:18,592 (DocumentRecord.java:93) Added Node: attr(148234655811234840) name=svg
+INFO  2016-12-21 20:01:48,113 (InvitationHandler.java:179) received project negotiation from eazycode@saros-con.imp.fu-berlin.de/Saros with session id: 765913088 and negotiation id: 4942445389684228918
+INFO  2016-12-21 20:01:48,123 (ProjectNegotiationObservable.java:51) This is ProjectNegotiation number 1 in this session. There are 0 process(es) in this session
+DEBUG 2016-12-21 20:02:08,433 (IncomingProjectNegotiation.java:388) compute required files for project de.fu_berlin.inf.dpp.filesystem.EclipseProjectImpl@684205e1 - P/Clientt with ID: 1509792553
+DEBUG 2016-12-21 20:02:08,482 (IncomingProjectNegotiation.java:612) IPN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : computing file list difference
+DEBUG 2016-12-21 20:02:08,502 (IncomingProjectNegotiation.java:583) IPN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : 2996 file(s) must be synchronized
+DEBUG 2016-12-21 20:02:22,530 (ActivitySequencer.java:546) rcvd (001) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:02:22,532 (EditorManager.java:1697) locking all editors
+DEBUG 2016-12-21 20:02:22,535 (ActivitySequencer.java:496) send (001) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:02:24,265 (SarosProjectMapper.java:179) added project de.fu_berlin.inf.dpp.filesystem.EclipseProjectImpl@684205e1 - P/Clientt with ID 1509792553 [completely shared:false]
+DEBUG 2016-12-21 20:02:24,951 (IncomingProjectNegotiation.java:865) waiting for incoming archive stream request
+DEBUG 2016-12-21 20:02:30,164 (IncomingProjectNegotiation.java:882) IPN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : receiving archive
+DEBUG 2016-12-21 20:02:30,591 (ActivitySequencer.java:546) rcvd (001) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:02:30,592 (EditorManager.java:1697) unlocking all editors
+DEBUG 2016-12-21 20:02:30,593 (ActivitySequencer.java:496) send (001) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:02:44,650 (ActivitySequencer.java:546) rcvd (001) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:02:51,278 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:02:57,983 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:03:11,200 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:03:18,074 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:03:24,806 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:03:34,849 (ActivitySequencer.java:546) rcvd (001) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:03:44,965 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:03:51,801 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:03:58,536 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:04:05,276 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:04:12,007 (ActivitySequencer.java:546) rcvd (001) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:04:22,268 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:04:31,987 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:04:35,719 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:04:39,145 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:04:54,899 (ActivitySequencer.java:546) rcvd (001) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:05:08,029 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:05:14,856 (ActivitySequencer.java:546) rcvd (006) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:05:24,976 (ActivitySequencer.java:546) rcvd (001) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:05:31,609 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:05:41,923 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:05:45,455 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:05:55,193 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:06:01,928 (ActivitySequencer.java:546) rcvd (001) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:06:05,562 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:06:12,270 (ActivitySequencer.java:546) rcvd (001) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:06:25,390 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:06:32,229 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:06:38,963 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:06:45,700 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:06:52,432 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:07:02,893 (ActivitySequencer.java:546) rcvd (001) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:07:12,650 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:07:19,356 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:07:26,096 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:07:32,836 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:07:46,060 (ActivitySequencer.java:546) rcvd (001) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:07:52,826 (ActivitySequencer.java:546) rcvd (005) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:08:02,929 (ActivitySequencer.java:546) rcvd (001) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:08:09,567 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:08:16,278 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:08:26,653 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:08:33,221 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:08:42,863 (ActivitySequencer.java:546) rcvd (001) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:08:54,196 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:09:07,020 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:09:17,825 (ActivitySequencer.java:546) rcvd (006) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:09:27,471 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:09:33,902 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:09:47,358 (ActivitySequencer.java:546) rcvd (001) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:10:20,149 (ActivitySequencer.java:546) rcvd (005) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:10:32,144 (ActivitySequencer.java:546) rcvd (009) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:10:42,037 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:10:48,746 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:10:55,479 (ActivitySequencer.java:546) rcvd (003) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:12:43,505 (DiscoveryManager.java:98) clearing cache entry of contact eazycode@saros-con.imp.fu-berlin.de/Saros: <query xmlns="http://jabber.org/protocol/disco#info"><identity category="client" name="Smack" type="pc"/><feature var="http://jabber.org/protocol/disco#items"/><feature var="http://jabber.org/protocol/bytestreams"/><feature var="http://jabber.org/protocol/ibb"/><feature var="http://jabber.org/protocol/si"/><feature var="http://jabber.org/protocol/xhtml-im"/><feature var="http://jabber.org/protocol/chatstates"/><feature var="http://jabber.org/protocol/si/profile/file-transfer"/><feature var="urn:xmpp:ping"/><feature var="jabber:iq:last"/><feature var="http://jabber.org/protocol/commands"/><feature var="http://jabber.org/protocol/muc"/><feature var="de.fu_berlin.inf.dpp"/><feature var="http://jabber.org/protocol/disco#info"/></query>
+DEBUG 2016-12-21 20:12:43,777 (DiscoveryManager.java:382) Inserted DiscoveryInfo into Cache for: eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:12:46,893 (VersionManager.java:90) received version request from eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:12:46,893 (VersionManager.java:160) send version response to eazycode@saros-con.imp.fu-berlin.de/Saros
+INFO  2016-12-21 20:12:47,172 (InvitationHandler.java:115) received invitation from eazycode@saros-con.imp.fu-berlin.de/Saros [invitation id: 8587306771915465036, session id: 249975184, version: 14.10.31]
+DEBUG 2016-12-21 20:12:56,353 (VersionManager.java:90) received version request from eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:12:56,353 (VersionManager.java:160) send version response to eazycode@saros-con.imp.fu-berlin.de/Saros
+INFO  2016-12-21 20:12:56,641 (InvitationHandler.java:115) received invitation from eazycode@saros-con.imp.fu-berlin.de/Saros [invitation id: 5294598842871616629, session id: 2137760053, version: 14.10.31]
+DEBUG 2016-12-21 20:13:25,579 (VersionManager.java:90) received version request from eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:13:25,579 (VersionManager.java:160) send version response to eazycode@saros-con.imp.fu-berlin.de/Saros
+INFO  2016-12-21 20:13:25,874 (InvitationHandler.java:115) received invitation from eazycode@saros-con.imp.fu-berlin.de/Saros [invitation id: 6650793492982643804, session id: 1424337331, version: 14.10.31]
+DEBUG 2016-12-21 20:13:35,195 (VersionManager.java:90) received version request from eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:13:35,195 (VersionManager.java:160) send version response to eazycode@saros-con.imp.fu-berlin.de/Saros
+INFO  2016-12-21 20:13:35,598 (InvitationHandler.java:115) received invitation from eazycode@saros-con.imp.fu-berlin.de/Saros [invitation id: 1794712698251645599, session id: 882991553, version: 14.10.31]
+DEBUG 2016-12-21 20:13:41,526 (CancelableProcess.java:156) process IPN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] was cancelled by the local side, error: none
+DEBUG 2016-12-21 20:13:41,527 (CancelableProcess.java:401) process IPN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] was cancelled manually by the local user
+DEBUG 2016-12-21 20:13:41,528 (ProjectNegotiation.java:137) notifying remote contact eazycode@saros-con.imp.fu-berlin.de/Saros of the local project negotiation cancellation
+INFO  2016-12-21 20:13:41,530 (ConsistencyWatchdogClient.java:455) Inconsistencies have been detected
+DEBUG 2016-12-21 20:13:41,531 (ConsistencyAction.java:173) Inconsistency indicator goes: on
+DEBUG 2016-12-21 20:13:41,533 (ConsistencyAction.java:173) Inconsistency indicator goes: on
+DEBUG 2016-12-21 20:13:41,534 (ConsistencyAction.java:173) Inconsistency indicator goes: on
+DEBUG 2016-12-21 20:13:42,555 (BinaryChannelConnection.java:112) [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros connection closed remotely:null
+DEBUG 2016-12-21 20:13:42,555 (DataTransferManager.java:330) closed connection [pool id=saros-main-session:out:eazycode@saros-con.imp.fu-berlin.de/Saros]: [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros
+ERROR 2016-12-21 20:13:42,555 (DataTransferManager.java:270) failed to send TransferDescription [elementName=pncl, namespace=de.fu_berlin.inf.dpp, recipient=eazycode@saros-con.imp.fu-berlin.de/Saros, sender=xzer@saros-con.imp.fu-berlin.de/Saros, compress=true], connection=[mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros:Error while closing stream: item-not-found(404)
+java.io.IOException: Error while closing stream: item-not-found(404)
+	at org.jivesoftware.smackx.bytestreams.ibb.InBandBytestreamSession.closeByLocal(InBandBytestreamSession.java:213)
+	at org.jivesoftware.smackx.bytestreams.ibb.InBandBytestreamSession.close(InBandBytestreamSession.java:154)
+	at org.jivesoftware.smackx.bytestreams.ibb.InBandBytestreamSession$IQIBBOutputStream.writeToXML(InBandBytestreamSession.java:768)
+	at org.jivesoftware.smackx.bytestreams.ibb.InBandBytestreamSession$IBBOutputStream.flushBuffer(InBandBytestreamSession.java:707)
+	at org.jivesoftware.smackx.bytestreams.ibb.InBandBytestreamSession$IBBOutputStream.flush(InBandBytestreamSession.java:691)
+	at java.io.BufferedOutputStream.flush(Unknown Source)
+	at java.io.DataOutputStream.flush(Unknown Source)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection.send(BinaryChannelConnection.java:315)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendInternal(DataTransferManager.java:268)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendData(DataTransferManager.java:216)
+	at de.fu_berlin.inf.dpp.net.internal.XMPPTransmitter.send(XMPPTransmitter.java:90)
+	at de.fu_berlin.inf.dpp.negotiation.ProjectNegotiation.notifyCancellation(ProjectNegotiation.java:145)
+	at de.fu_berlin.inf.dpp.negotiation.CancelableProcess.terminateProcess(CancelableProcess.java:348)
+	at de.fu_berlin.inf.dpp.negotiation.IncomingProjectNegotiation.run(IncomingProjectNegotiation.java:270)
+	at de.fu_berlin.inf.dpp.ui.wizards.AddProjectToSessionWizard$5.run(AddProjectToSessionWizard.java:307)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+DEBUG 2016-12-21 20:13:42,567 (CancelableProcess.java:349) executing cancellation for process IPN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros]
+DEBUG 2016-12-21 20:13:42,568 (SarosProjectMapper.java:208) removed project de.fu_berlin.inf.dpp.filesystem.EclipseProjectImpl@684205e1 - P/Clientt with ID 1509792553
+DEBUG 2016-12-21 20:13:42,569 (SarosSessionManager.java:330) terminating all running negotiation processes
+DEBUG 2016-12-21 20:13:42,570 (SarosSessionManager.java:337) Leave message sent.
+DEBUG 2016-12-21 20:13:42,571 (ActivityHandler.java:109) activity dispatcher stopped
+INFO  2016-12-21 20:13:42,572 (FeedbackManager.java:104) Session lasted 13 min 10 s
+DEBUG 2016-12-21 20:13:42,573 (FollowModeCollector.java:177) Processing follow mode changes took 0.0 s
+INFO  2016-12-21 20:13:42,574 (ParticipantCollector.java:145) Session ended: Current number of participants: 2
+DEBUG 2016-12-21 20:13:42,586 (StatisticManager.java:329) Session statistic:
+  auto.followmode.enabled=false
+  data_transfer.IBB.average_throughput_kbs=0.2
+  data_transfer.IBB.number_of_events=104
+  data_transfer.IBB.total_size_kb=77
+  data_transfer.IBB.total_time_ms=380264
+  feedback.disabled=false
+  feedback.survey.interval=5
+  followmode.time.percent=0
+  followmode.time.total=0.0
+  followmode.toggles=0
+  gesture.count=0
+  java.version=1.8.0_101
+  jumped.count=0
+  jumped.driver.count=0
+  jumped.observer.count=0
+  observer.selection.count.witnessed=0
+  observer.selection.count=0
+  os.name=Windows 10
+  platform.version=3.12.0.v20160606-1342
+  random.user.id=2016-12-21_19-02-41_1789355881
+  role.1.duration=13.18
+  role.1=write_access
+  role.changes=0
+  role.driver.duration=13.18
+  role.driver.percent=100
+  role.observer.duration=0.0
+  role.observer.percent=0
+  saros.version=14.10.31
+  session.count=2
+  session.id=765913088
+  session.local.start=2016-12-21T19:13:42Z
+  session.shared.project.complete.count=0
+  session.shared.project.partial.count=0
+  session.shared.project.partial.files.count=0
+  session.time.users.2.percent=100
+  session.time.users.2=13.18
+  session.time=13.18
+  session.users.total=2
+  textedits.chars=0
+  textedits.count=0
+  textedits.nonparallel.chars=0
+  textedits.nonparallel.percent=0
+  textedits.pastes.chars=0
+  textedits.pastes=0
+  user.is.host=false
+INFO  2016-12-21 20:13:42,587 (StatisticManager.java:243) User does not allow to submit session statistics
+DEBUG 2016-12-21 20:13:42,640 (EditorManager.java:1697) unlocking all editors
+WARN  2016-12-21 20:13:42,642 (SarosSession.java:655) failed to notify user eazycode@saros-con.imp.fu-berlin.de/Saros about local session stop
+java.io.IOException: not connected to eazycode@saros-con.imp.fu-berlin.de/Saros [connection identifier=saros-main-session]
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendData(DataTransferManager.java:206)
+	at de.fu_berlin.inf.dpp.net.internal.XMPPTransmitter.send(XMPPTransmitter.java:90)
+	at de.fu_berlin.inf.dpp.project.internal.SarosSession.stop(SarosSession.java:651)
+	at de.fu_berlin.inf.dpp.project.SarosSessionManager.stopSarosSession(SarosSessionManager.java:340)
+	at de.fu_berlin.inf.dpp.negotiation.IncomingProjectNegotiation.executeCancellation(IncomingProjectNegotiation.java:508)
+	at de.fu_berlin.inf.dpp.negotiation.CancelableProcess.terminateProcess(CancelableProcess.java:350)
+	at de.fu_berlin.inf.dpp.negotiation.IncomingProjectNegotiation.run(IncomingProjectNegotiation.java:270)
+	at de.fu_berlin.inf.dpp.ui.wizards.AddProjectToSessionWizard$5.run(AddProjectToSessionWizard.java:307)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+DEBUG 2016-12-21 20:13:42,672 (XStreamExtensionProvider.java:169) Unregistering (resetting) converter of class de.fu_berlin.inf.dpp.misc.xstream.SPathConverter
+DEBUG 2016-12-21 20:13:42,673 (XStreamExtensionProvider.java:216) Unregistering (resetting) converter of class de.fu_berlin.inf.dpp.misc.xstream.UserConverter
+DEBUG 2016-12-21 20:13:42,716 (MultiUserChatService.java:135) leaving multi user chat de.fu_berlin.inf.dpp.communication.chat.muc.MultiUserChat@7abdb38b
+DEBUG 2016-12-21 20:13:42,718 (SharedProjectDecorator.java:93) clearing project decoration for all shared projects
+DEBUG 2016-12-21 20:13:42,719 (DocumentRecord.java:93) Added Node: attr(148234762271951736) name=svg
+INFO  2016-12-21 20:13:42,719 (SarosSessionManager.java:351) session stopped
+DEBUG 2016-12-21 20:13:42,720 (CancelableProcess.java:353) process IPN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] exit status: CANCEL
+INFO  2016-12-21 20:13:44,157 (FeedbackManager.java:136) Asking for feedback survey: User agreed (external browser)
+DEBUG 2016-12-21 20:13:55,277 (VersionManager.java:90) received version request from eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:13:55,277 (VersionManager.java:160) send version response to eazycode@saros-con.imp.fu-berlin.de/Saros
+INFO  2016-12-21 20:13:55,546 (InvitationHandler.java:115) received invitation from eazycode@saros-con.imp.fu-berlin.de/Saros [invitation id: 351533303624458086, session id: 1062711000, version: 14.10.31]
+DEBUG 2016-12-21 20:14:07,341 (IncomingSessionNegotiation.java:103) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : invitation accepted
+DEBUG 2016-12-21 20:14:07,342 (IncomingSessionNegotiation.java:188) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : sending invitation accepted confirmation
+DEBUG 2016-12-21 20:14:07,342 (IncomingSessionNegotiation.java:219) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : sending session negotiation data
+DEBUG 2016-12-21 20:14:07,342 (IncomingSessionNegotiation.java:232) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : waiting for host's session parameters
+DEBUG 2016-12-21 20:14:07,689 (IncomingSessionNegotiation.java:252) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : received host's session parameters
+DEBUG 2016-12-21 20:14:07,689 (IncomingSessionNegotiation.java:265) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : initializing session
+DEBUG 2016-12-21 20:14:07,689 (MUCNegotiationManager.java:143) Got hosts Communication Config: server conference.saros-con.imp.fu-berlin.de room SAROS_1062711000 pw 2036155224
+INFO  2016-12-21 20:14:07,692 (StatisticManager.java:184) Current feedback settings:
+  Feedback disabled: false
+  Feedback interval: 5
+  Statistic submission allowed: false
+  Pseudonym submission allowed: false
+INFO  2016-12-21 20:14:07,695 (ErrorLogManager.java:257) Current error log settings:
+  Error log submission allowed: false
+  Full Error log submission allowed: false
+INFO  2016-12-21 20:14:07,697 (SarosSessionManager.java:281) joined uninitialized Saros session
+INFO  2016-12-21 20:14:07,698 (DataTransferManager.java:409) establishing connection to eazycode@saros-con.imp.fu-berlin.de/Saros from xzer@saros-con.imp.fu-berlin.de/Saros using transport XMPP-Socks5-Transport
+DEBUG 2016-12-21 20:14:07,698 (ByteStreamTransport.java:45) establishing bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:14:07,698 (Socks5Transport.java:493) [SOCKS5Transport] establishing connection to eazycode@saros-con.imp.fu-berlin.de/Saroswith local SOCKS5 proxy running [port=7777, configured streamhosts=[192.168.2.108, fe80:0:0:0:50fa:8586:2f83:e7%eth3]]...
+WARN  2016-12-21 20:14:09,411 (Socks5Transport.java:544) [SOCKS5Transport] could not establish a connection to eazycode@saros-con.imp.fu-berlin.de/Saros, remote side could not connect to any offered stream hosts: item-not-found(404) Could not establish socket with any provided host
+DEBUG 2016-12-21 20:14:09,422 (Socks5Transport.java:567) [SOCKS5Transport] waiting for eazycode@saros-con.imp.fu-berlin.de/Saros to establish a connection...
+DEBUG 2016-12-21 20:14:10,890 (ByteStreamTransport.java:72) received request to establish a  bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros [de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1@491f47d9]
+DEBUG 2016-12-21 20:14:10,891 (Socks5Transport.java:311) [SOCKS5Transport] receiving response connection from eazycode@saros-con.imp.fu-berlin.de/Saroswith local SOCKS5 proxy running [port=7777, configured streamhosts=[192.168.2.108, fe80:0:0:0:50fa:8586:2f83:e7%eth3]]
+ERROR 2016-12-21 20:14:20,892 (ByteStreamTransport.java:105) could not establish bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+Could not establish socket with any provided host: item-not-found(404) Could not establish socket with any provided host
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.cancelRequest(Socks5BytestreamRequest.java:277)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.accept(Socks5BytestreamRequest.java:247)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.accept(Socks5BytestreamRequest.java:34)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.handleResponse(Socks5Transport.java:315)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.acceptRequest(Socks5Transport.java:471)
+	at de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1.incomingBytestreamRequest(ByteStreamTransport.java:77)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.processRequest(InitiationListener.java:91)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.access$000(InitiationListener.java:37)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener$1.run(InitiationListener.java:63)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+WARN  2016-12-21 20:14:39,424 (DataTransferManager.java:415) failed to connect to eazycode@saros-con.imp.fu-berlin.de/Saros using transport: XMPP-Socks5-Transport
+java.io.IOException: [SOCKS5Transport] waiting for a response session timed out (30000ms) and could not establish a connection from this side, too:
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.establishBinaryChannel(Socks5Transport.java:592)
+	at de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport.connect(ByteStreamTransport.java:48)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.connectInternal(DataTransferManager.java:412)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.connect(DataTransferManager.java:297)
+	at de.fu_berlin.inf.dpp.negotiation.IncomingSessionNegotiation.accept(IncomingSessionNegotiation.java:167)
+	at de.fu_berlin.inf.dpp.ui.wizards.JoinSessionWizard$2.run(JoinSessionWizard.java:128)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: item-not-found(404) Could not establish socket with any provided host
+	at org.jivesoftware.smack.util.SyncPacketSend.getReply(SyncPacketSend.java:54)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:481)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:83)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.establishBinaryChannel(Socks5Transport.java:512)
+	... 6 more
+INFO  2016-12-21 20:14:39,441 (DataTransferManager.java:409) establishing connection to eazycode@saros-con.imp.fu-berlin.de/Saros from xzer@saros-con.imp.fu-berlin.de/Saros using transport XMPP-IBB-Transport
+DEBUG 2016-12-21 20:14:39,443 (ByteStreamTransport.java:45) establishing bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:14:39,625 (DataTransferManager.java:136) bytestream connection changed [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros, inc=false, pool id=saros-main-session:out:eazycode@saros-con.imp.fu-berlin.de/Saros]
+DEBUG 2016-12-21 20:14:39,626 (IncomingSessionNegotiation.java:304) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : starting session
+DEBUG 2016-12-21 20:14:39,626 (BinaryChannelConnection.java:103) [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros ReceiverThread started.
+DEBUG 2016-12-21 20:14:39,627 (MultiUserChatService.java:100) Joining MUC...
+INFO  2016-12-21 20:14:39,627 (StatisticManager.java:163) Session count: 3
+DEBUG 2016-12-21 20:14:39,627 (MultiUserChat.java:264) Trying to create room on server conference.saros-con.imp.fu-berlin.de
+INFO  2016-12-21 20:14:39,627 (ParticipantCollector.java:134) Session started: Current number of participants: 2
+DEBUG 2016-12-21 20:14:39,628 (XStreamExtensionProvider.java:144) Renewing existing converter of class de.fu_berlin.inf.dpp.misc.xstream.SPathConverter
+DEBUG 2016-12-21 20:14:39,628 (ActivityHandler.java:89) activity dispatcher started
+DEBUG 2016-12-21 20:14:39,629 (XStreamExtensionProvider.java:189) Renewing existing converter of class de.fu_berlin.inf.dpp.misc.xstream.UserConverter
+DEBUG 2016-12-21 20:14:39,629 (ConsistencyAction.java:173) Inconsistency indicator goes: off
+DEBUG 2016-12-21 20:14:39,630 (WhiteboardManager.java:108) Preparing Whiteboard for receiving an invitation
+DEBUG 2016-12-21 20:14:39,690 (ColorUtils.java:21) set foregroundcolor RGB {237, 237, 169}
+DEBUG 2016-12-21 20:14:39,692 (IncomingSessionNegotiation.java:318) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : invitation has completed successfully
+WARN  2016-12-21 20:14:39,736 (SubscriptionHandler.java:148) received error presence package from saros_1062711000@conference.saros-con.imp.fu-berlin.de/xzer@saros-con.imp.fu-berlin.de/Saros, condition: not-authorized, message: A password is required to enter this room
+DEBUG 2016-12-21 20:14:39,911 (MultiUserChat.java:297) MUC joined. Server: conference.saros-con.imp.fu-berlin.de Room: SAROS_1062711000 Password 2036155224
+DEBUG 2016-12-21 20:14:39,912 (MultiUserChatStateManager.java:101) Incoming Message from saros_1062711000@conference.saros-con.imp.fu-berlin.de/eazycode@saros-con.imp.fu-berlin.de/Saros with state: active
+DEBUG 2016-12-21 20:14:39,912 (MultiUserChat.java:79) stateChanged fired with state: active
+DEBUG 2016-12-21 20:14:39,912 (MultiUserChat.java:133) processPacket called
+DEBUG 2016-12-21 20:14:40,121 (MultiUserChatStateManager.java:101) Incoming Message from saros_1062711000@conference.saros-con.imp.fu-berlin.de/xzer@saros-con.imp.fu-berlin.de/Saros with state: active
+DEBUG 2016-12-21 20:14:40,121 (MultiUserChat.java:79) stateChanged fired with state: active
+DEBUG 2016-12-21 20:14:40,121 (MultiUserChat.java:133) processPacket called
+DEBUG 2016-12-21 20:14:40,597 (IncomingSessionNegotiation.java:331) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : invitation complete confirmation sent
+DEBUG 2016-12-21 20:14:41,865 (UserInformationHandler.java:293) received user list from eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:14:41,866 (UserInformationHandler.java:317) updating permissions for user: xzer@saros-con.imp.fu-berlin.de/Saros [WRITE_ACCESS]
+DEBUG 2016-12-21 20:14:41,866 (UserInformationHandler.java:317) updating permissions for user: eazycode@saros-con.imp.fu-berlin.de/Saros [WRITE_ACCESS]
+DEBUG 2016-12-21 20:14:41,866 (UserInformationHandler.java:347) sending user list received confirmation to eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:14:43,996 (CancelableProcess.java:353) process ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] exit status: OK
+DEBUG 2016-12-21 20:14:45,554 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:14:45,555 (ChangeColorManager.java:238) received color id change fo user : eazycode@saros-con.imp.fu-berlin.de/Saros [1]
+DEBUG 2016-12-21 20:14:45,555 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:14:45,557 (ChangeColorManager.java:238) received color id change fo user : xzer@saros-con.imp.fu-berlin.de/Saros [3]
+DEBUG 2016-12-21 20:14:45,558 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:14:45,627 (ByteStreamTransport.java:72) received request to establish a  bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros [de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1@491f47d9]
+DEBUG 2016-12-21 20:14:45,627 (Socks5Transport.java:368) [SOCKS5Transport] receiving request from eazycode@saros-con.imp.fu-berlin.de/Saroswith local SOCKS5 proxy running [port=7777, configured streamhosts=[192.168.2.108, fe80:0:0:0:50fa:8586:2f83:e7%eth3]]
+DEBUG 2016-12-21 20:14:45,628 (Socks5Transport.java:624) [SOCKS5Transport] Start to establish new response connection
+DEBUG 2016-12-21 20:14:47,695 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:14:47,696 (ChangeColorManager.java:238) received color id change fo user : eazycode@saros-con.imp.fu-berlin.de/Saros [1]
+DEBUG 2016-12-21 20:14:47,697 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:14:47,700 (ChangeColorManager.java:238) received color id change fo user : xzer@saros-con.imp.fu-berlin.de/Saros [3]
+DEBUG 2016-12-21 20:14:47,701 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:14:49,393 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:14:49,394 (ChangeColorManager.java:238) received color id change fo user : eazycode@saros-con.imp.fu-berlin.de/Saros [1]
+DEBUG 2016-12-21 20:14:49,395 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:14:49,398 (ChangeColorManager.java:238) received color id change fo user : xzer@saros-con.imp.fu-berlin.de/Saros [3]
+DEBUG 2016-12-21 20:14:49,399 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:14:50,904 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:14:50,905 (ChangeColorManager.java:238) received color id change fo user : eazycode@saros-con.imp.fu-berlin.de/Saros [1]
+DEBUG 2016-12-21 20:14:50,906 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:14:50,909 (ChangeColorManager.java:238) received color id change fo user : xzer@saros-con.imp.fu-berlin.de/Saros [3]
+DEBUG 2016-12-21 20:14:50,911 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:14:51,788 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:14:51,789 (ChangeColorManager.java:238) received color id change fo user : eazycode@saros-con.imp.fu-berlin.de/Saros [1]
+DEBUG 2016-12-21 20:14:51,790 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:14:51,791 (ChangeColorManager.java:238) received color id change fo user : xzer@saros-con.imp.fu-berlin.de/Saros [3]
+DEBUG 2016-12-21 20:14:51,791 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:14:53,308 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:14:53,309 (ChangeColorManager.java:238) received color id change fo user : eazycode@saros-con.imp.fu-berlin.de/Saros [1]
+DEBUG 2016-12-21 20:14:53,309 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:14:53,310 (ChangeColorManager.java:238) received color id change fo user : xzer@saros-con.imp.fu-berlin.de/Saros [3]
+DEBUG 2016-12-21 20:14:53,311 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:14:54,469 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:14:54,470 (ChangeColorManager.java:238) received color id change fo user : eazycode@saros-con.imp.fu-berlin.de/Saros [1]
+DEBUG 2016-12-21 20:14:54,471 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:14:54,474 (ChangeColorManager.java:238) received color id change fo user : xzer@saros-con.imp.fu-berlin.de/Saros [3]
+DEBUG 2016-12-21 20:14:54,475 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:14:55,397 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:14:55,399 (ChangeColorManager.java:238) received color id change fo user : eazycode@saros-con.imp.fu-berlin.de/Saros [1]
+DEBUG 2016-12-21 20:14:55,401 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:14:55,403 (ChangeColorManager.java:238) received color id change fo user : xzer@saros-con.imp.fu-berlin.de/Saros [3]
+DEBUG 2016-12-21 20:14:55,405 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+WARN  2016-12-21 20:14:55,628 (Socks5Transport.java:411) [SOCKS5Transport] Couldn't accept request but still trying to establish a response connection: Could not establish socket with any provided host
+ERROR 2016-12-21 20:14:55,635 (Socks5Transport.java:440) An error occurred while establishing a response connection 
+item-not-found(404) Could not establish socket with any provided host
+	at org.jivesoftware.smack.util.SyncPacketSend.getReply(SyncPacketSend.java:54)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:481)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:83)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.establishResponseSession(Socks5Transport.java:631)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport$1.call(Socks5Transport.java:108)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport$1.call(Socks5Transport.java:1)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+ERROR 2016-12-21 20:14:55,642 (ByteStreamTransport.java:105) could not establish bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+java.io.IOException: [SOCKS5Transport] Neither connection could be established. 
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.acceptNewRequest(Socks5Transport.java:446)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.acceptRequest(Socks5Transport.java:474)
+	at de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1.incomingBytestreamRequest(ByteStreamTransport.java:77)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.processRequest(InitiationListener.java:91)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.access$000(InitiationListener.java:37)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener$1.run(InitiationListener.java:63)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+DEBUG 2016-12-21 20:14:59,193 (BinaryChannelConnection.java:112) [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros connection closed remotely:null
+DEBUG 2016-12-21 20:15:00,063 (DataTransferManager.java:330) closed connection [pool id=saros-main-session:out:eazycode@saros-con.imp.fu-berlin.de/Saros]: [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:15:27,117 (ByteStreamTransport.java:72) received request to establish a  bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros [de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1@2f7837f0]
+DEBUG 2016-12-21 20:15:27,117 (DataTransferManager.java:136) bytestream connection changed [mode=IBB, id=default] eazycode@saros-con.imp.fu-berlin.de/Saros, inc=true, pool id=default:in:eazycode@saros-con.imp.fu-berlin.de/Saros]
+DEBUG 2016-12-21 20:15:28,051 (BinaryChannelConnection.java:112) [mode=IBB, id=default] eazycode@saros-con.imp.fu-berlin.de/Saros connection closed remotely:null
+DEBUG 2016-12-21 20:15:28,052 (DataTransferManager.java:336) closed connection [pool id=default:in:eazycode@saros-con.imp.fu-berlin.de/Saros]: [mode=IBB, id=default] eazycode@saros-con.imp.fu-berlin.de/Saros
+WARN  2016-12-21 20:15:28,053 (DataTransferManager.java:154) existing connection [pool id=default:in:eazycode@saros-con.imp.fu-berlin.de/Saros] [mode=IBB, id=default] eazycode@saros-con.imp.fu-berlin.de/Saros was replaced with connection [mode=IBB, id=default] eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:15:28,072 (BinaryChannelConnection.java:103) [mode=IBB, id=default] eazycode@saros-con.imp.fu-berlin.de/Saros ReceiverThread started.
+ERROR 2016-12-21 20:15:28,073 (BinaryChannelConnection.java:115) [mode=IBB, id=default] eazycode@saros-con.imp.fu-berlin.de/Saros network error: Stream is closed
+java.io.IOException: Stream is closed
+	at org.jivesoftware.smackx.bytestreams.ibb.InBandBytestreamSession$IBBInputStream.checkClosed(InBandBytestreamSession.java:395)
+	at org.jivesoftware.smackx.bytestreams.ibb.InBandBytestreamSession$IBBInputStream.read(InBandBytestreamSession.java:305)
+	at java.io.BufferedInputStream.fill(Unknown Source)
+	at java.io.BufferedInputStream.read(Unknown Source)
+	at java.io.DataInputStream.readUnsignedByte(Unknown Source)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection.readNextXMPPExtension(BinaryChannelConnection.java:347)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection.access$2(BinaryChannelConnection.java:343)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection$ReceiverThread.run(BinaryChannelConnection.java:106)
+ERROR 2016-12-21 20:15:28,239 (BinaryChannelConnection.java:176) failed to gracefully close connection [mode=IBB, id=default] eazycode@saros-con.imp.fu-berlin.de/Saros
+java.io.IOException: Error while closing stream: item-not-found(404)
+	at org.jivesoftware.smackx.bytestreams.ibb.InBandBytestreamSession.closeByLocal(InBandBytestreamSession.java:213)
+	at org.jivesoftware.smackx.bytestreams.ibb.InBandBytestreamSession.close(InBandBytestreamSession.java:153)
+	at de.fu_berlin.inf.dpp.net.internal.XMPPByteStreamAdapter.close(XMPPByteStreamAdapter.java:32)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection.close(BinaryChannelConnection.java:174)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection$ReceiverThread.run(BinaryChannelConnection.java:119)
+WARN  2016-12-21 20:15:59,172 (CancelProjectSharingHandler.java:74) Inv[unknown user]: Received invitation cancel message
+DEBUG 2016-12-21 20:19:37,629 (ActivitySequencer.java:496) send (001) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:19:37,629 (EditorManager.java:1639) user eazycode@saros-con.imp.fu-berlin.de/Saros has no editor open
+ERROR 2016-12-21 20:19:37,631 (ActivitySequencer.java:504) failed to sent activities: [StartFollowingActivity(xzer@saros-con.imp.fu-berlin.de/Saros > eazycode@saros-con.imp.fu-berlin.de/Saros)]
+java.io.IOException: not connected to eazycode@saros-con.imp.fu-berlin.de/Saros [connection identifier=saros-main-session]
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendData(DataTransferManager.java:206)
+	at de.fu_berlin.inf.dpp.net.internal.XMPPTransmitter.send(XMPPTransmitter.java:90)
+	at de.fu_berlin.inf.dpp.project.internal.ActivitySequencer.sendActivities(ActivitySequencer.java:501)
+	at de.fu_berlin.inf.dpp.project.internal.ActivitySequencer.access$3(ActivitySequencer.java:482)
+	at de.fu_berlin.inf.dpp.project.internal.ActivitySequencer$2.run(ActivitySequencer.java:152)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Unknown Source)
+DEBUG 2016-12-21 20:19:37,654 (SarosSessionManager.java:330) terminating all running negotiation processes
+DEBUG 2016-12-21 20:19:37,655 (SarosSessionManager.java:337) Leave message sent.
+DEBUG 2016-12-21 20:19:37,657 (ActivityHandler.java:109) activity dispatcher stopped
+INFO  2016-12-21 20:19:37,657 (FeedbackManager.java:104) Session lasted 4 min 58 s
+DEBUG 2016-12-21 20:19:37,658 (FollowModeCollector.java:177) Processing follow mode changes took 0.0 s
+INFO  2016-12-21 20:19:37,660 (ParticipantCollector.java:145) Session ended: Current number of participants: 2
+DEBUG 2016-12-21 20:19:37,661 (StatisticManager.java:329) Session statistic:
+  auto.followmode.enabled=false
+  data_transfer.IBB.average_throughput_kbs=0.4
+  data_transfer.IBB.number_of_events=14
+  data_transfer.IBB.total_size_kb=2
+  data_transfer.IBB.total_time_ms=5348
+  feedback.disabled=false
+  feedback.survey.interval=5
+  followmode.time.percent=0
+  followmode.time.total=0.0
+  followmode.toggles=1
+  gesture.count=0
+  java.version=1.8.0_101
+  jumped.count=0
+  jumped.driver.count=0
+  jumped.observer.count=0
+  observer.selection.count.witnessed=0
+  observer.selection.count=0
+  os.name=Windows 10
+  platform.version=3.12.0.v20160606-1342
+  random.user.id=2016-12-21_19-02-41_1789355881
+  role.1.duration=4.97
+  role.1=write_access
+  role.changes=0
+  role.driver.duration=4.97
+  role.driver.percent=100
+  role.observer.duration=0.0
+  role.observer.percent=0
+  saros.version=14.10.31
+  session.count=3
+  session.id=1062711000
+  session.local.start=2016-12-21T19:19:37Z
+  session.shared.project.complete.count=0
+  session.shared.project.partial.count=0
+  session.shared.project.partial.files.count=0
+  session.time.users.2.percent=100
+  session.time.users.2=4.97
+  session.time=4.97
+  session.users.total=2
+  textedits.chars=0
+  textedits.count=0
+  textedits.nonparallel.chars=0
+  textedits.nonparallel.percent=0
+  textedits.pastes.chars=0
+  textedits.pastes=0
+  user.is.host=false
+INFO  2016-12-21 20:19:37,662 (StatisticManager.java:243) User does not allow to submit session statistics
+DEBUG 2016-12-21 20:19:37,690 (EditorManager.java:1697) unlocking all editors
+WARN  2016-12-21 20:19:37,692 (SarosSession.java:655) failed to notify user eazycode@saros-con.imp.fu-berlin.de/Saros about local session stop
+java.io.IOException: not connected to eazycode@saros-con.imp.fu-berlin.de/Saros [connection identifier=saros-main-session]
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendData(DataTransferManager.java:206)
+	at de.fu_berlin.inf.dpp.net.internal.XMPPTransmitter.send(XMPPTransmitter.java:90)
+	at de.fu_berlin.inf.dpp.project.internal.SarosSession.stop(SarosSession.java:651)
+	at de.fu_berlin.inf.dpp.project.SarosSessionManager.stopSarosSession(SarosSessionManager.java:340)
+	at de.fu_berlin.inf.dpp.project.internal.timeout.SessionTimeoutHandler$3.run(SessionTimeoutHandler.java:115)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Unknown Source)
+DEBUG 2016-12-21 20:19:37,702 (XStreamExtensionProvider.java:169) Unregistering (resetting) converter of class de.fu_berlin.inf.dpp.misc.xstream.SPathConverter
+DEBUG 2016-12-21 20:19:37,702 (XStreamExtensionProvider.java:216) Unregistering (resetting) converter of class de.fu_berlin.inf.dpp.misc.xstream.UserConverter
+DEBUG 2016-12-21 20:19:37,726 (MultiUserChatService.java:135) leaving multi user chat de.fu_berlin.inf.dpp.communication.chat.muc.MultiUserChat@1fcd857d
+DEBUG 2016-12-21 20:19:37,727 (SharedProjectDecorator.java:93) clearing project decoration for all shared projects
+DEBUG 2016-12-21 20:19:37,727 (DocumentRecord.java:93) Added Node: attr(148234797772751637) name=svg
+INFO  2016-12-21 20:19:37,728 (SarosSessionManager.java:351) session stopped
+WARN  2016-12-21 20:19:37,770 (SubscriptionHandler.java:148) received error presence package from saros_1062711000@conference.saros-con.imp.fu-berlin.de/xzer@saros-con.imp.fu-berlin.de/Saros, condition: item-not-found, message: Conference room does not exist
+DEBUG 2016-12-21 20:32:28,663 (VersionManager.java:90) received version request from eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:32:28,663 (VersionManager.java:160) send version response to eazycode@saros-con.imp.fu-berlin.de/Saros
+INFO  2016-12-21 20:32:28,958 (InvitationHandler.java:115) received invitation from eazycode@saros-con.imp.fu-berlin.de/Saros [invitation id: 5997715717435634865, session id: 539475858, version: 14.10.31]
+DEBUG 2016-12-21 20:33:26,993 (IncomingSessionNegotiation.java:103) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : invitation accepted
+DEBUG 2016-12-21 20:33:26,993 (IncomingSessionNegotiation.java:188) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : sending invitation accepted confirmation
+DEBUG 2016-12-21 20:33:26,994 (IncomingSessionNegotiation.java:219) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : sending session negotiation data
+DEBUG 2016-12-21 20:33:26,994 (IncomingSessionNegotiation.java:232) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : waiting for host's session parameters
+DEBUG 2016-12-21 20:33:27,408 (IncomingSessionNegotiation.java:252) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : received host's session parameters
+DEBUG 2016-12-21 20:33:27,408 (IncomingSessionNegotiation.java:265) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : initializing session
+DEBUG 2016-12-21 20:33:27,409 (MUCNegotiationManager.java:143) Got hosts Communication Config: server conference.saros-con.imp.fu-berlin.de room SAROS_539475858 pw 2036155224
+INFO  2016-12-21 20:33:27,415 (StatisticManager.java:184) Current feedback settings:
+  Feedback disabled: false
+  Feedback interval: 5
+  Statistic submission allowed: false
+  Pseudonym submission allowed: false
+INFO  2016-12-21 20:33:27,419 (ErrorLogManager.java:257) Current error log settings:
+  Error log submission allowed: false
+  Full Error log submission allowed: false
+INFO  2016-12-21 20:33:27,421 (SarosSessionManager.java:281) joined uninitialized Saros session
+INFO  2016-12-21 20:33:27,422 (DataTransferManager.java:409) establishing connection to eazycode@saros-con.imp.fu-berlin.de/Saros from xzer@saros-con.imp.fu-berlin.de/Saros using transport XMPP-Socks5-Transport
+DEBUG 2016-12-21 20:33:27,422 (ByteStreamTransport.java:45) establishing bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:33:27,423 (Socks5Transport.java:493) [SOCKS5Transport] establishing connection to eazycode@saros-con.imp.fu-berlin.de/Saroswith local SOCKS5 proxy running [port=7777, configured streamhosts=[192.168.2.108, fe80:0:0:0:50fa:8586:2f83:e7%eth3]]...
+WARN  2016-12-21 20:33:29,127 (Socks5Transport.java:544) [SOCKS5Transport] could not establish a connection to eazycode@saros-con.imp.fu-berlin.de/Saros, remote side could not connect to any offered stream hosts: item-not-found(404) Could not establish socket with any provided host
+DEBUG 2016-12-21 20:33:29,144 (Socks5Transport.java:567) [SOCKS5Transport] waiting for eazycode@saros-con.imp.fu-berlin.de/Saros to establish a connection...
+DEBUG 2016-12-21 20:33:30,345 (ByteStreamTransport.java:72) received request to establish a  bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros [de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1@491f47d9]
+DEBUG 2016-12-21 20:33:30,346 (Socks5Transport.java:311) [SOCKS5Transport] receiving response connection from eazycode@saros-con.imp.fu-berlin.de/Saroswith local SOCKS5 proxy running [port=7777, configured streamhosts=[192.168.2.108, fe80:0:0:0:50fa:8586:2f83:e7%eth3]]
+ERROR 2016-12-21 20:33:30,347 (ByteStreamTransport.java:105) could not establish bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+Could not establish socket with any provided host: item-not-found(404) Could not establish socket with any provided host
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.cancelRequest(Socks5BytestreamRequest.java:277)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.accept(Socks5BytestreamRequest.java:247)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.accept(Socks5BytestreamRequest.java:34)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.handleResponse(Socks5Transport.java:315)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.acceptRequest(Socks5Transport.java:471)
+	at de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1.incomingBytestreamRequest(ByteStreamTransport.java:77)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.processRequest(InitiationListener.java:91)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.access$000(InitiationListener.java:37)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener$1.run(InitiationListener.java:63)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+WARN  2016-12-21 20:33:59,145 (DataTransferManager.java:415) failed to connect to eazycode@saros-con.imp.fu-berlin.de/Saros using transport: XMPP-Socks5-Transport
+java.io.IOException: [SOCKS5Transport] waiting for a response session timed out (30000ms) and could not establish a connection from this side, too:
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.establishBinaryChannel(Socks5Transport.java:592)
+	at de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport.connect(ByteStreamTransport.java:48)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.connectInternal(DataTransferManager.java:412)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.connect(DataTransferManager.java:297)
+	at de.fu_berlin.inf.dpp.negotiation.IncomingSessionNegotiation.accept(IncomingSessionNegotiation.java:167)
+	at de.fu_berlin.inf.dpp.ui.wizards.JoinSessionWizard$2.run(JoinSessionWizard.java:128)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: item-not-found(404) Could not establish socket with any provided host
+	at org.jivesoftware.smack.util.SyncPacketSend.getReply(SyncPacketSend.java:54)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:481)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:83)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.establishBinaryChannel(Socks5Transport.java:512)
+	... 6 more
+INFO  2016-12-21 20:33:59,165 (DataTransferManager.java:409) establishing connection to eazycode@saros-con.imp.fu-berlin.de/Saros from xzer@saros-con.imp.fu-berlin.de/Saros using transport XMPP-IBB-Transport
+DEBUG 2016-12-21 20:33:59,165 (ByteStreamTransport.java:45) establishing bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:33:59,299 (DataTransferManager.java:136) bytestream connection changed [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros, inc=false, pool id=saros-main-session:out:eazycode@saros-con.imp.fu-berlin.de/Saros]
+DEBUG 2016-12-21 20:33:59,300 (IncomingSessionNegotiation.java:304) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : starting session
+DEBUG 2016-12-21 20:33:59,301 (BinaryChannelConnection.java:103) [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros ReceiverThread started.
+DEBUG 2016-12-21 20:33:59,302 (MultiUserChatService.java:100) Joining MUC...
+INFO  2016-12-21 20:33:59,302 (StatisticManager.java:163) Session count: 4
+DEBUG 2016-12-21 20:33:59,303 (MultiUserChat.java:264) Trying to create room on server conference.saros-con.imp.fu-berlin.de
+INFO  2016-12-21 20:33:59,303 (ParticipantCollector.java:134) Session started: Current number of participants: 2
+DEBUG 2016-12-21 20:33:59,305 (XStreamExtensionProvider.java:144) Renewing existing converter of class de.fu_berlin.inf.dpp.misc.xstream.SPathConverter
+DEBUG 2016-12-21 20:33:59,305 (ActivityHandler.java:89) activity dispatcher started
+DEBUG 2016-12-21 20:33:59,306 (XStreamExtensionProvider.java:189) Renewing existing converter of class de.fu_berlin.inf.dpp.misc.xstream.UserConverter
+DEBUG 2016-12-21 20:33:59,307 (ConsistencyAction.java:173) Inconsistency indicator goes: off
+DEBUG 2016-12-21 20:33:59,308 (WhiteboardManager.java:108) Preparing Whiteboard for receiving an invitation
+WARN  2016-12-21 20:33:59,352 (SubscriptionHandler.java:148) received error presence package from saros_539475858@conference.saros-con.imp.fu-berlin.de/xzer@saros-con.imp.fu-berlin.de/Saros, condition: not-authorized, message: A password is required to enter this room
+DEBUG 2016-12-21 20:33:59,386 (ColorUtils.java:21) set foregroundcolor RGB {237, 237, 169}
+DEBUG 2016-12-21 20:33:59,387 (IncomingSessionNegotiation.java:318) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : invitation has completed successfully
+DEBUG 2016-12-21 20:33:59,438 (MultiUserChat.java:297) MUC joined. Server: conference.saros-con.imp.fu-berlin.de Room: SAROS_539475858 Password 2036155224
+DEBUG 2016-12-21 20:33:59,910 (MultiUserChatStateManager.java:101) Incoming Message from saros_539475858@conference.saros-con.imp.fu-berlin.de/xzer@saros-con.imp.fu-berlin.de/Saros with state: active
+DEBUG 2016-12-21 20:33:59,911 (MultiUserChat.java:79) stateChanged fired with state: active
+DEBUG 2016-12-21 20:33:59,913 (MultiUserChat.java:133) processPacket called
+DEBUG 2016-12-21 20:34:00,423 (IncomingSessionNegotiation.java:331) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : invitation complete confirmation sent
+DEBUG 2016-12-21 20:34:02,447 (BinaryChannelConnection.java:112) [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros connection closed remotely:null
+DEBUG 2016-12-21 20:34:02,654 (DataTransferManager.java:330) closed connection [pool id=saros-main-session:out:eazycode@saros-con.imp.fu-berlin.de/Saros]: [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:34:02,744 (CancelInviteHandler.java:57) Inveazycode@saros-con.imp.fu-berlin.de/Saros : Received invitation cancel message
+DEBUG 2016-12-21 20:34:02,745 (CancelableProcess.java:189) process ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] was cancelled by the remote side, error: could not synchronize user list, following users did not respond: xzer@saros-con.imp.fu-berlin.de/Saros
+ERROR 2016-12-21 20:34:03,425 (CancelableProcess.java:411) cancelled process ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] because the remote side encountered an error: could not synchronize user list, following users did not respond: xzer@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:34:03,437 (CancelableProcess.java:349) executing cancellation for process ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros]
+DEBUG 2016-12-21 20:34:03,440 (SarosSessionManager.java:330) terminating all running negotiation processes
+DEBUG 2016-12-21 20:34:03,441 (SarosSessionManager.java:337) Leave message sent.
+DEBUG 2016-12-21 20:34:03,443 (ActivityHandler.java:109) activity dispatcher stopped
+INFO  2016-12-21 20:34:03,444 (FeedbackManager.java:104) Session lasted 0 min 4 s
+DEBUG 2016-12-21 20:34:03,444 (FollowModeCollector.java:177) Processing follow mode changes took 0.0 s
+INFO  2016-12-21 20:34:03,447 (ParticipantCollector.java:145) Session ended: Current number of participants: 2
+DEBUG 2016-12-21 20:34:03,447 (StatisticManager.java:329) Session statistic:
+  auto.followmode.enabled=false
+  data_transfer.IBB.average_throughput_kbs=0.8
+  data_transfer.IBB.number_of_events=1
+  data_transfer.IBB.total_size_kb=0
+  data_transfer.IBB.total_time_ms=173
+  feedback.disabled=false
+  feedback.survey.interval=5
+  followmode.time.percent=0
+  followmode.time.total=0.0
+  followmode.toggles=0
+  gesture.count=0
+  java.version=1.8.0_101
+  jumped.count=0
+  jumped.driver.count=0
+  jumped.observer.count=0
+  observer.selection.count.witnessed=0
+  observer.selection.count=0
+  os.name=Windows 10
+  platform.version=3.12.0.v20160606-1342
+  random.user.id=2016-12-21_19-02-41_1789355881
+  role.1.duration=0.07
+  role.1=write_access
+  role.changes=0
+  role.driver.duration=0.07
+  role.driver.percent=100
+  role.observer.duration=0.0
+  role.observer.percent=0
+  saros.version=14.10.31
+  session.count=4
+  session.id=539475858
+  session.local.start=2016-12-21T19:34:03Z
+  session.shared.project.complete.count=0
+  session.shared.project.partial.count=0
+  session.shared.project.partial.files.count=0
+  session.time.users.2.percent=100
+  session.time.users.2=0.07
+  session.time=0.07
+  session.users.total=2
+  textedits.chars=0
+  textedits.count=0
+  textedits.nonparallel.chars=0
+  textedits.nonparallel.percent=0
+  textedits.pastes.chars=0
+  textedits.pastes=0
+  user.is.host=false
+INFO  2016-12-21 20:34:03,448 (StatisticManager.java:243) User does not allow to submit session statistics
+DEBUG 2016-12-21 20:34:03,465 (EditorManager.java:1697) unlocking all editors
+WARN  2016-12-21 20:34:03,467 (SarosSession.java:655) failed to notify user eazycode@saros-con.imp.fu-berlin.de/Saros about local session stop
+java.io.IOException: not connected to eazycode@saros-con.imp.fu-berlin.de/Saros [connection identifier=saros-main-session]
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendData(DataTransferManager.java:206)
+	at de.fu_berlin.inf.dpp.net.internal.XMPPTransmitter.send(XMPPTransmitter.java:90)
+	at de.fu_berlin.inf.dpp.project.internal.SarosSession.stop(SarosSession.java:651)
+	at de.fu_berlin.inf.dpp.project.SarosSessionManager.stopSarosSession(SarosSessionManager.java:340)
+	at de.fu_berlin.inf.dpp.negotiation.IncomingSessionNegotiation.executeCancellation(IncomingSessionNegotiation.java:92)
+	at de.fu_berlin.inf.dpp.negotiation.CancelableProcess.terminateProcess(CancelableProcess.java:350)
+	at de.fu_berlin.inf.dpp.negotiation.IncomingSessionNegotiation.accept(IncomingSessionNegotiation.java:181)
+	at de.fu_berlin.inf.dpp.ui.wizards.JoinSessionWizard$2.run(JoinSessionWizard.java:128)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+DEBUG 2016-12-21 20:34:03,485 (XStreamExtensionProvider.java:169) Unregistering (resetting) converter of class de.fu_berlin.inf.dpp.misc.xstream.SPathConverter
+DEBUG 2016-12-21 20:34:03,485 (XStreamExtensionProvider.java:216) Unregistering (resetting) converter of class de.fu_berlin.inf.dpp.misc.xstream.UserConverter
+DEBUG 2016-12-21 20:34:03,517 (MultiUserChatService.java:135) leaving multi user chat de.fu_berlin.inf.dpp.communication.chat.muc.MultiUserChat@529ab240
+DEBUG 2016-12-21 20:34:03,518 (SharedProjectDecorator.java:93) clearing project decoration for all shared projects
+DEBUG 2016-12-21 20:34:03,518 (DocumentRecord.java:93) Added Node: attr(148234884351819307) name=svg
+INFO  2016-12-21 20:34:03,519 (SarosSessionManager.java:351) session stopped
+DEBUG 2016-12-21 20:34:03,519 (CancelableProcess.java:353) process ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] exit status: REMOTE_ERROR
+WARN  2016-12-21 20:34:03,571 (SubscriptionHandler.java:148) received error presence package from saros_539475858@conference.saros-con.imp.fu-berlin.de/xzer@saros-con.imp.fu-berlin.de/Saros, condition: item-not-found, message: Conference room does not exist
+DEBUG 2016-12-21 20:34:14,529 (VersionManager.java:90) received version request from eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:34:14,530 (VersionManager.java:160) send version response to eazycode@saros-con.imp.fu-berlin.de/Saros
+INFO  2016-12-21 20:34:14,749 (InvitationHandler.java:115) received invitation from eazycode@saros-con.imp.fu-berlin.de/Saros [invitation id: -728759692286826324, session id: 233035903, version: 14.10.31]
+DEBUG 2016-12-21 20:34:39,887 (IncomingSessionNegotiation.java:103) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : invitation accepted
+DEBUG 2016-12-21 20:34:39,888 (IncomingSessionNegotiation.java:188) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : sending invitation accepted confirmation
+DEBUG 2016-12-21 20:34:39,888 (IncomingSessionNegotiation.java:219) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : sending session negotiation data
+DEBUG 2016-12-21 20:34:39,888 (IncomingSessionNegotiation.java:232) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : waiting for host's session parameters
+DEBUG 2016-12-21 20:34:40,717 (IncomingSessionNegotiation.java:252) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : received host's session parameters
+DEBUG 2016-12-21 20:34:40,718 (IncomingSessionNegotiation.java:265) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : initializing session
+DEBUG 2016-12-21 20:34:40,718 (MUCNegotiationManager.java:143) Got hosts Communication Config: server conference.saros-con.imp.fu-berlin.de room SAROS_233035903 pw 2036155224
+INFO  2016-12-21 20:34:40,724 (StatisticManager.java:184) Current feedback settings:
+  Feedback disabled: false
+  Feedback interval: 5
+  Statistic submission allowed: false
+  Pseudonym submission allowed: false
+INFO  2016-12-21 20:34:40,726 (ErrorLogManager.java:257) Current error log settings:
+  Error log submission allowed: false
+  Full Error log submission allowed: false
+INFO  2016-12-21 20:34:40,727 (SarosSessionManager.java:281) joined uninitialized Saros session
+INFO  2016-12-21 20:34:40,728 (DataTransferManager.java:409) establishing connection to eazycode@saros-con.imp.fu-berlin.de/Saros from xzer@saros-con.imp.fu-berlin.de/Saros using transport XMPP-Socks5-Transport
+DEBUG 2016-12-21 20:34:40,728 (ByteStreamTransport.java:45) establishing bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:34:40,728 (Socks5Transport.java:493) [SOCKS5Transport] establishing connection to eazycode@saros-con.imp.fu-berlin.de/Saroswith local SOCKS5 proxy running [port=7777, configured streamhosts=[192.168.2.108, fe80:0:0:0:50fa:8586:2f83:e7%eth3]]...
+WARN  2016-12-21 20:34:42,463 (Socks5Transport.java:544) [SOCKS5Transport] could not establish a connection to eazycode@saros-con.imp.fu-berlin.de/Saros, remote side could not connect to any offered stream hosts: item-not-found(404) Could not establish socket with any provided host
+DEBUG 2016-12-21 20:34:42,475 (Socks5Transport.java:567) [SOCKS5Transport] waiting for eazycode@saros-con.imp.fu-berlin.de/Saros to establish a connection...
+DEBUG 2016-12-21 20:34:43,398 (ByteStreamTransport.java:72) received request to establish a  bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros [de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1@491f47d9]
+DEBUG 2016-12-21 20:34:43,398 (Socks5Transport.java:311) [SOCKS5Transport] receiving response connection from eazycode@saros-con.imp.fu-berlin.de/Saroswith local SOCKS5 proxy running [port=7777, configured streamhosts=[192.168.2.108, fe80:0:0:0:50fa:8586:2f83:e7%eth3]]
+ERROR 2016-12-21 20:34:43,398 (ByteStreamTransport.java:105) could not establish bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+Could not establish socket with any provided host: item-not-found(404) Could not establish socket with any provided host
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.cancelRequest(Socks5BytestreamRequest.java:277)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.accept(Socks5BytestreamRequest.java:247)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.accept(Socks5BytestreamRequest.java:34)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.handleResponse(Socks5Transport.java:315)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.acceptRequest(Socks5Transport.java:471)
+	at de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1.incomingBytestreamRequest(ByteStreamTransport.java:77)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.processRequest(InitiationListener.java:91)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.access$000(InitiationListener.java:37)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener$1.run(InitiationListener.java:63)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+WARN  2016-12-21 20:35:12,476 (DataTransferManager.java:415) failed to connect to eazycode@saros-con.imp.fu-berlin.de/Saros using transport: XMPP-Socks5-Transport
+java.io.IOException: [SOCKS5Transport] waiting for a response session timed out (30000ms) and could not establish a connection from this side, too:
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.establishBinaryChannel(Socks5Transport.java:592)
+	at de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport.connect(ByteStreamTransport.java:48)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.connectInternal(DataTransferManager.java:412)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.connect(DataTransferManager.java:297)
+	at de.fu_berlin.inf.dpp.negotiation.IncomingSessionNegotiation.accept(IncomingSessionNegotiation.java:167)
+	at de.fu_berlin.inf.dpp.ui.wizards.JoinSessionWizard$2.run(JoinSessionWizard.java:128)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: item-not-found(404) Could not establish socket with any provided host
+	at org.jivesoftware.smack.util.SyncPacketSend.getReply(SyncPacketSend.java:54)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:481)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:83)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.establishBinaryChannel(Socks5Transport.java:512)
+	... 6 more
+INFO  2016-12-21 20:35:12,483 (DataTransferManager.java:409) establishing connection to eazycode@saros-con.imp.fu-berlin.de/Saros from xzer@saros-con.imp.fu-berlin.de/Saros using transport XMPP-IBB-Transport
+DEBUG 2016-12-21 20:35:12,483 (ByteStreamTransport.java:45) establishing bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:35:12,637 (DataTransferManager.java:136) bytestream connection changed [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros, inc=false, pool id=saros-main-session:out:eazycode@saros-con.imp.fu-berlin.de/Saros]
+DEBUG 2016-12-21 20:35:12,637 (IncomingSessionNegotiation.java:304) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : starting session
+DEBUG 2016-12-21 20:35:12,637 (BinaryChannelConnection.java:103) [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros ReceiverThread started.
+DEBUG 2016-12-21 20:35:12,638 (MultiUserChatService.java:100) Joining MUC...
+DEBUG 2016-12-21 20:35:12,638 (MultiUserChat.java:264) Trying to create room on server conference.saros-con.imp.fu-berlin.de
+INFO  2016-12-21 20:35:12,638 (StatisticManager.java:163) Session count: 5
+INFO  2016-12-21 20:35:12,639 (ParticipantCollector.java:134) Session started: Current number of participants: 2
+DEBUG 2016-12-21 20:35:12,639 (XStreamExtensionProvider.java:144) Renewing existing converter of class de.fu_berlin.inf.dpp.misc.xstream.SPathConverter
+DEBUG 2016-12-21 20:35:12,639 (ActivityHandler.java:89) activity dispatcher started
+DEBUG 2016-12-21 20:35:12,639 (XStreamExtensionProvider.java:189) Renewing existing converter of class de.fu_berlin.inf.dpp.misc.xstream.UserConverter
+DEBUG 2016-12-21 20:35:12,640 (ConsistencyAction.java:173) Inconsistency indicator goes: off
+DEBUG 2016-12-21 20:35:12,640 (WhiteboardManager.java:108) Preparing Whiteboard for receiving an invitation
+WARN  2016-12-21 20:35:12,682 (SubscriptionHandler.java:148) received error presence package from saros_233035903@conference.saros-con.imp.fu-berlin.de/xzer@saros-con.imp.fu-berlin.de/Saros, condition: not-authorized, message: A password is required to enter this room
+DEBUG 2016-12-21 20:35:12,685 (ColorUtils.java:21) set foregroundcolor RGB {237, 237, 169}
+DEBUG 2016-12-21 20:35:12,692 (IncomingSessionNegotiation.java:318) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : invitation has completed successfully
+DEBUG 2016-12-21 20:35:12,736 (MultiUserChat.java:297) MUC joined. Server: conference.saros-con.imp.fu-berlin.de Room: SAROS_233035903 Password 2036155224
+DEBUG 2016-12-21 20:35:12,737 (MultiUserChat.java:133) processPacket called
+DEBUG 2016-12-21 20:35:12,737 (MultiUserChatStateManager.java:101) Incoming Message from saros_233035903@conference.saros-con.imp.fu-berlin.de/eazycode@saros-con.imp.fu-berlin.de/Saros with state: active
+DEBUG 2016-12-21 20:35:12,738 (MultiUserChat.java:79) stateChanged fired with state: active
+DEBUG 2016-12-21 20:35:12,860 (MultiUserChat.java:133) processPacket called
+DEBUG 2016-12-21 20:35:12,860 (MultiUserChatStateManager.java:101) Incoming Message from saros_233035903@conference.saros-con.imp.fu-berlin.de/xzer@saros-con.imp.fu-berlin.de/Saros with state: active
+DEBUG 2016-12-21 20:35:12,860 (MultiUserChat.java:79) stateChanged fired with state: active
+DEBUG 2016-12-21 20:35:13,635 (IncomingSessionNegotiation.java:331) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : invitation complete confirmation sent
+DEBUG 2016-12-21 20:35:14,641 (UserInformationHandler.java:293) received user list from eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:35:14,641 (UserInformationHandler.java:317) updating permissions for user: xzer@saros-con.imp.fu-berlin.de/Saros [WRITE_ACCESS]
+DEBUG 2016-12-21 20:35:14,641 (UserInformationHandler.java:317) updating permissions for user: eazycode@saros-con.imp.fu-berlin.de/Saros [WRITE_ACCESS]
+DEBUG 2016-12-21 20:35:14,642 (UserInformationHandler.java:347) sending user list received confirmation to eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:35:17,068 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:35:17,070 (ChangeColorManager.java:238) received color id change fo user : eazycode@saros-con.imp.fu-berlin.de/Saros [1]
+DEBUG 2016-12-21 20:35:17,071 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:35:17,074 (ChangeColorManager.java:238) received color id change fo user : xzer@saros-con.imp.fu-berlin.de/Saros [3]
+DEBUG 2016-12-21 20:35:17,081 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:35:18,693 (CancelableProcess.java:353) process ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] exit status: OK
+DEBUG 2016-12-21 20:35:20,134 (ByteStreamTransport.java:72) received request to establish a  bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros [de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1@491f47d9]
+DEBUG 2016-12-21 20:35:20,135 (Socks5Transport.java:368) [SOCKS5Transport] receiving request from eazycode@saros-con.imp.fu-berlin.de/Saroswith local SOCKS5 proxy running [port=7777, configured streamhosts=[192.168.2.108, fe80:0:0:0:50fa:8586:2f83:e7%eth3]]
+WARN  2016-12-21 20:35:20,135 (Socks5Transport.java:411) [SOCKS5Transport] Couldn't accept request but still trying to establish a response connection: Could not establish socket with any provided host
+DEBUG 2016-12-21 20:35:20,136 (Socks5Transport.java:624) [SOCKS5Transport] Start to establish new response connection
+ERROR 2016-12-21 20:35:21,528 (Socks5Transport.java:440) An error occurred while establishing a response connection 
+item-not-found(404) Could not establish socket with any provided host
+	at org.jivesoftware.smack.util.SyncPacketSend.getReply(SyncPacketSend.java:54)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:481)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:83)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.establishResponseSession(Socks5Transport.java:631)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport$1.call(Socks5Transport.java:108)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport$1.call(Socks5Transport.java:1)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+ERROR 2016-12-21 20:35:21,547 (ByteStreamTransport.java:105) could not establish bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+java.io.IOException: [SOCKS5Transport] Neither connection could be established. 
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.acceptNewRequest(Socks5Transport.java:446)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.acceptRequest(Socks5Transport.java:474)
+	at de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1.incomingBytestreamRequest(ByteStreamTransport.java:77)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.processRequest(InitiationListener.java:91)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.access$000(InitiationListener.java:37)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener$1.run(InitiationListener.java:63)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+DEBUG 2016-12-21 20:35:45,436 (BinaryChannelConnection.java:112) [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros connection closed remotely:null
+DEBUG 2016-12-21 20:35:45,732 (DataTransferManager.java:330) closed connection [pool id=saros-main-session:out:eazycode@saros-con.imp.fu-berlin.de/Saros]: [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros
+ERROR 2016-12-21 20:35:45,733 (DataTransferManager.java:270) failed to send TransferDescription [elementName=pong, namespace=de.fu_berlin.inf.dpp, recipient=eazycode@saros-con.imp.fu-berlin.de/Saros, sender=xzer@saros-con.imp.fu-berlin.de/Saros, compress=true], connection=[mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros:Stream is closed
+java.io.IOException: Stream is closed
+	at org.jivesoftware.smackx.bytestreams.ibb.InBandBytestreamSession$IBBOutputStream.write(InBandBytestreamSession.java:634)
+	at java.io.BufferedOutputStream.flushBuffer(Unknown Source)
+	at java.io.BufferedOutputStream.flush(Unknown Source)
+	at java.io.DataOutputStream.flush(Unknown Source)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection.sendData(BinaryChannelConnection.java:525)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection.splitAndSend(BinaryChannelConnection.java:560)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection.send(BinaryChannelConnection.java:325)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendInternal(DataTransferManager.java:268)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendData(DataTransferManager.java:216)
+	at de.fu_berlin.inf.dpp.net.internal.XMPPTransmitter.send(XMPPTransmitter.java:90)
+	at de.fu_berlin.inf.dpp.project.internal.timeout.ClientSessionTimeoutHandler$2.run(ClientSessionTimeoutHandler.java:89)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Unknown Source)
+ERROR 2016-12-21 20:35:45,754 (ClientSessionTimeoutHandler.java:93) failed to send pong
+java.io.IOException: Stream is closed
+	at org.jivesoftware.smackx.bytestreams.ibb.InBandBytestreamSession$IBBOutputStream.write(InBandBytestreamSession.java:634)
+	at java.io.BufferedOutputStream.flushBuffer(Unknown Source)
+	at java.io.BufferedOutputStream.flush(Unknown Source)
+	at java.io.DataOutputStream.flush(Unknown Source)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection.sendData(BinaryChannelConnection.java:525)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection.splitAndSend(BinaryChannelConnection.java:560)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection.send(BinaryChannelConnection.java:325)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendInternal(DataTransferManager.java:268)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendData(DataTransferManager.java:216)
+	at de.fu_berlin.inf.dpp.net.internal.XMPPTransmitter.send(XMPPTransmitter.java:90)
+	at de.fu_berlin.inf.dpp.project.internal.timeout.ClientSessionTimeoutHandler$2.run(ClientSessionTimeoutHandler.java:89)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Unknown Source)
+DEBUG 2016-12-21 20:35:45,778 (SarosSessionManager.java:330) terminating all running negotiation processes
+DEBUG 2016-12-21 20:35:45,779 (SarosSessionManager.java:337) Leave message sent.
+DEBUG 2016-12-21 20:35:45,780 (ActivityHandler.java:109) activity dispatcher stopped
+INFO  2016-12-21 20:35:45,781 (FeedbackManager.java:104) Session lasted 0 min 33 s
+DEBUG 2016-12-21 20:35:45,781 (FollowModeCollector.java:177) Processing follow mode changes took 0.0 s
+INFO  2016-12-21 20:35:45,805 (ParticipantCollector.java:145) Session ended: Current number of participants: 2
+DEBUG 2016-12-21 20:35:45,806 (StatisticManager.java:329) Session statistic:
+  auto.followmode.enabled=false
+  data_transfer.IBB.average_throughput_kbs=0.5
+  data_transfer.IBB.number_of_events=6
+  data_transfer.IBB.total_size_kb=0
+  data_transfer.IBB.total_time_ms=1758
+  feedback.disabled=false
+  feedback.survey.interval=5
+  followmode.time.percent=0
+  followmode.time.total=0.0
+  followmode.toggles=0
+  gesture.count=0
+  java.version=1.8.0_101
+  jumped.count=0
+  jumped.driver.count=0
+  jumped.observer.count=0
+  observer.selection.count.witnessed=0
+  observer.selection.count=0
+  os.name=Windows 10
+  platform.version=3.12.0.v20160606-1342
+  random.user.id=2016-12-21_19-02-41_1789355881
+  role.1.duration=0.55
+  role.1=write_access
+  role.changes=0
+  role.driver.duration=0.55
+  role.driver.percent=100
+  role.observer.duration=0.0
+  role.observer.percent=0
+  saros.version=14.10.31
+  session.count=5
+  session.id=233035903
+  session.local.start=2016-12-21T19:35:45Z
+  session.shared.project.complete.count=0
+  session.shared.project.partial.count=0
+  session.shared.project.partial.files.count=0
+  session.time.users.2.percent=100
+  session.time.users.2=0.55
+  session.time=0.55
+  session.users.total=2
+  textedits.chars=0
+  textedits.count=0
+  textedits.nonparallel.chars=0
+  textedits.nonparallel.percent=0
+  textedits.pastes.chars=0
+  textedits.pastes=0
+  user.is.host=false
+INFO  2016-12-21 20:35:45,806 (StatisticManager.java:243) User does not allow to submit session statistics
+DEBUG 2016-12-21 20:35:45,831 (EditorManager.java:1697) unlocking all editors
+WARN  2016-12-21 20:35:45,832 (SarosSession.java:655) failed to notify user eazycode@saros-con.imp.fu-berlin.de/Saros about local session stop
+java.io.IOException: not connected to eazycode@saros-con.imp.fu-berlin.de/Saros [connection identifier=saros-main-session]
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendData(DataTransferManager.java:206)
+	at de.fu_berlin.inf.dpp.net.internal.XMPPTransmitter.send(XMPPTransmitter.java:90)
+	at de.fu_berlin.inf.dpp.project.internal.SarosSession.stop(SarosSession.java:651)
+	at de.fu_berlin.inf.dpp.project.SarosSessionManager.stopSarosSession(SarosSessionManager.java:340)
+	at de.fu_berlin.inf.dpp.project.internal.timeout.SessionTimeoutHandler$3.run(SessionTimeoutHandler.java:115)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Unknown Source)
+DEBUG 2016-12-21 20:35:45,840 (XStreamExtensionProvider.java:169) Unregistering (resetting) converter of class de.fu_berlin.inf.dpp.misc.xstream.SPathConverter
+DEBUG 2016-12-21 20:35:45,840 (XStreamExtensionProvider.java:216) Unregistering (resetting) converter of class de.fu_berlin.inf.dpp.misc.xstream.UserConverter
+DEBUG 2016-12-21 20:35:45,861 (MultiUserChatService.java:135) leaving multi user chat de.fu_berlin.inf.dpp.communication.chat.muc.MultiUserChat@3832b2d9
+DEBUG 2016-12-21 20:35:45,862 (SharedProjectDecorator.java:93) clearing project decoration for all shared projects
+DEBUG 2016-12-21 20:35:45,862 (DocumentRecord.java:93) Added Node: attr(148234894586273993) name=svg
+INFO  2016-12-21 20:35:45,862 (SarosSessionManager.java:351) session stopped
+DEBUG 2016-12-21 20:35:50,653 (ByteStreamTransport.java:72) received request to establish a  bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros [de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1@2f7837f0]
+DEBUG 2016-12-21 20:35:50,653 (DataTransferManager.java:136) bytestream connection changed [mode=IBB, id=default] eazycode@saros-con.imp.fu-berlin.de/Saros, inc=true, pool id=default:in:eazycode@saros-con.imp.fu-berlin.de/Saros]
+DEBUG 2016-12-21 20:35:50,653 (BinaryChannelConnection.java:103) [mode=IBB, id=default] eazycode@saros-con.imp.fu-berlin.de/Saros ReceiverThread started.
+DEBUG 2016-12-21 20:36:21,376 (VersionManager.java:90) received version request from eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:36:21,376 (VersionManager.java:160) send version response to eazycode@saros-con.imp.fu-berlin.de/Saros
+INFO  2016-12-21 20:36:21,512 (InvitationHandler.java:115) received invitation from eazycode@saros-con.imp.fu-berlin.de/Saros [invitation id: -4307070495257759386, session id: 233035903, version: 14.10.31]
+DEBUG 2016-12-21 20:36:28,686 (CancelInviteHandler.java:57) Inveazycode@saros-con.imp.fu-berlin.de/Saros : Received invitation cancel message
+DEBUG 2016-12-21 20:36:28,687 (CancelableProcess.java:189) process ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] was cancelled by the remote side, error: none
+DEBUG 2016-12-21 20:36:28,687 (CancelableProcess.java:416) process ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] was cancelled manually by the remote side
+DEBUG 2016-12-21 20:36:28,687 (CancelableProcess.java:349) executing cancellation for process ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros]
+DEBUG 2016-12-21 20:36:28,688 (CancelableProcess.java:353) process ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] exit status: REMOTE_CANCEL
+DEBUG 2016-12-21 20:36:32,501 (VersionManager.java:90) received version request from eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:36:32,502 (VersionManager.java:160) send version response to eazycode@saros-con.imp.fu-berlin.de/Saros
+INFO  2016-12-21 20:36:32,793 (InvitationHandler.java:115) received invitation from eazycode@saros-con.imp.fu-berlin.de/Saros [invitation id: -91250691579064671, session id: 1435994860, version: 14.10.31]
+DEBUG 2016-12-21 20:36:54,492 (IncomingSessionNegotiation.java:103) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : invitation accepted
+DEBUG 2016-12-21 20:36:54,493 (IncomingSessionNegotiation.java:188) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : sending invitation accepted confirmation
+DEBUG 2016-12-21 20:36:54,493 (IncomingSessionNegotiation.java:219) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : sending session negotiation data
+DEBUG 2016-12-21 20:36:54,494 (IncomingSessionNegotiation.java:232) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : waiting for host's session parameters
+DEBUG 2016-12-21 20:36:54,839 (IncomingSessionNegotiation.java:252) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : received host's session parameters
+DEBUG 2016-12-21 20:36:54,839 (IncomingSessionNegotiation.java:265) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : initializing session
+DEBUG 2016-12-21 20:36:54,839 (MUCNegotiationManager.java:143) Got hosts Communication Config: server conference.saros-con.imp.fu-berlin.de room SAROS_1435994860 pw 2036155224
+INFO  2016-12-21 20:36:54,843 (StatisticManager.java:184) Current feedback settings:
+  Feedback disabled: false
+  Feedback interval: 5
+  Statistic submission allowed: false
+  Pseudonym submission allowed: false
+INFO  2016-12-21 20:36:54,845 (ErrorLogManager.java:257) Current error log settings:
+  Error log submission allowed: false
+  Full Error log submission allowed: false
+INFO  2016-12-21 20:36:54,846 (SarosSessionManager.java:281) joined uninitialized Saros session
+INFO  2016-12-21 20:36:54,846 (DataTransferManager.java:409) establishing connection to eazycode@saros-con.imp.fu-berlin.de/Saros from xzer@saros-con.imp.fu-berlin.de/Saros using transport XMPP-Socks5-Transport
+DEBUG 2016-12-21 20:36:54,846 (ByteStreamTransport.java:45) establishing bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:36:54,847 (Socks5Transport.java:493) [SOCKS5Transport] establishing connection to eazycode@saros-con.imp.fu-berlin.de/Saroswith local SOCKS5 proxy running [port=7777, configured streamhosts=[192.168.2.108, fe80:0:0:0:50fa:8586:2f83:e7%eth3]]...
+WARN  2016-12-21 20:36:56,572 (Socks5Transport.java:544) [SOCKS5Transport] could not establish a connection to eazycode@saros-con.imp.fu-berlin.de/Saros, remote side could not connect to any offered stream hosts: item-not-found(404) Could not establish socket with any provided host
+DEBUG 2016-12-21 20:36:56,581 (Socks5Transport.java:567) [SOCKS5Transport] waiting for eazycode@saros-con.imp.fu-berlin.de/Saros to establish a connection...
+DEBUG 2016-12-21 20:36:57,512 (ByteStreamTransport.java:72) received request to establish a  bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros [de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1@491f47d9]
+DEBUG 2016-12-21 20:36:57,513 (Socks5Transport.java:311) [SOCKS5Transport] receiving response connection from eazycode@saros-con.imp.fu-berlin.de/Saroswith local SOCKS5 proxy running [port=7777, configured streamhosts=[192.168.2.108, fe80:0:0:0:50fa:8586:2f83:e7%eth3]]
+ERROR 2016-12-21 20:36:57,513 (ByteStreamTransport.java:105) could not establish bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+Could not establish socket with any provided host: item-not-found(404) Could not establish socket with any provided host
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.cancelRequest(Socks5BytestreamRequest.java:277)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.accept(Socks5BytestreamRequest.java:247)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamRequest.accept(Socks5BytestreamRequest.java:34)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.handleResponse(Socks5Transport.java:315)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.acceptRequest(Socks5Transport.java:471)
+	at de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport$1.incomingBytestreamRequest(ByteStreamTransport.java:77)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.processRequest(InitiationListener.java:91)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener.access$000(InitiationListener.java:37)
+	at org.jivesoftware.smackx.bytestreams.socks5.InitiationListener$1.run(InitiationListener.java:63)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+WARN  2016-12-21 20:37:26,582 (DataTransferManager.java:415) failed to connect to eazycode@saros-con.imp.fu-berlin.de/Saros using transport: XMPP-Socks5-Transport
+java.io.IOException: [SOCKS5Transport] waiting for a response session timed out (30000ms) and could not establish a connection from this side, too:
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.establishBinaryChannel(Socks5Transport.java:592)
+	at de.fu_berlin.inf.dpp.net.internal.ByteStreamTransport.connect(ByteStreamTransport.java:48)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.connectInternal(DataTransferManager.java:412)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.connect(DataTransferManager.java:297)
+	at de.fu_berlin.inf.dpp.negotiation.IncomingSessionNegotiation.accept(IncomingSessionNegotiation.java:167)
+	at de.fu_berlin.inf.dpp.ui.wizards.JoinSessionWizard$2.run(JoinSessionWizard.java:128)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+Caused by: item-not-found(404) Could not establish socket with any provided host
+	at org.jivesoftware.smack.util.SyncPacketSend.getReply(SyncPacketSend.java:54)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:481)
+	at org.jivesoftware.smackx.bytestreams.socks5.Socks5BytestreamManager.establishSession(Socks5BytestreamManager.java:83)
+	at de.fu_berlin.inf.dpp.net.internal.Socks5Transport.establishBinaryChannel(Socks5Transport.java:512)
+	... 6 more
+INFO  2016-12-21 20:37:26,589 (DataTransferManager.java:409) establishing connection to eazycode@saros-con.imp.fu-berlin.de/Saros from xzer@saros-con.imp.fu-berlin.de/Saros using transport XMPP-IBB-Transport
+DEBUG 2016-12-21 20:37:26,589 (ByteStreamTransport.java:45) establishing bytestream connection to eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:37:26,715 (DataTransferManager.java:136) bytestream connection changed [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros, inc=false, pool id=saros-main-session:out:eazycode@saros-con.imp.fu-berlin.de/Saros]
+DEBUG 2016-12-21 20:37:26,715 (IncomingSessionNegotiation.java:304) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : starting session
+DEBUG 2016-12-21 20:37:26,716 (BinaryChannelConnection.java:103) [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros ReceiverThread started.
+DEBUG 2016-12-21 20:37:26,716 (MultiUserChatService.java:100) Joining MUC...
+INFO  2016-12-21 20:37:26,717 (StatisticManager.java:163) Session count: 6
+DEBUG 2016-12-21 20:37:26,717 (MultiUserChat.java:264) Trying to create room on server conference.saros-con.imp.fu-berlin.de
+INFO  2016-12-21 20:37:26,717 (ParticipantCollector.java:134) Session started: Current number of participants: 2
+DEBUG 2016-12-21 20:37:26,718 (XStreamExtensionProvider.java:144) Renewing existing converter of class de.fu_berlin.inf.dpp.misc.xstream.SPathConverter
+DEBUG 2016-12-21 20:37:26,718 (XStreamExtensionProvider.java:189) Renewing existing converter of class de.fu_berlin.inf.dpp.misc.xstream.UserConverter
+DEBUG 2016-12-21 20:37:26,718 (ActivityHandler.java:89) activity dispatcher started
+DEBUG 2016-12-21 20:37:26,718 (ConsistencyAction.java:173) Inconsistency indicator goes: off
+DEBUG 2016-12-21 20:37:26,718 (WhiteboardManager.java:108) Preparing Whiteboard for receiving an invitation
+DEBUG 2016-12-21 20:37:26,760 (ColorUtils.java:21) set foregroundcolor RGB {237, 237, 169}
+DEBUG 2016-12-21 20:37:26,765 (IncomingSessionNegotiation.java:318) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : invitation has completed successfully
+WARN  2016-12-21 20:37:26,765 (SubscriptionHandler.java:148) received error presence package from saros_1435994860@conference.saros-con.imp.fu-berlin.de/xzer@saros-con.imp.fu-berlin.de/Saros, condition: not-authorized, message: A password is required to enter this room
+DEBUG 2016-12-21 20:37:26,811 (MultiUserChat.java:297) MUC joined. Server: conference.saros-con.imp.fu-berlin.de Room: SAROS_1435994860 Password 2036155224
+DEBUG 2016-12-21 20:37:26,814 (MultiUserChatStateManager.java:101) Incoming Message from saros_1435994860@conference.saros-con.imp.fu-berlin.de/eazycode@saros-con.imp.fu-berlin.de/Saros with state: active
+DEBUG 2016-12-21 20:37:26,814 (MultiUserChat.java:79) stateChanged fired with state: active
+DEBUG 2016-12-21 20:37:26,815 (MultiUserChat.java:133) processPacket called
+DEBUG 2016-12-21 20:37:26,962 (MultiUserChatStateManager.java:101) Incoming Message from saros_1435994860@conference.saros-con.imp.fu-berlin.de/xzer@saros-con.imp.fu-berlin.de/Saros with state: active
+DEBUG 2016-12-21 20:37:26,963 (MultiUserChat.java:79) stateChanged fired with state: active
+DEBUG 2016-12-21 20:37:26,963 (MultiUserChat.java:133) processPacket called
+DEBUG 2016-12-21 20:37:27,743 (IncomingSessionNegotiation.java:331) ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] : invitation complete confirmation sent
+DEBUG 2016-12-21 20:37:28,762 (UserInformationHandler.java:293) received user list from eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:37:28,762 (UserInformationHandler.java:317) updating permissions for user: xzer@saros-con.imp.fu-berlin.de/Saros [WRITE_ACCESS]
+DEBUG 2016-12-21 20:37:28,762 (UserInformationHandler.java:317) updating permissions for user: eazycode@saros-con.imp.fu-berlin.de/Saros [WRITE_ACCESS]
+DEBUG 2016-12-21 20:37:28,762 (UserInformationHandler.java:347) sending user list received confirmation to eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:37:31,161 (ActivitySequencer.java:546) rcvd (002) eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:37:31,162 (ChangeColorManager.java:238) received color id change fo user : eazycode@saros-con.imp.fu-berlin.de/Saros [1]
+DEBUG 2016-12-21 20:37:31,163 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:37:31,165 (ChangeColorManager.java:238) received color id change fo user : xzer@saros-con.imp.fu-berlin.de/Saros [3]
+DEBUG 2016-12-21 20:37:31,166 (ChangeColorManager.java:634) updating color id set: [xzer@saros-con.imp.fu-berlin.de, eazycode@saros-con.imp.fu-berlin.de]
+DEBUG 2016-12-21 20:37:32,806 (CancelableProcess.java:353) process ISN [remote side: eazycode@saros-con.imp.fu-berlin.de/Saros] exit status: OK
+DEBUG 2016-12-21 20:37:33,958 (SXEIncomingSynchronizationProcess.java:65) SXE(5897) invitation from eazycode@saros-con.imp.fu-berlin.de/Saros received
+DEBUG 2016-12-21 20:37:33,959 (SXEController.java:537) Whiteboard state changed from INIT to CONNECTING
+DEBUG 2016-12-21 20:37:33,960 (SXEIncomingSynchronizationProcess.java:87) SXE(5897) queue incoming records from now
+DEBUG 2016-12-21 20:37:33,960 (SarosSXETransmitter.java:151) SXE send accept-state to eazycode@saros-con.imp.fu-berlin.de/Saros waiting for [state]
+DEBUG 2016-12-21 20:37:35,458 (BinaryChannelConnection.java:112) [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros connection closed remotely:null
+WARN  2016-12-21 20:37:36,760 (CancelProjectSharingHandler.java:74) Inv[unknown user]: Received invitation cancel message
+DEBUG 2016-12-21 20:37:36,889 (SXEIncomingSynchronizationProcess.java:99) SXE(5897) state received
+DEBUG 2016-12-21 20:37:36,889 (SXEController.java:137) SXE (5897): receive state and start session at invitee side
+DEBUG 2016-12-21 20:37:36,889 (DocumentRecord.java:93) Added Node: attr(14823489931745104) name=svg
+DEBUG 2016-12-21 20:37:52,847 (MultiUserChatStateManager.java:101) Incoming Message from saros_1435994860@conference.saros-con.imp.fu-berlin.de/eazycode@saros-con.imp.fu-berlin.de/Saros with state: composing
+DEBUG 2016-12-21 20:37:52,848 (MultiUserChat.java:79) stateChanged fired with state: composing
+DEBUG 2016-12-21 20:37:52,848 (MultiUserChat.java:133) processPacket called
+DEBUG 2016-12-21 20:37:53,024 (MultiUserChat.java:133) processPacket called
+DEBUG 2016-12-21 20:37:53,024 (MultiUserChatStateManager.java:101) Incoming Message from saros_1435994860@conference.saros-con.imp.fu-berlin.de/eazycode@saros-con.imp.fu-berlin.de/Saros with state: inactive
+DEBUG 2016-12-21 20:37:53,024 (MultiUserChat.java:79) stateChanged fired with state: inactive
+DEBUG 2016-12-21 20:37:53,025 (MultiUserChat.java:133) processPacket called
+DEBUG 2016-12-21 20:38:05,787 (DataTransferManager.java:330) closed connection [pool id=saros-main-session:out:eazycode@saros-con.imp.fu-berlin.de/Saros]: [mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros
+ERROR 2016-12-21 20:38:05,787 (DataTransferManager.java:270) failed to send TransferDescription [elementName=pong, namespace=de.fu_berlin.inf.dpp, recipient=eazycode@saros-con.imp.fu-berlin.de/Saros, sender=xzer@saros-con.imp.fu-berlin.de/Saros, compress=true], connection=[mode=IBB, id=saros-main-session] eazycode@saros-con.imp.fu-berlin.de/Saros:Stream is closed
+java.io.IOException: Stream is closed
+	at org.jivesoftware.smackx.bytestreams.ibb.InBandBytestreamSession$IBBOutputStream.write(InBandBytestreamSession.java:634)
+	at java.io.BufferedOutputStream.flushBuffer(Unknown Source)
+	at java.io.BufferedOutputStream.flush(Unknown Source)
+	at java.io.DataOutputStream.flush(Unknown Source)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection.sendData(BinaryChannelConnection.java:525)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection.splitAndSend(BinaryChannelConnection.java:560)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection.send(BinaryChannelConnection.java:325)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendInternal(DataTransferManager.java:268)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendData(DataTransferManager.java:216)
+	at de.fu_berlin.inf.dpp.net.internal.XMPPTransmitter.send(XMPPTransmitter.java:90)
+	at de.fu_berlin.inf.dpp.project.internal.timeout.ClientSessionTimeoutHandler$2.run(ClientSessionTimeoutHandler.java:89)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Unknown Source)
+ERROR 2016-12-21 20:38:05,797 (ClientSessionTimeoutHandler.java:93) failed to send pong
+java.io.IOException: Stream is closed
+	at org.jivesoftware.smackx.bytestreams.ibb.InBandBytestreamSession$IBBOutputStream.write(InBandBytestreamSession.java:634)
+	at java.io.BufferedOutputStream.flushBuffer(Unknown Source)
+	at java.io.BufferedOutputStream.flush(Unknown Source)
+	at java.io.DataOutputStream.flush(Unknown Source)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection.sendData(BinaryChannelConnection.java:525)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection.splitAndSend(BinaryChannelConnection.java:560)
+	at de.fu_berlin.inf.dpp.net.internal.BinaryChannelConnection.send(BinaryChannelConnection.java:325)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendInternal(DataTransferManager.java:268)
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendData(DataTransferManager.java:216)
+	at de.fu_berlin.inf.dpp.net.internal.XMPPTransmitter.send(XMPPTransmitter.java:90)
+	at de.fu_berlin.inf.dpp.project.internal.timeout.ClientSessionTimeoutHandler$2.run(ClientSessionTimeoutHandler.java:89)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Unknown Source)
+DEBUG 2016-12-21 20:38:05,811 (SarosSessionManager.java:330) terminating all running negotiation processes
+DEBUG 2016-12-21 20:38:05,811 (SarosSessionManager.java:337) Leave message sent.
+DEBUG 2016-12-21 20:38:05,812 (ActivityHandler.java:109) activity dispatcher stopped
+INFO  2016-12-21 20:38:05,813 (FeedbackManager.java:104) Session lasted 0 min 39 s
+DEBUG 2016-12-21 20:38:05,815 (FollowModeCollector.java:177) Processing follow mode changes took 0.0 s
+INFO  2016-12-21 20:38:05,815 (ParticipantCollector.java:145) Session ended: Current number of participants: 2
+DEBUG 2016-12-21 20:38:05,816 (StatisticManager.java:329) Session statistic:
+  auto.followmode.enabled=false
+  data_transfer.IBB.average_throughput_kbs=0.6
+  data_transfer.IBB.number_of_events=9
+  data_transfer.IBB.total_size_kb=1
+  data_transfer.IBB.total_time_ms=2185
+  feedback.disabled=false
+  feedback.survey.interval=5
+  followmode.time.percent=0
+  followmode.time.total=0.0
+  followmode.toggles=0
+  gesture.count=0
+  java.version=1.8.0_101
+  jumped.count=0
+  jumped.driver.count=0
+  jumped.observer.count=0
+  observer.selection.count.witnessed=0
+  observer.selection.count=0
+  os.name=Windows 10
+  platform.version=3.12.0.v20160606-1342
+  random.user.id=2016-12-21_19-02-41_1789355881
+  role.1.duration=0.65
+  role.1=write_access
+  role.changes=0
+  role.driver.duration=0.65
+  role.driver.percent=100
+  role.observer.duration=0.0
+  role.observer.percent=0
+  saros.version=14.10.31
+  session.count=6
+  session.id=1435994860
+  session.local.start=2016-12-21T19:38:05Z
+  session.shared.project.complete.count=0
+  session.shared.project.partial.count=0
+  session.shared.project.partial.files.count=0
+  session.time.users.2.percent=100
+  session.time.users.2=0.65
+  session.time=0.65
+  session.users.total=2
+  textedits.chars=0
+  textedits.count=0
+  textedits.nonparallel.chars=0
+  textedits.nonparallel.percent=0
+  textedits.pastes.chars=0
+  textedits.pastes=0
+  user.is.host=false
+INFO  2016-12-21 20:38:05,817 (StatisticManager.java:243) User does not allow to submit session statistics
+DEBUG 2016-12-21 20:38:05,909 (EditorManager.java:1697) unlocking all editors
+WARN  2016-12-21 20:38:05,911 (SarosSession.java:655) failed to notify user eazycode@saros-con.imp.fu-berlin.de/Saros about local session stop
+java.io.IOException: not connected to eazycode@saros-con.imp.fu-berlin.de/Saros [connection identifier=saros-main-session]
+	at de.fu_berlin.inf.dpp.net.internal.DataTransferManager.sendData(DataTransferManager.java:206)
+	at de.fu_berlin.inf.dpp.net.internal.XMPPTransmitter.send(XMPPTransmitter.java:90)
+	at de.fu_berlin.inf.dpp.project.internal.SarosSession.stop(SarosSession.java:651)
+	at de.fu_berlin.inf.dpp.project.SarosSessionManager.stopSarosSession(SarosSessionManager.java:340)
+	at de.fu_berlin.inf.dpp.project.internal.timeout.SessionTimeoutHandler$3.run(SessionTimeoutHandler.java:115)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Unknown Source)
+DEBUG 2016-12-21 20:38:05,924 (XStreamExtensionProvider.java:169) Unregistering (resetting) converter of class de.fu_berlin.inf.dpp.misc.xstream.SPathConverter
+DEBUG 2016-12-21 20:38:05,924 (XStreamExtensionProvider.java:216) Unregistering (resetting) converter of class de.fu_berlin.inf.dpp.misc.xstream.UserConverter
+DEBUG 2016-12-21 20:38:05,950 (MultiUserChatService.java:135) leaving multi user chat de.fu_berlin.inf.dpp.communication.chat.muc.MultiUserChat@6bdf2a6d
+DEBUG 2016-12-21 20:38:05,951 (SharedProjectDecorator.java:93) clearing project decoration for all shared projects
+DEBUG 2016-12-21 20:38:05,951 (DocumentRecord.java:93) Added Node: attr(148234908595133948) name=svg
+INFO  2016-12-21 20:38:05,951 (SarosSessionManager.java:351) session stopped
+DEBUG 2016-12-21 20:38:13,901 (BinaryChannelConnection.java:112) [mode=IBB, id=default] eazycode@saros-con.imp.fu-berlin.de/Saros connection closed remotely:null
+DEBUG 2016-12-21 20:38:14,098 (DataTransferManager.java:336) closed connection [pool id=default:in:eazycode@saros-con.imp.fu-berlin.de/Saros]: [mode=IBB, id=default] eazycode@saros-con.imp.fu-berlin.de/Saros
+DEBUG 2016-12-21 20:38:14,386 (DiscoveryManager.java:98) clearing cache entry of contact eazycode@saros-con.imp.fu-berlin.de/Saros: <query xmlns="http://jabber.org/protocol/disco#info"><identity category="client" name="Smack" type="pc"/><feature var="http://jabber.org/protocol/disco#items"/><feature var="http://jabber.org/protocol/bytestreams"/><feature var="http://jabber.org/protocol/ibb"/><feature var="http://jabber.org/protocol/si"/><feature var="http://jabber.org/protocol/xhtml-im"/><feature var="http://jabber.org/protocol/chatstates"/><feature var="http://jabber.org/protocol/si/profile/file-transfer"/><feature var="urn:xmpp:ping"/><feature var="jabber:iq:last"/><feature var="http://jabber.org/protocol/commands"/><feature var="http://jabber.org/protocol/muc"/><feature var="de.fu_berlin.inf.dpp"/><feature var="http://jabber.org/protocol/disco#info"/></query>
+DEBUG 2016-12-21 20:38:31,709 (XMPPConnectionService.java:398) xzer@saros-con.imp.fu-berlin.de/Saros new connection state == DISCONNECTING
+WARN  2016-12-21 20:38:31,715 (SWTUtils.java:144) could not execute runnable de.fu_berlin.inf.dpp.ui.widgets.chat.ChatControl$5$4@6ac099d6, UI thread is not available
+StackTrace:
+	at de.fu_berlin.inf.dpp.ui.util.SWTUtils.runSafeSWTAsync(SWTUtils.java:145)
+	at de.fu_berlin.inf.dpp.ui.widgets.chat.ChatControl$5.disconnected(ChatControl.java:301)
+	at de.fu_berlin.inf.dpp.communication.chat.AbstractChat.notifyJIDDisconnected(AbstractChat.java:72)
+	at de.fu_berlin.inf.dpp.communication.chat.single.SingleUserChat.setConnected(SingleUserChat.java:125)
+	at de.fu_berlin.inf.dpp.communication.chat.single.SingleUserChatService$1.connectionStateChanged(SingleUserChatService.java:60)
+	at de.fu_berlin.inf.dpp.net.xmpp.XMPPConnectionService.setConnectionState(XMPPConnectionService.java:405)
+	at de.fu_berlin.inf.dpp.net.xmpp.XMPPConnectionService.disconnect(XMPPConnectionService.java:304)
+	at de.fu_berlin.inf.dpp.communication.connection.ConnectionHandler.disconnectXMPPInternal(ConnectionHandler.java:225)
+	at de.fu_berlin.inf.dpp.communication.connection.ConnectionHandler.disconnect(ConnectionHandler.java:211)
+	at de.fu_berlin.inf.dpp.Saros$1.run(Saros.java:304)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Unknown Source)
+WARN  2016-12-21 20:38:31,729 (SWTUtils.java:144) could not execute runnable de.fu_berlin.inf.dpp.ui.widgets.chat.ChatControl$5$4@74fc03ff, UI thread is not available
+StackTrace:
+	at de.fu_berlin.inf.dpp.ui.util.SWTUtils.runSafeSWTAsync(SWTUtils.java:145)
+	at de.fu_berlin.inf.dpp.ui.widgets.chat.ChatControl$5.disconnected(ChatControl.java:301)
+	at de.fu_berlin.inf.dpp.communication.chat.AbstractChat.notifyJIDDisconnected(AbstractChat.java:72)
+	at de.fu_berlin.inf.dpp.communication.chat.single.SingleUserChat.setConnected(SingleUserChat.java:126)
+	at de.fu_berlin.inf.dpp.communication.chat.single.SingleUserChatService$1.connectionStateChanged(SingleUserChatService.java:60)
+	at de.fu_berlin.inf.dpp.net.xmpp.XMPPConnectionService.setConnectionState(XMPPConnectionService.java:405)
+	at de.fu_berlin.inf.dpp.net.xmpp.XMPPConnectionService.disconnect(XMPPConnectionService.java:304)
+	at de.fu_berlin.inf.dpp.communication.connection.ConnectionHandler.disconnectXMPPInternal(ConnectionHandler.java:225)
+	at de.fu_berlin.inf.dpp.communication.connection.ConnectionHandler.disconnect(ConnectionHandler.java:211)
+	at de.fu_berlin.inf.dpp.Saros$1.run(Saros.java:304)
+	at de.fu_berlin.inf.dpp.util.ThreadUtils$1.run(ThreadUtils.java:38)
+	at java.lang.Thread.run(Unknown Source)
+DEBUG 2016-12-21 20:38:31,899 (XMPPConnectionService.java:398)  new connection state == NOT_CONNECTED
+DEBUG 2016-12-21 20:38:31,899 (UPnPServiceImpl.java:295) deleting existing port mappings

@@ -1,0 +1,89 @@
+package me.EaZy.client.modules;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+
+import net.minecraft.util.Timer;
+
+public class GommeLongJump extends Module {
+	public GommeLongJump() {
+		super("GommeLongJump", 0, "glongjump", Category.MOVEMENT, "LongJump for Gomme.\nCan be used as fly.");
+	}
+
+	int delay;
+
+	int delay2;
+	
+	double NetonIstBehindertUndStinkNachMeinenAusscheidungen;
+	
+	@Override
+	public void onUpdate() {
+		if (!this.isToggled()) {
+			if (this.togglecmd) {
+				this.setToggled(true);
+				this.onEnable();
+			}
+			return;
+		}
+		if (this.isToggled() && !this.togglecmd) {
+			this.setToggled(false);
+			this.onDisable();
+			return;
+		}
+		
+		mc.gameSettings.keyBindRight.pressed = false;
+		mc.gameSettings.keyBindLeft.pressed = false;
+		
+		msg(Double.toString(NetonIstBehindertUndStinkNachMeinenAusscheidungen));
+		
+		if (mc.thePlayer.capabilities.isFlying || mc.thePlayer.isInWeb || mc.thePlayer.isInWater()) {
+			return;
+		}
+
+		if (mc.thePlayer.onGround) {
+			NetonIstBehindertUndStinkNachMeinenAusscheidungen = 0.13;
+			mc.thePlayer.motionY = 0.42f;
+		} else {
+			delay++;
+			if (mc.thePlayer.motionY > 0)
+				mc.thePlayer.motionY *= 1.15f;
+			if (mc.thePlayer.fallDistance < 1.2f && mc.thePlayer.motionY < 0)
+				mc.thePlayer.motionY /= 1.25f;
+
+			if (mc.thePlayer.fallDistance > 1.2f && mc.thePlayer.motionY < 0) {
+				mc.thePlayer.motionY /= 1.09f;
+			}
+
+			if (mc.thePlayer.motionY > 0) {
+				mc.thePlayer.motionX /= 1.2f;
+				mc.thePlayer.motionZ /= 1.2f;
+				mc.thePlayer.jumpMovementFactor = 0.13f;
+			} else {
+				if(NetonIstBehindertUndStinkNachMeinenAusscheidungen < 0.19)
+					NetonIstBehindertUndStinkNachMeinenAusscheidungen += 0.01;
+				mc.thePlayer.motionX /= 1.2f;
+				mc.thePlayer.motionZ /= 1.2f;
+				mc.thePlayer.jumpMovementFactor = (float) NetonIstBehindertUndStinkNachMeinenAusscheidungen;
+			}
+
+		}
+
+		super.onUpdate();
+	}
+
+	@Override
+	public void onDisable() {
+		delay = 0;
+		delay2 = 0;
+		Timer.timerSpeed = 1.0f;
+		mc.gameSettings.keyBindSneak.pressed = false;
+		mc.thePlayer.motionX = 0;
+		mc.thePlayer.motionZ = 0;
+	}
+
+	@Override
+	public void onEnable() {
+		mc.gameSettings.keyBindSneak.pressed = true;
+		mc.gameSettings.keyBindSneak.pressed = false;
+	}
+}

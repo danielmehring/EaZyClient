@@ -1,0 +1,49 @@
+package me.EaZy.client.modules;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.main.Client;
+import me.EaZy.client.modules.YesCheat.Mode;
+
+import net.minecraft.client.Minecraft;
+
+public class FastLadder extends Module {
+
+	public static boolean canFastLadder = false;
+
+	public FastLadder() {
+		super("FastLadder", 0, "ladder", Category.MOVEMENT, "Let's you go up\nfaster on Ladders.\n§4AAC/Gomme!");
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!this.isToggled()) {
+			if (this.togglecmd) {
+				this.setToggled(true);
+				this.onEnable();
+			}
+			return;
+		}
+		if (this.isToggled() && !this.togglecmd) {
+			this.setToggled(false);
+			this.onDisable();
+			return;
+		}
+		if (YesCheat.enabled && YesCheat.mode == Mode.AAC) {
+			canFastLadder = true;
+		} else {
+			canFastLadder = false;
+		}
+		if (canFastLadder && Minecraft.thePlayer.movementInput.jump) {
+			Minecraft.thePlayer.motionY = 0.0;
+			Minecraft.thePlayer.motionY += 0.55D;
+		}
+
+		if (YesCheat.enabled && YesCheat.mode == Mode.Gomme && Minecraft.thePlayer.isOnLadder()) {
+			if (mc.thePlayer.moveForward > 0) {
+				Minecraft.thePlayer.motionY = 1.5;
+			}
+		}
+		super.onUpdate();
+	}
+}

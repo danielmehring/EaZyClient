@@ -1,0 +1,46 @@
+package me.EaZy.client.modules.SpeedModes;
+
+import com.darkmagician6.eventapi.EventManager;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.fields;
+import me.EaZy.client.events.EventMovePlayer;
+import me.EaZy.client.utils.MovementUtil;
+
+public class GommeMJ extends Module {
+
+	public GommeMJ() {
+		super("GommeMJ", 0, "", Category.SPEED);
+	}
+
+	@Override
+	public void onDisable() {
+		EventManager.unregister(this);
+		super.onDisable();
+	}
+
+	@Override
+	public void onEnable() {
+		EventManager.register(this);
+		super.onEnable();
+	}
+
+	@Override
+	public void onUpdate() {
+
+		if (!MovementUtil.areWalkingKeysDown())
+			return;
+		mc.thePlayer.setPosition(mc.thePlayer.posX, mc.thePlayer.posY + 0.48, mc.thePlayer.posZ);
+
+		super.onUpdate();
+	}
+
+	public EventManager move(EventMovePlayer e) {
+
+		
+
+		return null;
+	}
+
+}

@@ -1,0 +1,55 @@
+package me.EaZy.client.modules.SpeedModes;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+
+import net.minecraft.client.Minecraft;
+
+public class GommeBHop extends Module {
+
+	public GommeBHop() {
+		super("GommeBHop", 0, "", Category.SPEED);
+	}
+	
+	
+	
+	@Override
+	public void onUpdate() {
+		if (!this.isToggled()) {
+			if (this.togglecmd) {
+				this.setToggled(true);
+				this.onEnable();
+			}
+			return;
+		}
+		if (this.isToggled() && !this.togglecmd) {
+			this.setToggled(false);
+			this.onDisable();
+			return;
+		}
+		if (Minecraft.thePlayer.isInWeb | Minecraft.thePlayer.isInWater() | mc.gameSettings.keyBindJump.pressed) {
+			return;
+		}
+		if (Minecraft.thePlayer.onGround
+				&& (Minecraft.thePlayer.moveForward != 0.0f || Minecraft.thePlayer.moveStrafing != 0.0f)) {
+			mc.thePlayer.motionX *= 1.3f;
+			mc.thePlayer.motionZ *= 1.3f;
+			Minecraft.thePlayer.jump();
+			mc.thePlayer.motionX *= 0.9f;
+			mc.thePlayer.motionZ *= 0.9f;
+		}
+		if (!Minecraft.thePlayer.onGround && !Minecraft.thePlayer.isOnLadder()) {
+			Minecraft.thePlayer.motionX /= 1.2;
+			Minecraft.thePlayer.motionZ /= 1.2;
+			if (Minecraft.thePlayer.motionY > 0) {
+				Minecraft.thePlayer.jumpMovementFactor = 0.0305f * 2.52f;
+				Minecraft.thePlayer.motionY *= 0.9;
+			} else {
+				Minecraft.thePlayer.jumpMovementFactor = 0.0305f * 2.55f;
+				Minecraft.thePlayer.motionY /= 1.15;
+			}
+		}
+
+	}
+
+}

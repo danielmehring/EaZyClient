@@ -1,0 +1,101 @@
+package de.Exe.gui.guis;
+
+import java.io.IOException;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+
+import de.Exe.Utils.ColorUtil;
+import de.Exe.gui.GUIIButton;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
+
+public class GuiNewAltmanager extends GuiScreen {
+	private GuiMainMenu prevMenu;
+	
+	ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth,
+			Minecraft.getMinecraft().displayHeight);
+	
+	@Override
+	public void drawScreen(int par1, int par2, float par3) {
+		this.drawDefaultBackground();
+		
+		
+		
+		//TODO Draw up rect
+		drawRect(0, 0, sr.getScaledWidth() * 2, 20, 0xb7111111);
+		drawRect(0, 0, sr.getScaledWidth() * 2, 20, 0xb7111111);
+		//TODO Draw down rect
+		drawRect(0, sr.getScaledHeight() , sr.getScaledWidth() * 2,sr.getScaledHeight() - 20 , 0xb7111111);
+		drawRect(0, sr.getScaledHeight() , sr.getScaledWidth() * 2,sr.getScaledHeight() - 20 , 0xb7111111);
+		//drawRect(left, top, right, bottom, color);
+		
+		//TODO draw the lines 4 the buttons to see wehre there ends
+		drawRect( sr.getScaledWidth() -28, sr.getScaledHeight(), sr.getScaledWidth() -29, sr.getScaledHeight() - 20, 0xbb00ff00);
+		
+		//TODO Draw Lines dings da bums damits kuhl aussieht
+		drawRect(0, +20, sr.getScaledWidth(), +21, 0xbb00ff00);
+		
+		float scal333 = (float) 0.6;
+		//TODO Draw String with SUername
+		GL11.glPushMatrix();
+		GL11.glTranslated(scal333, scal333, scal333);
+		GL11.glScaled(scal333, scal333, scal333);
+		drawString(fontRendererObj, "Logged in as", 1, 1, 0xFFFFFFFF);
+		GL11.glPopMatrix();
+		
+		float scale2 = (float) 1.2;
+		GL11.glPushMatrix();
+		GL11.glTranslated(scale2, scale2, scale2);
+		GL11.glScaled(scale2, scale2, scale2);
+		drawString(fontRendererObj, mc.getSession().getUsername(), 0, 5, 0x9900ff00);
+		GL11.glPopMatrix();
+		
+		super.drawScreen(par1, par2, par3);
+	}
+
+	public void GuiPelikanLadeScreen(GuiMainMenu prevMultiplayerMenu) {
+		this.prevMenu = prevMultiplayerMenu;
+	}
+
+	@Override
+	public void updateScreen() {
+	}
+
+	@Override
+	public void initGui() {
+		Keyboard.enableRepeatEvents(true);
+		this.buttonList.add(new GuiInvisButton(100, this.width  - 30, sr.getScaledHeight() - 20, 30 ,20 , "Exit"));
+
+	}
+
+	@Override
+	public void onGuiClosed() {
+		Keyboard.enableRepeatEvents(false);
+	}
+
+	@Override
+	protected void actionPerformed(GuiButton clickedButton) {
+		if(clickedButton.id == 100){
+			this.mc.displayGuiScreen(prevMenu);
+		}
+	}
+
+	@Override
+	protected void keyTyped(char par1, int par2) {
+		if (par2 == 28 || par2 == 156) {
+			this.actionPerformed((GuiButton) this.buttonList.get(0));
+		}
+		if (par2 == 1) {
+			this.mc.displayGuiScreen(new GuiMainMenu());
+		}
+	}
+
+	@Override
+	protected void mouseClicked(int par1, int par2, int par3) throws IOException {
+		super.mouseClicked(par1, par2, par3);
+	}
+}

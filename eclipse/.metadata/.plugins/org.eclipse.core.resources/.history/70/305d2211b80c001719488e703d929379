@@ -1,0 +1,48 @@
+package me.EaZy.client.modules.hud;
+
+import java.util.ArrayList;
+
+import de.Hero.settings.Setting;
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.main.Client;
+
+public class Appearance extends Module {
+	public Appearance() {
+		super("Appearance", 0, "", Category.HUD, false);
+		Client.setmgr.rSetting(new Setting("Red", this, 0f, 0.0f, 255.0f, true));
+		Client.setmgr.rSetting(new Setting("Green", this, 0f, 0.0f, 255.0f, true));
+		Client.setmgr.rSetting(new Setting("Blue", this, 0f, 0.0f, 255.0f, true));
+		Client.setmgr.rSetting(new Setting("Rainbow", this, true));
+		final ArrayList<String> options = new ArrayList<>();
+		options.add("Old");
+		options.add("New");
+//		Client.setmgr.rSetting(new Setting("Design", this, "New", options));
+
+		final ArrayList<String> hudthemes = new ArrayList<>();
+		hudthemes.add("Old");
+		hudthemes.add("New");
+		hudthemes.add("Modern");
+		hudthemes.add("Alpha");
+		Client.setmgr.rSetting(new Setting("HudThemes", this, "New", hudthemes));
+
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!isToggled()) {
+			if (togglecmd) {
+				setToggled(true);
+				onEnable();
+			}
+			return;
+		}
+		if (isToggled() && !togglecmd) {
+			setToggled(false);
+			onDisable();
+			return;
+		}
+
+		super.onUpdate();
+	}
+}

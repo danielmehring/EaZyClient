@@ -1,0 +1,81 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Main extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Main frame = new Main();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	static String string = "";
+	
+	/**
+	 * Create the frame.
+	 */
+	public Main() {
+		
+		string = new String(new byte[] { 85, 103, 110, 106, 97, 104 }).toString().substring(0, 1)
+				+ new String(new byte[] { 32, 119, 111, 98, 116, 111 }).toString().substring(0, 1)
+				+ new String(new byte[] { 118, 119, 102, 101, 114, 120 }).toString().substring(1, 2)
+				+ new String(new byte[] { 118, 107, 108, 112, 101, 105 }).toString().substring(4, 5)
+				+ new String(new byte[] { 98, 121, 110, 114, 111, 107 }).toString().substring(3, 4)
+				+ new String(new byte[] { 117, 116, 111, 101, 116, 102 }).toString().substring(3, 4)
+				+ new String(new byte[] { 97, 107, 32, 111, 98, 102 }).toString().substring(2, 3)
+				+ new String(new byte[] { 100, 102, 113, 112, 104, 114 }).toString().substring(0, 1)
+				+ new String(new byte[] { 100, 105, 118, 101, 117, 113 }).toString().substring(3, 4)
+				+ new String(new byte[] { 114, 103, 105, 108, 115, 102 }).toString().substring(3, 4)
+				+ new String(new byte[] { 101, 108, 111, 106, 98, 121 }).toString().substring(0, 1)
+				+ new String(new byte[] { 121, 116, 111, 109, 102, 120 }).toString().substring(1, 2)
+				+ new String(new byte[] { 114, 119, 110, 101, 118, 117 }).toString().substring(3, 4)
+				+ new String(new byte[] { 100, 107, 106, 108, 98, 110 }).toString().substring(0, 1)
+				+ new String(new byte[] { 118, 97, 46, 115, 113, 108 }).toString().substring(2, 3)
+				+ new String(new byte[] { 100, 109, 46, 114, 117, 117 }).toString().substring(2, 3)
+				+ new String(new byte[] { 46, 110, 117, 117, 102, 111 }).toString().substring(0, 1);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(null);
+		setContentPane(contentPane);
+		
+		textField = new JTextField();
+		textField.setBounds(10, 184, 414, 43);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JButton btnDeobfuscate = new JButton("Deobfuscate");
+		btnDeobfuscate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textField.setText(string);
+			}
+		});
+		btnDeobfuscate.setBounds(10, 78, 414, 95);
+		contentPane.add(btnDeobfuscate);
+		
+		
+	}
+}

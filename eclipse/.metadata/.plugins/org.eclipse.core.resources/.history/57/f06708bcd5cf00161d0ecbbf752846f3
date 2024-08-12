@@ -1,0 +1,90 @@
+package de.Exe.Modules;
+
+import org.lwjgl.input.Keyboard;
+
+import de.Exe.Module.Category;
+import de.Exe.Module.Module;
+import de.Exe.Utils.Wrapper;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
+import net.minecraft.block.BlockLiquid;
+import net.minecraft.network.handshake.client.C00Handshake;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.Timer;
+
+public class GommeLongjump extends Module {
+
+	public GommeLongjump() {
+		super("GommeLongjump", Keyboard.KEY_F, Category.Movement);
+	}
+	
+	
+	double Ground;
+	int delay;
+	int damaged;
+	
+	int airdelay;
+
+	public void onPreUpdate() {
+		if (!this.getState())
+			return;
+		
+		Wrapper.msg(Integer.toString(airdelay));
+		
+		if(!mc.thePlayer.onGround)
+			airdelay++;
+		else
+			airdelay = 0;
+		
+		if(airdelay == 10){
+			mc.thePlayer.motionX *= 1.01f;
+			mc.thePlayer.motionZ *= 1.01f;
+		}
+		
+		if (mc.thePlayer.motionX != 0 && mc.thePlayer.motionZ != 0 && !mc.thePlayer.isInWater() && !mc.thePlayer.isInWeb) {
+			
+			mc.gameSettings.keyBindRight.pressed = false;
+			mc.gameSettings.keyBindLeft.pressed = false;
+			
+		
+
+
+			if (mc.thePlayer.motionY < 0 && mc.thePlayer.motionX != 0 && mc.thePlayer.motionZ != 0
+					&& mc.thePlayer.fallDistance < 2.3f) {
+				mc.thePlayer.motionY /= 1.22f;
+			}
+
+			if (mc.thePlayer.motionY > 0 && mc.thePlayer.motionX != 0 && mc.thePlayer.motionZ != 0) {
+				mc.thePlayer.motionY *= 1.21f;
+			}
+
+			if (mc.thePlayer.onGround) {
+				mc.thePlayer.jump();
+				delay = 0;
+			} else {
+				delay++;
+				mc.thePlayer.motionX /= 1.2f;
+				mc.thePlayer.motionZ /= 1.2f;
+				if (mc.thePlayer.ticksExisted % 2 == 0)
+					mc.thePlayer.jumpMovementFactor = 0.1199f;
+				else
+					mc.thePlayer.jumpMovementFactor = 0.121f;
+			}
+		}
+	}
+
+	public void onDisable() {
+		Timer.timerSpeed = 1.0f;
+		damaged = 0;
+		mc.gameSettings.keyBindSneak.pressed = false;
+		mc.thePlayer.motionX = 0;
+		mc.thePlayer.motionZ = 0;
+	}
+
+	public void onEnable() {
+		damaged = 0;
+		mc.gameSettings.keyBindSneak.pressed = true;
+		mc.gameSettings.keyBindSneak.pressed = false;
+	}
+}

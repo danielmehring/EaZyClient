@@ -1,0 +1,17 @@
+[18:38:50] [Client thread/INFO]: Setting user: Player398
+[18:38:50] [Client thread/INFO]: (Session ID is token:0:Player398)
+[18:38:51] [Client thread/INFO]: LWJGL Version: 2.9.1
+[18:38:52] [Client thread/INFO]: Reloading ResourceManager: Default, Neon 80s x512.zip
+[18:38:52] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[18:38:52] [Thread-7/INFO]: Initializing LWJGL OpenAL
+[18:38:52] [Thread-7/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[18:38:52] [Thread-7/INFO]: OpenAL initialized.
+[18:38:53] [Sound Library Loader/INFO]: Sound engine started
+[18:38:58] [Client thread/INFO]: Created: 1024x512 textures-atlas
+[18:39:05] [Server thread/INFO]: Starting integrated minecraft server version 1.8
+[18:39:05] [Server thread/INFO]: Generating keypair
+[18:39:06] [Server thread/INFO]: Preparing start region for level 0
+[18:39:07] [Server thread/INFO]: Player398[local:E:fba8ad35] logged in with entity id 20 at (464.7707558053572, 71.58659998370409, 620.0007742728454)
+[18:39:07] [Server thread/INFO]: Player398 joined the game
+[18:39:24] [Server thread/INFO]: Player398 has just earned the achievement [Taking Inventory]
+[18:39:24] [Client thread/INFO]: [CHAT] Player398 has just earned the achievement [Taking Inventory]

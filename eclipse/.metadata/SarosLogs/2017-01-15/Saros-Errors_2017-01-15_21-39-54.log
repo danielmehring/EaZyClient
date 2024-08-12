@@ -1,0 +1,2 @@
+WARN  2017-01-15 21:39:54,895 (StunServiceImpl.java:420) received no response from STUN server stunserver.org/69.172.201.153:3478 at local address /192.168.2.110:0
+WARN  2017-01-15 21:39:54,897 (StunServiceImpl.java:420) received no response from STUN server stunserver.org/69.172.201.153:3478 at local address /10.8.16.250:0

@@ -1,0 +1,99 @@
+package me.EaZy.client.modules;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.utils.EntityUtils;
+import net.minecraft.client.Minecraft;
+
+public class NewScaffold extends Module {
+
+	public NewScaffold() {
+		super("NewScaff", 0, "scaff", Category.WORLD);
+
+	}
+
+	float yawOHNEvek;
+	float pitch2send;
+
+	@Override
+	public void onUpdate() {
+		if (!isToggled()) {
+			if (togglecmd) {
+				setToggled(true);
+				onEnable();
+			}
+			return;
+		}
+		if (isToggled() && !togglecmd) {
+			setToggled(false);
+			onDisable();
+			return;
+		}
+
+		// Vorwärts
+		if (Minecraft.gameSettings.keyBindForward.pressed && !Minecraft.gameSettings.keyBindRight.pressed
+				|| !Minecraft.gameSettings.keyBindLeft.pressed) {
+			yawOHNEvek = DERSPIELER.rotationYaw % 360;
+		}
+
+		// LINKS (blöbe partei)
+		if (Minecraft.gameSettings.keyBindLeft.pressed && !Minecraft.gameSettings.keyBindForward.pressed
+				&& !Minecraft.gameSettings.keyBindBack.pressed && !Minecraft.gameSettings.keyBindRight.pressed) {
+			yawOHNEvek = DERSPIELER.rotationYaw % 360 - 90;
+		}
+
+		// RECHTS!
+		if (!Minecraft.gameSettings.keyBindLeft.pressed && !Minecraft.gameSettings.keyBindForward.pressed
+				&& !Minecraft.gameSettings.keyBindBack.pressed && Minecraft.gameSettings.keyBindRight.pressed) {
+			yawOHNEvek = DERSPIELER.rotationYaw % 360 + 90;
+		}
+
+		// rechts vorwärts
+		if (!Minecraft.gameSettings.keyBindLeft.pressed && Minecraft.gameSettings.keyBindForward.pressed
+				&& !Minecraft.gameSettings.keyBindBack.pressed && Minecraft.gameSettings.keyBindRight.pressed) {
+			yawOHNEvek = DERSPIELER.rotationYaw % 360 + 45;
+		}
+
+		// link vorwärts
+		if (Minecraft.gameSettings.keyBindLeft.pressed && Minecraft.gameSettings.keyBindForward.pressed
+				&& !Minecraft.gameSettings.keyBindBack.pressed && !Minecraft.gameSettings.keyBindRight.pressed) {
+			yawOHNEvek = DERSPIELER.rotationYaw % 360 - 45;
+		}
+
+		// links zurück
+		if (Minecraft.gameSettings.keyBindLeft.pressed && !Minecraft.gameSettings.keyBindForward.pressed
+				&& Minecraft.gameSettings.keyBindBack.pressed && !Minecraft.gameSettings.keyBindRight.pressed) {
+			yawOHNEvek = DERSPIELER.rotationYaw % 360 - 90 - 45;
+		}
+		// zurück
+		if (!Minecraft.gameSettings.keyBindLeft.pressed && !Minecraft.gameSettings.keyBindForward.pressed
+				&& Minecraft.gameSettings.keyBindBack.pressed && !Minecraft.gameSettings.keyBindRight.pressed) {
+			yawOHNEvek = DERSPIELER.rotationYaw % 360 - 180;
+		}
+
+		if (!Minecraft.gameSettings.keyBindLeft.pressed && !Minecraft.gameSettings.keyBindForward.pressed
+				&& Minecraft.gameSettings.keyBindBack.pressed && Minecraft.gameSettings.keyBindRight.pressed) {
+			yawOHNEvek = DERSPIELER.rotationYaw % 360 + 90 + 45;
+
+		}
+
+		// DERSPIELER.sendQueue.netManager
+		// .sendPacket(new C03PacketPlayer.C05PacketPlayerLook(yawOHNEvek,
+		// 42, DERSPIELER.onGround));
+
+		super.onUpdate();
+	}
+
+	@Override
+	public void onEnable() {
+
+		super.onEnable();
+	}
+
+	@Override
+	public void onDisable() {
+		EntityUtils.setLookChanged(false);
+		super.onDisable();
+	}
+
+}

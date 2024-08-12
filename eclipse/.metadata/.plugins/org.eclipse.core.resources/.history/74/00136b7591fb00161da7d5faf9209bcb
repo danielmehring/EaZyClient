@@ -1,0 +1,9 @@
+package me.EaZy.client;
+
+public class PokeNotification {
+	
+	public void displayPoke (String Overname, String text) {
+		
+	}
+
+}

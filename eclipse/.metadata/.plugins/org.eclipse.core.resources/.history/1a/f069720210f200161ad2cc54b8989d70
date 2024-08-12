@@ -1,0 +1,78 @@
+/*
+ * Decompiled with CFR 0_117.
+ */
+package me.EaZy.client.modules;
+
+import java.util.ArrayList;
+
+import de.Hero.settings.Setting;
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.main.Client;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.MovingObjectPosition.MovingObjectType;
+
+public class Criticals extends Module {
+
+	public Criticals() {
+		super("Criticals", 0, "crit", Category.COMBAT);
+		final ArrayList<String> modes = new ArrayList<>();
+		modes.add("Jump");
+		modes.add("MiniJump");
+		modes.add("MicroJump");
+		modes.add("Packets");
+		Client.setmgr.rSetting(new Setting("Mode", this, "MicroJump", modes));
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!isToggled()) {
+			if (togglecmd) {
+				setToggled(true);
+				onEnable();
+			}
+			return;
+		}
+		if (isToggled() && !togglecmd) {
+			setToggled(false);
+			onDisable();
+			return;
+		}
+		if (MovingObjectPosition.typeOfHit == MovingObjectType.ENTITY && Minecraft.gameSettings.keyBindAttack.pressed
+				|| KillAura.target != null && !(KillAura.delay <= Client.setmgr
+						.getSettingByName(Client.getModule(KillAura.class), "Delay").getValFloat())) {
+			doCritical();
+		}
+	}
+
+	public void doCritical() {
+
+		if (!Minecraft.thePlayer.isInWater() && !Minecraft.thePlayer.isInsideOfMaterial(Material.lava)
+				&& Minecraft.thePlayer.onGround) {
+			final String mode = Client.setmgr.getSettingByName(this, "Mode").getValString();
+			if (mode.equals("Jump")) {
+				Minecraft.thePlayer.jump();
+			} else if (mode.equals("MiniJump")) {
+				Minecraft.thePlayer.motionY = 0.15;
+				Minecraft.thePlayer.onGround = false;
+			} else if (mode.equals("MicroJump")) {
+				Minecraft.thePlayer.motionY = 0.08;
+				Minecraft.thePlayer.onGround = false;
+			} else if (mode.equals("Packets")) {
+
+				Minecraft.getNetHandler().addToSendQueue(new C03PacketPlayer.C04PacketPlayerPosition(
+						Minecraft.thePlayer.posX, Minecraft.thePlayer.posY + 0.05, Minecraft.thePlayer.posZ, false));
+				Minecraft.getNetHandler().addToSendQueue(new C03PacketPlayer.C04PacketPlayerPosition(
+						Minecraft.thePlayer.posX, Minecraft.thePlayer.posY, Minecraft.thePlayer.posZ, false));
+				Minecraft.getNetHandler()
+						.addToSendQueue(new C03PacketPlayer.C04PacketPlayerPosition(Minecraft.thePlayer.posX,
+								Minecraft.thePlayer.posY + 0.012511, Minecraft.thePlayer.posZ, false));
+				Minecraft.getNetHandler().addToSendQueue(new C03PacketPlayer.C04PacketPlayerPosition(
+						Minecraft.thePlayer.posX, Minecraft.thePlayer.posY, Minecraft.thePlayer.posZ, false));
+			}
+		}
+	}
+}

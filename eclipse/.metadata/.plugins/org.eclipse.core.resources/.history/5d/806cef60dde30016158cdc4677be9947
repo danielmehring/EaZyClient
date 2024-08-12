@@ -1,0 +1,150 @@
+/*
+ * Decompiled with CFR 0_117.
+ */
+package me.EaZy.client.modules;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+import me.EaZy.client.events.EventJump;
+import me.EaZy.client.events.EventStep;
+import me.EaZy.client.main.Client;
+import me.EaZy.client.utils.TimeHelper;
+import me.EaZy.client.utils.TimeHelper2;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.MathHelper;
+
+import com.darkmagician6.eventapi.EventManager;
+import com.darkmagician6.eventapi.EventTarget;
+
+public class Step extends Module {
+	public TimeHelper2 time1 = new TimeHelper2();
+	public int steppedBlocks = 0;
+
+	private final boolean reverse = true;
+	private int groundTicks;
+	private int recentStepTicks;
+	private final TimeHelper timer = new TimeHelper();
+
+	public Step() {
+		super("Step", 0, "", Category.MOVEMENT, "Go up blocks\nwithout jumping.");
+	}
+
+	@Override
+	public void onDisable() {
+		EventManager.unregister(this);
+		super.onDisable();
+	}
+
+	@Override
+	public String getRenderName() {
+		return "Step [" + Float.toString(Client.getValues().Step_height.getValue()) + "]";
+	}
+
+	@Override
+	public void onUpdate() {
+		if (!this.isToggled()) {
+			if (this.togglecmd) {
+				this.setToggled(true);
+				this.onEnable();
+			}
+			return;
+		}
+		if (this.isToggled() && !this.togglecmd) {
+			this.setToggled(false);
+			this.onDisable();
+			return;
+		}
+
+		if (mc.thePlayer.isCollidedHorizontally
+				&& (mc.gameSettings.keyBindForward.pressed || mc.gameSettings.keyBindBack.pressed
+						|| mc.gameSettings.keyBindRight.pressed || mc.gameSettings.keyBindLeft.pressed)
+				&& mc.thePlayer.onGround && !mc.thePlayer.isOnLadder() && !mc.thePlayer.isInWater()) {
+
+			if (steppedBlocks == 5) {
+				steppedBlocks = 0;
+
+				mc.thePlayer.jump();
+				mc.thePlayer.motionY = -2;
+
+				return;
+			}
+
+			if (this.time1.isDelayComplete(57.0f)) {
+				mc.thePlayer.stepHeight = Client.getValues().Step_height.getValue();
+				mc.thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer.C04PacketPlayerPosition(mc.thePlayer.posX,
+						mc.thePlayer.posY + 0.42, mc.thePlayer.posZ, mc.thePlayer.onGround));
+				mc.thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer.C04PacketPlayerPosition(mc.thePlayer.posX,
+						mc.thePlayer.posY + 0.753, mc.thePlayer.posZ, mc.thePlayer.onGround));
+				time1.reset();
+				steppedBlocks++;
+			}
+		} else {
+			mc.thePlayer.stepHeight = 0.5f;
+		}
+
+		if (Client.getValues().Step_Reverse.getState()) {
+			if (!(!this.reverse || mc.gameSettings.keyBindJump.pressed || mc.thePlayer.isOnLadder()
+					|| mc.thePlayer.isInsideOfMaterial(Material.water) || mc.thePlayer.isInsideOfMaterial(Material.lava)
+					|| mc.thePlayer.isInWater()
+					|| (this.getBlock(-1.1) instanceof BlockAir || this.getBlock(-1.1) instanceof BlockAir)
+							&& (this.getBlock(-0.1) instanceof BlockAir || mc.thePlayer.motionX == 0.0
+									|| mc.thePlayer.motionZ == 0.0 || !this.reverse || mc.thePlayer.onGround
+									|| mc.thePlayer.fallDistance >= 3.0f || mc.thePlayer.fallDistance <= 0.05))) {
+				mc.thePlayer.motionY = -5.0;
+			}
+			++this.recentStepTicks;
+			this.groundTicks = mc.thePlayer.onGround ? ++this.groundTicks : 0;
+		}
+
+		super.onUpdate();
+	}
+
+	@Override
+	public void onEnable() {
+		EventManager.register(this);
+		super.onEnable();
+	}
+
+	@EventTarget
+	private void onJump(final EventJump event) {
+		if (this.recentStepTicks < 2 && Client.getValues().Step_Reverse.getState()) {
+			event.setCancelled(true);
+		}
+	}
+
+	@EventTarget
+	private void onStep(final EventStep event) {
+		if (this.timer.delay(300.0f) && Minecraft.thePlayer.movementInput != null && this.recentStepTicks >= 2
+				&& this.groundTicks >= 2 && !Minecraft.thePlayer.movementInput.jump
+				&& Client.getValues().Step_Reverse.getState()) {
+			event.stepHeight = 1.0;
+			event.bypass = true;
+			this.timer.reset();
+		}
+	}
+
+	public Block getBlock(final AxisAlignedBB bb) {
+		final int y = (int) bb.minY;
+		for (int x = MathHelper.floor_double(bb.minX); x < MathHelper.floor_double(bb.maxX) + 1; ++x) {
+			for (int z = MathHelper.floor_double(bb.minZ); z < MathHelper.floor_double(bb.maxZ) + 1; ++z) {
+				final Block block = mc.theWorld.getBlockState(new BlockPos(x, y, z)).getBlock();
+				if (block == null) {
+					continue;
+				}
+				return block;
+			}
+		}
+		return null;
+	}
+
+	public Block getBlock(final double offset) {
+		return this.getBlock(mc.thePlayer.getEntityBoundingBox().offset(0.0, offset, 0.0));
+	}
+}

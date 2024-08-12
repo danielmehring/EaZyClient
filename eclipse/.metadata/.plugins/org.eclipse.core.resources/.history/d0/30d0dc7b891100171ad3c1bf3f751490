@@ -1,0 +1,12 @@
+package me.EaZy.client.modules.SpeedModes;
+
+import me.EaZy.client.Category;
+import me.EaZy.client.Module;
+
+public class RewiBHop extends Module{
+
+	public RewiBHop() {
+		super("RewiBHop", 0, "", Category.SPEED);
+	}
+
+}

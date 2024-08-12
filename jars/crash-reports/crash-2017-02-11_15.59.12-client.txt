@@ -1,0 +1,108 @@
+---- Minecraft Crash Report ----
+// Everything's going to plan. No, really, that was supposed to happen.
+
+Time: 11.02.17 15:59
+Description: Ticking entity
+
+java.lang.NullPointerException: Ticking entity
+	at net.minecraft.client.entity.EntityPlayerSP.onLivingUpdate(EntityPlayerSP.java:2685)
+	at net.minecraft.entity.EntityLivingBase.onUpdate(EntityLivingBase.java:1619)
+	at net.minecraft.entity.player.EntityPlayer.onUpdate(EntityPlayer.java:325)
+	at net.minecraft.client.entity.EntityPlayerSP.onUpdate(EntityPlayerSP.java:333)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1607)
+	at net.minecraft.world.World.updateEntity(World.java:1582)
+	at net.minecraft.world.World.updateEntities(World.java:1457)
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:1959)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1042)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:450)
+	at net.minecraft.client.main.Main.start(Main.java:149)
+	at Start.main(Start.java:7)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at net.minecraft.client.entity.EntityPlayerSP.onLivingUpdate(EntityPlayerSP.java:2685)
+	at net.minecraft.entity.EntityLivingBase.onUpdate(EntityLivingBase.java:1619)
+	at net.minecraft.entity.player.EntityPlayer.onUpdate(EntityPlayer.java:325)
+	at net.minecraft.client.entity.EntityPlayerSP.onUpdate(EntityPlayerSP.java:333)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1607)
+	at net.minecraft.world.World.updateEntity(World.java:1582)
+
+-- Entity being ticked --
+Details:
+	Entity Type: null (net.minecraft.client.entity.EntityPlayerSP)
+	Entity ID: 318
+	Entity Name: Player546
+	Entity's Exact location: 123,59, 71,17, -23,50
+	Entity's Block location: 123,00,71,00,-24,00 - World: (123,71,-24), Chunk: (at 11,4,8 in 7,-2; contains blocks 112,0,-32 to 127,255,-17), Region: (0,-1; contains chunks 0,-32 to 31,-1, blocks 0,0,-512 to 511,255,-1)
+	Entity's Momentum: -0,38, 0,08, -0,93
+	Entity's Rider: ~~ERROR~~ NullPointerException: null
+	Entity's Vehicle: ~~ERROR~~ NullPointerException: null
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:1457)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player546'/318, l='MpServer', x=123,59, y=71,17, z=-23,50]]
+	Chunk stats: MultiplayerChunkCache: 289, 289
+	Level seed: 0
+	Level generator: ID 00 - default, ver 1. Features enabled: false
+	Level generator options: 
+	Level spawn location: -196,00,64,00,256,00 - World: (-196,64,256), Chunk: (at 12,4,0 in -13,16; contains blocks -208,0,256 to -193,255,271), Region: (-1,0; contains chunks -32,0 to -1,31, blocks -512,0,0 to -1,255,511)
+	Level time: 782864 game time, 253772 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 90 total; [EntityBat['Bat'/4105, l='MpServer', x=145,38, y=21,05, z=-44,38], EntityBat['Bat'/4106, l='MpServer', x=150,43, y=21,91, z=-37,39], EntityChicken['Chicken'/2836, l='MpServer', x=197,38, y=64,00, z=-87,34], EntityBat['Bat'/2837, l='MpServer', x=195,42, y=36,36, z=-56,28], EntityChicken['Chicken'/2838, l='MpServer', x=192,38, y=67,00, z=49,59], EntityCow['Cow'/3614, l='MpServer', x=101,03, y=65,00, z=-81,97], EntityBat['Bat'/4127, l='MpServer', x=158,53, y=44,97, z=-57,47], EntityChicken['Chicken'/3616, l='MpServer', x=98,16, y=63,56, z=-42,56], EntityChicken['Chicken'/3617, l='MpServer', x=109,78, y=67,00, z=-34,53], EntityChicken['Chicken'/3618, l='MpServer', x=109,31, y=68,00, z=-42,53], EntityChicken['Chicken'/3619, l='MpServer', x=112,23, y=68,00, z=-34,41], EntityChicken['Chicken'/3620, l='MpServer', x=100,19, y=67,00, z=-44,75], EntityChicken['Chicken'/3369, l='MpServer', x=132,34, y=69,00, z=-27,53], EntityChicken['Chicken'/3370, l='MpServer', x=134,34, y=69,00, z=-26,38], EntityChicken['Chicken'/3371, l='MpServer', x=140,28, y=70,00, z=-35,31], EntityZombie['Zombie'/3117, l='MpServer', x=176,50, y=69,00, z=17,50], EntitySkeleton['Skeleton'/3901, l='MpServer', x=199,50, y=69,00, z=-50,50], EntityWitch['Witch'/3902, l='MpServer', x=134,50, y=72,00, z=-8,50], EntityWitch['Witch'/3904, l='MpServer', x=136,50, y=72,00, z=-5,50], EntitySkeleton['Skeleton'/3910, l='MpServer', x=134,50, y=72,00, z=-7,50], EntityZombie['Zombie'/3681, l='MpServer', x=76,17, y=36,00, z=-71,56], EntityZombie['Zombie'/3682, l='MpServer', x=81,50, y=36,00, z=-73,50], EntityZombie['Zombie'/3683, l='MpServer', x=84,50, y=36,00, z=-73,50], EntityChicken['Chicken'/3684, l='MpServer', x=85,66, y=65,00, z=-26,66], EntityBat['Bat'/3685, l='MpServer', x=93,66, y=26,38, z=1,04], EntityChicken['Chicken'/3453, l='MpServer', x=128,47, y=70,00, z=-46,47], EntityChicken['Chicken'/3454, l='MpServer', x=136,34, y=70,00, z=-35,59], EntitySpider['Spider'/3966, l='MpServer', x=202,50, y=69,00, z=1,50], EntityChicken['Chicken'/3455, l='MpServer', x=129,50, y=70,00, z=-46,25], EntityChicken['Chicken'/3456, l='MpServer', x=143,41, y=66,00, z=-87,47], EntityChicken['Chicken'/3457, l='MpServer', x=135,59, y=70,00, z=-18,41], EntityZombie['Zombie'/3969, l='MpServer', x=204,50, y=27,02, z=47,50], EntityEnderman['Enderman'/3458, l='MpServer', x=137,50, y=45,00, z=20,50], EntityZombie['Zombie'/3970, l='MpServer', x=204,50, y=27,02, z=46,50], EntityZombie['Zombie'/3971, l='MpServer', x=205,50, y=27,00, z=45,50], EntityCreeper['Creeper'/3976, l='MpServer', x=150,50, y=69,00, z=-63,50], EntityPlayerSP['Player546'/318, l='MpServer', x=123,59, y=71,17, z=-23,50], EntityZombie['Zombie'/3979, l='MpServer', x=167,50, y=69,00, z=-6,50], EntitySpider['Spider'/3984, l='MpServer', x=168,50, y=69,00, z=-4,50], EntityChicken['Chicken'/3732, l='MpServer', x=74,91, y=68,00, z=-67,66], EntityChicken['Chicken'/3733, l='MpServer', x=75,09, y=68,00, z=-66,69], EntityChicken['Chicken'/3734, l='MpServer', x=75,66, y=68,00, z=-66,47], EntitySpider['Spider'/3735, l='MpServer', x=82,45, y=65,00, z=-41,13], EntitySpider['Spider'/3736, l='MpServer', x=76,00, y=65,00, z=-44,49], EntityEnderman['Enderman'/3993, l='MpServer', x=125,69, y=48,00, z=-26,25], EntitySkeleton['Skeleton'/3737, l='MpServer', x=64,50, y=25,00, z=-22,50], EntityChicken['Chicken'/3738, l='MpServer', x=76,59, y=66,00, z=-15,69], EntityCreeper['Creeper'/3994, l='MpServer', x=127,59, y=48,00, z=-26,00], EntityCreeper['Creeper'/3739, l='MpServer', x=73,50, y=25,00, z=17,50], EntitySkeleton['Skeleton'/3503, l='MpServer', x=175,50, y=54,00, z=-30,50], EntityWitch['Witch'/3504, l='MpServer', x=169,16, y=45,00, z=-23,53], EntityChicken['Chicken'/3250, l='MpServer', x=151,31, y=66,00, z=-93,59], EntityChicken['Chicken'/3251, l='MpServer', x=152,53, y=66,00, z=-90,69], EntityCreeper['Creeper'/3767, l='MpServer', x=59,50, y=40,00, z=-90,50], EntityChicken['Chicken'/3768, l='MpServer', x=52,59, y=64,00, z=-42,59], EntityChicken['Chicken'/3769, l='MpServer', x=61,81, y=64,56, z=-20,25], EntityChicken['Chicken'/2753, l='MpServer', x=204,24, y=69,00, z=-39,50], EntitySkeleton['Skeleton'/3781, l='MpServer', x=76,22, y=36,00, z=-73,28], EntityCreeper['Creeper'/3277, l='MpServer', x=201,50, y=64,00, z=-98,50], EntityChicken['Chicken'/3021, l='MpServer', x=168,59, y=67,00, z=-89,69], EntityCreeper['Creeper'/3022, l='MpServer', x=175,50, y=16,00, z=-12,50], EntityChicken['Chicken'/3023, l='MpServer', x=168,41, y=69,00, z=22,47], EntityChicken['Chicken'/3024, l='MpServer', x=162,03, y=66,59, z=44,75], EntityChicken['Chicken'/3026, l='MpServer', x=163,50, y=66,66, z=50,31], EntityChicken['Chicken'/3027, l='MpServer', x=170,94, y=68,00, z=58,78], EntityBat['Bat'/4060, l='MpServer', x=140,44, y=17,38, z=-32,53], EntityZombie['Zombie'/3805, l='MpServer', x=137,50, y=64,00, z=-95,50], EntityCreeper['Creeper'/3552, l='MpServer', x=119,91, y=55,00, z=-58,50], EntitySpider['Spider'/3811, l='MpServer', x=149,14, y=66,00, z=-86,10], EntityZombie['Zombie'/3817, l='MpServer', x=140,13, y=64,00, z=-81,50], EntityCow['Cow'/3562, l='MpServer', x=120,84, y=66,00, z=-87,66], EntityPig['Pig'/3563, l='MpServer', x=113,81, y=66,00, z=-94,47], EntitySpider['Spider'/3819, l='MpServer', x=148,75, y=66,00, z=-89,06], EntityCreeper['Creeper'/3564, l='MpServer', x=114,50, y=41,00, z=-66,50], EntitySpider['Spider'/3565, l='MpServer', x=128,25, y=47,47, z=-63,72], EntitySpider['Spider'/3821, l='MpServer', x=153,66, y=66,00, z=-88,04], EntityCreeper['Creeper'/3566, l='MpServer', x=112,56, y=42,00, z=-62,97], EntityCreeper['Creeper'/3567, l='MpServer', x=119,50, y=41,00, z=-68,50], EntityCow['Cow'/3568, l='MpServer', x=112,88, y=64,00, z=-77,03], EntitySkeleton['Skeleton'/3569, l='MpServer', x=114,63, y=13,00, z=-34,81], EntityChicken['Chicken'/3570, l='MpServer', x=112,38, y=68,00, z=-44,63], EntityChicken['Chicken'/3571, l='MpServer', x=126,53, y=68,00, z=-39,06], EntityChicken['Chicken'/3572, l='MpServer', x=124,41, y=69,00, z=-34,41], EntityChicken['Chicken'/3573, l='MpServer', x=123,47, y=69,00, z=-24,97], EntityChicken['Chicken'/3574, l='MpServer', x=118,56, y=69,00, z=-27,31], EntityChicken['Chicken'/3575, l='MpServer', x=123,69, y=70,00, z=-21,34], EntityChicken['Chicken'/3576, l='MpServer', x=120,53, y=72,00, z=-14,28], EntityChicken['Chicken'/3577, l='MpServer', x=124,50, y=71,00, z=39,34], EntityChicken['Chicken'/3578, l='MpServer', x=127,84, y=69,00, z=46,94], EntityChicken['Chicken'/3580, l='MpServer', x=112,25, y=67,00, z=49,34]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:377)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2414)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:466)
+	at net.minecraft.client.main.Main.start(Main.java:149)
+	at Start.main(Start.java:7)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_101, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 644069864 bytes (614 MB) / 1038876672 bytes (990 MB) up to 1038876672 bytes (990 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 95
+	EaZy Version: EaZy b17.04
+	Error Code: 778fe75879998f5a47e8bac4594ab272
+	Launched Version: mcp
+	LWJGL: 2.9.1
+	OpenGL: GeForce GTX 960/PCIe/SSE2 GL version 4.5.0 NVIDIA 376.53, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: [NexaLight x512.zip]
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	OptiFine Version: OptiFine_1.8_HD_U_H6
+	Render Distance Chunks: 8
+	Mipmaps: 4
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.5.0 NVIDIA 376.53
+	OpenGlRenderer: GeForce GTX 960/PCIe/SSE2
+	OpenGlVendor: NVIDIA Corporation
+	CpuCount: 4
